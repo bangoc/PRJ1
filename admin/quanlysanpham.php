@@ -7,19 +7,18 @@
 <title>Trang quan tri</title>
 
 </head>
- 	 
+
 <body>
-<?php
-     include('module/config.php') ?>
-	<?php include('module/modau.php') ?>
+<?php include('module/config.php') ?>
+<?php include('module/modau.php') ?>
+<div id="wrapper" style="width:100%;background:url(mos-css/img/d.PNG);">
 <?php 
     include ('module/menu.php');
 	
-?>
-<div id="wrapper" style="width:100%; background:url(mos-css/img/d.PNG); font-size:14px">
-  <?php 
+?>	
+<?php 
    
-	include ('module/content.php');	
+	include ('module/content1.php');	
 ?>	
 
 </div>
