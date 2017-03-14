@@ -135,3 +135,12 @@ body > nav > div > ul > li.intro_left > ul > li:nth-child(3) {
 .modal-backdrop {
 	display: none;
 }
+/*side_bar*/
+.side_bar i{
+   float: left;
+   font-size: 150%;
+   color: red;
+}
+.orangepanel {
+	background: orange;
+}

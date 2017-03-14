@@ -1,5 +1,5 @@
 <?php 
-  $conn=mysqli_connect("localhost","root","","weblaptop");
+  $conn=mysqli_connect("localhost","root","","webbangiay");
   if(!$conn)
   {
   	die("Error: ".mysqli_connect_error($conn));

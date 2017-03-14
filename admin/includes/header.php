@@ -9,7 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="library/font-awesome/css/font-awesome.css">
 </head>
 <body>
-    <nav style="position: fixed;
+
+
+  <nav style="position: fixed;
         z-index: 100;
          margin-top: -70px;">
       <div class="header">
