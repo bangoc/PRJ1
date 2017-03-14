@@ -4,7 +4,7 @@
  $dong=mysqli_fetch_array($run);
 ?>
 <form action="module/hangsanxuat/xuly.php?idhang=<?php echo $dong['idhang'] ?>" method="post" enctype="multipart/form-data">
-<table width="100%" border="1">
+<table width="300px" border="1">
   <tr>
     <td colspan="2" div align="center"><h4>Sửa tên hãng</h4></td>
     
@@ -17,9 +17,7 @@
   <tr>
     <td colspan="2"> <div align="center">
     <input type="submit" name="sua" id="sua" value="Sửa"> </div>
-    
     </td>
-   
   </tr>
 </table>
 </form>

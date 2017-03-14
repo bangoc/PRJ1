@@ -2,7 +2,7 @@
 $tenmaychu='localhost';
 $tentaikhoan='root';
 $pass='';
-$csdl='weblaptop';
+$csdl='webbangiay';
 $conn=mysqli_connect($tenmaychu,$tentaikhoan,$pass,$csdl);
 
 ?>
