@@ -5,14 +5,14 @@
 	<i style="color: #0C9;">"Một ngày không cười là một ngày lãng phí"</i>
 	</div>
 		<div class="shortcutHome1">
-		<a href=""><img src="mos-css/img/posting.png"><br>Bài đăng mới</a>
+		<a href=""><img src="mos-css/img/posting.png" width="40" height="30"><br>Bài đăng mới</a>
 		</div>
 		<div class="shortcutHome">
-		<a href="quanlysanpham.php?quanli=hangsanxuat&ac=them"><img src="mos-css/img/s8.PNG" width="80" height="80"><br>
+		<a href="quanlysanpham.php?quanli=quanlychitietsp&ac=them"><img src="mos-css/img/s8.PNG" width="80" height="80"><br>
 		Sản phẩm</a>
 		</div>
 		<div class="shortcutHome">
-		<a href=""><img src="mos-css/img/s4.PNG" width="80" height="80"><br>
+		<a href="quanlydonhang.php"><img src="mos-css/img/s4.PNG" width="80" height="80"><br>
 		Đơn hàng</a>
 		</div>
 		<div class="shortcutHome">
@@ -24,8 +24,8 @@
 		Sale</a>
 		</div>
 		<div class="shortcutHome">
-		<a href=""><img src="mos-css/img/s14.PNG" width="80" height="80"><br>
-		Hình ảnh</a>
+		<a href=""><img src="mos-css/img/ab.PNG" width="70" height="80"><br>
+		Giỏ hàng</a>
 		</div>
 		
 		<div class="clear"></div>
