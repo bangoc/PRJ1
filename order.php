@@ -1,4 +1,4 @@
-<?php include 'admin/includes/header.php' ?>
+<?php include 'includes/header.php' ?>
  <style type="text/css">
  	i{margin-right: 10px;}
 
@@ -78,4 +78,4 @@
      	</div>
      </div>
    </div>
-<?php include 'admin/includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>

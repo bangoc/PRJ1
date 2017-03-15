@@ -1,4 +1,4 @@
-<?php include 'admin/includes/header.php' ?>
+<?php include 'includes/header.php' ?>
 <div class="container"  style="margin-top: 70px;">
 	    <div class="btn-group btn-group-justified">
 		  <a href="#" class="btn btn-primary">Trang chủ</a>
@@ -115,4 +115,4 @@
 	</div>
 </div>
 
-<?php include 'admin/includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>

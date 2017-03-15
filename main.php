@@ -1,4 +1,4 @@
-<?php include 'admin/includes/header.php' ?>
+<?php include 'includes/header.php' ?>
    <div class="container" style="margin-top: 70px;">
      <div class="row" style="margin-bottom: 100px;">
        <div class="sidebar_left col-sm-3">
@@ -184,4 +184,4 @@
 	
 
 	</div>
-<?php include 'admin/includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>

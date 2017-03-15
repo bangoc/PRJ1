@@ -2,7 +2,7 @@
    session_start();
  ?>
 
- <?php include 'admin/includes/header.php' ?>
+ <?php include 'includes/header.php' ?>
 
 <?php include 'lib/conn.php' ?>
  <?php include 'lib/function_login.php' ?>
@@ -27,4 +27,4 @@
              </div>
          
 		</div>
-<?php include 'admin/includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>
