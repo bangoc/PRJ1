@@ -100,7 +100,8 @@ CREATE TABLE `user` (
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` int(20) NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
