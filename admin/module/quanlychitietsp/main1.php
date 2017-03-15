@@ -9,6 +9,10 @@
 	   {
 		   include('module/quanlychitietsp/them.php');
 	   }
+	   if($tam=='lietke')
+	   {
+		   include('module/quanlychitietsp/lietke.php');
+	   }
 	   if($tam=='sua')
 	   {
 		   include('module/quanlychitietsp/sua.php');

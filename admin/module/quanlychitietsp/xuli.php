@@ -1,6 +1,7 @@
 <?php include('../lib/conn.php') ?>
 <?php
   if(isset ($_POST['them'])) {
+	     $idsanpham=$_GET['idsanpham'];
 		 $tensanpham=$_POST['tensanpham'];
 		 $gia=$_POST['gia'];
 		 $img=$_FILES['hinhanh']['name'];
@@ -17,6 +18,6 @@
 		 $sql="INSERT into sanpham(tensanpham,gia,hinhanh,mota,loaisp,soluong,hang,xuatxu,mausac) 
 		       values('$tensanpham','$gia','$hinhanh','$mota','$loaisp','$soluong','$hang','$xuatxu','$mausac')";	
 	     $result=mysqli_query($conn,$sql) or die("Error: ".mysqli_error($conn));
-			 header('Location:module/quanlychitietsp/lietke.php'); 
+			 header('Location:quanlysanpham.php?quanli=quanlychitietsp&ac=them'); 
   }
 	 ?>
