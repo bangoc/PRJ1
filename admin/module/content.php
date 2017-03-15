@@ -12,7 +12,7 @@
 		Sản phẩm</a>
 		</div>
 		<div class="shortcutHome">
-		<a href="quanlydonhang.php"><img src="mos-css/img/s4.PNG" width="80" height="80"><br>
+		<a href="quanlydonhang.php?quanli=donhang"><img src="mos-css/img/s4.PNG" width="80" height="80"><br>
 		Đơn hàng</a>
 		</div>
 		<div class="shortcutHome">
