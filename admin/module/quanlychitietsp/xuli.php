@@ -1,4 +1,4 @@
-<?php include('../lib/conn.php') ?>
+<?php include('module/config.php') ?>
 <?php
   if(isset ($_POST['them'])) {
 	     $idsanpham=$_GET['idsanpham'];
