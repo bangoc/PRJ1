@@ -52,6 +52,7 @@
                   <option> Chọn loại sản phẩm </option>
                   <option> Nam </option>
                   <option> Nữ </option>
+                  <option> All </option>
                </select> 
             </td>
           </tr>
