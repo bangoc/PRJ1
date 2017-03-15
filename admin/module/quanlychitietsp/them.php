@@ -1,5 +1,3 @@
-<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
-<script>tinymce.init({selector:'textarea'});</script>
  <blockquote>&nbsp;</blockquote>
   <?php include 'xuli.php' ?>
     <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"  enctype="multipart/form-data">
