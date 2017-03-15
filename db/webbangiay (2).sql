@@ -1,11 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+﻿-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 14, 2017 lúc 02:25 CH
--- Phiên bản máy phục vụ: 10.1.21-MariaDB
--- Phiên bản PHP: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Mar 15, 2017 at 09:01 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `webbangiay`
+-- Database: `webbangiay`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -35,19 +35,22 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `donhang`
+-- Table structure for table `donhang`
 --
 
 CREATE TABLE `donhang` (
   `iddonhang` int(50) NOT NULL,
   `idgiohang` int(50) NOT NULL,
+  `phone` int(20) NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tongtien` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giohang`
+-- Table structure for table `giohang`
 --
 
 CREATE TABLE `giohang` (
@@ -59,7 +62,7 @@ CREATE TABLE `giohang` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -77,7 +80,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`idsanpham`, `tensanpham`, `gia`, `mota`, `hinhanh`, `soluong`, `mausac`, `xuatxu`, `size`, `hang`, `loaisp`) VALUES
@@ -87,78 +90,77 @@ INSERT INTO `sanpham` (`idsanpham`, `tensanpham`, `gia`, `mota`, `hinhanh`, `sol
 (5, 'macbook', 500, '', '', 0, '', '', '', '', ''),
 (6, 'lenovo', 3000, '', '', 0, '', '', '', '', ''),
 (7, 'asus', 6000, '', '', 0, '', '', '', '', ''),
-(9, 'desktop\r\n', 8000, '', '', 0, '', '', '', '', '');
+(9, 'desktop\r\n', 8000, '', '', 0, '', '', '', '', ''),
+(10, 'giY NIKE', 54000, '', 'image/Screenshot (1).png', 1, 'trang', 'tau', '', 'Nike', 'Nam');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `iduser` int(50) NOT NULL,
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` int(20) NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL
+  `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `donhang`
+-- Indexes for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`iddonhang`);
 
 --
--- Chỉ mục cho bảng `giohang`
+-- Indexes for table `giohang`
 --
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`idgiohang`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`idsanpham`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`iduser`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT cho bảng `giohang`
+-- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
   MODIFY `idgiohang` int(50) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `idsanpham` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idsanpham` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `iduser` int(50) NOT NULL AUTO_INCREMENT;
