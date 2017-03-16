@@ -1,11 +1,5 @@
+    <?php include 'conn.php' ?>
      <?php
-					   $conn=mysqli_connect("localhost","root","","weblaptop");
-					  if(!$conn)
-					  {
-					    die("Error: ".mysqli_connect_error($conn));
-					  }
-					  else
-					    mysqli_set_charset($conn,'utf8');
 
 					        if(isset($_POST["submit"])) {
 					            //lấy thông tin từ các form bằng phương thức POST
@@ -39,7 +33,4 @@
 					                        mysqli_query($conn,$sql);
 					                        echo "chúc mừng bạn đã đăng ký thành công";
 					                    }
-					                                        
-					                    
-					              
     		 ?> 

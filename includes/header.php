@@ -55,18 +55,27 @@
 											        <h4 class="modal-title">Đăng kí</h4>
 											      </div>
 											      <div class="modal-body">
-													
-			
-						
-								
-														 <form action="main.php" method="POST">
+											            <?php include '../lib/signup.php' ?>
+													    <form action="login.php" method="POST">
 														  <div class="form-group">
-														    <label for="name">UserName:</label>
-														    <input type="text"  name="username" class="form-control" id="email">
+															    <label for="name">UserName:</label>
+															    <input type="text"  name="name" class="form-control" id="email">
+														 </div>
+														  <div class="form-group">
+															    <label for="email">Email</label>
+															    <input type="email"  name="email" class="form-control" id="pwd">
 														  </div>
 														   <div class="form-group">
-														    <label for="pwd">Password</label>
-														    <input type="password"  name="password" class="form-control" id="pwd">
+															    <label for="pwd">Password</label>
+															    <input type="password"  name="password" class="form-control" id="pwd">
+														  </div>
+														  <div class="form-group">
+															    <label for="pwd">Phone</label>
+															    <input type="text"  name="phone" class="form-control" id="pwd">
+														  </div>
+														  <div class="form-group">
+															    <label for="pwd">Address</label>
+															    <input type="text" name="address" class="form-control" id="pwd">
 														  </div>
 														  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 														</form>
