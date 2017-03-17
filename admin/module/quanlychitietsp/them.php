@@ -1,10 +1,7 @@
-<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
-<script>tinymce.init({selector:'textarea'});</script>
  <blockquote>&nbsp;</blockquote>
-  <?php include 'xuli.php' ?>
-    <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"  enctype="multipart/form-data">
+    <form action="module/quanlychitietsp/xuli.php" method="post"  enctype="multipart/form-data">
 
-        <table width="500" border="1"  style="background:#CFC";margin:auto;">
+        <table width="500" border="1"  style="background:#CFC;margin:auto;">
           <tr>
             <td colspan="2" style="background:#099;color:#FFF" ><strong>Thêm chi tiết sản phẩm</strong></td>
             
@@ -19,7 +16,7 @@
           </tr>
           <tr>
             <td>Hình ảnh:</td>
-            <td><input type="file" name="hinhanh" value="" required></td>
+            <td><input type="file" name="hinhanh" value=""></td>
           </tr>
           <tr>
             <td>Mô tả sp:</td>

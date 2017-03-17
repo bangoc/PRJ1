@@ -8,7 +8,7 @@
 		<a href=""><img src="mos-css/img/posting.png" width="40" height="30"><br>Bài đăng mới</a>
 		</div>
 		<div class="shortcutHome">
-		<a href="quanlysanpham.php?quanli=quanlychitietsp&ac=them"><img src="mos-css/img/s8.PNG" width="80" height="80"><br>
+		<a href="quanlysanpham.php?quanli=quanlychitietsp&ac=lietke"><img src="mos-css/img/s8.PNG" width="80" height="80"><br>
 		Sản phẩm</a>
 		</div>
 		<div class="shortcutHome">
@@ -16,7 +16,7 @@
 		Đơn hàng</a>
 		</div>
 		<div class="shortcutHome">
-		<a href="thongtinnguoidung.php?quanli=user"><img src="mos-css/img/s10.PNG" width="70" height="70"><br>
+		<a href="quanlynguoidung.php?quanli=user"><img src="mos-css/img/s10.PNG" width="70" height="70"><br>
 		Người dùng</a>
 		</div>
 		<div class="shortcutHome">
