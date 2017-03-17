@@ -3,9 +3,9 @@
          $id=$_GET['id'];
 		 $tensanpham=$_POST['tensanpham'];
 		 $gia=$_POST['gia'];
-		 $hinhanh=$_FILES['hinhanh']['name'];
-		 $hinhanh_tmp=$_FILES['hinhanh']['tmp_name'];
-		 move_uploaded_file($hinhanh_tmp,'upload img/'.$hinhanh);
+		 $img=$_FILES['hinhanh']['name'];
+		 $hinhanh='image/'.$img;
+		 move_uploaded_file($_FILES['hinhanh']['tmp_name'],"../image/".$img);
 		 $mota=$_POST['mota'];
 		 $loaisp=$_POST['loaisp'];
 		 $size=$_POST['size'];
