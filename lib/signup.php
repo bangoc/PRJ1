@@ -1,4 +1,9 @@
+    <?php include 'conn.php' ?>
      <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd579d14c6a57a9d3d6bff5640547e6079abadbc
 					        if(isset($_POST["submit"])) {
 					            //lấy thông tin từ các form bằng phương thức POST
 					            $username = $_POST["username"];
@@ -31,7 +36,4 @@
 					                        mysqli_query($conn,$sql);
 					                        echo "chúc mừng bạn đã đăng ký thành công";
 					                    }
-					                                        
-					                    
-					              
     		 ?> 

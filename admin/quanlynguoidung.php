@@ -1,7 +1,3 @@
-<?php 
-include('module/config.php');
-include('session.php');
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,7 +19,7 @@ include('session.php');
 <div id="wrapper" style="width:100%; background:url(mos-css/img/d.PNG); font-size:14px">
   <?php 
    
-	include ('module/content.php');	
+	include ('module/content2.php');	
 ?>
 </div>
 <?php include ('module/footder.php');?>

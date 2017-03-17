@@ -5,7 +5,7 @@
    </div>
      <div class="content col-sm-9">
             <div class="row">
-               <?php include  'lib/query_items.php' ?>
+               <?php include  'lib/query_nike.php' ?>
        	    </div>
        	       
        	        

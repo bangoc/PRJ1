@@ -55,6 +55,7 @@
 											        <h4 class="modal-title">Đăng kí</h4>
 											      </div>
 											      <div class="modal-body">
+<<<<<<< HEAD
 											      
 														 <form action="main.php" method="POST">
 														  <div class="form-group">
@@ -62,23 +63,38 @@
 														    <input type="text"  name="username" class="form-control" id="email">
 														  </div>
 														 
+=======
+											            <?php include '../lib/signup.php' ?>
+													    <form action="login.php" method="POST">
+														  <div class="form-group">
+															    <label for="name">UserName:</label>
+															    <input type="text"  name="name" class="form-control" id="email">
+														 </div>
+														  <div class="form-group">
+															    <label for="email">Email</label>
+															    <input type="email"  name="email" class="form-control" id="pwd">
+														  </div>
+>>>>>>> cd579d14c6a57a9d3d6bff5640547e6079abadbc
 														   <div class="form-group">
-														    <label for="pwd">Password</label>
-														    <input type="password"  name="password" class="form-control" id="pwd">
+															    <label for="pwd">Password</label>
+															    <input type="password"  name="password" class="form-control" id="pwd">
 														  </div>
 														  <!-- <div class="form-group">
 														    <label for="email">Email</label>
 														    <input type="email"  name="email" class="form-control" id="pwd">
 														  </div>
 														  <div class="form-group">
-														    <label for="pwd">Phone</label>
-														    <input type="text"  name="phone" class="form-control" id="pwd">
+															    <label for="pwd">Phone</label>
+															    <input type="text"  name="phone" class="form-control" id="pwd">
 														  </div>
 														  <div class="form-group">
-														    <label for="pwd">Address</label>
-														    <input type="text" name="address" class="form-control" id="pwd">
+															    <label for="pwd">Address</label>
+															    <input type="text" name="address" class="form-control" id="pwd">
 														  </div>
+<<<<<<< HEAD
 															-->
+=======
+>>>>>>> cd579d14c6a57a9d3d6bff5640547e6079abadbc
 														  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 														</form>
 											      </div>

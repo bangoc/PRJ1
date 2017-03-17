@@ -15,22 +15,22 @@
      			 <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 				  	 <div class="form-group">
 				  	 	<label>Email</label>
-				  	 	<input class="form-control" type="text" placeholder="Email" name="email"></input>
+				  	 	<input class="form-control" type="text" placeholder="Email" name="email" required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	 <div class="form-group">
 				  	 	<label>Họ và tên đệm</label>
-				  	 	<input class="form-control" type="password" placeholder="Họ tên" name="username"></input>
+				  	 	<input class="form-control" type="password" placeholder="Họ tên" name="hoten" required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	  <div class="form-group">
 				  	 	<label>Địa chỉ</label>
-				  	 	<input class="form-control" type="password" placeholder="Địa chỉ" name="diachi"></input>
+				  	 	<input class="form-control" type="password" placeholder="Địa chỉ" name="address"  required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	 <div class="form-group">
 				  	 	<label>Điện thoại</label>
-				  	 	<input class="form-control" type="password" placeholder="Điện thoại" name="dienthoai"></input>
+				  	 	<input class="form-control" type="password" placeholder="Điện thoại" name="phone" required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	 <button class="btn btn-primary" value="Log in" name="submit">Gửi</button>
@@ -42,18 +42,10 @@
      		<ul class="list-group">
      			<li class="list-group-item" style="background:#15f7cf;text-align: center;font-weight: bold;color: red;">Thông tin Đơn Hàng</li>
      			<li class="list-group-item">Tên mặt hàng: </li>
+                <li class="list-group-item">Hình ảnh: </li>
      			<li class="list-group-item">Số lượng:</li>
      			<li class="list-group-item">Tổng tiền:</li>
      		</ul>
-     	</div>
-     </div>
-     <div class="row">
-     	<div class="col-sm-7">
-     		<h3><i class="fa fa-truck" aria-hidden="true"></i>Chọn nhà vận chuyển</h3>
-     		<div class="form-group">
-     			Vận chuyển toàn quốc:
-     			Thời gian giao hàng:
-     		</div>
      	</div>
      </div>
      <div class="row">
