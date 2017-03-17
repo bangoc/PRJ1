@@ -1,5 +1,5 @@
 <div id="rightContent">
-   <div class="them"> <a href="thongtinnguoidung.php?quanli=user"><h3> <strong>Quản lý người dùng</h3></strong></a> </div>	
+   <div class="them"> <a href="thongtinnguoidung.php?quanli=user"><h3> <strong>Thông tin người dùng</h3></strong></a> </div>	
 	<?php 
    if(isset($_GET['quanli']))
    { $tam=$_GET['quanli'];}

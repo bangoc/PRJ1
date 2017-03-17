@@ -29,7 +29,7 @@
     
     <td><?php echo $dong['tensanpham'];?></td>
     <td><?php echo $dong['gia'];?></td>
-    <td><img src="../<?php echo $dong['hinhanh']?>" width="60" height="60"></td>
+    <td><img src="../image/<?php echo $dong['hinhanh']?>" width="60" height="60"></td>
     <td><?php echo $dong['hang'];?></td>
     <td><?php echo $dong['mausac'];?></td>
     <td><?php echo $dong['soluong'];?></td>

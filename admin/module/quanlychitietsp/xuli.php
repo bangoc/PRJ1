@@ -1,12 +1,11 @@
 <?php
-
          include('../config.php');
          $id=$_GET['id'];
 		 $tensanpham=$_POST['tensanpham'];
 		 $gia=$_POST['gia'];
-		 $img=$_FILES['hinhanh']['name'];
-		 $hinhanh='image/'.$img;
-		 move_uploaded_file($_FILES['hinhanh']['tmp_name'],".../image/".$img);
+		 $hinhanh=$_FILES['hinhanh']['name'];
+		 $hinhanh_tmp=$_FILES['hinhanh']['tmp_name'];
+		 move_uploaded_file($hinhanh_tmp,'../../../image/'.$hinhanh);
 		 $mota=$_POST['mota'];
 		 $loaisp=$_POST['loaisp'];
 		 $size=$_POST['size'];
@@ -27,7 +26,7 @@
 	 $sql=" update sanpham set tensanpham='$tensanpham',gia='$gia',hinhanh='$hinhanh',mota='$mota',loaisp='$loaisp',soluong='$soluong',hang='$hang',xuatxu='$xuatxu',mausac='$mausac' where idsanpham='$id'";
 	 }
 	 else {
-		  $sql=" update sanpham set tensanpham='$tensanpham',gia='$gia',mota='$mota',loaisp='$loaisp',soluong='$soluong',hang='$hang',xuatxu='$xuatxu',mausac='$mausac', where idsanpham='$id'";
+		  $sql=" update sanpham set tensanpham='$tensanpham',gia='$gia',hinhanh='$hinhanh',mota='$mota',loaisp='$loaisp',soluong='$soluong',hang='$hang',xuatxu='$xuatxu',mausac='$mausac', where idsanpham='$id'";
 		 }
 	 $result=mysqli_query($conn,$sql) or die("error:" .mysqli_error($conn));
 	    header('Location:../../quanlysanpham.php?quanli=quanlychitietsp&ac=lietke&id='.$id);  
