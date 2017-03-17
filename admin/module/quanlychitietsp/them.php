@@ -1,3 +1,5 @@
+<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+<script>tinymce.init({selector:'textarea'});</script>
  <blockquote>&nbsp;</blockquote>
     <form action="module/quanlychitietsp/xuli.php" method="post"  enctype="multipart/form-data">
 
@@ -16,7 +18,7 @@
           </tr>
           <tr>
             <td>Hình ảnh:</td>
-            <td><input type="file" name="hinhanh" value=""></td>
+            <td><input type="file" name="hinhanh" value="" required></td>
           </tr>
           <tr>
             <td>Mô tả sp:</td>

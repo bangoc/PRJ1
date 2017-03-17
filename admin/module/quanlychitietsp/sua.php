@@ -3,6 +3,8 @@
  $run= mysqli_query ($conn,$sql);
  $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
 ?>
+<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+<script>tinymce.init({selector:'textarea'});</script>
  <blockquote>&nbsp;</blockquote>
 
     <form action="module/quanlychitietsp/xuli.php?id=<?php echo $dong['idsanpham'] ?>"  method="post"  enctype="multipart/form-data">
@@ -22,7 +24,7 @@
           </tr>
           <tr>
             <td>Hình ảnh:</td>
-            <td><input type="file" name="hinhanh" > <img src="../../../image/<?php echo $dong['hinhanh'] ?> ">	</td>
+            <td><input type="file" name="hinhanh" > <img src="upload img/<?php echo $dong['hinhanh'] ?> ">	</td>
           </tr>
           <tr>
             <td>Mô tả sp:</td>
