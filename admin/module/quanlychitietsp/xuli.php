@@ -1,11 +1,12 @@
 <?php
+
          include('../config.php');
          $id=$_GET['id'];
 		 $tensanpham=$_POST['tensanpham'];
 		 $gia=$_POST['gia'];
 		 $img=$_FILES['hinhanh']['name'];
 		 $hinhanh='image/'.$img;
-		 move_uploaded_file($_FILES['hinhanh']['tmp_name'],"../image/".$img);
+		 move_uploaded_file($_FILES['hinhanh']['tmp_name'],".../image/".$img);
 		 $mota=$_POST['mota'];
 		 $loaisp=$_POST['loaisp'];
 		 $size=$_POST['size'];

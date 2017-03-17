@@ -54,30 +54,22 @@
 											        <button type="button" class="close" data-dismiss="modal">&times;</button>
 											        <h4 class="modal-title">Đăng kí</h4>
 											      </div>
-											      <div class="modal-body">
-<<<<<<< HEAD
-											      
-														 <form action="main.php" method="POST">
-														  <div class="form-group">
-														    <label for="name">UserName:</label>
-														    <input type="text"  name="username" class="form-control" id="email">
-														  </div>
+											      <div class="modal-body">											     
 														 
-=======
-											            <?php include '../lib/signup.php' ?>
+											            <?php include 'lib/signup.php' ?>
 													    <form action="login.php" method="POST">
 														  <div class="form-group">
 															    <label for="name">UserName:</label>
-															    <input type="text"  name="name" class="form-control" id="email">
+															    <input type="text"  name="name" class="form-control" id="email" required>
 														 </div>
 														  <div class="form-group">
 															    <label for="email">Email</label>
-															    <input type="email"  name="email" class="form-control" id="pwd">
+															    <input type="email"  name="email" class="form-control" id="pwd" required>
 														  </div>
->>>>>>> cd579d14c6a57a9d3d6bff5640547e6079abadbc
 														   <div class="form-group">
 															    <label for="pwd">Password</label>
-															    <input type="password"  name="password" class="form-control" id="pwd">
+															    <input type="password"  name="password" class="form-control" id="pwd"
+															    required>
 														  </div>
 														  <!-- <div class="form-group">
 														    <label for="email">Email</label>
@@ -93,8 +85,6 @@
 														  </div>
 <<<<<<< HEAD
 															-->
-=======
->>>>>>> cd579d14c6a57a9d3d6bff5640547e6079abadbc
 														  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 														</form>
 											      </div>

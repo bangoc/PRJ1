@@ -24,7 +24,7 @@
           </tr>
           <tr>
             <td>Hình ảnh:</td>
-            <td><input type="file" name="hinhanh" > <img src="module/quanlychitietsp/upload img/<?php echo $dong['hinhanh'] ?>" width="60" height="60">	</td>
+            <td><input type="file" name="hinhanh" > <img src="../<?php echo $dong['hinhanh'] ?>" width="60" height="60">	</td>
             <td>Hình ảnh</td>
           </tr>
           <tr>
