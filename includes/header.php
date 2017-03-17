@@ -39,7 +39,7 @@
           	 </li>
           	 <li class="intro_right">
 				          	   <ul>
-				       
+				       					
 						          	    <li>
 						  	 				<!-- Trigger the modal with a button -->
 											<a role="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-o" aria-hidden="true"></i>Đăng kí</a>
@@ -55,22 +55,20 @@
 											        <h4 class="modal-title">Đăng kí</h4>
 											      </div>
 											      <div class="modal-body">
-													
-			
-						
-								
+											      
 														 <form action="main.php" method="POST">
 														  <div class="form-group">
 														    <label for="name">UserName:</label>
 														    <input type="text"  name="username" class="form-control" id="email">
 														  </div>
-														  <div class="form-group">
-														    <label for="email">Email</label>
-														    <input type="email"  name="email" class="form-control" id="pwd">
-														  </div>
+														 
 														   <div class="form-group">
 														    <label for="pwd">Password</label>
 														    <input type="password"  name="password" class="form-control" id="pwd">
+														  </div>
+														  <!-- <div class="form-group">
+														    <label for="email">Email</label>
+														    <input type="email"  name="email" class="form-control" id="pwd">
 														  </div>
 														  <div class="form-group">
 														    <label for="pwd">Phone</label>
@@ -80,13 +78,14 @@
 														    <label for="pwd">Address</label>
 														    <input type="text" name="address" class="form-control" id="pwd">
 														  </div>
-									
+															-->
 														  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 														</form>
 											      </div>
 											      <div class="modal-footer">
 											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 											      </div>
+
 											    </div>
 
 											  </div>

@@ -1,19 +1,11 @@
      <?php
-					   $conn=mysqli_connect("localhost","root","","weblaptop");
-					  if(!$conn)
-					  {
-					    die("Error: ".mysqli_connect_error($conn));
-					  }
-					  else
-					    mysqli_set_charset($conn,'utf8');
-
 					        if(isset($_POST["submit"])) {
 					            //lấy thông tin từ các form bằng phương thức POST
 					            $username = $_POST["username"];
 					            $password = $_POST["password"];
-					            $phone = $_POST["phone"];
-					            $email = $_POST["email"];
-					            $address=$_POST["address"];
+					            //$phone = $_POST["phone"];
+					            //$email = $_POST["email"];
+					            //$address=$_POST["address"];
 					            //Kiểm tra điều kiện bắt buộc đối với các field không được bỏ trốn
 					                    // Kiểm tra tài khoản đã tồn tại chưa
 					                    $sql="SELECT * FROM user WHERE username='$username'";
@@ -25,15 +17,15 @@
 					                        $sql = "INSERT INTO user(
 					                            username,
 					                            password,
-					                            phone,
-					                            email,
-					                            address
+					                            #phone,
+					                            #email,
+					                            #address
 					                            ) VALUES (
 					                            '$username',
 					                            '$password',
-					                            '$phone',
-					                            '$email',
-					                            'address'
+					                            #'$phone',
+					                            #'$email',
+					                            #'address'
 					                            )";}
 					                        // thực thi câu $sql với biến conn lấy từ file connection.php
 					                        mysqli_query($conn,$sql);
