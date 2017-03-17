@@ -1,12 +1,13 @@
-<?php include('../lib/conn.php') ?>
+<?php 
+include('../lib/conn.php');?>
 <?php
   if(isset ($_POST['them'])) {
-	     $idsanpham=$_GET['idsanpham'];
+  		 $idsanpham=$_GET['idsanpham'];
 		 $tensanpham=$_POST['tensanpham'];
 		 $gia=$_POST['gia'];
-		 $img=$_FILES['hinhanh']['name'];
-		 $hinhanh='image/'.$img;
-		 move_uploaded_file($_FILES['hinhanh']['tmp_name'],"../image/".$img);
+		 $hinhanh=$_FILES['hinhanh']['name'];
+		 $hinhanh_tmp=$_FILES['hinhanh']['tmp_name'];
+		 move_uploaded_file($hinhanh_tmp,'module/quanlychitietsp/upload img/'.$hinhanh);
 		 $mota=$_POST['mota'];
 		 $loaisp=$_POST['loaisp'];
 		 $size=$_POST['size'];
