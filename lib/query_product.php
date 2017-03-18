@@ -11,7 +11,7 @@
 
 			<div class="col-sm-5" style="height: 457px;border: 1px solid #ccc;border-radius: 5px;">
 			  <div class="row"></div>
-			     <img  src="<?php echo $data['hinhanh']; ?>" style="margin-top: 100px;width: 272px;height: 254px;">
+			     <img  src="image/<?php echo $data['hinhanh']; ?>" style="margin-top: 100px;width: 272px;height: 254px;">
 			</div>
 			<div class="col-sm-7" style="height: 457px;">
 				  <ul class="list-group">

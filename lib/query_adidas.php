@@ -9,7 +9,7 @@
 		      <div class="col-md-4">
 			      <div class="thumbnail">
 							  
-							        <img src="<?php echo $data['hinhanh']; ?>" alt="<?php echo $data['tensanpham'] ?>" 
+							        <img src="image/<?php echo $data['hinhanh']; ?>" alt="<?php echo $data['tensanpham'] ?>" 
 							           style="width:252px;height: 236px;">
 							         <div class="caption">
 							          <p>Tên sản phẩm:</p>
