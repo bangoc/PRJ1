@@ -1,6 +1,6 @@
 
 <?php
-  $sql="select* from sanpham order by idsanpham desc";
+  $sql="select* from sanpham,tenhang where sanpham.idtenhang=tenhang.idtenhang order by idsanpham desc";
   $run=mysqli_query($conn,$sql) or
    die("Error:".mysqli_error($conn));	
 ?>
@@ -30,7 +30,7 @@
     <td><?php echo $dong['tensanpham'];?></td>
     <td><?php echo $dong['gia'];?></td>
     <td><img src="../image/<?php echo $dong['hinhanh']?>" width="60" height="60"></td>
-    <td><?php echo $dong['hang'];?></td>
+    <td><?php echo $dong['tenhang'];?></td>
     <td><?php echo $dong['mausac'];?></td>
     <td><?php echo $dong['soluong'];?></td>
     <td><?php echo $dong['xuatxu'];?></td>

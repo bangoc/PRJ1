@@ -1,5 +1,4 @@
-<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
-<script>tinymce.init({selector:'textarea'});</script>
+ 
  <blockquote>&nbsp;</blockquote>
     <form action="module/quanlychitietsp/xuli.php" method="post"  enctype="multipart/form-data">
 
@@ -24,16 +23,24 @@
             <td>Mô tả sp:</td>
             <td ><textarea name="mota" cols="25" rows="14" style="width: 90%;"></textarea></td>
           </tr>
+          <?php
+              $sql="select * from tenhang";
+              $run=mysqli_query($conn,$sql);
+           ?>
           <tr>
             <td>Tên hãng:</td>
             <td>
-               <select name="hang">
-                  <option> Chọn hãng sản phẩm </option>
-                  <option> Nike </option>
-                  <option> Adidas </option>
-                  <option> Puma</option>
-                  <option> Converse</option>
-               </select> 
+               <select name="idtenhang">
+               <option> Chọn hãng sản phẩm </option>
+               <?php 
+                   while ($dong=mysqli_fetch_array($run,MYSQLI_ASSOC) ){
+               ?>
+                 
+                  <option value="<?php echo $dong ['idtenhang'] ?>"> <?php echo $dong ['tenhang'] ?>  </option>
+                  <?php
+                    }
+                   ?>
+               </select>  
             </td>
           </tr>
           <tr>
@@ -44,14 +51,24 @@
             <td>Size:</td>
             <td><input type="number" name="size"  min="20" max="60" value="20"></td>
           </tr>
+          <?php
+            $sql=" select *from loaisp"; 
+            $run= mysqli_query($conn,$sql);
+           ?>
            <tr>
             <td>Loại sản phẩm:</td>
+                
             <td>
-               <select name="loaisp">
-                  <option> Chọn loại sản phẩm </option>
-                  <option> Nam </option>
-                  <option> Nữ </option>
-                  <option> All </option>
+               <select name="idloaisp">
+               <option> Chọn loại sản phẩm </option>
+               <?php 
+                while ($dong=mysqli_fetch_array($run,MYSQLI_ASSOC)) {
+               ?>
+                  <option value="<?php echo $dong['idloaisp'] ?>"> <?php echo $dong ['loaisp']?></option>
+                  <?php 
+                }
+                  ?>
+
                </select> 
             </td>
           </tr>

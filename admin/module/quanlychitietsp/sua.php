@@ -3,8 +3,7 @@
  $run= mysqli_query ($conn,$sql);
  $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
 ?>
-<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
-<script>tinymce.init({selector:'textarea'});</script>
+
  <blockquote>&nbsp;</blockquote>
 
     <form action="module/quanlychitietsp/xuli.php?id=<?php echo $dong['idsanpham'] ?>"  method="post"  enctype="multipart/form-data">
@@ -30,16 +29,31 @@
             <td>Mô tả sp:</td>
             <td ><textarea name="mota"><?php echo $dong['mota']; ?></textarea></td>
           </tr>
+          <?php
+              $sql_tenhang="select * from tenhang";
+              $run_tenhang=mysqli_query($conn,$sql_tenhang);
+           ?>
           <tr>
+          
             <td>Tên hãng:</td>
             <td>
-               <select name="hang" >
-                  <option> Chọn hãng sản phẩm </option>
-                  <option> Nike </option>
-                  <option> Adidas </option>
-                  <option> Puma</option>
-                  <option> Converse</option>
-               </select> 
+             <select name="idtenhang">
+             <?php 
+                   while ($dong_tenhang=mysqli_fetch_array($run_tenhang,MYSQLI_ASSOC) ) {
+                    if($dong['idtenhang']==$dong_tenhang['idtenhang']) {
+               ?>
+               <option selected="selected" value="<?php echo $dong['idtenhang']; ?>"  /> <?php echo $dong_tenhang ['tenhang'] ?></option>
+              <?php
+               } else {
+              ?>
+              <option  value="<?php echo $dong_tenhang['idtenhang']; ?>"  /> <?php echo $dong_tenhang ['tenhang'] ?></option>
+              <?php
+
+            }
+          }
+              ?>
+              </select>
+              
             </td>
           </tr>
           <tr>
@@ -50,14 +64,29 @@
             <td>Size:</td>
             <td><input type="number" name="size"  min="20" max="60" value="<?php echo $dong['size']; ?>"></td>
           </tr>
+          <?php 
+            $sql_loaisp="select *from loaisp";
+            $run_loaisp= mysqli_query($conn,$sql_loaisp);
+          ?>
            <tr>
             <td>Loại sản phẩm:</td>
             <td>
-               <select name="loaisp">
-                  <option> Chọn loại sản phẩm </option>
-                  <option> Nam </option>
-                  <option> Nữ </option>
-                  <option> All </option>
+               <select name="idloaisp">
+               <?php 
+              while ($dong_loaisp=mysqli_fetch_array($run_loaisp,MYSQLI_ASSOC)){
+                if($dong['idloaisp']==$dong_loaisp['idloaisp']){
+
+             ?>
+               <option selected="selected" value="<?php echo $dong_loaisp['idloaisp']; ?>" /> <?php echo $dong_loaisp['loaisp']?> </option>
+                 <?php 
+                  } else {
+                    ?>
+               <option value="<?php echo $dong_loaisp['idloaisp']; ?>" /> <?php echo $dong_loaisp['loaisp']?> </option>
+                 <?php 
+               }
+             }
+                 ?> 
+
                </select> 
             </td>
           </tr>
