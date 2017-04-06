@@ -48,7 +48,7 @@
 						  	 			</li>
 						  	 			<li>
 
-						  	 				<a href="login.php"><i class="fa fa-user" aria-hidden="true"></i>Đăng nhập</a>
+						  	 			   <?php include 'login.php' ?>
 
 						  	 			</li>
 						  	 			<li>

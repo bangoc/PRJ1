@@ -48,6 +48,11 @@
     });
 });
 </script>
+<style type="text/css">
+  .row{
+    padding-top: 15px;
+  }
+</style>
                                    
         <!-- Button -->
            <a role="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-o" aria-hidden="true"></i>Đăng kí</a>
@@ -76,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3"><label>Số điện thoạt:</label></div>
+                                <div class="col-md-3"><label>Số điện thoại:</label></div>
                                 <div class="col-md-8">
                                     <input class="form-control" type="text" id="phone" />
                                 </div>
