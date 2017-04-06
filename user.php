@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+   session_start();
+ if(!isset($_SESSION['username']))
+ {
+   header('Location:main.php');
+ }
+?>
+
 <html>
 <head>
 	<title>Trang web ban laptop</title>
@@ -7,9 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap3/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap3/css/main.css">
 	<link rel="stylesheet" type="text/css" href="library/font-awesome/css/font-awesome.css">
-	<script src="bootstrap3/js/jquery-3.1.1.min.js"></script>
-	<script src="bootstrap3/js/bootstrap.js"></script>
-
 </head>
 <body>
     <nav style="position: fixed;
@@ -44,20 +49,27 @@
 				          	   <ul>
 				       					
 						          	    <li>
-						  	 			  <?php include 'register.php' ?>
+						  	 				<?php include 'sign_up.php' ?>
+										
 						  	 			</li>
 						  	 			<li>
-
-						  	 				<a href="login.php"><i class="fa fa-user" aria-hidden="true"></i>Đăng nhập</a>
-
+                                            <a href="#"><?php echo $_SESSION['username']; ?></a>
+						  	 			
 						  	 			</li>
 						  	 			<li>
 
 						  	 				<a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
 						  	 			</li>
+						  	 			
 						  	   </ul>
 	
 		  	 </li>
           </ul>
         </div>
       </nav>
+ <div class="container" style="margin-top: 70px;">
+     <?php include 'includes/slide_show.php' ?>
+  <!--Phan content-->
+     <?php include 'includes/main_content.php' ?>
+	</div>
+<?php include 'includes/footer.php' ?>
