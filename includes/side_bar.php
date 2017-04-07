@@ -1,4 +1,4 @@
- <div class="container" style="margin-top: 70px;">
+
     <div class="row">
        	   <div class="side_bar col-sm-3 ">
        	   	        <div class="list-group" style="text-align: center;font-weight: bold;">

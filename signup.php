@@ -8,7 +8,7 @@
         $username   = isset($_POST['username']) ? trim($_POST['username']) : '';
         $password   = isset($_POST['password']) ? trim($_POST['password']) : '';
         $phone      = isset($_POST['email'])    ? trim($_POST['phone'])    : '';
-        $address   = isset($_POST['fullname']) ? trim($_POST['address']) : '';
+        $address   = isset($_POST['address']) ? trim($_POST['address']) : '';
          
         // BƯỚC 2: VALIATE THÔNG TIN ĐƠN GIẢN
         if (empty($username)){

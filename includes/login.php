@@ -1,9 +1,111 @@
  <!-- Button -->
+  <script type="text/javascript">
+      $(document).ready(function(){
+         $('#login-btn').click(function(){
+            
+           // if($('#username').val()=='' || $('#password').val()==''){
+              //  $('.error').html("**Bạn vui lòng điền đầy đủ thông tin**");
+               // return false;
+           // }
+            //else
+            //{
+               // $('.error').addClass('hide');
+            
+            var data={
+
+                  username : $('#username').val(),
+                  password : $('#password').val()
+            };
+        
+           $.ajax({
+                 type    : 'post',
+                 dataType: 'json',
+                 url     : 'log_in.php',
+                 data    :  data,
+                 success : function(result){
+                   
+                  if (result.error == '1'){
+                     
+                      $('.alert-danger').html("Tài khoản hoặc mật khẩu không chính xác!").removeClass('hide');
+                      $('.alert-success').addClass('hide');
+                     }
+                   else
+                     {
+
+                        $('.alert-success').html("Đăng nhập thành công!").removeClass('hide');
+                        $('alert-danger').addClass('hide');
+                     }
+                }
+                 
+             
+            });
+         // }
+
+         });
+      });
+
+ </script>
+
+  <!--   <script type="text/javascript">
+        $(document).ready(function(){
+ 
+           $('#login-btn').click(function(){
+ 
+           var data = {
+            username    : $('#username').val(),
+            password    : $('#password').val()
+        };
+ 
+        
+        $.ajax({
+            type : "post",
+            dataType : "JSON",
+            url : "log_in.php",
+            data : data,
+            success : function(result)
+            {
+                
+                if (result.hasOwnProperty('error') && result.error == '1'){
+                    var html = '';
+ 
+                    
+                    $.each(result, function(key, item){
+                        
+                        if (key != 'error'){ 
+                            html += '<li>'+item+'</li>';
+                        }
+                    });
+                    $('.alert-danger').html(html).removeClass('hide');
+                    $('.alert-success').addClass('hide');
+                }
+                else{ 
+                    $('.alert-success').html('Đăng nhập thành công!').removeClass('hide');
+                    $('.alert-primary').addClass('hide');
+ 
+                 <!--   
+                    setTimeout(function(){
+                        $('#myModal').modal('hide');
+                        $('.alert-danger').addClass('hide');
+                        $('.alert-success').addClass('hide');
+                    }, 4000);
+                }
+            }
+        });
+    });
+});
+</script>-->
  <style type="text/css">
   .row{
     padding-top: 15px;
   }
 </style>
+           
+
+
+
+
+
+
            <a role="button" data-toggle="modal" data-target="#login"><i class="fa fa-user" aria-hidden="true"></i></i>Đăng nhập</a>
  
             <!-- Modal -->
@@ -22,19 +124,24 @@
                                 <div class="col-md-8">
                                     <input class="form-control" type="text" id="username" />
                                 </div>
+                                
                             </div>
+                            
                             <div class="row">
                                 <div class="col-md-3"><label>Mật khẩu</label>:</div>
                                 <div class="col-md-8">
                                     <input class="form-control" type="text" id="password" />
                                 </div>
+                                
                             </div>
-                           
+                            <div class="row">
+                                <div class="error" style="text-align: center;color: red;"></div>
+                            </div>
                         </div>
-                        <div class="alert alert-danger hide">
+                        <div class="alert alert-danger  hide">
                           
                         </div>
-                        <div class="alert alert-success hide">
+                        <div class="alert alert-success  hide">
  
                         </div>
                         <div class="modal-footer">
