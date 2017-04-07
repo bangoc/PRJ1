@@ -1,7 +1,7 @@
 
    <?php include 'lib/conn.php' ?>
 <?php 
-   $query="SELECT idsanpham,tensanpham,hinhanh,gia from sanpham where hang='Adidas'";
+   $query="SELECT idsanpham,tensanpham,hinhanh,gia from sanpham where idtenhang='3'";
    $result=mysqli_query($conn,$query) or die("ERROR: ".mysqli_error($conn));
    while ($data=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
       ?>

@@ -39,12 +39,6 @@
 						    			</div>
 				        	</li>
 				        	<li class="list-group-item">
-						    			<div class="caption">Hãng:
-                                               <strong style="font-size: 90%;"><?php echo $data['hang'];?></strong>
-
-						    			</div>
-				        	</li>
-				        	<li class="list-group-item">
 						    			<div class="caption">Size:<input type="number" name="soluong" min="20" max="50" value="20">
 						    			</div>
 				        	</li>
@@ -73,8 +67,9 @@
 		    <div class="col-sm-12 row">
 		    	<div class="panel panel-danger orangepanel">
 		    	     <h4 style="text-align: center;">Bài viết sản phẩm</h4>
-		    	     <p><?php echo $data['mota'];?></p>
+		    	     
 		    	</div>
+		    	<p><?php echo $data['mota'];?></p>
 		    	<div>
 
 		    	</div>
