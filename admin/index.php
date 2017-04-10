@@ -1,5 +1,11 @@
 <?php session_start(); ?>
 <?php include('module/config.php'); ?>
+<?php
+ob_start();
+if(isset($_SESSION["id"])){
+	header("location: admin.php");
+}
+?>
 <html>
 <link rel="stylesheet" type="text/css" href="mos-css/style.css">
 <head>
