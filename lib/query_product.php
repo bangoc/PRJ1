@@ -49,7 +49,7 @@
 				        	</li>
 				        	
 
-						    			<a href="order.php?id=<?php echo $_GET['idsanpham'];?>" class="btn btn-success btn-block" style="padding: 27px 0;">
+						    			<a href="order.php?idi=<?php echo $_GET['idsanpham'];?>" class="btn btn-success btn-block" style="padding: 27px 0;">
 						    			      <i class="fa fa-check-square" aria-hidden="true"  style="margin-right: 10px;
                                                 font-size: 120%;"></i>Mua Ngay
 						    			</a>
@@ -75,7 +75,7 @@
 		    	</div>
    			 </div>
    		 </div>
-	
+	<?php $_GET['idtenhang']=$data['idtenhang']; ?>
 		<?php
   }
   
