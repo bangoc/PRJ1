@@ -3,7 +3,7 @@
 	<div class="inHeader">
 		<div class="mosAdmin">
 		Hello,TeamProject1<br>
-		<a href="">Admin website</a> | <a href="logout.php">Thoát</a> | <a href="#">Help</a>
+		<a href="">Admin website</a> | <a onclick="return confirm('Bạn có thật sự muốn thoát không')" href="logout.php">Thoát</a> | <a href="#">Help</a>
 		</div>
 	<div class="clear"></div>
 	</div>

@@ -14,7 +14,7 @@ if(isset($_SESSION["id"])){
 <div class="form-wrapper">
   
   <form action="#" method="post">
-    <h3>Login here</h3>
+    <h3>Đăng nhập hệ thống</h3>
 	
     <div class="form-item">
 		<input type="text" name="username" required="required" placeholder="Username" autofocus required></input>
@@ -25,7 +25,7 @@ if(isset($_SESSION["id"])){
     </div>
     
     <div class="button-panel">
-		<input type="submit" class="button" title="Log In" name="login" value="Login"></input>
+		<input type="submit" class="button" title="Log In" name="login" value="Đăng nhập"></input>
     </div>
   </form>
   <?php
@@ -46,7 +46,7 @@ if(isset($_SESSION["id"])){
 				}
 			else
 				{
-					echo 'Invalid Username and Password Combination';
+					echo 'Tên tài khoản và mật khẩu không tồn tại';
 				}
 		}
   ?>

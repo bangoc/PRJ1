@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <td>Hình ảnh:</td>
-            <td><input type="file" name="hinhanh"  ><img src="../../../image/<?php echo $dong['hinhanh'] ?>" width="60" height="60">	</td>
+            <td><input type="file" name="hinhanh"  ><img src="../image/<?php echo $dong['hinhanh'] ?>" width="60" height="60">	</td>
           </tr>
           <tr>
             <td>Mô tả sp:</td>
