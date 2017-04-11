@@ -6,7 +6,15 @@
 						     <span>Các loại giày</span>
 						  </a>
 						  <a href="#" class="list-group-item">Top bán chạy nhất</a>
+						 
+						  <a href="#" class="list-group-item" style="background: #FFFF00">
+						     <span> Giày theo giới tính</span>
+						  </a>
+						  <a href="male.php" class="list-group-item">Giày nam</a>
+						   <a href="female.php" class="list-group-item">Giày nữ</a>
 						  <a href="#" class="list-group-item active " style="background: #32c136;">
+						  
+					
 						     <span>Các hãng giày nổi tiếng</span>
 						  </a>
 						  <a href="nike.php" class="list-group-item"> Giày Nike</a>
@@ -28,7 +36,7 @@
 						        <i class="fa fa-volume-control-phone" aria-hidden="true" style="float: left;font-size: 150%;color: red"></i>
 						     Phạm Hùng Sơn
 						     </span>
-						     <p>01647718971</p>
+						     <p>01676863045</p>
 						  </li>
 						    <li class="list-group-item">
 						     <span>
@@ -37,7 +45,7 @@
 						        </i>
 						     Phạm Văn Hoan
 						     </span>
-						     <p>01647718971</p>
+						     <p>01665684866</p>
 						  </li>
 						    <li class="list-group-item">
 						     <span>
@@ -46,7 +54,7 @@
 						        </i>
 						     Ngô Thúy Hoa
 						     </span>
-						     <p>01647718971</p>
+						     <p>0961931696</p>
 						  </li>
 						 
                     </div> 

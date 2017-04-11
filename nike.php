@@ -1,8 +1,8 @@
 <?php include 'includes/header.php' ?>
-<?php include 'includes/side_bar.php' ?>
-   <div class="content col-sm-9">
-   <div class="panel panel-danger" style="background: #337ab7;"><h4 style="text-align: center;">Giày Nike</h4></div>
-   </div>
+   <div class="container" style="margin-top: 70px;">
+     <?php include 'includes/side_bar.php' ?>
+
+   <div class="panel panel-danger col-sm-9" style="background: #337ab7;"><h4 style="text-align: center;">Giày Nike</h4></div>
      <div class="content col-sm-9">
             <div class="row">
                <?php include  'lib/query_nike.php' ?>
