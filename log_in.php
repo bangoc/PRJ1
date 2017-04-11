@@ -11,11 +11,13 @@
             $query="SELECT username,password FROM user WHERE username='$username' AND password='$password' ";
             $result=mysqli_query($conn,$query) or die("Error:".mysqli_error($conn));
             $row=mysqli_num_rows($result);
+            $array=mysqli_fetch_array($result);
             if($row<=0){
                 echo "false";
             }
             else{
                 echo "true";
+
             }
         }
 ?>

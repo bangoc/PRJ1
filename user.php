@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <?php
    session_start();
- if(!isset($_SESSION['username']))
- {
-   header('Location:main.php');
- }
+
 ?>
 
 <html>
@@ -47,11 +44,7 @@
           	 </li>
           	 <li class="intro_right">
 				          	   <ul>
-				       					
-						          	    <li>
-						  	 				<?php include 'sign_up.php' ?>
-										
-						  	 			</li>
+				       			
 						  	 			<li>
                                             <a href="#"><?php echo $_SESSION['username']; ?></a>
 						  	 			

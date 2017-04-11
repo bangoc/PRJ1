@@ -9,22 +9,20 @@
            <a role="button" data-toggle="modal" data-target="#login"><i class="fa fa-user" aria-hidden="true"></i></i>Đăng nhập</a>
  
             
-            <div id="login" class="modal ">
-             
- 
-                    
-                    <div class="content" style="background:#BCF5A9;margin-top: 100px;width: 600px;
-                              margin-left: 400px;">
+            <div id="login" class="modal fade" role="dialog">
+               <div class="modal-dialog">
+                    <div class="modal-content" style="background:#BCF5A9;margin-top: 100px;">
+                              
                         <div class="modal-header" style="background: #F781F3;">
                             <button type="modal-button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="title" style="color: #FF4000;text-align: center;">ĐĂNG NHẬP HỆ THỐNG</h4>
+                            <h4 class="modal-title" style="color: #FF4000;text-align: center;">ĐĂNG NHẬP HỆ THỐNG</h4>
                         </div>
                       <div class="modal-body">
                           
                             <div class="row">
                                 <div class="col-md-5"><label>Tên đăng nhập:</label></div>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="username"/>
+                                    <input class="form-control" type="text" id="usernameLogin"/>
                                 </div>
 
                                 
@@ -33,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-5"><label>Mật khẩu</label>:</div>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="password" id="password" />
+                                    <input class="form-control" type="password" id="passwordLogin" />
                                 </div>
                                 
                             </div>
@@ -48,15 +46,15 @@
                         </div>
                        
                         </div>
-                
+                     </div>
                     
                 </div>
             </div>
  <script type="text/javascript">
       $(document).ready(function(){
          $('#login-btn').click(function(){
-            var username = $('#username').val();
-            var password = $('#password').val();
+            var username = $('#usernameLogin').val();
+            var password = $('#passwordLogin').val();
             
       
             
@@ -91,7 +89,7 @@
                           }
                           else if(html=='true')
                           {
-                           window.location="items.php";
+                           window.location="user.php" ;
 
 
                             setTimeout(function(){

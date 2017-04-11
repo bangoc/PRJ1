@@ -42,7 +42,7 @@
                         $('#myModal').modal('hide');
                         $('.alert-danger').addClass('hide');
                         $('.alert-success').addClass('hide');
-                    }, 4000);
+                    }, 2000);
                 }
             }
         });
@@ -60,11 +60,11 @@
  
            
             <div id="register" class="modal fade" role="dialog">
-                
+                 <div class="modal-dialog">
  
                     
-                    <div class="modal-content" style="background:#F3F781;width: 600px;
-                             margin-left: 400px;">
+                    <div class="modal-content" style="background:#F3F781;
+                            ">
                         <div class="modal-header" style="background: #64FE2E;">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title" style="color: green;text-align: center;">ĐĂNG KÝ THÀNH VIÊN</h4>
@@ -105,6 +105,7 @@
                             <button type="button" class="btn btn-primary" id="register-btn">Đăng ký</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
+                 </div>
                     
                 </div>
             </div>
