@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
         $(document).ready(function(){
  
@@ -54,15 +55,16 @@
   }
 </style>
                                    
-        <!-- Button -->
-           <a role="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-o" aria-hidden="true"></i>Đăng kí</a>
+        
+           <a role="button" data-toggle="modal" data-target="#register"><i class="fa fa-user-o" aria-hidden="true"></i>Đăng kí</a>
  
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+           
+            <div id="register" class="modal fade" role="dialog">
+                
  
-                    <!-- Modal content-->
-                    <div class="modal-content" style="background:#F3F781;">
+                    
+                    <div class="modal-content" style="background:#F3F781;width: 600px;
+                             margin-left: 400px;">
                         <div class="modal-header" style="background: #64FE2E;">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title" style="color: green;text-align: center;">ĐĂNG KÝ THÀNH VIÊN</h4>
@@ -103,6 +105,6 @@
                             <button type="button" class="btn btn-primary" id="register-btn">Đăng ký</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
