@@ -1,13 +1,11 @@
 <div id="rightContent">
-	<h3>Trang chủ</h3>
+	<div class="them"><a href=""><h3   "><strong>Trang chủ</strong></h3> </a></div>
 	<div class="quoteOfDay">
 	<b>Trích dẫn:</b><br>
 	<i style="color: #0C9;">"Một ngày không cười là một ngày lãng phí"</i>
 	</div>
-		<div class="shortcutHome1">
-		<a href=""><img src="mos-css/img/posting.png" width="40" height="30"><br>Bài đăng mới</a>
-		</div>
-		<div class="shortcutHome">
+		
+		<div class="shortcutHome"  style="margin-left: 0px;">
 		<a href="quanlysanpham.php?quanli=quanlychitietsp&ac=lietke"><img src="mos-css/img/s8.PNG" width="80" height="80"><br>
 		Sản phẩm</a>
 		</div>
@@ -30,17 +28,7 @@
 		
 		<div class="clear"></div>
 		
-		<div id="smallRight"><h3></h3>
-		<table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
-			
-		</table>
-		</div>
-		<div id="smallRight"><h3></h3>
 		
-		<table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
-			
-		</table>
-		</div>
 	
     </div>
 <div class="clear"> </div>

@@ -12,11 +12,13 @@ if(!isset($_SESSION["id"])){
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="mos-css/web.css"  />
+<link rel="stylesheet" type="text/css" href="admin/boostrap3/css/boostrap.css">
 <title>Trang quan tri</title>
 
 </head>
  	 
 <body>
+  <div class="container" style="width: 1300px; border: 1px solid #dcdcdc ;  margin: 5px auto; ">
 <?php
      include('module/config.php') ?>
 	<?php include('module/modau.php') ?>
@@ -24,12 +26,13 @@ if(!isset($_SESSION["id"])){
     include ('module/menu.php');
 	
 ?>
-<div id="wrapper" style="width:100%; background:url(mos-css/img/d.PNG); font-size:14px">
+<div id="wrapper" style="width:1300px; background:url(mos-css/img/d.PNG); font-size:14px">
   <?php 
    
 	include ('module/content.php');	
 ?>
 </div>
 <?php include ('module/footder.php');?>
+</div>
 </body>
 </html>

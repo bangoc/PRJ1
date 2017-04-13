@@ -20,7 +20,7 @@
 <div id="wrapper" style="width:1300px; background:url(mos-css/img/d.PNG); font-size:14px">
   <?php 
    
-	include ('module/content3.php');	
+	include ('module/content4.php');	
 ?>
 </div>
 <?php include ('module/footder.php');?>
