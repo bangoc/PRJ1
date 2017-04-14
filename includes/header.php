@@ -10,6 +10,7 @@
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="bootstrap3/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap3/css/main.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap3/css/footer.css">
 	<link rel="stylesheet" type="text/css" href="library/font-awesome/css/font-awesome.css">
 	<script src="bootstrap3/js/jquery-3.1.1.min.js"></script>
 	<script src="bootstrap3/js/bootstrap.js"></script>
