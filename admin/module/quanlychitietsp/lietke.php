@@ -4,7 +4,7 @@
   $run=mysqli_query($conn,$sql) or
    die("Error:".mysqli_error($conn));	
 ?>
-<table width="900px" border="1" bordercolor="#000000">
+<table width="850px" border="1" bordercolor="#000000">
 <tr> 
      <td colspan="11" style="background:#CCC; color:#006" > <strong>Danh sách sản phẩm </strong></td>
   </tr>
