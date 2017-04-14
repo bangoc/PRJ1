@@ -16,52 +16,35 @@
 
 </head>
 <body>
-    <nav style="position: fixed;
+      <nav class="navbar navbar-inverse" style="position: fixed;
         z-index: 100;
-         margin-top: -70px;">
-      <div class="header">
-          <ul>
-             <li  class="intro_left">
-	                <ul>
-			          	 <li class="home">
-			          	         <a href="main.php">
-			  	 			       <i class="fa fa-home" aria-hidden="true"></i>
-			  	 			          Trang chủ 
-			  	 			     </a>
-			  	 	     </li>
-			          	 <li>
-			          	 	    <a href="#">
-			  	 			       <i class="fa fa-question-circle"></i>
-			  	 			       Hỗ trợ trực tuyến
-			  	 			     </a>
-			          	 </li>
-			          	 <li>
-			          	 	<div class="form_search">
-			          	 		  <input type="text" placeholder="Tìm kiếm sản phẩm" class="search">
-			          	 	      <button class="searchbutton" type="button"><i class="fa fa-search fa-lg" style="color: black;"></i></button>
-			           
-			          	 	</div>
-			          	 </li>
-		           </ul>
-          	 </li>
-          	 <li class="intro_right">
-				          	   <ul>
-				       					
-						          	    <li>
-						  	 			  <?php include 'register.php' ?>
-						  	 			</li>
-						  	 			<li>
+         margin-top: -70px;background: #ed1c24;border:none;">
+       <div class="container nav">
+		  <div class="container-fluid">
+		    <ul class="nav navbar-nav col-md-2">
+		      <li class="active"><a href="main.php" style="background:#ed1c24; "><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
 
-						  	 			   <?php include 'login.php' ?>
+		       
+		    </ul>
+		     <ul class="nav navbar-nav col-md-2">
+		      <li class="active"><a href="#" style="background:#ed1c24; "><i class="fa fa-question-circle"></i>Liên hệ</a></li>
 
-						  	 			</li>
-						  	 			<li>
-
-						  	 				<a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
-						  	 			</li>
-						  	   </ul>
-	
-		  	 </li>
-          </ul>
-        </div>
-      </nav>
+		       
+		    </ul>
+		    <form class="navbar-form navbar-left col-md-4">
+			      <div class="input-group">
+			        <input type="text" class="form-control" placeholder="Search">
+			        <div class="input-group-btn">
+			          <button class="btn btn-default" type="submit">
+			            <i class="glyphicon glyphicon-search"></i>
+			          </button>
+			        </div>
+			      </div>
+           </form>
+		    <ul class="nav navbar-nav navbar-right col-md-4">
+		      <li class="col-md-6"><?php include 'register.php' ?></li>
+		      <li  class="col-md-6"><?php include 'login.php' ?></li>
+		    </ul>
+		  </div>
+		</div>
+</nav>
