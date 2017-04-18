@@ -87,9 +87,10 @@
                             $('#error').html("Tên tài khoản hoặc mật khẩu không chính xác");
                       
                           }
-                          else 
-                          {
-                           window.location="user.php?iduser=$_GET['text']" ;
+                          else{
+                          
+                            window.location='user.php?username='+text;
+                           //alert(text);
 
 
                             setTimeout(function(){

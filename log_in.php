@@ -1,3 +1,7 @@
+<?php
+   session_start();
+
+?>
 <?php 
        if(isset($_POST['username']) && isset($_POST['password'])){
             
@@ -17,8 +21,8 @@
 
             }
             else{
-                $_SESSION['username']='$username';
-                echo $_SESSION['username'];
+                 $_SESSION['username']=$username;
+                echo $username;
 
             }
         }
