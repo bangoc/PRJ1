@@ -43,7 +43,7 @@
 			      </div>
            </form>
 		    <ul class="nav navbar-nav navbar-right col-md-4">
-		      <li class="col-md-6"><a href="#"><span class="glyphicon glyphicon-user"></span> Username</a></li>
+		      <li class="col-md-6"><a href="#"><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['username']; ?></a></li>
 		     <li class="col-md-6"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 		    </ul>
 		  </div>

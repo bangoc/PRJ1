@@ -32,7 +32,7 @@
 
 		       
 		    </ul>
-		    <form class="navbar-form navbar-left col-md-4">
+		    <form class="navbar-form navbar-left col-md-3">
 			      <div class="input-group">
 			        <input type="text" class="form-control" placeholder="Search">
 			        <div class="input-group-btn">
@@ -42,9 +42,13 @@
 			        </div>
 			      </div>
            </form>
-		    <ul class="nav navbar-nav navbar-right col-md-4">
-		      <li class="col-md-6"><?php include 'register.php' ?></li>
-		      <li  class="col-md-6"><?php include 'login.php' ?></li>
+		    <ul class="nav navbar-nav navbar-right col-md-5">
+		      <li class="col-md-4" style="height: 100%;width: 33%;"><?php include 'register.php' ?></li>
+		      <li  class="col-md-4" style="height: 100%;width: 33%;"><?php include 'login.php' ?></li>
+		    
+		    <li class="col-md-4" style="height: 100%;width: 33%;">
+		        <a href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
+		    </li>
 		    </ul>
 		  </div>
 		</div>

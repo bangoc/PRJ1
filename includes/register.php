@@ -53,6 +53,9 @@
   .row{
     padding-top: 15px;
   }
+  .modal-backdrop{
+    display: none;
+  }
 </style>
                                    
         

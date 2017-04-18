@@ -11,4 +11,6 @@ nav{
     z-index: 100;
     margin-top: -70px;
 }
-
+.modal-backdrop {
+	display: none;
+}
