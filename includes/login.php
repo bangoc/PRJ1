@@ -82,14 +82,15 @@
                        type    : "POST",
                        url     : 'log_in.php',
                        data    :  dataString,
-                       success : function(html){
-                          if(html=='false'){
+                       success : function(text){
+                          if(text=='false'){
                             $('#error').html("Tên tài khoản hoặc mật khẩu không chính xác");
                       
                           }
-                          else if(html=='true')
-                          {
-                           window.location="user.php" ;
+                          else{
+                          
+                            window.location='user.php?username='+text;
+                           //alert(text);
 
 
                             setTimeout(function(){
