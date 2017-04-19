@@ -22,18 +22,16 @@
          margin-top: -70px;background: #ed1c24;border:none;">
        <div class="container nav">
 		  <div class="container-fluid">
-		   <div class="col-sm-5"></div>
-		    <ul class="nav navbar-nav">
-		      <li class="active col-sm-6">
+		    <ul class="nav navbar-nav col-md-7">
+		      <li class="active col-md-3">
 		         <a href="main.php" style="background:#ed1c24; "><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a>
 		       </li>
-		      <li class="active col-sm-6">
+		      <li class="active col-sm-3">
 		         <a href="#" style="background:#ed1c24; "><i class="fa fa-question-circle"></i>Liên hệ</a>
 		      </li>
 
-		       
-		    </ul>
-		    <form class="navbar-form col-sm-6">
+               <li class="active col-md-6">
+                  <form class="navbar-form col-sm-6">
 			      <div class="input-group">
 			        <input type="text" class="form-control" placeholder="Search">
 			        <div class="input-group-btn">
@@ -43,15 +41,19 @@
 			        </div>
 			      </div>
            </form>
-           </div>
-		    <ul class="nav navbar-nav navbar-right col-sm-5">
-		       <li class="col-sm-4">
+               </li>
+		       
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right col-md-5">
+		       <li class="col-md-3" style="height: 100%;width: 40%;">
 		        <a href="cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
 		       </li>
-		      <li class="col-sm-4"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>
-		         <?php echo $_SESSION['username']; ?></a></li>
-		      <li class="col-xs-4" style="height: 100%;width: 32%;"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-		      
+		      <li class="col-md-3" style="height: 100%;width: 20%;margin-top: 15px;
+                color: white;">
+                  <i class="fa fa-user-o" aria-hidden="true"></i>
+		         <?php echo $_SESSION['username']; ?></li>
+		      <li class="col-md-6" style="height: 100%;width: 40%;"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		       </div>
 		    </ul>
 		  </div>
 		</div>
