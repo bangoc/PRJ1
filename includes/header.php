@@ -32,12 +32,12 @@
 
 		       
 		    </ul>
-		    <form class="navbar-form navbar-left col-md-3">
+		    <form action="search.php" method="get" enctype="multipart/form-data" class="navbar-form navbar-left col-md-3">
 			      <div class="input-group">
-			        <input type="text" class="form-control" placeholder="Search">
+			        <input type="text" name="search" class="form-control" placeholder="Search" required>
 			        <div class="input-group-btn">
-			          <button class="btn btn-default" type="submit">
-			            <i class="glyphicon glyphicon-search"></i>
+			          <button class="btn btn-default" type="submit" name="submit">
+			            <a href="search.php"><i class="glyphicon glyphicon-search"></i></a>
 			          </button>
 			        </div>
 			      </div>

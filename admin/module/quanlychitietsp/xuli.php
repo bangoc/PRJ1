@@ -27,7 +27,7 @@
 	 $sql=" update sanpham set tensanpham='$tensanpham',gia='$gia',hinhanh='$hinhanh',mota='$mota',idloaisp='$idloaisp',soluong='$soluong',idtenhang='$idtenhang',xuatxu='$xuatxu',mausac='$mausac' where idsanpham='$id'";
 	 }
 	 else {
-		  $sql=" update sanpham set tensanpham='$tensanpham',gia='$gia',hinhanh='$hinhanh',mota='$mota',idloaisp='$idloaisp',soluong='$soluong',idtenhang='$idtenhang',xuatxu='$xuatxu',mausac='$mausac' where idsanpham='$id'";
+		  $sql=" update sanpham set tensanpham='$tensanpham',gia='$gia',mota='$mota',idloaisp='$idloaisp',soluong='$soluong',idtenhang='$idtenhang',xuatxu='$xuatxu',mausac='$mausac' where idsanpham='$id'";
 		 }
 	 $result=mysqli_query($conn,$sql) or die("error:" .mysqli_error($conn));
 	    header('Location:../../quanlysanpham.php?quanli=quanlychitietsp&ac=lietke&id='.$id);  
