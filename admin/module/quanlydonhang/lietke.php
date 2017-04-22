@@ -22,21 +22,23 @@
   <?php
  $id="1";
   while ($dong=mysqli_fetch_array ($run,MYSQLI_ASSOC)) {
+    
  ?>
  </tr>
   <tr>
     <td> <?php echo $id ; ?></td>
-    <td><?php echo $dong['hoten']; ?></td>
+    <td><?php echo $dong['iddonhang']; ?></td>
      <td><?php echo $dong['hoten']; ?></td>
     <td><?php echo $dong['phone']; ?></td>
     <td><?php echo $dong['email']; ?></td>
     <td><?php echo $dong['address']; ?></td>
     <td><?php echo $dong['tongtien']; ?></td>
-    <td ><a href="qlchitietdonhang.php?quanli=chitietdonhang" >Chi tiết </a></td>
+    <td ><a href="qlchitietdonhang.php?quanli=chitietdonhang&id=<?php echo $dong['iddonhang']?>" >Chi tiết </a></td>
   
   </tr>
   <?php 
    $id++;
+
   }
   ?>
 </table>

@@ -49,7 +49,7 @@
           </tr>
            <tr>
             <td>Size:</td>
-            <td><input type="number" name="size"  min="20" max="60" value="20"></td>
+            <td><input type="text" name="size"  value="" required></td>
           </tr>
           <?php
             $sql=" select *from loaisp"; 

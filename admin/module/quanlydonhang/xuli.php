@@ -6,9 +6,10 @@
 		 $email=$_POST['email'];
 		 $address=$_POST['address'];
 		 $tongtien=$_POST['tongtien'];
+		 $iddonhang=$_GET['iddonhang'];
 	 // liet ke don hang
-		 $sql="INSERT into donhang (hoten,phone,email,address,tongtien) 
-		       values('$hoten','$phone','$email','$address','$tongtien')";	
+		 $sql="INSERT into donhang (iddonhang,hoten,phone,email,address,tongtien) 
+		       values('$iddonhang','$hoten','$phone','$email','$address','$tongtien')";	
 	     $result=mysqli_query($conn,$sql) or die("Error: ".mysqli_error($conn));
 			
   }
