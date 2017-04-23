@@ -53,7 +53,7 @@
 						    			      <i class="fa fa-check-square" aria-hidden="true"  style="margin-right: 10px;
                                                 font-size: 120%;"></i>Mua Ngay
 						    			</a>
-						    			<a href="#" class="btn btn-danger btn-block" style="padding: 27px 0;">
+						    			<a href="shopping_cart.php" class="btn btn-danger btn-block" style="padding: 27px 0;">
 						    			    <i class="fa fa-cart-arrow-down" aria-hidden="true" style="margin-right: 10px;
                                                 font-size: 120%;">
                                         	
@@ -65,7 +65,7 @@
 			<div class="clearfix"></div>
 			<!--Bài viết về sản phẩm-->
 		    <div class="col-sm-12 row">
-		    	<div class="panel panel-danger orangepanel">
+		    	<div class="panel panel-danger " style="background: orange;margin-top: 30px;">
 		    	     <h4 style="text-align: center;">Bài viết sản phẩm</h4>
 		    	     
 		    	</div>

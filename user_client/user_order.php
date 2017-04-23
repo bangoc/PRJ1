@@ -4,14 +4,20 @@
 
  </style>
   <div class="container" style="margin-top: 70px;margin-left: 89.5px;">
-     <div class="row" style="background:#e7f715;border-radius: 5px;">
+     <div class="row" style="background:#A9A9F5;border-radius: 5px;">
        <div class="col-sm-12">
-       	 <h1 style="font-weight: bold;text-align: center;color: #17f715 ">Đơn Đặt Hàng</h1>
+       	 <h1 style="font-weight: bold;text-align: center;color: #FF4000"><i class="fa fa-id-card" aria-hidden="true"></i>Đơn Hàng</h1>
        </div>
      </div>
      <div class="row" style="margin-top: 20px;">
-     	<div class="col-sm-7 order" style="border: 1px solid #ccc;">
-     	         <h2 style="text-align: center;color: red;" class="text-success"><i class="fa fa-clipboard" aria-hidden="true"></i>Thông Tin Người Nhận</h2>
+     	<div class="col-sm-7 order" style="border: 1px solid #ccc;background: #9FF781;">
+     	        <div class="nav nav-inverse "> 
+     	              <h2 style="text-align: center;color: red;" class="text-success">
+     	                 <i class="fa fa-clipboard" aria-hidden="true"></i>
+     	                 Thông Tin Người Nhận
+     	              </h2>
+     	        </div>
+     	       
      			 <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 				  	 <div class="form-group">
 				  	 	<label>Email</label>

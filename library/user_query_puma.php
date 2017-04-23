@@ -18,7 +18,7 @@
 							          <p>Giá:<strong style="color: red;"><?php echo $data['gia'];?></strong></p>
 							        </div>
 							         <div class="caption">
-							          <a href="items.php?id=<?php echo $data['idsanpham'];?>" class="btn btn-danger">
+							          <a href="user_items.php?id=<?php echo $data['idsanpham'];?>" class="btn btn-danger">
 							           <i class="fa fa-cart-plus" aria-hidden="true" style="color: red;">
 							          	
 							          </i>

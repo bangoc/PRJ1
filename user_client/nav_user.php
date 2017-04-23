@@ -46,13 +46,13 @@
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right col-md-5">
 		       <li class="col-md-3" style="height: 100%;width: 40%;">
-		        <a href="cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
+		        <a href="shopping_cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
 		       </li>
 		      <li class="col-md-3" style="height: 100%;width: 20%;margin-top: 15px;
                 color: white;">
                   <i class="fa fa-user-o" aria-hidden="true"></i>
 		         <?php echo $_SESSION['username']; ?></li>
-		      <li class="col-md-6" style="height: 100%;width: 40%;"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		      <li class="col-md-6" style="height: 100%;width: 40%;"><a href="../library/user_logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 		       </div>
 		    </ul>
 		  </div>
