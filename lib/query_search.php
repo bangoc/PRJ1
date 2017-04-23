@@ -2,7 +2,7 @@
 <?php 
 	if (isset($_REQUEST['submit'])) {
 	$search = addslashes($_GET['search']);
-   $query="SELECT * from sanpham where tensanpham like '%$search%'";
+   $query="SELECT * from loaisp natural join sanpham natural join tenhang where loaisp like '%$search%' or tensanpham like '%$search%' or tenhang like '%$search%' or mota like '%$search%'" ;
    $result=mysqli_query($conn,$query) or die("ERROR: ".mysqli_error($conn));
    	$num = mysqli_num_rows($result);
    	if ($num > 0) {

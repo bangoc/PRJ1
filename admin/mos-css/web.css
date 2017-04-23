@@ -17,14 +17,6 @@ a:hover {color: #000;}
 label {padding: 0; margin: 0 0 10px 0;}
 input {padding: 4px;color: #5b5b5b;border: 1px solid #dcdcdc;
 -moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;}
-input.login { width: 200px; margin: 5px 0 10px 0px;}
-input.panjang {width: 100%;}
-input.sedang{width: 40%;}
-input.pendek{width: 25%;}
-input.panjang:focus {-moz-box-shadow: 0px 0px 5px #dcdcdc;-webkit-box-shadow: 0px 0px 5px #dcdcdc; background:#feffdc;text-shadow: 1px 0px #fff; }
-input.sedang:focus{-moz-box-shadow: 0px 0px 5px #dcdcdc;-webkit-box-shadow: 0px 0px 5px #dcdcdc; background:#feffdc;text-shadow: 1px 0px #fff;}
-input.pendek:focus{-moz-box-shadow: 0px 0px 5px #dcdcdc;-webkit-box-shadow: 0px 0px 5px #dcdcdc; background:#feffdc;text-shadow: 1px 0px #fff;}
-
 	.button {
 	cursor: pointer;
 	padding: 4px 10px 4px 10px;
@@ -68,39 +60,7 @@ tr.data:hover small {color: #5b5b5b;}
 	letter-spacing: 1px;
 	margin: 10px 50px 10px 60px;
 }
-.sukses {
-	border: 1px solid #cbe0b5;
-	background: #f7ffe8 url(img/sukses.png) no-repeat left center;
-	float: left;
-	width: 640px;
-	padding: 15px 10px 15px 50px;
-	font-size: 16px;
-	letter-spacing: 1px;
-	margin: 10px 0 10px 0;
-	color:#cbe0b5;
-}
-.gagal {
-	border: 1px solid #e78686;
-	background: #ffe1e1 url(img/gagal.png) no-repeat left center;
-	float: left;
-	width: 640px;
-	padding: 15px 10px 15px 50px;
-	font-size: 16px;
-	letter-spacing: 1px;
-	margin: 10px 0 10px 0;
-	color: #e78686;
-}
-.informasi {
-	border: 1px solid #86afe7;
-	background: #e7f1ff url(img/informasi.png) no-repeat left center;
-	float: left;
-	width: 640px;
-	padding: 15px 10px 15px 50px;
-	font-size: 16px;
-	letter-spacing: 1px;
-	margin: 10px 0 10px 0;
-	color: #86afe7;
-}
+
 #header {
 	width: 100%;
 	border-bottom: 1px solid #dcdcdc;
@@ -125,10 +85,6 @@ tr.data:hover small {color: #5b5b5b;}
 	border-right: 0px solid #dcdcdc;
 	border-left: 0px solid #dcdcdc;
 }
-.inHeaderLogin {
-	background: url(img/logo.png) no-repeat left center;
-	height: 75px;
-}
 .mosAdmin {
 	float: right;
 	border: 0px solid #dcdcdc;
@@ -137,34 +93,6 @@ tr.data:hover small {color: #5b5b5b;}
 	padding: 10px 40px 10px 10px;
 	background: url(img/sukses.png) no-repeat right center;
 	text-shadow: 1px 1px #fff;
-}
-#loginForm {
-	width: 400px;
-	height: 250px;
-	border: 1px solid #dcdcdc;
-	float: center;
-	text-align: left;
-	background:#fff url(img/lock.png) no-repeat left center;
-	margin: 50px auto 0 auto;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-o-border-radius: 5px;
-}
-.headLoginForm {
-	width: 380px;
-	padding: 10px 0 10px 20px;
-	font-size: 18px;
-	font-weight: bold;
-	text-shadow: 1px 1px #fff;
-	text-align: left;
-	height: 20px;
-	border-bottom: 1px solid #dcdcdc;
-	background: url(img/headerbg.jpg) repeat left center;
-	-moz-border-radius-topleft: 4px; -moz-border-radius-topright: 4px;
-	-webkit-border-top-left-radius: 4px; -webkit-border-top-right-radius: 4px;
-}
-.fieldLogin {
-	margin: 30px 5px 0 140px;
 }
 .khung {
 	width:1300px;
