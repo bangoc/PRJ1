@@ -9,6 +9,11 @@
 	</div>
 </div>
 <div class="khung" style="height: 40px">
-
+<div id="search" style="float: right;margin-top:8px; margin-right: 50px">
+<form class="searchform" action="" method="get" >
+<input class="s" onfocus="if (this.value == 'Nhập nội dung …') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Nhập nội dung …';}" type="text" name="s" value="Nhập nội dung …" style="width: 300px"/>
+<input class="searchsubmit" type="submit" value="Tìm kiếm" />
+</form>
+</div>
 
  </div>
