@@ -8,4 +8,7 @@
 	<div class="clear"></div>
 	</div>
 </div>
-<div class="khung"> </div>
+<div class="khung" style="height: 40px">
+
+
+ </div>

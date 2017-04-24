@@ -168,10 +168,12 @@ tr.data:hover small {color: #5b5b5b;}
 }
 .khung {
 	width:1300px;
-	height:30px;
+	height:50px;
 	background:#000;
 	border-radius:5px;
 }
+
+
 }
 #wrapper {
 	width: 1000px;

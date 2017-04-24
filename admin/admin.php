@@ -19,7 +19,7 @@ if(!isset($_SESSION["id"])){
  	 
 <body >
 <div  style=" padding:1px 0px 0px 0px; ">
-  <div class="container" style="width: 1300px; border: 1px solid #dcdcdc ;  margin:  50px auto; ">
+  <div class="container" style="width: 1300px; border: 1px solid #dcdcdc ;  margin:  0px auto; ">
 <?php
      include('module/config.php') ?>
 	<?php include('module/modau.php') ?>
