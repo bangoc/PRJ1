@@ -11,6 +11,8 @@
     <td>ID</td>
     <td>Tên đăng nhập</td>
     <td>Mật khẩu</td>
+    <td>Số điện thoại</td>
+    <td>Địa chỉ</td>
    <?php
  $id="1";
   while ($dong=mysqli_fetch_array ($run,MYSQLI_ASSOC)) {
@@ -20,6 +22,8 @@
     <td> <?php echo $id ; ?></td>
     <td><?php echo $dong['username']; ?></td>
     <td><?php echo $dong['password']; ?></td>
+    <td><?php echo $dong['phone']; ?></td>
+    <td><?php echo $dong['address']; ?></td>
   </tr>
   <?php 
    $id++;

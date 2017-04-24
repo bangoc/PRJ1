@@ -89,7 +89,7 @@
                           }
                           else{
                           
-                            window.location='user.php?username='+text;
+                            window.location='user_client/user.php?username='+text;
                            //alert(text);
 
 
