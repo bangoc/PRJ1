@@ -9,11 +9,11 @@
 	</div>
 </div>
 <div class="khung" style="height: 40px">
-<div id="search" style="float: right;margin-top:8px; margin-right: 50px">
-<form class="searchform" action="" method="get" >
-<input class="s" onfocus="if (this.value == 'Nhập nội dung …') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Nhập nội dung …';}" type="text" name="s" value="Nhập nội dung …" style="width: 300px"/>
-<input class="searchsubmit" type="submit" value="Tìm kiếm" />
-</form>
-</div>
-
+<div align="center" style=" float: right;">
+            <form action="timkiem.php" method="get" style="margin-top: 8px; margin-right: 50px" >
+                Search: <input type="text" name="search" style="width: 250px" required="nhap thong tin" />
+                <input type="submit" name="timkiem" value="search" />
+            </form>
+        </div>
  </div>
+ 
