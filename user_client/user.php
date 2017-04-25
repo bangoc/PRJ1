@@ -1,6 +1,6 @@
 
     <?php include 'nav_user.php' ?>
-         <div class="container" style="margin-top: 70px;margin-left: 89.5px;">
+         <div class="container" style="margin-top: 70px;">
      <?php include 'user_slideshow.php';
            include 'user_sidebar.php'; 
            include '../lib/conn.php';

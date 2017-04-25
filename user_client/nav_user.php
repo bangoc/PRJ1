@@ -46,7 +46,19 @@
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right col-md-5">
 		       <li class="col-md-3" style="height: 100%;width: 40%;">
-		        <a href="shopping_cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
+		       <?php
+		        if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
+				  	      $total = 0;
+				  }
+				  else{
+				          $total =0;
+				  	      foreach ($_SESSION['cart'] as $value) {
+				  	      	  $total+= $value['quantity'];
+
+				  	      }
+				  }
+				?>
+		        <a href="shopping_cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(<?php echo $total; ?>) </a>
 		       </li>
 		      <li class="col-md-3" style="height: 100%;width: 20%;margin-top: 15px;
                 color: white;">

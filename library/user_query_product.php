@@ -5,6 +5,16 @@
   $idsanpham=$_GET['id'];
   $query="SELECT * FROM sanpham WHERE idsanpham='$idsanpham'";
   $result=mysqli_query($conn,$query) or die("Error: ".mysqli_error($conn));
+  if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
+  	      $total = 0;
+  }
+  else{
+          $total =0;
+  	      foreach ($_SESSION['cart'] as $value) {
+  	      	  $total+= $value['quantity'];
+
+  	      }
+  }
   while ($data=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
   	?>
   	        <div class="row col-sm-8">
@@ -53,7 +63,8 @@
 						    			      <i class="fa fa-check-square" aria-hidden="true"  style="margin-right: 10px;
                                                 font-size: 120%;"></i>Mua Ngay
 						    			</a>
-						    			<a href="shopping_cart.php" class="btn btn-danger btn-block" style="padding: 27px 0;">
+						    			<a href="../user_client/insert_products.php?id=<?php echo $data['idsanpham'];?>" 
+						    			          class="btn btn-danger btn-block" style="padding: 27px 0;">
 						    			    <i class="fa fa-cart-arrow-down" aria-hidden="true" style="margin-right: 10px;
                                                 font-size: 120%;">
                                         	

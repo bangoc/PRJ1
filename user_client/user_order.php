@@ -3,7 +3,7 @@
  	i{margin-right: 10px;}
 
  </style>
-  <div class="container" style="margin-top: 70px;margin-left: 89.5px;">
+  <div class="container" style="margin-top: 70px;">
      <div class="row" style="background:#A9A9F5;border-radius: 5px;">
        <div class="col-sm-12">
        	 <h1 style="font-weight: bold;text-align: center;color: #FF4000"><i class="fa fa-id-card" aria-hidden="true"></i>Đơn Hàng</h1>
