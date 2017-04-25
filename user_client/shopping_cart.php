@@ -18,7 +18,7 @@
 										      </tr>
 										    </thead>
 			             <?php 
-
+                                 $price_total=0;
 								foreach ($_SESSION['cart'] as $value) {
 									
 									  ?>
@@ -29,15 +29,17 @@
 										           <td><?php echo $value['tensanpham'];?></td>
 										           <td><img src="../image/<?php echo $value['hinhanh'];?>" style="width: 100px;height: 50px;"></td>
 										           <td><?php echo $value['quantity'];?></td>
-										           <td><?php echo $value['gia'];?></td>
+										           <td><?php echo  $price=$value['gia']*$value['quantity'];?></td>
 										           <td>
-										                <a href="delete_items.php">
+										                <a href="../library/delete_items.php?id=<?php echo $value['idsanpham'];?>" 
+										                    onclick= 'return confirm("Bạn có muốn xóa không?")'>
 										                <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
 										                </a>
 										           </td>
 							            </tr> 
 							            
 								<?php
+								                    $price_total+=$value['gia']*$value['quantity'];
 								}
 								   
 			              ?>
@@ -45,7 +47,7 @@
 												   <tr>
 												        <th class="col-sm-2">Tổng tiền:</th>
 												        <th class="col-sm-5" style="color: red;">
-												           <?php echo $value['quantity']*$value['gia'];?>
+												           <?php echo $price_total;?>
 												        </th>
 												   </tr>
 							</thead>
