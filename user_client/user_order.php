@@ -1,3 +1,4 @@
+<?php include '../lib/conn.php' ?>
 <?php include 'nav_user.php' ?>
  <style type="text/css">
  	i{margin-right: 10px;}
@@ -26,23 +27,37 @@
 				  	 </div>
 				  	 <div class="form-group">
 				  	 	<label>Họ và tên đệm</label>
-				  	 	<input class="form-control" type="password" placeholder="Họ tên" name="hoten" required></input>
+				  	 	<input class="form-control" type="text" placeholder="Họ tên" name="hoten" required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	  <div class="form-group">
 				  	 	<label>Địa chỉ</label>
-				  	 	<input class="form-control" type="password" placeholder="Địa chỉ" name="address"  required></input>
+				  	 	<input class="form-control" type="text" placeholder="Địa chỉ" name="address"  required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	 <div class="form-group">
 				  	 	<label>Điện thoại</label>
-				  	 	<input class="form-control" type="password" placeholder="Điện thoại" name="phone" required></input>
+				  	 	<input class="form-control" type="text" placeholder="Điện thoại" name="phone" required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
 				  	 <button class="btn btn-primary" value="Log in" name="submit">Gửi</button>
 				  	 <p class="text-danger"></p>
 
                </form>
+               <!--=====================================================================-->
+               <?php
+                    if (isset($_POST['submit']))
+                        {
+                            $email = mysqli_real_escape_string($conn, $_POST['email']);
+                            $hoten = mysqli_real_escape_string($conn, $_POST['hoten']);
+                            $address = mysqli_real_escape_string($conn, $_POST['address']);
+                            $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+                            
+                            $sql=" INSERT INTO donhang(email,hoten,address,phone) values ('$email','$hoten','address','phone')";
+                            $result =mysqli_query($conn,$sql) or die("Error:".mysqli_error($conn));          
+                            } 
+                            
+                  ?>
      	</div>
      	<div class="col-sm-5">
      		<ul class="list-group">
