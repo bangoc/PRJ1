@@ -48,8 +48,13 @@
   <?php
   $id++;
   }
+  
   }
-else {echo "<strong> <h2> Không tìm thấy sản phẩm nào với từ khóa <b>$search</b>, mời bạn nhập vào từ khóa khác </h2> </strong>" ;}
+else {echo "<strong> <h2> Không tìm thấy sản phẩm nào với từ khóa '<b>$search</b>'. Mời bạn nhập vào từ khóa khác </h2> </strong>" ;}
 }
   ?>
+
+
+
 </table>
+

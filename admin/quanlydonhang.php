@@ -4,7 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="mos-css/web.css"  />
-<title>Trang quan tri</title>
+<title>Đơn hàng</title>
 
 </head>
  	 

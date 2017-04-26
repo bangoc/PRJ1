@@ -7,7 +7,7 @@
 
 <table width="800px" border="1" align="center" style=" margin-left:70px">
    <tr> 
-   <td colspan="8" style="background:#CCC"> <strong>Bảng quản lý đơn hàng </strong></td>
+   <td colspan="9" style="background:#CCC"> <strong>Bảng quản lý đơn hàng </strong></td>
    </tr>
   <tr>
     <td>STT</td>
@@ -17,6 +17,7 @@
     <td>Email</td>
     <td>Địa chỉ</td>
     <td>Tổng tiền</td>
+    <td>Trạng thái </td>
     <td > Quản lý </td>
   
   <?php
@@ -32,6 +33,7 @@
     <td><?php echo $dong['phone']; ?></td>
     <td><?php echo $dong['email']; ?></td>
     <td><?php echo $dong['address']; ?></td>
+    <td><?php echo $dong['tongtien']; ?></td>
     <td><?php echo $dong['tongtien']; ?></td>
     <td ><a href="qlchitietdonhang.php?quanli=chitietdonhang&id=<?php echo $dong['iddonhang']?>" >Chi tiết </a></td>
   

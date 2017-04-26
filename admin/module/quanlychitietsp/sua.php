@@ -62,7 +62,7 @@
           </tr>
            <tr>
             <td>Size:</td>
-            <td><input type="number" name="size"  min="20" max="60" value="<?php echo $dong['size']; ?>"></td>
+            <td><input type="text" name="size"  value="<?php echo $dong['size']; ?>" required></td>
           </tr>
           <?php 
             $sql_loaisp="select *from loaisp";

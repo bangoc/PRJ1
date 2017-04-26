@@ -19,8 +19,8 @@
 		</div>
 		
 		<div class="shortcutHome">
-		<a href=""><img src="mos-css/img/ab.PNG" width="70" height="80"><br>
-		Giỏ hàng</a>
+		<a href=""><img src="mos-css/img/s9.PNG" width="70" height="80"><br>
+		Sale</a>
 		</div>
 		
 		<div class="clear"></div>

@@ -3,7 +3,7 @@
 		<li ><a href="admin.php">Trang chủ</a></li>
       
    
-        <li><a href="#">Liên hệ</a></li>
+        <li><a href="lien_he.php?quanli=lienhe">Liên hệ</a></li>
         
 	</ul>
 	</div>
