@@ -74,7 +74,7 @@
 
              </table>
              <div class="nav nav-success" style="float: right;">
-                  <input class="btn btn-primary" type="submit" name="ok" value="Cập nhật">
+                  <input class="btn btn-primary" type="submit" name="ok" onclick='return confirm("Bạn có muốn update?")' value="Cập nhật">
 	              <a href="user_order.php" class="btn btn-danger" id="register-btn">Đặt hàng ngay</a>
 	              <a href="user.php" type="button" class="btn btn-success" > Tiếp tục mua hàng </a>
               </div>
