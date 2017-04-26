@@ -19,7 +19,7 @@
      	              </h2>
      	        </div>
      	       
-     			 <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+     			 <form method="post" action="success_buy.php">
 				  	 <div class="form-group">
 				  	 	<label>Email</label>
 				  	 	<input class="form-control" type="text" placeholder="Email" name="email" required></input>
@@ -42,23 +42,8 @@
 				  	 </div>
 				  	 <button class="btn btn-primary" value="Log in" name="submit">Gửi</button>
 				  	 <p class="text-danger"></p>
-
-               </form>
-               <!--=====================================================================-->
-               <?php
-                    if (isset($_POST['submit']))
-                        {
-                            $email = mysqli_real_escape_string($conn, $_POST['email']);
-                            $hoten = mysqli_real_escape_string($conn, $_POST['hoten']);
-                            $address = mysqli_real_escape_string($conn, $_POST['address']);
-                            $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-                            
-                            $sql=" INSERT INTO donhang(email,hoten,address,phone) values ('$email','$hoten','address','phone')";
-                            $result =mysqli_query($conn,$sql) or die("Error:".mysqli_error($conn));          
-                            } 
-                            
-                  ?>
-     	</div>
+				 </form>
+   </div>
      	<div class="col-sm-5">
      		<ul class="list-group">
      			<li class="list-group-item" style="background:#15f7cf;text-align: center;font-weight: bold;color: red;">Thông tin Đơn Hàng</li>

@@ -31,22 +31,36 @@
 		      </li>
 
                <li class="active col-md-6">
-                  <form class="navbar-form col-sm-6">
-			      <div class="input-group">
-			        <input type="text" class="form-control" placeholder="Search">
-			        <div class="input-group-btn">
-			          <button class="btn btn-default" type="submit">
-			            <i class="glyphicon glyphicon-search"></i>
-			          </button>
-			        </div>
-			      </div>
-           </form>
+                    <form action="user_search.php" method="get" enctype="multipart/form-data" class="navbar-form navbar-left col-md-3">
+					      <div class="input-group">
+					        <input type="text" name="search" class="form-control" placeholder="Search" required>
+					        <div class="input-group-btn">
+					          <button class="btn btn-default" type="submit" name="submit">
+					            <a href="search.php"><i class="glyphicon glyphicon-search"></i></a>
+					          </button>
+					        </div>
+					      </div>
+                   </form>
                </li>
 		       
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right col-md-5">
 		       <li class="col-md-3" style="height: 100%;width: 40%;">
-		        <a href="shopping_cart.php"><i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(0) </a>
+		       <?php
+		        if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
+				  	      $total = 0;
+				  }
+				  else{
+				          $total =0;
+				  	      foreach ($_SESSION['cart'] as $value) {
+				  	      	  $total+= $value['quantity'];
+
+				  	      }
+				  }
+				?>
+		        <a href="shopping_cart.php">
+		            <i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(<?php echo $total; ?>) 
+		        </a>
 		       </li>
 		      <li class="col-md-3" style="height: 100%;width: 20%;margin-top: 15px;
                 color: white;">

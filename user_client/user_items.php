@@ -1,6 +1,6 @@
 <?php include 'nav_user.php' ?>
 <?php include '../lib/conn.php' ?>
-<div class="container" style="margin-top: 70px;margin-left: 89.5px;">
+<div class="container" style="margin-top: 70px;">
 	    <div class="btn-group btn-group-justified">
 		  <a href="#" class="btn btn-primary">Trang chủ</a>
 		  <a href="#" class="btn btn-primary">Xem thêm</a>
@@ -26,7 +26,7 @@
 				  	    XEM THÊM CÁC SẢN PHẨM KHÁC
 				     </label>
 				  </li>
-				  <?php 
+				 <?php 
 				  		$idsp=$_GET['id'];
 				  		$idtenhang=$_GET['idtenhang'];
 				  		#$idtenhang=1;
@@ -58,6 +58,7 @@
        	                         </div>
        	            </li>
 					<?php } ?>
+					
 				</ul>
 			</div>
 		

@@ -1,6 +1,6 @@
 <?php include 'nav_user.php' ?>
 <?php include '../lib/conn.php' ?>
-  <div class="container" style="margin-top: 70px;margin-left: 89.5px;">
+  <div class="container" style="margin-top: 70px;">
    <?php include 'user_sidebar.php' ?>
 
    <div class="panel panel-success col-sm-9" style="background: #FF4000;"><h4 style="text-align: center;">Giày Nam</h4></div>
