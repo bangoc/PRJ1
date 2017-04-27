@@ -39,7 +39,7 @@
 				  <li class="list-group-item">
 					       <div class="thumbnail">
 							      <a href="#">
-							        <img src="user_client/image/<?php echo $data['hinhanh'] ?>" alt="Lights" style="width:150px;height: 150px;">
+							        <img src="../image/<?php echo $data['hinhanh'] ?>" alt="Lights" style="width:150px;height: 150px;">
 							       
 							          <p>Tên sản phẩm:<?php echo $data['tensanpham'] ?></p>
 							          <p></p>

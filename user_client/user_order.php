@@ -1,4 +1,4 @@
-<?php include '../lib/conn.php' ?>
+
 <?php include 'nav_user.php' ?>
  <style type="text/css">
  	i{margin-right: 10px;}
@@ -40,24 +40,19 @@
 				  	 	<input class="form-control" type="text" placeholder="Điện thoại" name="phone" required></input>
 				  	 	<p class="text-danger"></p>
 				  	 </div>
+                     <div class="form-group">
+                         <label>Hình thức thanh toán</label>
+                         <select class="form-control">
+                             <option selected="">--Lựa chọn hình thức thanh toán--</option>
+                             <option>Thanh toán COD</option>
+                             <option>Thanh toán trực tuyến</option>
+                         </select>
+                     </div>
 				  	 <button class="btn btn-primary" value="Log in" name="submit">Gửi</button>
 				  	 <p class="text-danger"></p>
 
                </form>
-               <!--=====================================================================-->
-               <?php
-                    if (isset($_POST['submit']))
-                        {
-                            $email = mysqli_real_escape_string($conn, $_POST['email']);
-                            $hoten = mysqli_real_escape_string($conn, $_POST['hoten']);
-                            $address = mysqli_real_escape_string($conn, $_POST['address']);
-                            $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-                            
-                            $sql=" INSERT INTO donhang(email,hoten,address,phone) values ('$email','$hoten','address','phone')";
-                            $result =mysqli_query($conn,$sql) or die("Error:".mysqli_error($conn));          
-                            } 
-                            
-                  ?>
+              
      	</div>
      	<div class="col-sm-5">
      		<ul class="list-group">
@@ -69,26 +64,7 @@
      		</ul>
      	</div>
      </div>
-     <div class="row">
-     	<div class="col-sm-8" style="margin-bottom: 80px;">
-     		<h3><i class="fa fa-money" aria-hidden="true"></i>Hình thức thanh toán</h3>
-     		 <div class="row" style="margin-top: 30px;">
-		     		<div class="form-group">
-		     			<div class="col-sm-4">
-		     			  <div class="row">
-		     				<input type="radio" name="pay" value="">
-		     				<button class="btn btn-danger" value="">Thanh toán khi nhận hàng</button>
-		     				</div>
-		     			</div>
-		     			<div class="col-sm-4">
-		     			  <div class="row">
-		     				<input type="radio" name="pay" value="">
-		     				<button class="btn btn-danger" value=""><i class="fa fa-paypal" aria-hidden="true"></i>Thanh toán trực tuyến</button>
-		     				</div>
-		     			</div>
-     		           </div>
-     		    </div>
-     	</div>
-     </div>
+     
    </div>
+<?php include '../library/user_query_data.php' ?>
 <?php include '../includes/footer.php' ?>
