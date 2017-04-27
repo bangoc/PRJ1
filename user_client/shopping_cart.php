@@ -44,6 +44,7 @@
 										              
 										              	
 										           </td>
+										 
 										           <td><?php echo $value['gia'];?></td>
 										           <td><?php echo $value['gia']*$value['quantity'];?></td>
 										           <td>
@@ -65,7 +66,7 @@
 												   <tr>
 												        <th class="col-sm-2">Tổng tiền:</th>
 												        <th class="col-sm-5" style="color: red;">
-												           <?php echo $price_total;?>
+												           <?php echo $price_total;?> đ
 												        </th>
 												   </tr>
 							</thead>
@@ -75,7 +76,7 @@
              </table>
              <div class="nav nav-success" style="float: right;">
                   <input class="btn btn-primary" type="submit" name="ok" onclick='return confirm("Bạn có muốn update?")' value="Cập nhật">
-	              <a href="user_order.php" class="btn btn-danger" id="register-btn">Đặt hàng ngay</a>
+	              <a href="user_order.php?tongtien=<?php echo $price_total  ?>" class="btn btn-danger" id="register-btn">Đặt hàng ngay</a>
 	              <a href="user.php" type="button" class="btn btn-success" > Tiếp tục mua hàng </a>
               </div>
              </form>
