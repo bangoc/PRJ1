@@ -33,6 +33,7 @@
                                              <strong style="font-size: 90%;"><?php echo $data['mausac'];?></strong>
 						    			</div>
 				        	</li>
+				        	<!--
 				        	<li class="list-group-item">
 						    			<div class="caption">Xuất xứ:
                                             <strong style="font-size: 90%;"><?php echo $data['xuatxu'];?></strong>
@@ -47,7 +48,7 @@
 						    			  Số lượng:<input type="number" name="soluong" min="1" max="100" value="1">
 						    			</div>
 				        	</li>
-				        	
+				        	-->
 
 						    			<a href="order.php?id=<?php echo $data['idsanpham'];?>" class="btn btn-success btn-block" style="padding: 27px 0;">
 						    			      <i class="fa fa-check-square" aria-hidden="true"  style="margin-right: 10px;
