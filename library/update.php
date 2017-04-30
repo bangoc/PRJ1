@@ -2,7 +2,7 @@
   session_start();
   if(isset($_POST['ok'])){
   	unset($_POST['ok']);
-  	foreach ($_POST as $k => $v) {
+  	foreach ($_POST as  $k=>$v) {
   		$_SESSION['cart'][$k]['quantity'] = $v;
   	}
   }

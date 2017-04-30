@@ -11,9 +11,10 @@
 										    <thead>
 										      <tr>
 										        <th class="col-sm-1">STT</th>
-										        <th class="col-sm-3">Tên sản phẩm</th>
+										        <th class="col-sm-2">Tên sản phẩm</th>
 										        <th class="col-sm-2">Hình ảnh  </th>
 										        <th class="col-sm-1">Số lượng</th>
+										        <th class="col-sm-1">Size</th>
 										        <th class="col-sm-1">Giá</th>
 										        <th class="col-sm-2">Tổng tiền </th>
 										        <th class="col-sm-1">Xóa</th>
@@ -23,7 +24,7 @@
 			              $price_total=0;
 			              $stt=1;
 			              if(!isset($_SESSION['cart']) or empty($_SESSION['cart'])){
-			              	   echo "Gio hang trong!";
+			              	   echo  'Gio hang trong!';
 
 			              }
                                  
@@ -40,6 +41,14 @@
 										              <input type="text"  name="<?php echo $value['idsanpham'];?>"
 										                     value="<?php echo $value['quantity'];?> "
 										                     style="width: 30px;"
+										              >
+										              
+										              	
+										           </td>
+										            <td>
+										              <input type="text"
+										                     value="27"
+										                     style="width: 40px;"
 										              >
 										              
 										              	
