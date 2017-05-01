@@ -49,11 +49,13 @@
 				        	</li>
 				        	
 
-						    			<a href="order.php?id=<?php echo $data['idsanpham'];?>" class="btn btn-success btn-block" style="padding: 27px 0;">
+						    			<a onclick="return alert('ban chua dang nhap') "
+						    			       class="btn btn-success btn-block" style="padding: 27px 0;">
 						    			      <i class="fa fa-check-square" aria-hidden="true"  style="margin-right: 10px;
                                                 font-size: 120%;"></i>Mua Ngay
 						    			</a>
-						    			<a href="#" class="btn btn-danger btn-block" style="padding: 27px 0;">
+						    			<a href="#" onclick="return alert('Bạn chưa đăng nhập');"
+						    			       class="btn btn-danger btn-block" style="padding: 27px 0;">
 						    			    <i class="fa fa-cart-arrow-down" aria-hidden="true" style="margin-right: 10px;
                                                 font-size: 120%;">
                                         	

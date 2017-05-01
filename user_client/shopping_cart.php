@@ -46,11 +46,7 @@
 										              	
 										           </td>
 										            <td>
-										              <input type="text"
-										                     value="27"
-										                     style="width: 40px;"
-										              >
-										              
+										              <?php echo $value['size']; ?>
 										              	
 										           </td>
 										 

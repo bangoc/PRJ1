@@ -20,8 +20,8 @@
                       <div class="modal-body">
                           
                             <div class="row">
-                                <div class="col-md-5"><label>Tên đăng nhập:</label></div>
-                                <div class="col-md-7">
+                                <div class="col-sm-5"><label>Tên đăng nhập:</label></div>
+                                <div class="col-sm-7">
                                     <input class="form-control" type="text" id="usernameLogin"/>
                                 </div>
 
@@ -29,8 +29,8 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-md-5"><label>Mật khẩu</label>:</div>
-                                <div class="col-md-7">
+                                <div class="col-sm-5"><label>Mật khẩu</label>:</div>
+                                <div class="col-sm-7">
                                     <input class="form-control" type="password" id="passwordLogin" />
                                 </div>
                                 

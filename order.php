@@ -3,7 +3,7 @@
  	i{margin-right: 10px;}
 
  </style>
-  <div class="container" style="margin-top: 70px;margin-left: 89.5px;">
+  <div class="container" style="margin-top: 70px;">
      <div class="row" style="background:#e7f715;border-radius: 5px;">
        <div class="col-sm-12">
        	 <h1 style="font-weight: bold;text-align: center;color: #17f715 ">Đơn Đặt Hàng</h1>
