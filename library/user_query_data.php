@@ -33,11 +33,10 @@
     foreach ($_SESSION['cart'] as $value) {
         $idsanpham = $value['idsanpham'];
         $soluong   = $value['quantity'];
-        $size      = $value['size'];
 
     //thêm thông tin iddonhang,idsanpham,soluong vao trong bang qlichitietdonhang
-    $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong,size)
-                 VALUES ('$iddonhang','$idsanpham','$soluong','$size')";
+    $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong)
+                 VALUES ('$iddonhang','$idsanpham','$soluong')";
     $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
     }
 

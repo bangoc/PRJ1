@@ -11,10 +11,9 @@
 										    <thead>
 										      <tr>
 										        <th class="col-sm-1">STT</th>
-										        <th class="col-sm-2">Tên sản phẩm</th>
+										        <th class="col-sm-3">Tên sản phẩm</th>
 										        <th class="col-sm-2">Hình ảnh  </th>
 										        <th class="col-sm-1">Số lượng</th>
-										        <th class="col-sm-1">Size</th>
 										        <th class="col-sm-1">Giá</th>
 										        <th class="col-sm-2">Tổng tiền </th>
 										        <th class="col-sm-1">Xóa</th>
@@ -43,10 +42,6 @@
 										                     style="width: 30px;"
 										              >
 										              
-										              	
-										           </td>
-										            <td>
-										              <?php echo $value['size']; ?>
 										              	
 										           </td>
 										 

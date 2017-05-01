@@ -14,9 +14,7 @@
           	  }
            }
   if(!isset($_SESSION['cart']) or empty($_SESSION['cart']) ){
-      $data[$id]['size'] =25;
       $data[$id]['quantity'] =1;
-     // $_SESSION['size'][$id] = $data[$id];
       $_SESSION['cart'][$id] = $data[$id];
   }
   else{
