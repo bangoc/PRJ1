@@ -1,8 +1,13 @@
 
-
+<?php
+ $sql= "select * from donhang where iddonhang=$_GET[id]";
+ $run= mysqli_query ($conn,$sql);
+ $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
+?>
+<form >
 <table width="800px" border="1" align="center" style=" margin-left:70px">
    <tr> 
-   <td colspan="10" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>
+   <td colspan="11" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>
    </tr>
   <tr>
     <td>STT</td>
@@ -15,6 +20,7 @@
     <td>Màu sắc</td>
     <td> Size </td>
     <td>Xuất xứ</td>
+    <td>Quản lý</td>
 
     <?php 
     if (isset($_GET['id'])){
@@ -55,12 +61,15 @@ $i="1";
     <td><?php echo $dong['mausac']; ?> </td>
     <td> <?php echo $dong['size']; ?>  </td>
     <td><?php echo $dong['xuatxu']; ?> </td>
-  
+   <td> <a href="">Xóa </a></td>
   
  </tr>
+ 
  <?php
  $i++;
 
 }
 ?>
+
 </table>
+</form>

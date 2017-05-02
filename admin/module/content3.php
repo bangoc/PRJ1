@@ -1,5 +1,6 @@
+
 <div id="rightContent">
-   <div class="them"> <a href="quanlydonhang.php?quanli=donhang"><h3> <strong>Quản lý đơn hàng </h3></strong></a> </div>	
+   <div class="them"> <a href="quanlydonhang.php?quanli=donhang&ac=lietke"><h3> <strong>Quản lý đơn hàng </h3></strong></a> </div>	
 	<?php 
    if(isset($_GET['quanli']))
    { $tam=$_GET['quanli'];}

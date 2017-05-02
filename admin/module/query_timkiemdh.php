@@ -8,7 +8,7 @@
 	   }
 	   if($tam=='search')
 	   {
-		   include('module/timkiem/main_timkiem.php');
+		   include('module/timkiem/main_donhang.php');
 	   }
 	   
 	

@@ -1,7 +1,7 @@
 <div class="right"> 
     <?php
    
-	include('module/timkiem/lietke_timkiem.php');
+	include('module/timkiem/lietke_sanpham.php');
         
 	 ?>
     </div>
