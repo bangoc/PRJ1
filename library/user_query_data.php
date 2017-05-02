@@ -15,14 +15,18 @@
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $iduser = $row['iduser'];
     }
-
+    if(isset($_POST['submit'])){
+        $email=mysqli_real_escape_string($conn,$_POST['email']);
+        $hoten=mysqli_real_escape_string($conn,$_POST['hoten']);
+        $address=mysqli_real_escape_string($conn,$_POST['address']);
+        $phone=mysqli_real_escape_string($conn,$_POST['phone']);
     //thêm iduser,tong tien vào trong bang donhang;
-    $insert = "INSERT INTO donhang(iduser,tongtien) VALUES ('$iduser','$tongtien')";
+    $insert = "INSERT INTO donhang(iduser,tongtien,email,hoten,address,phone) VALUES ('$iduser','$tongtien','$email','$hoten','$address','$phone')";
     $result_insert = mysqli_query($conn,$insert) or die("error: ".mysqli_error($conn));
 
 
     //lay cai iddonhang theo iduser
-    $sql = "SELECT iddonhang FROM donhang WHERE iduser = '$iduser'";
+    $sql = "SELECT iddonhang FROM donhang WHERE iduser = '$iduser' and email='$email' and tongtien='$tongtien' and hoten='$hoten'";
     $return=mysqli_query($conn,$sql) or die("error: ".mysqli_error($conn));
     
     if($data  = mysqli_num_rows($return)>0){
@@ -40,9 +44,7 @@
     $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
     }
 
-
-
-
+}
 
 
 ?>
