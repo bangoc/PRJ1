@@ -74,26 +74,26 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-3"><label>Tên đăng nhập:</label></div>
-                                <div class="col-md-8">
+                                <div class="col-sm-3"><label>Tên đăng nhập:</label></div>
+                                <div class="col-sm-8">
                                     <input class="form-control" type="text" id="username" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3"><label>Mật khẩu</label>:</div>
-                                <div class="col-md-8">
+                                <div class="col-sm-3"><label>Mật khẩu</label>:</div>
+                                <div class="col-sm-8">
                                     <input class="form-control" type="text" id="password" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3"><label>Số điện thoại:</label></div>
-                                <div class="col-md-8">
+                                <div class="col-sm-3"><label>Số điện thoại:</label></div>
+                                <div class="col-sm-8">
                                     <input class="form-control" type="text" id="phone" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3"><label>Địa chỉ:</label></div>
-                                <div class="col-md-8">
+                                <div class="col-sm-3"><label>Địa chỉ:</label></div>
+                                <div class="col-sm-8">
                                     <input class="form-control" type="text" id="address" />
                                 </div>
                             </div>

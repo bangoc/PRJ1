@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-inverse" style="position: fixed;
+<!--<nav class="navbar navbar-inverse" style="position: fixed;
         z-index: 100;
          margin-top: -70px;background: #ed1c24;border:none;">
        <div class="container nav">
@@ -43,7 +43,46 @@
                    </form>
                </li>
 		       
+		    </ul>-->
+        <nav class="navbar navbar-default" role="navigation" style="background: #ed1c24;border:none;color: white;">
+		   	<div class="container-fluid">
+		   		<!-- Brand and toggle get grouped for better mobile display -->
+		   		<div class="navbar-header">
+		   			<button type="button" class="navbar-toggle" id="button-collapse">
+		   				<span class="sr-only">Toggle navigation</span>
+		   				<span class="icon-bar"></span>
+		   				<span class="icon-bar"></span>
+		   				<span class="icon-bar"></span>
+		   			</button>
+		   			<a class="navbar-brand" href="main.php">
+		   			   <i class="fa fa-home" aria-hidden="true"></i>
+		   			   Trang chủ
+		   			</a>
+		   		</div>
+		   
+		   		<!-- Collect the nav links, forms, and other content for toggling -->
+		   		<div class="collapse navbar-collapse navbar-ex1-collapse" id="menu-collapse">
+		   			<ul class="nav navbar-nav col-sm-3">
+				      
+				      <li><a href="#"><i class="fa fa-question-circle"></i>Liên hệ</a></li>
+
+				       
+				    </ul>
+		   			 <form action="search.php" method="get" enctype="multipart/form-data" class="navbar-form navbar-left">
+					      <div class="input-group">
+					        <input type="text" name="search" class="form-control" placeholder="Search" required>
+					        <div class="input-group-btn">
+					          <button class="btn btn-default" type="submit" name="submit">
+					            <a href="search.php"><i class="glyphicon glyphicon-search"></i></a>
+					          </button>
+					        </div>
+					      </div>
+		           </form>
+		               </li>
+				       
 		    </ul>
+
+
 		    <ul class="nav navbar-nav navbar-right col-md-5">
 		       <li class="col-md-3" style="height: 100%;width: 40%;">
 		       <?php
@@ -72,3 +111,11 @@
 		  </div>
 		</div>
 </nav>
+<script>
+   	let button = document.getElementById('button-collapse'),
+   		menu = document.getElementById('menu-collapse');
+
+   	button.onclick = function () {
+   		menu.classList.toggle('in');
+   	}
+   </script>

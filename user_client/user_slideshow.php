@@ -1,4 +1,4 @@
-<div class="row" style="margin-bottom: 100px;">
+<div class="row hidden-xs" style="margin-bottom: 100px;">
        <div class="sidebar_left col-sm-3">
           <img  src="../image/ad.jpg" style="width: 260px;height: 329px;">
 		 </div>
