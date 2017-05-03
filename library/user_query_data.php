@@ -64,8 +64,9 @@
                 $hoten=mysqli_real_escape_string($conn,$_POST['hoten']);
                 $address=mysqli_real_escape_string($conn,$_POST['address']);
                 $phone=mysqli_real_escape_string($conn,$_POST['phone']);
+                $thanhtoan=mysqli_real_escape_string($conn,$_POST['thanhtoan']);
             //thêm iduser,tong tien vào trong bang donhang;
-            $insert = "INSERT INTO donhang(iduser,tongtien,email,hoten,address,phone) VALUES ('$iduser','$tongtien','$email','$hoten','$address','$phone')";
+            $insert = "INSERT INTO donhang(iduser,tongtien,email,hoten,address,phone,hinhthucthanhtoan) VALUES ('$iduser','$tongtien','$email','$hoten','$address','$phone','$thanhtoan')";
             $result_insert = mysqli_query($conn,$insert) or die("error: ".mysqli_error($conn));
 
 
