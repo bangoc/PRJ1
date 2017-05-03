@@ -14,7 +14,7 @@ if(!isset($_SESSION["id"])){
 <link rel="stylesheet" type="text/css" href="mos-css/web.css"  />
 <link rel="stylesheet" type="text/css" href="admin/boostrap3/css/boostrap.css">
 <title>Trang quan tri</title>
-
+<link rel="stylesheet" type="text/css" href="../library/font-awesome/css/font-awesome.css">
 </head>
  	 
 <body >

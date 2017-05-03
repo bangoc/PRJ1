@@ -20,7 +20,7 @@
     <td>Tổng tiền</td>
     <td>Hình thức thanh toán</td>
     <td>Thanh toán </td>
-    <td > Quản lý </td>
+    <td > Xem </td>
   
   <?php
  $id="1";

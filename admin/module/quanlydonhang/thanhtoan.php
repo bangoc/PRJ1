@@ -77,7 +77,7 @@
     echo $dong['iddonhang']?>">Xóa</a></td>
 
   <td>
-   <button name="thanhtoan" value="thanhtoan">Thanh toán</button> 
+   <button name="thanhtoan">Thanh toán</button> 
   </td>
   </tr>
   <?php 

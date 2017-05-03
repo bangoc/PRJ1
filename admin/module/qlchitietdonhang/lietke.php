@@ -1,16 +1,18 @@
 
 <?php
  $sql= "select * from donhang where iddonhang=$_GET[id]";
- $run= mysqli_query ($conn,$sql);
+ $run= mysqli_query ($conn,$sql)or
+   die("Error:".mysqli_error($conn)); 
  $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
 ?>
-<form >
+<form action="module/qlchitietdonhang/xuli_xoa.php" method="post"  enctype="multipart/form-data">
 <table width="800px" border="1" align="center" style=" margin-left:70px">
    <tr> 
-   <td colspan="11" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>
+   <td colspan="12" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>
    </tr>
   <tr>
     <td>STT</td>
+    <td> id</td>
     <td>ID đơn hàng</td>
     <td>Tên sản phẩm</td>
     <td> Hình ảnh </td>
@@ -32,7 +34,7 @@
     <?php 
  
     
- $sql="select qlchitietdonhang.iddonhang ,tensanpham,hinhanh,gia,tenhang,qlchitietdonhang.soluong,qlchitietdonhang.size,xuatxu,mausac from qlchitietdonhang, donhang, sanpham ,tenhang where qlchitietdonhang.iddonhang=donhang.iddonhang and sanpham.idsanpham=qlchitietdonhang.idsanpham and sanpham.idtenhang=tenhang.idtenhang and qlchitietdonhang.iddonhang=$id ";
+ $sql="select STT,qlchitietdonhang.iddonhang ,tensanpham,hinhanh,gia,tenhang,qlchitietdonhang.soluong,qlchitietdonhang.size,xuatxu,mausac from qlchitietdonhang, donhang, sanpham ,tenhang where qlchitietdonhang.iddonhang=donhang.iddonhang and sanpham.idsanpham=qlchitietdonhang.idsanpham and sanpham.idtenhang=tenhang.idtenhang and qlchitietdonhang.iddonhang=$id ";
  $run=mysqli_query($conn,$sql) or 
  die("Error:" .mysqli_error($conn));
 
@@ -51,7 +53,7 @@ $i="1";
  </tr>
     <tr>
      <td> <?php echo $i; ?></td>
-  
+     <td><?php echo $dong['STT']; ?></td>
     <td><?php echo $dong['iddonhang']; ?></td>
     <td><?php echo $dong['tensanpham']; ?></td>
    <td><img src="../image/<?php echo $dong['hinhanh']?>" width="60" height="60"></td>
@@ -61,7 +63,7 @@ $i="1";
     <td><?php echo $dong['mausac']; ?> </td>
     <td> <?php echo $dong['size']; ?>  </td>
     <td><?php echo $dong['xuatxu']; ?> </td>
-   <td> <a href="">Xóa </a></td>
+   <td> <a  href=""> <i class="fa fa-trash" aria-hidden="true" style="font-size: 150%;"></i> </a></td>
   
  </tr>
  
