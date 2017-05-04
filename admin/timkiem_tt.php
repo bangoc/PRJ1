@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="mos-css/web.css"  />
 <link rel="stylesheet" type="text/css" href="../library/font-awesome/css/font-awesome.css">
-<title>Đơn hàng</title>
+
+<title>Tìm kiếm</title>
 
 </head>
  	 
@@ -22,10 +23,10 @@
 <div id="wrapper" style="width:1300px; background:url(mos-css/img/d.PNG); font-size:14px">
   <?php 
    
-	include ('module/content5.php');	
-?>
+	include ('module/query_timkiemtt.php');?>
 </div>
 <?php include ('module/footder.php');?>
+
 </div>
 </body>
 </html>

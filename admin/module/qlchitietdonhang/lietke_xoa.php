@@ -5,7 +5,7 @@
    die("Error:".mysqli_error($conn)); 
  $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
 ?>
-<form action="module/qlchitietdonhang/xuli_xoa.php" method="post"  enctype="multipart/form-data">
+<form action="" method="post"  enctype="multipart/form-data">
 <table width="800px" border="1" align="center" style=" margin-left:70px">
    <tr> 
    <td colspan="12" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>

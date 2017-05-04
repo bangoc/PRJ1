@@ -34,7 +34,7 @@
     <td><?php echo $dong['mausac'];?></td>
     <td><?php echo $dong['soluong'];?></td>
     <td><?php echo $dong['xuatxu'];?></td>
-    <td><a href="quanlysanpham.php?quanli=themsanpham&ac=sua&id=<?php echo $dong['idsanpham'] ?>"> <i class="fa fa-pencil" aria-hidden="true" style="font-size: 130%;"></i></a></td>
+    <td><a href="quanlysanpham.php?quanli=themsanpham&ac=sua&id=<?php echo $dong['idsanpham'] ?>"> <i class="fa fa-pencil" aria-hidden="true" style="font-size: 150%;"></i></a></td>
     <td> <a onclick="return confirm('Bạn có thật sự muốn xóa không');" href="module/quanlychitietsp/xuli.php?id=<?php 
 		echo $dong['idsanpham']?>"><i class="fa fa-trash" aria-hidden="true" style="font-size: 130%;"></i></a></td>
     

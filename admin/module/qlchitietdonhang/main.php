@@ -8,6 +8,10 @@
 	   if($tam=='lietke')
 	   {
 	include('module/qlchitietdonhang/lietke.php');
+       }
+       elseif($tam=='lietke_xoa')
+       {
+     	include('module/qlchitietdonhang/lietke_xoa.php');
        } 
 	 ?>
     </div>

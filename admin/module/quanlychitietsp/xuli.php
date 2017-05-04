@@ -1,6 +1,19 @@
 <?php
          include('../config.php');
-         
+        $id=$_GET['id']; 
+      
+		 $tensanpham=$_POST['tensanpham'];
+		 $gia=$_POST['gia'];
+		 $hinhanh=$_FILES['hinhanh']['name'];
+		 $hinhanh_tmp=$_FILES['hinhanh']['tmp_name'];
+		 move_uploaded_file($hinhanh_tmp,'../../../image/'.$hinhanh);
+		 $mota=$_POST['mota'];
+		 $size=$_POST['size'];
+		 $soluong=$_POST['soluong'];
+		 $xuatxu=$_POST['xuatxu'];
+		 $mausac=$_POST['mausac'];
+		 $idtenhang=$_POST['idtenhang'];
+		 $idloaisp=$_POST['idloaisp'];
 		 
   if(isset ($_POST['them'])) {
 	 //them sp

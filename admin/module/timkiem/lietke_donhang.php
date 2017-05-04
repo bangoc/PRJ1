@@ -3,12 +3,12 @@
 <?php 
 	if (isset($_REQUEST['timkiem'])) {
 	$search = addslashes($_GET['search']);
-	$sql="SELECT*from donhang  where   
-	iddonhang like '%$search%' or hoten like '%$search%' or address like '%$search%' or phone like '%$search%' or email like '%$search%'  ";
-	$run=mysqli_query($conn,$sql) or die("ERROR: ".mysqli_error($conn));
-   	$num = mysqli_num_rows($run);
+	$sql_timkiem="SELECT*from donhang  where id_thanhtoan=0 and (iddonhang like '%$search%' or hoten like '%$search%' or address like '%$search%'  or email like '%$search%' ) ";
+	$run_timkiem=mysqli_query($conn,$sql_timkiem) or die("ERROR: ".mysqli_error($conn));
+   	$num = mysqli_num_rows($run_timkiem);
    	if ($num > 0&& $search != "") {
 ?>
+
 <form action="module/quanlydonhang/xuli.php" method="post"  enctype="multipart/form-data">
 
 <table width="900px" border="1" align="center" style=" margin-left:0px">
@@ -26,13 +26,14 @@
     <td>Hình thức thanh toán</td>
         <td > Xem </td>
    
-    
+    <td>Xóa</td>
+    <td>Thanh toán</td>
 
     
   
   <?php
  $stt="1";
-  while ($dong=mysqli_fetch_array ($run,MYSQLI_ASSOC)) {
+  while ($dong=mysqli_fetch_array ($run_timkiem,MYSQLI_ASSOC)) {
     
  ?>
  </tr>
@@ -78,7 +79,17 @@
     ?>
    
   
+ <td>
 
+  <a onclick="return confirm('Bạn có thật sự muốn xóa không');" href="module/quanlydonhang/xuli_xoa.php?id=<?php 
+    echo $dong['iddonhang']?>"><i class="fa fa-trash" aria-hidden="true" style="font-size: 150%;"></i></a></td>
+
+  <td>
+    <a href="module/quanlydonhang/xuli_thanhtoan.php?id=<?php 
+    echo $dong['iddonhang']?>">
+         <i class="fa fa-credit-card" aria-hidden="true" style="color:black;font-size: 150%"></i>
+   </a>
+  </td>
   </tr>
   <?php 
    $stt++;
