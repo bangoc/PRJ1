@@ -13,7 +13,7 @@
 
 <table width="880px" border="1" align="center" style=" margin-left:10px">
    <tr> 
-   <td colspan="10" style="background:#CCC"> <strong>Quản lý đơn hàng đã thanh toán </strong></td>
+   <td colspan="11" style="background:#CCC"> <strong>Quản lý đơn hàng đã thanh toán </strong></td>
    </tr>
   <tr>
     <td>STT</td>
@@ -26,6 +26,7 @@
     <td>Hình thức thanh toán</td>
     <td>Thanh toán </td>
     <td > Xem </td>
+    <td>Xóa</td>
   
   <?php
  $id="1";
@@ -45,7 +46,8 @@
     <td><?php echo $dong['thanhtoan']; ?></td>
 
     <td ><a href="qlchitietdonhang.php?quanli=chitietdonhang&ac=lietke&id=<?php echo $dong['iddonhang']?>" >Chi tiết </a></td>
-  
+  <td> <a onclick="return confirm('Bạn có thật sự muốn xóa không');" href="module/thanhtoan/xuli_xoa.php?id=<?php 
+    echo $dong['iddonhang']?>"><i class="fa fa-trash" aria-hidden="true" style="font-size: 150%;"></i></a></td>
   </tr>
   <?php 
    $id++;

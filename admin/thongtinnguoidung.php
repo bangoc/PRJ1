@@ -4,6 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="mos-css/web.css"  />
+<link rel="stylesheet" type="text/css" href="../library/font-awesome/css/font-awesome.css">
 <title>Thông tin người dùng</title>
 
 </head>
@@ -12,7 +13,7 @@
 <div class="container" style="width: 1300px; border: 1px solid #dcdcdc ; margin: 5px auto;  ">
 <?php
      include('module/config.php') ?>
-	<?php include('module/modau.php') ?>
+	<?php include('module/modau_user.php') ?>
 <?php 
     include ('module/menu.php');
 	
