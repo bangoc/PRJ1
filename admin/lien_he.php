@@ -13,7 +13,7 @@
 <div class="container" style="width: 1300px; border: 1px solid #dcdcdc ; margin: 5px auto;  ">
 <?php
      include('module/config.php') ?>
-	<?php include('module/modau.php') ?>
+	<?php include('module/modau1.php') ?>
 <?php 
     include ('module/menu.php');
 	
