@@ -54,7 +54,7 @@
 		   				<span class="icon-bar"></span>
 		   				<span class="icon-bar"></span>
 		   			</button>
-		   			<a class="navbar-brand" href="main.php">
+		   			<a class="navbar-brand" href="user.php?username=<?php echo $_SESSION['username']; ?>">
 		   			   <i class="fa fa-home" aria-hidden="true"></i>
 		   			   Trang chủ
 		   			</a>
