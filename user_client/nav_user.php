@@ -5,7 +5,7 @@
 ?>
 <html>
 <head>
-	<title>Trang web ban laptop</title>
+	<title>Trang web ban giay</title>
 	<meta charset="utf-8">
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../bootstrap3/css/bootstrap.css">
@@ -68,12 +68,12 @@
 
 				       
 				    </ul>
-		   			 <form action="search.php" method="get" enctype="multipart/form-data" class="navbar-form navbar-left">
+		   			 <form action="user_search.php" method="get" enctype="multipart/form-data" class="navbar-form navbar-left">
 					      <div class="input-group">
 					        <input type="text" name="search" class="form-control" placeholder="Search" required>
 					        <div class="input-group-btn">
 					          <button class="btn btn-default" type="submit" name="submit">
-					            <a href="search.php"><i class="glyphicon glyphicon-search"></i></a>
+					            <a href="user_search.php"><i class="glyphicon glyphicon-search"></i></a>
 					          </button>
 					        </div>
 					      </div>
