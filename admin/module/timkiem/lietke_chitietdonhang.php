@@ -1,13 +1,16 @@
+<?php ?>
 
-<?php
- $sql= "select * from donhang where iddonhang=$_GET[id]";
- $run= mysqli_query ($conn,$sql)or
-   die("Error:".mysqli_error($conn)); 
- $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
-?> 
-<form action="module/qlchitietdonhang/xuli_xoa.php" method="post"  enctype="multipart/form-data">
+<?php include('module/config.php') ?>
+<?php 
+	if (isset($_REQUEST['timkiem'])) {
+	$search = addslashes($_GET['search']);
+	$sql_timkiem="SELECT iddonhang,tensanpham,hinhanh,gia,tenhang,qlchitietdonhang.soluong,mausac,qlchitietdonhang.size,xuatxu from qlchitietdonhang ,sanpham , tenhang  where sanpham.idsanpham=qlchitietdonhang.idsanpham and sanpham.idtenhang=tenhang.idtenhang and  (tensanpham like '%$search%' or tenhang like '%$search%' ) ";
+	$run_timkiem=mysqli_query($conn,$sql_timkiem) or die("ERROR: ".mysqli_error($conn));
+   	$num = mysqli_num_rows($run_timkiem);
+   	if ($num > 0&& $search != "") {
+?>
 <table width="800px" border="1" align="center" style=" margin-left:70px">
-   <tr> 
+   <tr>   
    <td colspan="12" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>
    </tr>
   <tr>
@@ -24,28 +27,13 @@
     <td>Xuất xứ</td>
     <td>Quản lý</td>
 
-    <?php 
-    if (isset($_GET['id'])){
-    $id = $_GET['id'];
-  
-  }
-    ?>
-
-    <?php 
- 
     
- $sql="select STT,qlchitietdonhang.iddonhang ,tensanpham,hinhanh,gia,tenhang,qlchitietdonhang.soluong,qlchitietdonhang.size,xuatxu,mausac from qlchitietdonhang, donhang, sanpham ,tenhang where qlchitietdonhang.iddonhang=donhang.iddonhang and sanpham.idsanpham=qlchitietdonhang.idsanpham and sanpham.idtenhang=tenhang.idtenhang and qlchitietdonhang.iddonhang=$id ";
- $run=mysqli_query($conn,$sql) or 
- die("Error:" .mysqli_error($conn));
-
-?>
-
 
     <?php
 
  
 $i="1";
-  while ($dong=mysqli_fetch_array($run,MYSQLI_ASSOC)) {
+  while ($dong=mysqli_fetch_array($run_timkiem,MYSQLI_ASSOC)) {
    
  
   ?>
@@ -76,7 +64,9 @@ $i="1";
  $i++;
 
 }
+}
+else {echo "<strong> <h2> Không tìm thấy sản phẩm nào với từ khóa '<b>$search</b>'. Mời bạn nhập vào từ khóa khác </h2> </strong>" ;}
+}
 ?>
 
 </table>
-</form>

@@ -1,11 +1,11 @@
 
 <?php
- $sql= "select * from donhang where iddonhang=$_GET[id]";
- $run= mysqli_query ($conn,$sql)or
+ $sql_x= "select * from donhang where STT=$_GET[id]";
+ $run_x= mysqli_query ($conn,$sql_x)or
    die("Error:".mysqli_error($conn)); 
- $dong=mysqli_fetch_array($run,MYSQLI_ASSOC);
+ $dong_x=mysqli_fetch_array($run_x,MYSQLI_ASSOC);
 ?>
-<form action="" method="post"  enctype="multipart/form-data">
+<form action="module/qlchitietdonhang/xuli_xoa.php" method="post"  enctype="multipart/form-data">
 <table width="800px" border="1" align="center" style=" margin-left:70px">
    <tr> 
    <td colspan="12" style="background:#CCC"> <strong>Bảng quản lý chi tiết đơn hàng  </strong></td>
@@ -45,7 +45,7 @@
 
  
 $i="1";
-  while ($dong=mysqli_fetch_array($run,MYSQLI_ASSOC)) {
+  while ($dong_x=mysqli_fetch_array($run_x,MYSQLI_ASSOC)) {
    
  
   ?>
@@ -54,15 +54,15 @@ $i="1";
     <tr>
      <td> <?php echo $i; ?></td>
      
-    <td><?php echo $dong['iddonhang']; ?></td>
-    <td><?php echo $dong['tensanpham']; ?></td>
+    <td><?php echo $dong_x['iddonhang']; ?></td>
+    <td><?php echo $dong_x['tensanpham']; ?></td>
    <td><img src="../image/<?php echo $dong['hinhanh']?>" width="60" height="60"></td>
-    <td> <?php echo $dong['gia']; ?>  </td>
-    <td><?php echo $dong['tenhang']; ?> </td>
-    <td><?php echo $dong['soluong']; ?> </td>
-    <td><?php echo $dong['mausac']; ?> </td>
-    <td> <?php echo $dong['size']; ?>  </td>
-    <td><?php echo $dong['xuatxu']; ?> </td>
+    <td> <?php echo $dong_x['gia']; ?>  </td>
+    <td><?php echo $dong_x['tenhang']; ?> </td>
+    <td><?php echo $dong_x['soluong']; ?> </td>
+    <td><?php echo $dong_x['mausac']; ?> </td>
+    <td> <?php echo $dong_x['size']; ?>  </td>
+    <td><?php echo $dong_x['xuatxu']; ?> </td>
    <td> 
 
    <a onclick="return confirm('Bạn có thật sự muốn xóa không');"  href="module/qlchitietdonhang/xuli_xoa.php?id_xoa=<?php echo $dong['STT']; ?>"> <i class="fa fa-trash" aria-hidden="true" style="font-size: 150%;"></i> 
