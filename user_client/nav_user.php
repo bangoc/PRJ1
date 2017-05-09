@@ -17,33 +17,7 @@
 
 </head>
 <body>
-<!--<nav class="navbar navbar-inverse" style="position: fixed;
-        z-index: 100;
-         margin-top: -70px;background: #ed1c24;border:none;">
-       <div class="container nav">
-		  <div class="container-fluid">
-		    <ul class="nav navbar-nav col-md-7">
-		      <li class="active col-md-3">
-		         <a href="user.php" style="background:#ed1c24; "><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a>
-		       </li>
-		      <li class="active col-sm-3">
-		         <a href="#" style="background:#ed1c24; "><i class="fa fa-question-circle"></i>Liên hệ</a>
-		      </li>
 
-               <li class="active col-md-6">
-                    <form action="user_search.php" method="get" enctype="multipart/form-data" class="navbar-form navbar-left col-md-3">
-					      <div class="input-group">
-					        <input type="text" name="search" class="form-control" placeholder="Search" required>
-					        <div class="input-group-btn">
-					          <button class="btn btn-default" type="submit" name="submit">
-					            <a href="search.php"><i class="glyphicon glyphicon-search"></i></a>
-					          </button>
-					        </div>
-					      </div>
-                   </form>
-               </li>
-		       
-		    </ul>-->
         <nav class="navbar navbar-default" role="navigation" style="background: #ed1c24;border:none;color: white;">
 		   	<div class="container-fluid">
 		   		<!-- Brand and toggle get grouped for better mobile display -->
@@ -54,7 +28,7 @@
 		   				<span class="icon-bar"></span>
 		   				<span class="icon-bar"></span>
 		   			</button>
-		   			<a class="navbar-brand" href="user.php?username=<?php echo $_SESSION['username']; ?>">
+		   			<a class="navbar-brand" href="user.php?username=<?php echo $_SESSION['username']; ?>"  style="color:white;">
 		   			   <i class="fa fa-home" aria-hidden="true"></i>
 		   			   Trang chủ
 		   			</a>
@@ -64,7 +38,9 @@
 		   		<div class="collapse navbar-collapse navbar-ex1-collapse" id="menu-collapse">
 		   			<ul class="nav navbar-nav col-sm-3">
 				      
-				      <li><a href="#"><i class="fa fa-question-circle"></i>Liên hệ</a></li>
+				      <li><a href="#" style="color:white;">
+				      	<i class="fa fa-question-circle"></i>Liên hệ
+				      </a></li>
 
 				       
 				    </ul>
@@ -97,7 +73,7 @@
 				  	      }
 				  }
 				?>
-		        <a href="shopping_cart.php">
+		        <a href="shopping_cart.php"  style="color:white;">
 		            <i class="fa fa-cart-plus" aria-hidden="true"></i>Giỏ hàng(<?php echo $total; ?>) 
 		        </a>
 		       </li>
@@ -105,7 +81,11 @@
                 color: white;">
                   <i class="fa fa-user-o" aria-hidden="true"></i>
 		         <?php echo $_SESSION['username']; ?></li>
-		      <li class="col-md-6" style="height: 100%;width: 40%;"><a href="../library/user_logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		      <li class="col-md-6" style="height: 100%;width: 40%;">
+		      	<a href="../library/user_logout.php"  style="color:white;">
+		      		<span class="glyphicon glyphicon-log-in"></span> Logout
+		      	</a>
+		      </li>
 		       </div>
 		    </ul>
 		  </div>

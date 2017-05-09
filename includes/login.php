@@ -6,7 +6,8 @@
 </style>
 <body>
    
-           <a role="button" data-toggle="modal" data-target="#login"><i class="fa fa-user" aria-hidden="true"></i></i>Đăng nhập</a>
+           <a role="button" data-toggle="modal" data-target="#login"  style="color:white;">
+            <i class="fa fa-user" aria-hidden="true"></i></i>Đăng nhập</a>
  
             
             <div id="login" class="modal fade" role="dialog">

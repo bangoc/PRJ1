@@ -7,8 +7,8 @@
            var data = {
             username    : $('#username').val(),
             password    : $('#password').val(),
-            phone      : $('#phone').val(),
-            address   : $('#address').val()
+            phone       : $('#phone').val(),
+            address     : $('#address').val()
         };
  
         
@@ -59,7 +59,8 @@
 </style>
                                    
         
-           <a role="button" data-toggle="modal" data-target="#register"><i class="fa fa-user-o" aria-hidden="true"></i>Đăng kí</a>
+           <a role="button" data-toggle="modal" data-target="#register"  style="color:white;">
+                <i class="fa fa-user-o" aria-hidden="true"></i>Đăng kí</a>
  
            
             <div id="register" class="modal fade" role="dialog">

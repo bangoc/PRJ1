@@ -48,15 +48,7 @@
                                             <strong style="font-size: 90%;"><?php echo $data['xuatxu'];?></strong>
 						    			</div>
 				        	</li>
-				        <!--	<li class="list-group-item">
-						    			<div class="caption">Size:<input type="number" name="soluong" min="20" max="50" value="20">
-						    			</div>
-				        	</li>
-				        	<li class="list-group-item">
-						    			<div class="caption">
-						    			  Số lượng:<input type="number" name="soluong" min="1" max="100" value="1">
-						    			</div>
-				        	</li>-->
+				       
 				        	
 
 						    			<a href="../user_client/user_order.php?id=<?php echo $data['idsanpham'];?>" class="btn btn-success btn-block" style="padding: 27px 0;">

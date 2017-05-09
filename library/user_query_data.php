@@ -42,9 +42,10 @@
             $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong)
                          VALUES ('$iddonhang','$idsanpham','$soluong')";
             $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
-        }
-
-    }
+             }
+    }   
+     unset($_SESSION['cart']);
+     header("Location:'../user_client/success_buy.php'");
 
     
     }else if(isset($_GET['id'])){
@@ -84,6 +85,7 @@
              $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong)
                          VALUES ('$iddonhang','$idsanpham','1')";
             $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
+
             }
 
 

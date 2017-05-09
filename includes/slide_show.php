@@ -15,15 +15,15 @@
 						  <!-- Wrapper for slides -->
 								  <div class="carousel-inner" role="listbox" style="height: 329px;">
 										    <div class="item active">
-										      <img src="image/Giay-Tommy-Hilfiger-ms-4078-0.jpg" alt="Chania" width="460" height="90">
+										      <img src="image/puma.jpg" alt="Chania" width="100%" height="90">
 										    </div>
 
 										    <div class="item">
-										      <img src="image/Giay-the-thao-nam-chinh-hang-MS-4240-0.jpg" alt="Chania" width="460" height="329">
+										      <img src="image/banner2.jpg" alt="Chania" width="460" height="329">
 										    </div>
 
 										    <div class="item">
-										      <img src="image/guoc.jpg" alt="Flower" width="460" height="345">
+										      <img src="image/images.jpg" alt="Flower" width="460" height="345">
 										    </div>
 
 										  </div>
@@ -41,12 +41,12 @@
 		<div class="col-sm-3" style="height: 329px;">
               <ul class="list-group" >
 				        	<li class="list-group-item" style="text-align: center;">
-						    			<img src="image/guoc.jpg" style="width: 50%;height: 100px;">
+						    			<img src="image/banner2.jpg" style="width: 50%;height: 100px;">
 						    			<div class="caption"><a href="#"></a>Tên sp</div>
 						    			<div class="caption"><a href="#">>>Mua ngay<<</a></div>
 						    </li>
 				        	<li class="list-group-item" style="text-align: center;">
-						    			<img src="image/bot.jpg" style="width: 50%;height: 100px;">
+						    			<img src="image/images.jpg" style="width: 50%;height: 100px;">
 						    			<div class="caption"><a href="#"></a>Tên sp</div>
 						    			<div class="caption"><a href="#">>>Mua ngay<<</a></div>
 				        	</li>
