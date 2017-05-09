@@ -1,4 +1,4 @@
-
+ <?php    ini_set('display_errors','off');?>
 <?php include 'nav_user.php' ?>
  <style type="text/css">
  	i{margin-right: 10px;}

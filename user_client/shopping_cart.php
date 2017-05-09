@@ -1,3 +1,4 @@
+ <?php    ini_set('display_errors','off');?>
  <?php include 'nav_user.php' ?>
          <div class="container" style="margin-top: 70px;">
      <?php 
