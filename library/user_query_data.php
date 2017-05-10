@@ -26,7 +26,7 @@
 
 
             //lay cai iddonhang theo iduser
-            $sql = "SELECT iddonhang FROM donhang WHERE iduser = '$iduser' and email='$email' and tongtien='$tongtien' and hoten='$hoten'";
+            $sql = "SELECT * FROM donhang WHERE iduser = '$iduser' and email='$email' and tongtien='$tongtien' and hoten='$hoten'";
             $return=mysqli_query($conn,$sql) or die("error: ".mysqli_error($conn));
             
             if($data  = mysqli_num_rows($return)>0){
@@ -37,6 +37,7 @@
             foreach ($_SESSION['cart'] as $value) {
                 $idsanpham = $value['idsanpham'];
                 $soluong   = $value['quantity'];
+                
 
                       //thêm thông tin iddonhang,idsanpham,soluong vao trong bang qlichitietdonhang
             $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong)
@@ -44,8 +45,8 @@
             $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
              }
     }   
-     unset($_SESSION['cart']);
-     header("Location:'../user_client/success_buy.php'");
+      // unset($_SESSION['cart']);
+      // header("Location:'../user_client/success_buy.php'");
 
     
     }else if(isset($_GET['id'])){
