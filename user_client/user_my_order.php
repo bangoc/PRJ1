@@ -27,7 +27,7 @@
 							$iduser=$value1['iduser'];
 							$sql="SELECT * FROM user,donhang,qlchitietdonhang,sanpham WHERE user.iduser=donhang.iduser and qlchitietdonhang.iddonhang=donhang.iddonhang and qlchitietdonhang.idsanpham=sanpham.idsanpham and donhang.id_thanhtoan=0  and user.iduser=$iduser order by donhang.iddonhang ";
 							$result=mysqli_query($conn,$sql);
-							echo mysqli_num_rows($result);
+							#echo mysqli_num_rows($result);
 						}
 						if(mysqli_num_rows($result)==0){
 									echo "BẠN KHÔNG CÓ ĐƠN HÀNG NÀO !!!";
