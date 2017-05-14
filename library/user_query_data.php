@@ -5,6 +5,7 @@
     $get_username = $_SESSION['username'] ;
     if(isset($_GET['tongtien'])){
             $tongtien   = $_GET['tongtien'] ;
+              
             // lay iduser cua nguoi mua
             $query  = "SELECT iduser FROM user WHERE username = '$get_username'";
             $result = mysqli_query($conn,$query) or die("error: ".mysqli_error($conn));
@@ -26,7 +27,7 @@
 
 
             //lay cai iddonhang theo iduser
-            $sql = "SELECT iddonhang FROM donhang WHERE iduser = '$iduser' and email='$email' and tongtien='$tongtien' and hoten='$hoten'";
+            $sql = "SELECT * FROM donhang WHERE iduser = '$iduser' and email='$email' and tongtien='$tongtien' and hoten='$hoten'";
             $return=mysqli_query($conn,$sql) or die("error: ".mysqli_error($conn));
             
             if($data  = mysqli_num_rows($return)>0){
@@ -36,16 +37,16 @@
 
             foreach ($_SESSION['cart'] as $value) {
                 $idsanpham = $value['idsanpham'];
-                $soluong   = $value['quantity'];
-
+                $soluong   = $value['quantity'];  
+                $size=$value['size'];
                       //thêm thông tin iddonhang,idsanpham,soluong vao trong bang qlichitietdonhang
-            $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong)
-                         VALUES ('$iddonhang','$idsanpham','$soluong')";
+            $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong,size)
+                         VALUES ('$iddonhang','$idsanpham','$soluong','$size')";
             $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
              }
     }   
-     unset($_SESSION['cart']);
-     header("Location:'../user_client/success_buy.php'");
+      // unset($_SESSION['cart']);
+      // header("Location:'../user_client/success_buy.php'");
 
     
     }else if(isset($_GET['id'])){
@@ -54,6 +55,7 @@
         $r=mysqli_query($conn,$s);
         $n=mysqli_fetch_array($r,MYSQL_ASSOC);
         $tongtien=$n['gia'];
+        $size=$n['size'];
 
          $query  = "SELECT iduser FROM user WHERE username = '$get_username'";
             $result = mysqli_query($conn,$query) or die("error: ".mysqli_error($conn));
@@ -82,8 +84,8 @@
                 $iddonhang = $data['iddonhang'];
 
             // insert du lieu vao bang qlchitietdonhang
-             $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong)
-                         VALUES ('$iddonhang','$idsanpham','1')";
+             $insert_ql ="INSERT INTO qlchitietdonhang(iddonhang,idsanpham,soluong,size)
+                         VALUES ('$iddonhang','$idsanpham','1','$size')";
             $result_ql =mysqli_query($conn,$insert_ql) or die("error: ".mysqli_error($conn));
 
             }

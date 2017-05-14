@@ -43,7 +43,6 @@
                      <div class="form-group">
                          <label>Hình thức thanh toán</label>
                          <select class="form-control" name="thanhtoan">
-                             <option selected="">--Lựa chọn hình thức thanh toán--</option>
                              <option value="Thanh toán COD">Thanh toán COD</option>
                              <option value="Thanh toán trực tuyến">Thanh toán trực tuyến</option>
                              

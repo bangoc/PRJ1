@@ -38,8 +38,8 @@
 		   		<div class="collapse navbar-collapse navbar-ex1-collapse" id="menu-collapse">
 		   			<ul class="nav navbar-nav col-sm-3">
 				      
-				      <li><a href="#" style="color:white;">
-				      	<i class="fa fa-question-circle"></i>Liên hệ
+				      <li><a href="user_my_order.php" style="color:white;">
+				      	<i class="fa fa-question-circle"></i>Đơn hàng
 				      </a></li>
 
 				       
