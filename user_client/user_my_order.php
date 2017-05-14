@@ -16,7 +16,7 @@
 							$result1=mysqli_query($conn,$sql1);
 							$value1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 							$iduser=$value1['iduser'];
-							$sql="SELECT * FROM user,donhang,qlchitietdonhang,sanpham,thanhtoan WHERE user.iduser=donhang.iduser and qlchitietdonhang.iddonhang=donhang.iddonhang and qlchitietdonhang.idsanpham=sanpham.idsanpham and donhang.id_thanhtoan=thanhtoan.id_thanhtoan  and user.iduser=$iduser order by donhang.iddonhang ";
+							$sql="SELECT donhang.iddonhang,sanpham.tensanpham,qlchitietdonhang.soluong,sanpham.gia,qlchitietdonhang.size,thanhtoan.thanhtoan,sanpham.hinhanh FROM user,donhang,qlchitietdonhang,sanpham,thanhtoan WHERE user.iduser=donhang.iduser and qlchitietdonhang.iddonhang=donhang.iddonhang and qlchitietdonhang.idsanpham=sanpham.idsanpham and donhang.id_thanhtoan=thanhtoan.id_thanhtoan  and user.iduser=$iduser order by donhang.iddonhang ";
 							$result=mysqli_query($conn,$sql);
 							#echo mysqli_num_rows($result);
 						}
@@ -33,7 +33,7 @@
 										        <th class="col-sm-2">Hình ảnh  </th>
 										        <th class="col-sm-2">Số lượng</th>
 										        <th class="col-sm-1">Giá</th>
-										        <th class="col-sm-1">Size</th>
+										        <!--<th class="col-sm-1">Size</th>-->
 										        <th class="col-sm-2">Thanh toán</th>	
 										      </tr>
 										    </thead>             
@@ -44,7 +44,7 @@
 										           <td><img src="../image/<?php echo $value['hinhanh'];	 ?>" style="width: 100px;height: 50px;"></td>
 										           <td><?php echo $value['soluong']; ?> </td>
 										           <td><?php echo $value['gia']; ?></td>
-										           <td><?php echo $value['size'] ?></td>
+										           <!--<td><?php echo $value['size'] ?></td>-->
 										           <td><?php echo $value['thanhtoan'] ?></td>
 							            </tr> 
 							         
