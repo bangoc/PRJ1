@@ -31,6 +31,7 @@
         if (!$conn){
             $errors['connect_db'] = 'Không thể kết nối đến database';
         }
+        mysqli_set_charset($conn,'utf8');
          
         $sql = "SELECT * FROM user where username = '$username'";
          
