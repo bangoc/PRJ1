@@ -6,9 +6,9 @@
       //mysqli_real_escape_string($conn,$_POST['username'])
          
        
-        $username   = isset($_POST['username'])  ? trim($_POST['username']) : '';
+        $username   = isset($_POST['username']) ?trim($_POST['username']) : '';
         $password   = isset($_POST['password']) ? trim($_POST['password']) : '';
-        $phone      = isset($_POST['email'])    ? trim($_POST['phone'])    : '';
+        $phone      = isset($_POST['phone'])    ? trim($_POST['phone'])    : '';
         $address    = isset($_POST['address'])  ? trim($_POST['address']) : '';
          
        
