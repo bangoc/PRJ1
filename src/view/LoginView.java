@@ -2,7 +2,6 @@ package view;
 
 import controller.LoginAccountController;
 import controller.MoveToRegisterView;
-import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,25 +17,7 @@ public class LoginView {
   private JLabel lblSupermarketManagementSys;
   private JPasswordField txtMatKhau;
 
-  /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          LoginView window = new LoginView();
-          window.frame.setVisible(true);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-  }
 
-  /**
-   * Create the application.
-   */
   
   public LoginView() {
     initialize();
@@ -50,6 +31,8 @@ public class LoginView {
     frame.setBounds(600, 200, 450, 359);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
+    frame.setVisible(true);
+   
     
     JLabel lblTaiKhoan = new JLabel("Tài Khoản");
     lblTaiKhoan.setFont(new Font("Tahoma", Font.PLAIN, 14));

@@ -1,5 +1,9 @@
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +11,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
@@ -16,22 +21,53 @@ public class ConnDb {
    * This is Constructor.
    */
   
-  public ConnDb() {
+//  public ConnDb() {
+//  
+//    try {  
+//      Class.forName("com.mysql.jdbc.Driver");  
+//      String jdbc = "jdbc:mysql://localhost:3306/supermarket_db";
+//      Connection con = DriverManager.getConnection(jdbc,"root","");  
+//      this.stmt = con.createStatement();  
+//    } catch (Exception e) { 
+//      JOptionPane.showMessageDialog(null, "Khong the ket noi den Database. \n" + e);
+//    }  
+//      
+//  }  
   
+  public ConnDb() {
+    try {
+      this.getConnectUsePropertiesFile();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
+  public void getConnectUsePropertiesFile() throws IOException {
+    Properties prop = new Properties();
+   
+    prop.load(ConnDb.class.getClassLoader()
+        .getResourceAsStream("jdbc.properties"));
+
+    String driverClass = prop.getProperty("MYSQLJDBC.driver");
+    String url = prop.getProperty("MYSQLJDBC.url");
+    String userName = prop.getProperty("MYSQLJDBC.username");
+    String password = prop.getProperty("MYSQLJDBC.password");
+    
     try {  
-      Class.forName("com.mysql.jdbc.Driver");  
-      String jdbc = "jdbc:mysql://localhost:3306/supermarket_db";
-      Connection con = DriverManager.getConnection(jdbc,"root","");  
+      Class.forName(driverClass);  
+      Connection con = DriverManager.getConnection(url,userName,password);  
       this.stmt = con.createStatement();  
     } catch (Exception e) { 
       JOptionPane.showMessageDialog(null, "Khong the ket noi den Database. \n" + e);
     }  
-      
-  }  
+  }
+  
   /**
    * 
    * @param sqlQueryString = sqlString.
    * @return statement execute query
+   * @throws IOException 
    */
   
   public ResultSet getResult(String sqlQueryString) {
