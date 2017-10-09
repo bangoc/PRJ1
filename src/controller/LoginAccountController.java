@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import model.Account;
-import model.ConnDb;
+import model.ConnectDatabase;
 import model.Employee;
 import model.EmployeeInfo;
 import model.EmployeeTimework;
@@ -55,7 +55,7 @@ public class LoginAccountController implements ActionListener {
       manager.setEmployeeTimework(managerTimework);
       manager.setEmployeeInfo(managerInfo);
       ManagerView managerView = new ManagerView(manager);
-      String num =  String.valueOf((ConnDb.getNumberGoodsWithZeroAmount()));
+      String num =  String.valueOf((ConnectDatabase.getNumberGoodsWithZeroAmount()));
       managerView.getBtnShowAmountZero().setText(" " + num + " sản phẩm đã hết hàng !");
       
       
@@ -69,8 +69,8 @@ public class LoginAccountController implements ActionListener {
       if (employee.tryLogin()) {
         employee.setEmployeeInfo(new EmployeeInfo());
         employee.setEmployeeTimework(new EmployeeTimework());
-        ConnDb.loadEmployeeInfo(employee);
-        ConnDb.loadEmployeeTimework(employee);
+        ConnectDatabase.loadEmployeeInfo(employee);
+        ConnectDatabase.loadEmployeeTimework(employee);
         employee.beginWork();
         EmployeeView employeeView = new EmployeeView(employee);
         employeeView.getTxtName().setText(employee.getEmployeeInfo().getName());

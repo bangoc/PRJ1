@@ -5,7 +5,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
-import model.ConnDb;
+import model.ConnectDatabase;
 import model.Goods;
 
 public class StatisticOptionController implements ItemListener {
@@ -33,7 +33,7 @@ public class StatisticOptionController implements ItemListener {
     if (com2.getSelectedIndex() == 1) {
       int amount = Integer.valueOf(com1.getSelectedItem().toString());
       String txt = "";
-      ArrayList<Goods> goods  = ConnDb.getTop(amount);
+      ArrayList<Goods> goods  = ConnectDatabase.getTop(amount);
       
       for (int i = 0; i < goods.size(); i ++) {
         txt = txt + goods.get(i).toString();
@@ -42,21 +42,21 @@ public class StatisticOptionController implements ItemListener {
     } else if (com2.getSelectedIndex() == 2) {
       int amount = Integer.valueOf(com1.getSelectedItem().toString());
       String txt = "";
-      ArrayList<Goods> goods  = ConnDb.getBot(amount);
+      ArrayList<Goods> goods  = ConnectDatabase.getBot(amount);
       
       for (int i = 0; i < goods.size(); i ++) {
         txt = txt + goods.get(i).toString();
       }
       txtTopGoods.setText(txt);
     } else if (com2.getSelectedIndex() == 3) {
-      ArrayList<Goods> goods  = ConnDb.getListGoodsWithZeroAmount();
+      ArrayList<Goods> goods  = ConnectDatabase.getListGoodsWithZeroAmount();
       String txt = "";
       for (int i = 0; i < goods.size(); i ++) {
         txt = txt + goods.get(i).toString();
       }
       txtTopGoods.setText(txt);
     } else if (com2.getSelectedIndex() == 4) {
-      ArrayList<Goods> goods = ConnDb.getListGoodsHetHan();
+      ArrayList<Goods> goods = ConnectDatabase.getListGoodsHetHan();
       String txt = "";
       for (int i = 0; i < goods.size(); i ++) {
         txt = txt + goods.get(i).toString();

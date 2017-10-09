@@ -1,9 +1,6 @@
 package model;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,26 +12,15 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-public class ConnDb {
+public class ConnectDatabase {
+  private String database;
   private Statement stmt;
+  
   /**
-   * This is Constructor.
+   * constructor.
    */
   
-//  public ConnDb() {
-//  
-//    try {  
-//      Class.forName("com.mysql.jdbc.Driver");  
-//      String jdbc = "jdbc:mysql://localhost:3306/supermarket_db";
-//      Connection con = DriverManager.getConnection(jdbc,"root","");  
-//      this.stmt = con.createStatement();  
-//    } catch (Exception e) { 
-//      JOptionPane.showMessageDialog(null, "Khong the ket noi den Database. \n" + e);
-//    }  
-//      
-//  }  
-  
-  public ConnDb() {
+  public ConnectDatabase() {
     try {
       this.getConnectUsePropertiesFile();
     } catch (IOException e) {
@@ -43,31 +29,72 @@ public class ConnDb {
     }
   }
   
+  /**
+   * read file .properties.
+   * 
+   */
+  
   public void getConnectUsePropertiesFile() throws IOException {
     Properties prop = new Properties();
    
-    prop.load(ConnDb.class.getClassLoader()
+    prop.load(ConnectDatabase.class.getClassLoader()
         .getResourceAsStream("jdbc.properties"));
 
     String driverClass = prop.getProperty("MYSQLJDBC.driver");
     String url = prop.getProperty("MYSQLJDBC.url");
     String userName = prop.getProperty("MYSQLJDBC.username");
     String password = prop.getProperty("MYSQLJDBC.password");
+    String databaseName = prop.getProperty("MYSQLJDBC.databaseName");
     
     try {  
       Class.forName(driverClass);  
       Connection con = DriverManager.getConnection(url,userName,password);  
       this.stmt = con.createStatement();  
+      this.database = databaseName;
     } catch (Exception e) { 
       JOptionPane.showMessageDialog(null, "Khong the ket noi den Database. \n" + e);
     }  
   }
   
   /**
+   * check if table exists.
+   * @throws Exception ..
+   */
+  
+  public void createTable(String tableName) throws Exception {
+    if (this.checkTableExist(tableName)) {
+      return;
+    } else {
+      System.out.println("tu tao bang " + tableName + "di");
+    }
+  }
+  
+  /**
    * 
-   * @param sqlQueryString = sqlString.
-   * @return statement execute query
-   * @throws IOException 
+   * @param tableName is name of table.
+   * @return boolean value
+   * @throws Exception .
+   */
+  
+  public boolean checkTableExist(String tableName) throws Exception {
+    String sql = "SELECT COUNT(*) FROM information_schema.`TABLES` WHERE `TABLE_SCHEMA` "
+        + "= '" + this.database + "' AND `TABLE_NAME` = '" + tableName + "'";
+    ResultSet rs = this.getResult(sql);
+    int count = 0;
+    while (rs.next()) {
+      count = rs.getInt(1);
+      
+    }
+    if (count == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  /**
+   * 
+   * @param sqlQueryString slq String.
+   * @return ResultSet obj
    */
   
   public ResultSet getResult(String sqlQueryString) {
@@ -109,8 +136,8 @@ public class ConnDb {
         employee.setEmployeeAccount(acc);
         employee.setEmployeeInfo(new EmployeeInfo());
         employee.setEmployeeTimework(new EmployeeTimework());
-        ConnDb.loadEmployeeInfo(employee);
-        ConnDb.loadEmployeeTimework(employee);
+        ConnectDatabase.loadEmployeeInfo(employee);
+        ConnectDatabase.loadEmployeeTimework(employee);
         employeeList.add(employee);
       }
     } catch (Exception e) {
@@ -124,7 +151,7 @@ public class ConnDb {
    */
   
   public static void saveEmployeeInfo(Employee employee) {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     EmployeeInfo i = employee.getEmployeeInfo();
     String sqlQuery = "UPDATE `employeeinfo_tb` SET `name` = '" + i.getName() + "', `ages` = '" 
         + i.getAges() + "', `sex` = '" + i.getSex() + "'," + " `dateOfBirth` = '" 
@@ -141,7 +168,7 @@ public class ConnDb {
     EmployeeTimework t = employee.getEmployeeTimework();
     String sqlQuery = "UPDATE `employeeinfo_tb` SET `sessionCount` = '" + t.getSessionCount() 
         + "' WHERE `employeeinfo_tb`.`employeeId` = '" + employee.getEmployeeId() + "'";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     conn.executeQuery(sqlQuery);
   }
   /**
@@ -154,7 +181,7 @@ public class ConnDb {
     String sqlQuery = "UPDATE `account_tb` SET `accountName` = '" + a.getAccountName() 
         + "', `password` = '" + a.getPassword() + "' WHERE `account_tb`.`employeeId` = '" 
         + employee.getEmployeeId() + "'";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     conn.executeQuery(sqlQuery);
   }
   /**
@@ -163,7 +190,7 @@ public class ConnDb {
    */
   
   public static void saveGoodsAfterSold(Goods goods) {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "UPDATE `goods_tb` SET `amountRemain` = '" + goods.getAmountReamain()
         + "', `amountSold` = '" + goods.getAmountSold() 
         + "' WHERE `goods_tb`.`code` = '" + goods.getCode() + "'";
@@ -175,7 +202,7 @@ public class ConnDb {
    */
   
   public static void saveGoodsAfterImported(Goods goods) {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     try {
       Date date = format.parse(goods.getDateExpire());
@@ -198,7 +225,7 @@ public class ConnDb {
    */
   
   public static void saveBill(Bill bill) {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "INSERT INTO `bill_tb` (`employeeId`, `code`, `name`, `price`, `amount`,"
         + " `time`)" + " VALUES ('" + bill.getEmployee().getEmployeeId() + "', '" 
         + bill.getGoods().getCode() + "', '" + bill.getGoods().getName() + "', '" 
@@ -212,7 +239,7 @@ public class ConnDb {
    */
   
   public static void loadEmployeeInfo(Employee employee) {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `employeeinfo_tb` WHERE `employeeId` LIKE '" 
         + employee.getEmployeeId() + "'";
     ResultSet rs = conn.getResult(sqlQuery);
@@ -238,7 +265,7 @@ public class ConnDb {
   public static void loadEmployeeTimework(Employee employee) {
     EmployeeTimework t = employee.getEmployeeTimework();
     t.setTimePerSession(6);
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `employeeinfo_tb` WHERE `employeeId` LIKE '" 
         + employee.getEmployeeId() + "'";
     ResultSet rs = conn.getResult(sqlQuery);
@@ -256,7 +283,7 @@ public class ConnDb {
    */
   
   public static void loadGoodsInfo(Goods goods) {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `goods_tb` WHERE `code` LIKE '" + goods.getCode() + "'";
     ResultSet rs = conn.getResult(sqlQuery);
  
@@ -289,7 +316,7 @@ public class ConnDb {
   public static ArrayList<Goods> getTop(int number) {
     Goods[] goods = new Goods[number];
     ArrayList<Goods> g = new ArrayList<>();
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `goods_tb` ORDER BY `goods_tb`.`amountSold` DESC";
     ResultSet rs = conn.getResult(sqlQuery);
     int count = 0;
@@ -325,7 +352,7 @@ public class ConnDb {
   public static ArrayList<Goods> getBot(int number) {
     Goods[] goods = new Goods[number];
     ArrayList<Goods> g = new ArrayList<>();
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `goods_tb` ORDER BY `goods_tb`.`amountSold` ASC";
     ResultSet rs = conn.getResult(sqlQuery);
     int count = 0;
@@ -358,7 +385,7 @@ public class ConnDb {
    */
   
   public static int getNumberGoodsWithZeroAmount() {
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `goods_tb` WHERE `amountRemain` = 0";
     ResultSet rs = conn.getResult(sqlQuery);
     int count = 0;
@@ -379,7 +406,7 @@ public class ConnDb {
   
   public static ArrayList<Goods> getListGoodsWithZeroAmount() {
     ArrayList<Goods> g = new ArrayList<>();
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `goods_tb` WHERE `amountRemain` LIKE 0 ";
     ResultSet rs = conn.getResult(sqlQuery);
     Goods goods = null;
@@ -410,7 +437,7 @@ public class ConnDb {
   
   public static boolean isAvailable(Goods goods) {
     String sqlQuery = "SELECT * FROM `goods_tb`";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     ResultSet rs = conn.getResult(sqlQuery);
     boolean check = false;
     try {
@@ -433,7 +460,7 @@ public class ConnDb {
   
   public static boolean isRegisterAccount(Account account) {
     String sqlQuery = "SELECT * FROM `account_tb`";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     ResultSet rs = conn.getResult(sqlQuery);
     boolean check = false;
     try {
@@ -458,7 +485,7 @@ public class ConnDb {
   
   public static boolean isLegalIdToRegister(Account account) {
     String sqlQuery = "SELECT * FROM `account_tb`";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     ResultSet rs = conn.getResult(sqlQuery);
     boolean check = false;
     try {
@@ -481,7 +508,7 @@ public class ConnDb {
   
   public static boolean isLegalAccountName(Account account) {
     String sqlQuery = "SELECT * FROM `account_tb`";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     ResultSet rs = conn.getResult(sqlQuery);
     boolean check = true;
     try {
@@ -504,7 +531,7 @@ public class ConnDb {
   public static void saveNewEmployeeId(Account account) {
     String sqlQuery = "INSERT INTO `account_tb` (`accountName`, `password`, `employeeId`) VALUES "
         + "('', '', '" + account.getEmployeeId() + "')";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     conn.executeQuery(sqlQuery);
     String sqlQuery1 = "INSERT INTO `employeeinfo_tb` (`employeeId`, `name`, `ages`, `sex`, "
         + "`dateOfBirth`, `dateOfStartWork`)" + " VALUES ('" + account.getEmployeeId() 
@@ -520,7 +547,7 @@ public class ConnDb {
     String sqlQuery = "UPDATE `account_tb` SET `accountName` = '" + account.getAccountName() 
         + "', `password` = '" + account.getAccountName() + "' WHERE `account_tb`.`employeeId` "
         + "= '" + account.getEmployeeId() + "'";
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     conn.executeQuery(sqlQuery);
   }
   /**
@@ -531,7 +558,7 @@ public class ConnDb {
   public static ArrayList<Goods> getListGoodsHetHan() {
     // TODO Auto-generated method stub
     ArrayList<Goods> g = new ArrayList<>();
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "SELECT * FROM `goods_tb` WHERE `expiredate` < " + (new Date()).getTime();
     ResultSet rs = conn.getResult(sqlQuery);
     Goods goods = null;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 
-import model.ConnDb;
+import model.ConnectDatabase;
 import model.Goods;
 
 public class ShowTopSoldAmountController implements ActionListener {
@@ -30,7 +30,7 @@ public class ShowTopSoldAmountController implements ActionListener {
     // TODO Auto-generated method stub
     int amount = Integer.valueOf(comboBox.getSelectedItem().toString());
     String txt = "";
-    ArrayList<Goods> goods  = ConnDb.getTop(amount);
+    ArrayList<Goods> goods  = ConnectDatabase.getTop(amount);
     
     for (int i = 0; i < goods.size(); i ++) {
       txt = txt + goods.get(i).toString();

@@ -1,18 +1,27 @@
 package main;
 
 import java.awt.EventQueue;
-import java.io.File;
-
+import model.ConnectDatabase;
 import view.LoginView;
 
 public class Main {
   
-  public static void main(String[] args) {
-    System.out.println(new File(".").getAbsolutePath());
+  /**
+   * 
+   * @param args the command line parameter.
+   * @throws Exception .
+   */
+  
+  public static void main(String[] args) throws Exception {
+    ConnectDatabase con = new ConnectDatabase();
+    con.createTable("bill_tb");
+    con.createTable("account_tb");
+    con.createTable("employeeinfo_tb");
+    con.createTable("goods_tb");
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
-          LoginView window = new LoginView();
+          new LoginView();
          
         } catch (Exception e) {
           e.printStackTrace();

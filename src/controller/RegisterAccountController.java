@@ -9,7 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.Account;
-import model.ConnDb;
+import model.ConnectDatabase;
 
 public class RegisterAccountController implements ActionListener {
   private JTextField txtId;
@@ -49,9 +49,9 @@ public class RegisterAccountController implements ActionListener {
     account.setEmployeeId(txtId.getText());
     System.out.println(account.getEmployeeId());
     account.setPassword(txtPassword.getText());
-    if (ConnDb.isLegalIdToRegister(account)) {
-      if (ConnDb.isLegalAccountName(account)) {
-        ConnDb.savaAccountInfo(account);;
+    if (ConnectDatabase.isLegalIdToRegister(account)) {
+      if (ConnectDatabase.isLegalAccountName(account)) {
+        ConnectDatabase.savaAccountInfo(account);;
         JOptionPane.showMessageDialog(null, "Đăng Ký Thành Công! ");
         frame.dispose();
       } else {

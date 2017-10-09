@@ -88,7 +88,7 @@ public class EmployeeInfo {
    */
   public void changeSalaryPerSession(int salaryPerSession, String employeeId) {
     this.salaryPerSession = salaryPerSession;
-    ConnDb conn = new ConnDb();
+    ConnectDatabase conn = new ConnectDatabase();
     String sqlQuery = "UPDATE `employeeinfo_tb` SET `salaryPerSession` = '" + this.salaryPerSession 
         + "' WHERE `employeeinfo_tb`.`employeeID` = '" + employeeId + "'";
     conn.executeQuery(sqlQuery);

@@ -12,13 +12,13 @@ public class Manager extends Employee {
   public String creatIdForNewEmployee() { 
     Account account = new Account();
     String newId = account.generateNewId();
-    ConnDb.saveNewEmployeeId(account);;
+    ConnectDatabase.saveNewEmployeeId(account);;
     return newId;
 
   }
   
   public void importGoods(Goods goods) {
-    ConnDb.saveGoodsAfterImported(goods);
+    ConnectDatabase.saveGoodsAfterImported(goods);
   }
   
   public void setSalaryPerSessionForEmployee(Employee nv, int salaryPerSession) {
@@ -26,6 +26,6 @@ public class Manager extends Employee {
   }
   
   public ArrayList<Employee> getEmpoyeeList() {
-    return (new ConnDb().getEmployeeList());
+    return (new ConnectDatabase().getEmployeeList());
   }
 }

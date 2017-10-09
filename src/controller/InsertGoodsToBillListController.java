@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import model.Bill;
-import model.ConnDb;
+import model.ConnectDatabase;
 import model.Employee;
 import model.Goods;
 
@@ -51,7 +51,7 @@ public class InsertGoodsToBillListController implements ActionListener {
     }
     Goods goods = new Goods();
     goods.setCode(txtCode.getText());
-    ConnDb.loadGoodsInfo(goods);
+    ConnectDatabase.loadGoodsInfo(goods);
     if (employee.checkGoodsIsAvailable(goods)) {
       int amount = Integer.parseInt(txtAmount.getText());
       lblNotifications.setText(null);

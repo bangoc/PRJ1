@@ -56,6 +56,6 @@ public class Bill {
   
   public void executed() {
     this.goods.soldAmount(amount);
-    ConnDb.saveGoodsAfterSold(goods);
+    ConnectDatabase.saveGoodsAfterSold(goods);
   }
 }

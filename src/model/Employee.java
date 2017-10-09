@@ -51,7 +51,7 @@ public class Employee {
    */
   
   public boolean tryLogin() {
-    if (ConnDb.isRegisterAccount(this.employeeAccount)) {
+    if (ConnectDatabase.isRegisterAccount(this.employeeAccount)) {
       return true;
     } else {
       return false;
@@ -64,7 +64,7 @@ public class Employee {
   
   public void changePassword(String password) {
     this.employeeAccount.setPassword(password);
-    ConnDb.savaAccountInfo(this.employeeAccount);;
+    ConnectDatabase.savaAccountInfo(this.employeeAccount);;
   }
   
   public void beginWork() {
@@ -80,7 +80,7 @@ public class Employee {
   }
   
   public boolean checkGoodsIsAvailable(Goods goods) {
-    return ConnDb.isAvailable(goods);
+    return ConnectDatabase.isAvailable(goods);
   }
 
   public int countSalary() {
@@ -92,7 +92,7 @@ public class Employee {
   
   public void saveSessionCount() {
     this.employeeTimework.countSession();
-    ConnDb.saveEmployeeTimework(this);
+    ConnectDatabase.saveEmployeeTimework(this);
   }
   /**
    * This method print list bill to a file.
@@ -107,7 +107,7 @@ public class Employee {
       int length = listBill.size();
       for (int i = 0; i < length; i ++) {
         listBill.get(i).executed();
-        ConnDb.saveBill(listBill.get(i));
+        ConnectDatabase.saveBill(listBill.get(i));
         billFile = billFile + listBill.get(i).convertBillToString();
       }
       try {

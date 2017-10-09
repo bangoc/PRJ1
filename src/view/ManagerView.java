@@ -3,24 +3,30 @@ package view;
 import controller.CreatNewIdController;
 import controller.GenerateCodeForGoodsController;
 import controller.ImportGoodsToStoreController;
-import controller.ShowEmployeeInfoController;
+import controller.ShowEmployeeInfo;
 import controller.StatisticOptionController;
+import controller.UpdateEmployeeList;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+
 import model.Employee;
 import model.Manager;
+
 
 
 public class ManagerView {
@@ -28,13 +34,37 @@ public class ManagerView {
   private JFrame frame;
   private Manager manager;
   private JButton btnShowAmountZero;
-  private JPanel panel;
+  private JList<String> list;
+  private ArrayList<Employee> employeeList;
 
+  /**
+   * Constructor.
+   * @param manager is manager
+   */
+  
   public ManagerView(Manager manager) {
     this.manager = manager;
+   
+    this.employeeList = new ArrayList<>();
     initialize();
   }
   
+  public JList<String> getList() {
+    return list;
+  }
+
+  public void setList(JList<String> list) {
+    this.list = list;
+  }
+
+  public ArrayList<Employee> getEmployeeList() {
+    return employeeList;
+  }
+
+  public void setEmployeeList(ArrayList<Employee> employeeList) {
+    this.employeeList = employeeList;
+  }
+
   private void initialize() {
     frame = new JFrame();
     frame.setBounds(220, 50, 1200, 820);
@@ -45,6 +75,9 @@ public class ManagerView {
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBounds(10, 11, 1164, 759);
     frame.getContentPane().add(tabbedPane);
+    
+    //below is tab ban hang
+    
     JPanel goodsTab = new JPanel();
     tabbedPane.addTab("Quản Lý Hàng Hóa", null, goodsTab, null);
     goodsTab.setLayout(null);
@@ -238,7 +271,10 @@ public class ManagerView {
     btnSave.addActionListener(new ImportGoodsToStoreController(arrayJTextField, lblCodeForNew, 
         txtAmount, comboBoxList));
     
-
+    //above is tab hang hoa
+    
+    //below is tab quan ly nhan vien
+    
     JPanel employeeTab = new JPanel();
     tabbedPane.addTab("Quản Lý Nhân Viên", null, employeeTab, null);
     employeeTab.setLayout(null);
@@ -254,14 +290,6 @@ public class ManagerView {
     
     btnCreatId.addActionListener(new CreatNewIdController(manager, lblNewId));
     
-    JScrollPane unknown = new JScrollPane();
-    unknown.setBounds(41, 201, 483, 490);
-    employeeTab.add(unknown);
-    
-    panel = new JPanel();
-    unknown.setViewportView(panel);
-    panel.setLayout(null);
-    
     
     
     JLabel lblEmployeeList = new JLabel("Danh Sách Nhân Viên");
@@ -271,7 +299,7 @@ public class ManagerView {
     lblEmployeeList.setFont(new Font("Tahoma", Font.BOLD, 26));
     
     JPanel employeeInfoPanel = new JPanel();
-    employeeInfoPanel.setBounds(548, 201, 574, 490);
+    employeeInfoPanel.setBounds(548, 201, 574, 439);
     employeeTab.add(employeeInfoPanel);
     employeeInfoPanel.setLayout(null);
     
@@ -317,9 +345,10 @@ public class ManagerView {
     lblSoCaLamViec.setBounds(10, 356, 179, 41);
     employeeInfoPanel.add(lblSoCaLamViec);
     
-    JPanel panel2 = new JPanel();
-    tabbedPane.addTab("New tab", null, panel2, null);
-
+    JScrollPane srollPane1 = new JScrollPane();
+    srollPane1.setBounds(41, 201, 483, 345);
+    employeeTab.add(srollPane1);
+    
     JLabel[] lblGroup = new JLabel[8];
     for (int i = 0; i < 8; i ++) {
       lblGroup[i] = new JLabel();
@@ -327,38 +356,37 @@ public class ManagerView {
       lblGroup[i].setFont(new Font("Tahoma", Font.BOLD, 16));
       employeeInfoPanel.add(lblGroup[i]);
     }
-
-    ArrayList<Employee> employeeList = manager.getEmpoyeeList();
-    int count = employeeList.size();
-    JButton[] btnGroup = new JButton[count];
-    for (int i = 0; i < count; i ++) {
-      btnGroup[i] = new JButton();
-      
-      btnGroup[i].setBounds(10, 10 + 27 * i, 450, 30);
-      String data = employeeList.get(i).getEmployeeId() + "               " 
-          + employeeList.get(i).getEmployeeInfo().getName();
-      
-      btnGroup[i].setText(data);
-      btnGroup[i].setFont(new Font("Tahoma", Font.BOLD, 19));
-      btnGroup[i].setBackground(new Color(255,255,255));
-      btnGroup[i].setHorizontalAlignment(SwingConstants.LEADING);
-      btnGroup[i].addActionListener(new ShowEmployeeInfoController(
-          manager, employeeList.get(i), lblGroup));
-      panel.add(btnGroup[i]);
-    }
-    //only add action below here
-   
+    
+    list = new JList<String>();
+    list.setSelectedIndex(0);
+    
+    srollPane1.setViewportView(list);
+    list.addListSelectionListener(new ShowEmployeeInfo(this,lblGroup));
+    
+    JButton btnUpdate = new JButton("Update");
+    btnUpdate.setBounds(41, 636, 89, 23);
+    employeeTab.add(btnUpdate);
+    
+    btnUpdate.addActionListener(new UpdateEmployeeList(this, manager));
+    
     btnGenerateCode.addActionListener(new GenerateCodeForGoodsController(
         arrayJTextField,lblCodeForNew));
     com1.addItemListener(new StatisticOptionController(com1, com2, txtTopGoods));
     com2.addItemListener(new StatisticOptionController(com1, com2, txtTopGoods));
+    
+    //above is tab quan ly nhan vien
+    
+    //below is new tab
+    JPanel panel2 = new JPanel();
+    tabbedPane.addTab("New tab", null, panel2, null);
+
+   
+  
   }
   
   public JButton getBtnShowAmountZero() {
     return btnShowAmountZero;
   }
   
-  public JPanel getPanel() {
-    return this.panel;
-  }
+  
 }

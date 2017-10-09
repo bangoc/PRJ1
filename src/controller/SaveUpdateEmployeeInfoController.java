@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import model.ConnDb;
+import model.ConnectDatabase;
 import model.Employee;
 import model.EmployeeInfo;
 import view.EmployeeView;
@@ -35,7 +35,7 @@ public class SaveUpdateEmployeeInfoController implements ActionListener {
     employeeInfo.setSex(employeeView.getTxtSex().getText());
     employeeInfo.setDateOfBirth(employeeView.getTxtDateOfBirth().getText());
     employeeInfo.setDateBeginWork(employeeView.getTxtBegin().getText());
-    ConnDb.saveEmployeeInfo(employee);
+    ConnectDatabase.saveEmployeeInfo(employee);
     JOptionPane.showMessageDialog(null, "Du lieu da duoc luu!");
   }
 }
