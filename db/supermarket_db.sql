@@ -19,9 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `supermarket_db`
+-- Create Database: `supermarket_db`
 --
-
+create database supermarket_db;
+use supermarket_db;
 -- --------------------------------------------------------
 
 --
