@@ -138,6 +138,7 @@ public class Game extends Canvas implements ActionListener {
         }
 
         private void startGame() {
+        		music.start();
                 entities.clear();
                 initEntities(row);
                 score = 0;
@@ -215,6 +216,7 @@ public class Game extends Canvas implements ActionListener {
         }
 
         public void gameOver() {
+        		music.stop();
                 Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
                 g.setColor(Color.BLACK);
                 g.fillRect(0, 0, 800, 600);
