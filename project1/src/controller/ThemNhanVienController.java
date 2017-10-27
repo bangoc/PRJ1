@@ -38,14 +38,32 @@ public class ThemNhanVienController implements ActionListener {
       JOptionPane.showMessageDialog(null, "Ban phai nhap vao luong theo ca");
       return;
     }
-    
+   
     NhanVien nhanVien = new NhanVien();
     nhanVien.setTenNhanVien(view.getTxtTenNhanVien().getText());
     nhanVien.setGioiTinh(view.getTxtGioiTinh().getText());
-    nhanVien.setTuoiNhanVien(Integer.parseInt(view.getTxtTuoi().getText()));
-    nhanVien.setNgaySinh(new MyDate(view.getTxtNgaySinh().getText()));
-    nhanVien.setNgayVaoLam(new MyDate(view.getTxtNgayVaoLam().getText()));
-    nhanVien.setLuongCoBan(Integer.parseInt(view.getTxtLuongCoBan().getText()));    
+    try {
+      nhanVien.setTuoiNhanVien(Integer.parseInt(view.getTxtTuoi().getText()));
+    } catch (NumberFormatException e) {
+      JOptionPane.showMessageDialog(null, "Ban phai nhap vao so" + e);
+      return;
+    }
+    try {
+      nhanVien.setNgaySinh(new MyDate(view.getTxtNgaySinh().getText()));
+      nhanVien.setNgayVaoLam(new MyDate(view.getTxtNgayVaoLam().getText()));
+    } catch (NumberFormatException e) {
+      JOptionPane.showMessageDialog(null, "Ban phai nhap ngay dinh dang dd/mm/yyyy" + e);
+      return;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      JOptionPane.showMessageDialog(null, "Ban phai nhap ngay dinh dang dd/mm/yyyy" + e);
+      return;
+    }
+    try {
+      nhanVien.setLuongCoBan(Integer.parseInt(view.getTxtLuongCoBan().getText()));  
+    } catch (NumberFormatException e) {
+      JOptionPane.showMessageDialog(null, "Ban phai nhap vao so" + e);
+      return;
+    }
     new QuanLy().themNhanVien(nhanVien);
     new QuanLy().taoTaiKhoanDangNhapChoNhanVien(nhanVien);
     view.getFrame().setVisible(false);

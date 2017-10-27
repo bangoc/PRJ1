@@ -27,7 +27,7 @@ public class ThongTinNhanVienView {
    */
   private void initialize() {
     frame = new JFrame();
-    frame.setBounds(350, 100, 900, 800);
+    frame.setBounds(350, 50, 900, 800);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
@@ -63,6 +63,11 @@ public class ThongTinNhanVienView {
         frame.dispose();        
       }
     });
+    
+    JLabel lblLsLamViec = new JLabel("Lich su lam viec");
+    lblLsLamViec.setBounds(40, 370, 200, 25);
+    lblLsLamViec.setFont(new Font("Dialog", Font.BOLD, 15));
+    frame.getContentPane().add(lblLsLamViec);
     
   }
 

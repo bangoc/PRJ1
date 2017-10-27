@@ -7,6 +7,7 @@ public class MyDate {
   private int thang;
   private int nam;
   
+  
   /**
    * Khoi tao myDate theo ngay hien tai.
    * @param date ngay hien tai
@@ -29,6 +30,7 @@ public class MyDate {
     this.ngay = Integer.parseInt("" + array[0] + array[1]);
     this.thang = Integer.parseInt("" + array[3] + array[4]);
     this.nam = Integer.parseInt("" + array[6] + array[7] + array[8] + array[9]);
+    
   }
 
   public int getNgay() {
@@ -54,6 +56,7 @@ public class MyDate {
   public void setNam(int nam) {
     this.nam = nam;
   }
+  
   
   @Override
   

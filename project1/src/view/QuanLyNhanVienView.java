@@ -31,7 +31,7 @@ public class QuanLyNhanVienView {
    */
   private void initialize() {
     frame = new JFrame();
-    frame.setBounds(350, 100, 900, 800);
+    frame.setBounds(350, 50, 900, 800);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
@@ -70,6 +70,7 @@ public class QuanLyNhanVienView {
     });
     btnBack.setBounds(20, 492, 117, 25);
     frame.getContentPane().add(btnBack);
+    
     
     
   }
