@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2017 at 11:04 PM
+-- Generation Time: Oct 27, 2017 at 05:34 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -19,10 +19,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Create Database: `supermarket_db`
+-- Database: `supermarket_db`
 --
-create database supermarket_db;
-use supermarket_db;
+
 -- --------------------------------------------------------
 
 --
@@ -41,9 +40,8 @@ CREATE TABLE `account_tb` (
 
 INSERT INTO `account_tb` (`id`, `user_name`, `password`) VALUES
 (1, 'minh1996bk', 'husterk59'),
-(2, 'thangyk97', 'husterk60'),
-(3, 'duyen97', '1'),
-(4, 'sang97', '1');
+(14, 'Nguyen Dinh Thang', 'Nguyen Dinh Thang'),
+(15, 'Nguyen Thi Duyen', 'Nguyen Thi Duyen');
 
 -- --------------------------------------------------------
 
@@ -64,10 +62,7 @@ CREATE TABLE `bill_tb` (
 --
 
 INSERT INTO `bill_tb` (`code_bill`, `id`, `code`, `amount`, `time`) VALUES
-(1, 1, 1, '1', '21-11-2017'),
-(2, 1, 2, '3', '23-11-2017'),
-(3, 2, 1, '3', '27-11-2017'),
-(4, 3, 3, '2', '20-11-2017');
+(1, 1, 1, '1', '21-11-2017');
 
 -- --------------------------------------------------------
 
@@ -78,11 +73,11 @@ INSERT INTO `bill_tb` (`code_bill`, `id`, `code`, `amount`, `time`) VALUES
 CREATE TABLE `employeeinfo_tb` (
   `id` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `ages` varchar(3) DEFAULT NULL,
+  `ages` int(11) DEFAULT NULL,
   `sex` varchar(10) DEFAULT NULL,
   `birth_date` varchar(20) DEFAULT NULL,
   `hire_date` varchar(20) DEFAULT NULL,
-  `salary` varchar(11) DEFAULT NULL
+  `salary` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -90,10 +85,9 @@ CREATE TABLE `employeeinfo_tb` (
 --
 
 INSERT INTO `employeeinfo_tb` (`id`, `name`, `ages`, `sex`, `birth_date`, `hire_date`, `salary`) VALUES
-(1, 'Nguyen Dinh Minh', '20', 'Nam', '28-09-1996', '20-11-2017', '300000'),
-(2, 'Nguyen Dinh Thang', '19', 'Nam', '20-10-1997', '21-11-2017', '350000'),
-(3, 'Nguyen Thi Duyen', '20', 'nu', 'unknown', '20-01-2017', '400'),
-(4, 'Nguyen Thi Sang', '20', 'nu', 'unknown', '20-01-2017', '400');
+(1, 'Nguyen Dinh Minh', 20, 'nu', '20-11-1996', '20-11-2017', 10000),
+(14, 'Nguyen Dinh Thang', 20, 'nam', '20-10-2030', '20-11-2059', 10000),
+(15, 'Nguyen Thi Duyen', 20, 'nu', '20-10-1997', '20-10-2018', 10000);
 
 -- --------------------------------------------------------
 
@@ -119,7 +113,7 @@ CREATE TABLE `goods_tb` (
 INSERT INTO `goods_tb` (`code`, `name`, `price`, `producer`, `produce_date`, `expire_date`, `remain_amount`, `sold_amount`) VALUES
 (1, 'pepsi', '10000', 'pesi Ltd', '20-11-2016', '20-11-2017', '0', '10'),
 (2, 'coca', '11000', 'coca Ltd', '20-11-2016', '20-11-2018', '2', '100'),
-(3, 'banh chocopie', '10000', 'chocopie', '20-01-2017', '20-01-2018', '10', '1');
+(3, 'banh chocopie', '10000', 'chocopie', '20-01-2017', '20-01-2018', '100', '22');
 
 -- --------------------------------------------------------
 
@@ -168,6 +162,26 @@ INSERT INTO `nha_cung_cap_tb` (`id`, `name`, `address`, `mail`, `phone_no`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `save`
+--
+
+CREATE TABLE `save` (
+  `check_save` varchar(11) NOT NULL,
+  `user_name` varchar(200) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `save`
+--
+
+INSERT INTO `save` (`check_save`, `user_name`, `password`, `id`) VALUES
+('1', 'minh1996bk', 'husterk59', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `work_time_tb`
 --
 
@@ -185,12 +199,11 @@ CREATE TABLE `work_time_tb` (
 
 INSERT INTO `work_time_tb` (`id`, `begin_date`, `end_date`, `session_count`, `salary`) VALUES
 (1, '20-11-2017', '20-12-2017', '19', '300000'),
-(1, '21-01-2018', 'now', '10', '500000'),
+(1, '21-01-2018', '25-10-2017', '10', '10000'),
 (1, '21-12-2017', '20-01-2018', '25', '500000'),
-(2, '21-11-2017', '21-12-2017', '24', '400000'),
-(2, '22-11-2017', 'now', '1', '500000'),
-(3, '20-02-2917', '20-03-2017', '25', '400'),
-(4, '20-01-2017', '20-02-2017', '28', '500');
+(1, '25-10-2017', 'now', '0', '10000'),
+(14, '25-10-2017', 'now', '0', '10000'),
+(15, '25-10-2017', 'now', '0', '10000');
 
 --
 -- Indexes for dumped tables
@@ -238,6 +251,12 @@ ALTER TABLE `nha_cung_cap_tb`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `save`
+--
+ALTER TABLE `save`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `work_time_tb`
 --
 ALTER TABLE `work_time_tb`
@@ -251,12 +270,12 @@ ALTER TABLE `work_time_tb`
 -- AUTO_INCREMENT for table `bill_tb`
 --
 ALTER TABLE `bill_tb`
-  MODIFY `code_bill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `code_bill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `employeeinfo_tb`
 --
 ALTER TABLE `employeeinfo_tb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `goods_tb`
 --
