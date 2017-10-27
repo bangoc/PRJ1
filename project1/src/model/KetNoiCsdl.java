@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.Vector;
 
 public class KetNoiCsdl {
   private Statement statement;
@@ -29,7 +30,6 @@ public class KetNoiCsdl {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    System.out.println("ket noi da duoc tao");
   }
   
   public String getTenBangTaiKhoan() {
@@ -185,8 +185,31 @@ public class KetNoiCsdl {
     } else if (!this.kiemTraTonTaiBang(tenBangTaiKhoan)) {
       return false;
     } else {
-      System.out.println("ok cac bang deu ton tai");
       return true;
     }
   }  
+  
+  /**
+   * .
+   * @return vector
+   */
+  
+  public Vector<String> getTaiKhoanMatKhau() {
+   
+    String sql = "select * from save where id = 2";
+    Vector<String> vector = new Vector<>();
+    try {
+      ResultSet result = this.statement.executeQuery(sql);
+      while (result.next()) {
+        vector.add(result.getString(1));
+        vector.add(result.getString(2));
+        vector.add(result.getString(3));
+      }
+      return vector;
+      
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 }

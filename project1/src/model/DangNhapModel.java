@@ -52,7 +52,6 @@ public class DangNhapModel {
   public boolean kiemTraDangNhap() throws SQLException {
     KetNoiCsdl con = new KetNoiCsdl();
     String tenBangTaiKhoan = con.getTenBangTaiKhoan();
-    System.out.println(tenBangTaiKhoan);
     String sql = "select id from " + tenBangTaiKhoan + " where user_name = '" 
         + this.taiKhoan + "' and password = '" + this.matKhau + "'";
     ResultSet result = con.getStatement().executeQuery(sql);

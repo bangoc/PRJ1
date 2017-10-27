@@ -22,12 +22,13 @@ public class Main {
       public void run() {
         try {
           new DangNhapView();
-
         } catch (Exception e) {
           e.printStackTrace();
         }
       }
     });
+  
+   
   }
 
   /**
