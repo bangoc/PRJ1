@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2017 at 05:34 AM
+-- Generation Time: Oct 28, 2017 at 04:35 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -102,8 +102,8 @@ CREATE TABLE `goods_tb` (
   `producer` varchar(200) DEFAULT NULL,
   `produce_date` varchar(20) DEFAULT NULL,
   `expire_date` varchar(20) DEFAULT NULL,
-  `remain_amount` varchar(11) DEFAULT NULL,
-  `sold_amount` varchar(11) DEFAULT NULL
+  `remain_amount` int(11) DEFAULT NULL,
+  `sold_amount` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -111,9 +111,10 @@ CREATE TABLE `goods_tb` (
 --
 
 INSERT INTO `goods_tb` (`code`, `name`, `price`, `producer`, `produce_date`, `expire_date`, `remain_amount`, `sold_amount`) VALUES
-(1, 'pepsi', '10000', 'pesi Ltd', '20-11-2016', '20-11-2017', '0', '10'),
-(2, 'coca', '11000', 'coca Ltd', '20-11-2016', '20-11-2018', '2', '100'),
-(3, 'banh chocopie', '10000', 'chocopie', '20-01-2017', '20-01-2018', '100', '22');
+(1, 'pepsi', '10000', 'pesi Ltd', '20-11-2016', '20-11-2017', 0, 10),
+(2, 'coca', '11000', 'coca Ltd', '20-11-2016', '20-11-2018', 2, 100),
+(4, 'banh mi', '100', 'Quan banh', '20-11-2201', '22-11-2231', 10, 0),
+(5, 'keo cay', '100', 'unknown', '20-11-2017', '20-11-2018', 10, 0);
 
 -- --------------------------------------------------------
 
@@ -125,17 +126,18 @@ CREATE TABLE `import_bill_tb` (
   `code_import` int(11) NOT NULL,
   `id_nha_cung_cap` int(11) DEFAULT NULL,
   `code` int(11) DEFAULT NULL,
-  `amount` varchar(10) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL
+  `time` varchar(20) DEFAULT NULL,
+  `sold_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `import_bill_tb`
 --
 
-INSERT INTO `import_bill_tb` (`code_import`, `id_nha_cung_cap`, `code`, `amount`, `time`) VALUES
-(1, 1, 1, '10', '20-10-2017'),
-(2, 2, 2, '200', '02-11-2017');
+INSERT INTO `import_bill_tb` (`code_import`, `id_nha_cung_cap`, `code`, `time`, `sold_price`) VALUES
+(1, 1, 1, '20-10-2017', 0),
+(2, 2, 2, '02-11-2017', 0),
+(3, 2, 5, '28-10-2017', 100);
 
 -- --------------------------------------------------------
 
@@ -280,12 +282,12 @@ ALTER TABLE `employeeinfo_tb`
 -- AUTO_INCREMENT for table `goods_tb`
 --
 ALTER TABLE `goods_tb`
-  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `import_bill_tb`
 --
 ALTER TABLE `import_bill_tb`
-  MODIFY `code_import` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `code_import` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `nha_cung_cap_tb`
 --

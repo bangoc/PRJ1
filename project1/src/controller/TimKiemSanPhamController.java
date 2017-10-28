@@ -26,9 +26,9 @@ public class TimKiemSanPhamController implements ActionListener {
     dieuKien.setDkSoLuongHienCo(view.getTxtRemainamount().getText());
     dieuKien.setDkSoLuongDaBan(view.getTxtSoldAmount().getText());
     dieuKien.setMaSanPham(view.getTxtCode().getText());
-    
+    dieuKien.setMaNhaCungCap(view.getTxtProviderId().getText());
     Vector<String[]> vector = new HangHoa().getThongTinHangHoa(dieuKien);
-    String [] columnNames = {"Ma san pham", "Ten san pham", "Nha san xuat",
+    String [] columnNames = {"Ma san pham", "Ma nha cung cap", "Ten san pham", "Nha san xuat",
         "So luong hien co", "So luong da ban"};
     DefaultTableModel  model = new MyModel(columnNames);
    

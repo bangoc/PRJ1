@@ -117,7 +117,6 @@ public class HangHoa {
       e.printStackTrace();
     }
   }
-  
   /**
    * .
    * @param dieuKien dieu kien tim kiem
@@ -128,19 +127,20 @@ public class HangHoa {
     Vector<String[]> vector = new Vector<>();
 
     if (dieuKien.toString().isEmpty()) {
-      vector.add(new String[] {"No data", "No data", "No data", "No data", "No data"});
+      vector.add(new String[] {"No data", "No data", "No data", "No data", "No data", "No data"});
       return vector;
     }
-    String sql = "select code, name, producer, remain_amount, sold_amount from goods_tb"
-        + " where code > 0 "  + dieuKien.toString();
+    String sql = "select g.code, id_nha_cung_cap, name, producer, remain_amount,"
+        + " sold_amount from goods_tb as g, import_bill_tb as i where g.code = i.code "
+        + dieuKien.toString();
     try {
       ResultSet result = new KetNoiCsdl().getStatement().executeQuery(sql);
       while (result.next()) {
-        vector.add(new String[] {"" + result.getInt(1), result.getString(2), result.getString(3),
-            "" + result.getInt(4), "" + result.getInt(5)});
+        vector.add(new String[] {"" + result.getInt(1), "" + result.getInt(2), result.getString(3),
+            result.getString(4), "" + result.getInt(5), "" + result.getInt(6)});
       }
       if (vector.isEmpty()) {
-        vector.add(new String[] {"No data", "No data", "No data", "No data", "No data"});
+        vector.add(new String[] {"No data", "No data", "No data", "No data", "No data", "No data"});
         return vector;
       } else {
         return vector;

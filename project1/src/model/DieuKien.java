@@ -2,7 +2,15 @@ package model;
 
 public class DieuKien {
   private String maSanPham;
- 
+  private String maNhaCungCap;
+
+  public String getMaNhaCungCap() {
+    return maNhaCungCap;
+  }
+
+  public void setMaNhaCungCap(String maNhaCungCap) {
+    this.maNhaCungCap = maNhaCungCap;
+  }
 
   private String dkTenSanPham;
   private String dkSoLuongHienCo;
@@ -56,15 +64,19 @@ public class DieuKien {
   public String toString() {
     StringBuffer dieuKien = new StringBuffer();
     if (!this.maSanPham.isEmpty()) {
-      dieuKien.append(" and code = ");
+      dieuKien.append(" and g.code = ");
       dieuKien.append(this.maSanPham);
+    }
+    if (!this.maNhaCungCap.isEmpty()) {
+      dieuKien.append(" and id_nha_cung_cap = ");
+      dieuKien.append(this.maNhaCungCap);
     }
     if (!this.dkSoLuongHienCo.isEmpty()) {
       dieuKien.append(" and remain_amount ");
       dieuKien.append(this.dkSoLuongHienCo);
     }
     if (!this.dkTenSanPham.isEmpty()) {
-      dieuKien.append(" and name = upper('"); 
+      dieuKien.append(" and g.name = upper('"); 
       dieuKien.append(this.dkTenSanPham); 
       dieuKien.append("')");
     }
@@ -77,7 +89,6 @@ public class DieuKien {
       dieuKien.append(" and sold_amount ");
       dieuKien.append(this.dkSoLuongDaBan);
     }
-    System.out.println(dieuKien);
     return dieuKien.toString();
   }
 

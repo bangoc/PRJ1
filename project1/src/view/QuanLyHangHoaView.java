@@ -26,6 +26,8 @@ public class QuanLyHangHoaView {
   private JTextField txtSoldAmount;
   private JTextField txtCode;
   private JLabel lblCode;
+  private JLabel lblProviderId;
+  private JTextField txtProviderId;
   
   public JFrame getFrame() {
     return frame;
@@ -73,15 +75,36 @@ public class QuanLyHangHoaView {
     
     });
     frame.getContentPane().add(btnBack);
+    
+    lblCode = new JLabel("Ma san pham");
+    lblCode.setFont(new Font("Dialog", Font.BOLD, 15));
+    lblCode.setBounds(30, 27, 150, 25);
+    frame.getContentPane().add(lblCode);
+    
+    txtCode = new JTextField();
+    txtCode.setBounds(200, 27, 200, 25);
+    frame.getContentPane().add(txtCode);
+    txtCode.setColumns(10);
+    
     lblName = new JLabel("Ten san pham");
-    lblName.setBounds(34, 75, 150, 25);
+    lblName.setBounds(30, 75, 150, 25);
     lblName.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(lblName);
     
     txtName = new JTextField();
-    txtName.setBounds(202, 75, 200, 25);
+    txtName.setBounds(200, 75, 200, 25);
     txtName.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(txtName);
+    
+    lblProviderId = new JLabel("Ma nha cung cap");
+    lblProviderId.setBounds(420, 27, 150, 25);
+    lblProviderId.setFont(new Font("Dialog", Font.BOLD, 15));
+    frame.getContentPane().add(lblProviderId);
+    
+    txtProviderId = new JTextField();
+    txtProviderId.setBounds(620, 27, 200, 25);
+    txtProviderId.setFont(new Font("Dialog", Font.BOLD, 15));
+    frame.getContentPane().add(txtProviderId);
     
     lblProducer = new JLabel("Nha san xuat");
     lblProducer.setBounds(420, 75, 150, 25);
@@ -119,15 +142,33 @@ public class QuanLyHangHoaView {
     btnSearch.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(btnSearch);
     
-    lblCode = new JLabel("Ma san pham");
-    lblCode.setFont(new Font("Dialog", Font.BOLD, 15));
-    lblCode.setBounds(30, 27, 150, 25);
-    frame.getContentPane().add(lblCode);
+    JButton btnAddGoods = new JButton("Add goods");
+    btnAddGoods.setBounds(230, 178, 150, 25);
+    btnAddGoods.addActionListener(new TimKiemSanPhamController(this));
+    btnAddGoods.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnAddGoods.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        new ThemHangHoaView();
+      }
+    });
+    frame.getContentPane().add(btnAddGoods);
     
-    txtCode = new JTextField();
-    txtCode.setBounds(200, 27, 200, 25);
-    frame.getContentPane().add(txtCode);
-    txtCode.setColumns(10);
+    JButton btnAddProvider = new JButton("Add provider");
+    btnAddProvider.setBounds(430, 178, 150, 25);
+    btnAddProvider.addActionListener(new TimKiemSanPhamController(this));
+    btnAddProvider.setFont(new Font("Dialog", Font.BOLD, 15));
+    frame.getContentPane().add(btnAddProvider);
+  
+  }
+
+  public JTextField getTxtProviderId() {
+    return txtProviderId;
+  }
+
+  public void setTxtProviderId(JTextField txtProviderId) {
+    this.txtProviderId = txtProviderId;
   }
 
   public JTextField getTxtCode() {

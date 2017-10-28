@@ -18,7 +18,7 @@ public class QuanLyHangHoaCotroller implements ActionListener {
   
   @Override
   public void actionPerformed(ActionEvent e) {
-    String [] columnNames = {"Ma san pham", "Ten san pham", "Nha san xuat",
+    String [] columnNames = {"Ma san pham","Ma nha cung cap", "Ten san pham", "Nha san xuat",
         "So luong hien co", "So luong da ban"};
     DefaultTableModel  model = new MyModel(columnNames);
     QuanLyHangHoaView view = new QuanLyHangHoaView();

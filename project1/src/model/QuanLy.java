@@ -2,6 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Vector;
 
 public class QuanLy extends NhanVien {
@@ -82,6 +83,44 @@ public class QuanLy extends NhanVien {
       e.printStackTrace();
     }
     return null;
+    
+  }
+  
+  /**
+   * Luu du lieu san pham duoc nhap vao trong csdl.
+   * @param hangHoa hang hoa duoc nhap vao
+   */
+  
+  public void themHangHoa(HangHoa hangHoa) {
+    String sql = "insert into goods_tb (code, name, price, producer, produce_date, expire_date, "
+        + "remain_amount, sold_amount) values (null, '" + hangHoa.getTenSanPham() + "', "
+        + hangHoa.getGiaSanPham() + ", '" + hangHoa.getNhaSanXuat() + "', '"
+        + hangHoa.getNgaySanXuat().toString() + "', '" + hangHoa.getNgayHetHan().toString() 
+        + "', " + hangHoa.getSoLuongHienCo() + ", 0)";
+    KetNoiCsdl con = new KetNoiCsdl();
+    try {
+      con.getStatement().executeUpdate(sql);
+      String sql1 = "select max(code) from goods_tb";
+      try {
+        ResultSet result = con.getStatement().executeQuery(sql1);
+        int maHangHoa = 0;
+        while (result.next()) {
+          maHangHoa = result.getInt(1);
+        }
+        String sql2 = "insert into import_bill_tb (code_import, id_nha_cung_cap, code, "
+            + "time, sold_price) values (null, " + hangHoa.getMaNhaCungCap() + ", "
+            + maHangHoa + ", '" + new MyDate(new Date()).toString() + "', " 
+            + hangHoa.getGiaSanPham() + ")";
+        System.out.println(sql2);
+        con.getStatement().executeUpdate(sql2);
+      } catch (SQLException e) {
+        e.printStackTrace();
+        return;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    
     
   }
 }
