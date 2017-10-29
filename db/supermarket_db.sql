@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 28, 2017 at 04:35 PM
+-- Generation Time: Oct 29, 2017 at 02:37 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -159,7 +159,8 @@ CREATE TABLE `nha_cung_cap_tb` (
 
 INSERT INTO `nha_cung_cap_tb` (`id`, `name`, `address`, `mail`, `phone_no`) VALUES
 (1, 'Pepsi Ltd', 'America', 'pepsi@mail.com', '001234567'),
-(2, 'Coca Ltd', 'America', 'coca-cola@mail.com', '013423740');
+(2, 'Coca Ltd', 'America', 'coca-cola@mail.com', '013423740'),
+(3, 'ncc1', 'ha noi, viet nam', 'ncc1@mail.com', '015409234823');
 
 -- --------------------------------------------------------
 
@@ -191,8 +192,8 @@ CREATE TABLE `work_time_tb` (
   `id` int(11) NOT NULL,
   `begin_date` varchar(20) NOT NULL,
   `end_date` varchar(20) DEFAULT NULL,
-  `session_count` varchar(10) DEFAULT NULL,
-  `salary` varchar(20) DEFAULT NULL
+  `session_count` int(10) DEFAULT NULL,
+  `salary` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -200,12 +201,15 @@ CREATE TABLE `work_time_tb` (
 --
 
 INSERT INTO `work_time_tb` (`id`, `begin_date`, `end_date`, `session_count`, `salary`) VALUES
-(1, '20-11-2017', '20-12-2017', '19', '300000'),
-(1, '21-01-2018', '25-10-2017', '10', '10000'),
-(1, '21-12-2017', '20-01-2018', '25', '500000'),
-(1, '25-10-2017', 'now', '0', '10000'),
-(14, '25-10-2017', 'now', '0', '10000'),
-(15, '25-10-2017', 'now', '0', '10000');
+(1, '20-11-2017', '20-12-2017', 19, 300000),
+(1, '21-01-2018', '25-10-2017', 10, 10000),
+(1, '21-12-2017', '20-01-2018', 25, 500000),
+(1, '25-10-2017', '29-10-2017', 0, 10000),
+(1, '29-10-2017', '99-99-9999', 0, 10000),
+(14, '25-10-2017', '99-99-9999', 0, 10000),
+(14, '29-10-2017', '23-32-1323', 0, 10000),
+(15, '25-10-2017', '29-10-2017', 0, 10000),
+(15, '29-10-2017', '99-99-9999', 0, 10000);
 
 --
 -- Indexes for dumped tables
@@ -292,7 +296,7 @@ ALTER TABLE `import_bill_tb`
 -- AUTO_INCREMENT for table `nha_cung_cap_tb`
 --
 ALTER TABLE `nha_cung_cap_tb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
