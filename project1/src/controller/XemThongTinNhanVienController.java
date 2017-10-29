@@ -54,7 +54,7 @@ public class XemThongTinNhanVienController implements ActionListener {
     
     String[] array = {"Ngay bat dau", "Ngay ket thuc", "So ca lam viec", "Luong / ca"};
     DefaultTableModel newModel = new MyModel(array);
-    Vector<String[]> vector = nhanVien.loadLichSuLamViec();
+    Vector<String[]> vector = nhanVien.convertVector();
     for (String [] strArray : vector) {
       newModel.addRow(strArray);
     }

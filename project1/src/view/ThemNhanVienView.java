@@ -4,6 +4,9 @@ package view;
 import controller.ThemNhanVienController;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -124,10 +127,23 @@ public class ThemNhanVienView {
     txtLuongCoBan.setFont(font);
     container.add(txtLuongCoBan);
     
-    JButton btnAdd = new JButton("Them nhan vien");
-    btnAdd.setBounds(380, 300, 180, 30);
+    JButton btnAdd = new JButton("Add");
+    btnAdd.setBounds(50, 300, 150, 25);
     btnAdd.setFont(font);
     container.add(btnAdd);
+    
+    JButton btnBack = new JButton("Back");
+    btnBack.setBounds(300, 300, 150, 25);
+    btnBack.setFont(font);
+    btnBack.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+        
+      }
+    });
+    container.add(btnBack);
     
     btnAdd.addActionListener(new ThemNhanVienController(this));
   }

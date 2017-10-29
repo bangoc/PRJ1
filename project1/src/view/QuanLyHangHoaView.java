@@ -1,6 +1,9 @@
 package view;
 
+import controller.CapNhatNhaCungCapController;
 import controller.TimKiemSanPhamController;
+import controller.XemThongTinSanPhamController;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -157,9 +160,16 @@ public class QuanLyHangHoaView {
     
     JButton btnAddProvider = new JButton("Add provider");
     btnAddProvider.setBounds(430, 178, 150, 25);
-    btnAddProvider.addActionListener(new TimKiemSanPhamController(this));
     btnAddProvider.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnAddProvider.addActionListener(new CapNhatNhaCungCapController());
     frame.getContentPane().add(btnAddProvider);
+    
+    JButton btnInfo = new JButton("Info");
+    btnInfo.setBounds(630, 178, 150, 25);
+    btnInfo.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnInfo.addActionListener(new XemThongTinSanPhamController(panel));
+    frame.getContentPane().add(btnInfo);
+    
   
   }
 

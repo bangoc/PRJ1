@@ -2,6 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -13,11 +14,22 @@ public class NhanVien {
   private MyDate ngaySinh;
   private MyDate ngayVaoLam;
   private int luongCoBan;
+  private ArrayList<LichSuLamViec> lsLamViec;
   
   public NhanVien() {
-    
+
   }
 
+  
+  public ArrayList<LichSuLamViec> getLsLamViec() {
+    return lsLamViec;
+  }
+
+  public void setLsLamViec(ArrayList<LichSuLamViec> lsLamViec) {
+    this.lsLamViec = lsLamViec;
+  }
+
+ 
   public int getIdNhanVien() {
     return idNhanVien;
   }
@@ -84,7 +96,6 @@ public class NhanVien {
     try {
       ResultSet result = con.getStatement().executeQuery(sql);
       while (result.next()) {
-        this.idNhanVien = result.getInt(1);
         this.tenNhanVien = result.getString(2);
         this.tuoiNhanVien = result.getInt(3);
         this.gioiTinh = result.getString(4);
@@ -106,7 +117,6 @@ public class NhanVien {
         + this.tuoiNhanVien + ", sex = '" + this.gioiTinh + "', birth_date = '" 
         + this.ngaySinh.toString() + "', hire_date = '" + this.ngayVaoLam.toString() 
         + "', salary = " + this.luongCoBan + " where employeeinfo_tb.id = " + this.idNhanVien;
-    System.out.println(sql);
     KetNoiCsdl con = new KetNoiCsdl();
     try {
       con.getStatement().executeUpdate(sql);
@@ -139,9 +149,11 @@ public class NhanVien {
    */
   
   public void batDauThangLamViecMoi() {
+    LichSuLamViec ls = new LichSuLamViec();
+    this.lsLamViec.add(ls);
     String sql = "insert into work_time_tb (id, begin_date, end_date, session_count, salary)"
-        + " values (" + this.getIdNhanVien() + ", '" + new MyDate(new Date()).toString() 
-        + "', 'now', 0, " + this.getLuongCoBan() + ")";
+        + " values (" + this.getIdNhanVien() + ", '" + ls.getNgayBatDau().toString() 
+        + "', '99-99-9999', 0, " + this.getLuongCoBan() + ")";
     try {
       new KetNoiCsdl().getStatement().executeUpdate(sql);
     } catch (SQLException e) {
@@ -150,35 +162,25 @@ public class NhanVien {
   }
   
   /**
-   * Tinh luong cua nhan vien.
-   * @return luong nhan vien
+   * Tra luong cua nhan vien.
+   * 
    */
   
-  public int tinhLuong() {
-    int luong = 0;
-    String sql = "select session_count from work_time_tb where id = " 
-        + this.getIdNhanVien() + " and end_date = 'now'";
+  public void traLuong() {
+
+    LichSuLamViec ls = this.lsLamViec.get(this.lsLamViec.size() - 1);
+    ls.setNgayKetThuc(new MyDate(new Date()));
+    ls.setLuongThoiDiem(this.luongCoBan);
     KetNoiCsdl con = new KetNoiCsdl();
-    try {
-      ResultSet result = con.getStatement().executeQuery(sql);
-      while (result.next()) {
-        int count = result.getInt(1);
-        luong = this.luongCoBan * count;
-      }
-    } catch (SQLException e) {
-      
-      e.printStackTrace();
-      return 0;
-    }
     String sql1 = "update work_time_tb as w set end_date = '" + new MyDate(new Date()).toString() 
         + "'," + " salary = " + this.getLuongCoBan() + " where w.id = " + this.getIdNhanVien() 
-        + " and end_date = 'now'";
+        + " and end_date = '99-99-9999'";
     try {
       con.getStatement().executeUpdate(sql1);
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return luong;
+    
   }
   
   /**
@@ -186,20 +188,39 @@ public class NhanVien {
    * @return vector luu chu lich su lam viec cua nhan vien
    */
   
-  public Vector<String[]> loadLichSuLamViec() {
+  public Vector<String[]> convertVector() {
+    this.loadLsLamViec();
+    Vector<String[]> vector = new Vector<>();
+    for (LichSuLamViec ls : this.lsLamViec) {
+      String[] str = {ls.getNgayBatDau().toString(), ls.getNgayKetThuc().toString(),
+          "" + ls.getSoCaLamViec(), "" + ls.getLuongThoiDiem()};
+      vector.add(str);
+    }
+    return vector;
+  }
+   
+    
+  
+  /**
+   * Lay du lieu lich su lam viec cho nhan vien.
+   */
+  
+  public void loadLsLamViec() {
     String sql = "select begin_date, end_date, session_count, "
         + "salary from work_time_tb where id = " + this.idNhanVien;
-    Vector<String[]> vector = new Vector<>();
+    this.lsLamViec = new ArrayList<>();
     try {
       ResultSet result = new KetNoiCsdl().getStatement().executeQuery(sql);
       while (result.next()) {
-        vector.add(new String[] {result.getString(1), result.getString(2), "" 
-            + result.getInt(3), "" + result.getInt(4)});
+        LichSuLamViec ls = new LichSuLamViec();
+        ls.setNgayBatDau(new MyDate(result.getString(1)));
+        ls.setNgayKetThuc(new MyDate(result.getString(2)));
+        ls.setSoCaLamViec(result.getInt(3));
+        ls.setLuongThoiDiem(result.getInt(4));
+        this.lsLamViec.add(ls);
       }
-      return vector;
     } catch (SQLException e) {
       e.printStackTrace();
-      return null;
     }
   }
 }

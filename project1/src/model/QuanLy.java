@@ -1,9 +1,15 @@
 package model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
 
 public class QuanLy extends NhanVien {
   /**
@@ -67,7 +73,7 @@ public class QuanLy extends NhanVien {
   public Vector<String[]> getDanhSachNhanVien() {
     String sql = "select em.id, em.name, em.salary, w.session_count "
         + "from employeeinfo_tb as em, work_time_tb as w "
-        + "where em.id = w.id and w.end_date = 'now' ";
+        + "where em.id = w.id and w.end_date = '99-99-9999' ";
     KetNoiCsdl con = new KetNoiCsdl();
     ResultSet result;
     Vector<String[]> vector = new Vector<>();
@@ -86,6 +92,26 @@ public class QuanLy extends NhanVien {
     
   }
   
+  public ArrayList<NhanVien> loadDanhSachNhanVien() {
+    String sql = "select id from employeeinfo_tb";
+    ResultSet result;
+    NhanVien nv;
+    ArrayList<NhanVien> listNhanVien = new ArrayList<>();
+    try {
+      result = new KetNoiCsdl().getStatement().executeQuery(sql);
+      while (result.next()) {
+        nv = new NhanVien();
+        nv.setIdNhanVien(result.getInt(1));
+        nv.loadNhanVien();
+        nv.loadLsLamViec();
+        listNhanVien.add(nv);
+      }
+      return listNhanVien;
+    } catch (SQLException e) {
+      System.out.println(e);
+      return null;
+    }
+  }
   /**
    * Luu du lieu san pham duoc nhap vao trong csdl.
    * @param hangHoa hang hoa duoc nhap vao
@@ -121,6 +147,103 @@ public class QuanLy extends NhanVien {
       e.printStackTrace();
     }
     
+    
+  }
+
+  /**
+   * Luu du lieu nha cung cap moi vao csdl.
+   * @param ncc doi tuong nha cung cap moi
+   */
+  
+  public void addNhaCungCap(NhaCungCap ncc) {
+    String sql = "insert into nha_cung_cap_tb (id, name, address, mail, phone_no) values (null, '" 
+        + ncc.getTenNhaCungCap() + "', '" + ncc.getDiaChia() + "', '" + ncc.getEmail() + "', '" 
+        + ncc.getSoDienThoai() + "')";
+    try {
+      new KetNoiCsdl().getStatement().executeUpdate(sql);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  /**
+   * Lay danh sach nha cung cap tu csdl.
+   * @return vector luu du lieu
+   */
+  
+  public Vector<String[]> getDanhSachNhaCungCap() {
+    String sql = "select * from nha_cung_cap_tb";
+    KetNoiCsdl con = new KetNoiCsdl();
+    ResultSet result;
+    Vector<String[]> vector = new Vector<>();
+    try {
+      result = con.getStatement().executeQuery(sql);
+      while (result.next()) {
+        String[] str = {"" + result.getInt(1), result.getString(2), result.getString(3),
+            result.getString(4), result.getString(5)};
+        vector.add(str);
+      }
+      return vector;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+    
+  }
+  
+  /**
+   * tra luong nhan vien.
+   * @param listNhanVien danh sach nhan vien
+   */
+  
+  public void traLuongNhanVien(ArrayList<NhanVien> listNhanVien) {
+    ArrayList<LichSuLamViec> list = listNhanVien.get(0).getLsLamViec();
+    int index = list.size();
+    LichSuLamViec ls = list.get(index - 1);
+    if (ls.getNgayBatDau().toString().equals(new MyDate(new Date()).toString())) {
+      JOptionPane.showMessageDialog(null, "Ban vua thuc hien tra luong");
+      return;
+    }
+    for (NhanVien nv : listNhanVien) {
+      nv.traLuong();
+      nv.batDauThangLamViecMoi();
+    }
+    try {
+      this.inBangLuong(listNhanVien);
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
+  /**
+   * in bang luong nhan vien.
+   * @param listNhanVien danh sach nhan vien
+   * @throws IOException bao loi
+   */
+  
+  public void inBangLuong(ArrayList<NhanVien> listNhanVien) throws IOException {
+    BufferedWriter writer = null;
+    LichSuLamViec ls = new LichSuLamViec();
+    try {
+      writer = new BufferedWriter(new FileWriter("D:\\bangLuong.txt"));
+      for (NhanVien nv : listNhanVien) {
+        ls = nv.getLsLamViec().get(nv.getLsLamViec().size() - 2);
+        writer.write(nv.getIdNhanVien());
+        writer.write("+++++");
+        writer.write(nv.getTenNhanVien());
+        writer.write("+++++");
+        writer.write("" + ls.getLuongThoiDiem());
+        writer.write("+++++");
+        writer.write(ls.getSoCaLamViec());
+        writer.write("+++++");
+        writer.newLine();;
+      }
+    } catch (IOException ex) {
+      System.out.println(ex);
+    } finally {
+      writer.close();
+    }
     
   }
 }

@@ -2,7 +2,6 @@ package main;
 
 import java.awt.EventQueue;
 import java.sql.SQLException;
-
 import model.KetNoiCsdl;
 import view.DangNhapView;
 
@@ -28,7 +27,8 @@ public class Main {
       }
     });
  
-   
+  
+    
   }
 
   /**

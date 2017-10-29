@@ -1,6 +1,7 @@
 package view;
 
 import controller.CapNhapDsNhanVienController;
+import controller.TraLuongNhanVienController;
 import controller.XemThongTinNhanVienController;
 
 import java.awt.Container;
@@ -60,6 +61,11 @@ public class QuanLyNhanVienView {
     btnInfo.setBounds(280, 426, 117, 25);
     contentPane.add(btnInfo);
     btnInfo.addActionListener(new XemThongTinNhanVienController(bangNhanVienView));
+    
+    JButton btnPaySalary = new JButton("Pay salary");
+    btnPaySalary.setBounds(410, 426, 117, 25);
+    contentPane.add(btnPaySalary);
+    btnPaySalary.addActionListener(new TraLuongNhanVienController());
     
     JButton btnBack = new JButton("Back");
     btnBack.addActionListener(new ActionListener() {
