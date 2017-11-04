@@ -2,22 +2,24 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
-public class HangHoa {
+public class Hh {
   private int maHangHoa;
   private String tenSanPham;
   private int giaSanPham;
   private String nhaSanXuat;
   private int maNhaCungCap;
- 
-
-  private MyDate ngaySanXuat;
-  private MyDate ngayHetHan;
+  private Date ngaySanXuat;
+  private Date ngayHetHan;
   private int soLuongHienCo;
   private int soLuongDaBan;
   
-  public HangHoa() {
+  public Hh() {
     
   }
   
@@ -61,19 +63,19 @@ public class HangHoa {
     this.nhaSanXuat = nhaSanXuat;
   }
   
-  public MyDate getNgaySanXuat() {
+  public Date getNgaySanXuat() {
     return ngaySanXuat;
   }
   
-  public void setNgaySanXuat(MyDate ngaySanXuat) {
+  public void setNgaySanXuat(Date ngaySanXuat) {
     this.ngaySanXuat = ngaySanXuat;
   }
   
-  public MyDate getNgayHetHan() {
+  public Date getNgayHetHan() {
     return ngayHetHan;
   }
   
-  public void setNgayHetHan(MyDate ngayHetHan) {
+  public void setNgayHetHan(Date ngayHetHan) {
     this.ngayHetHan = ngayHetHan;
   }
   
@@ -95,9 +97,10 @@ public class HangHoa {
   
   /**
    * Phuong thuc lay du lieu cua san pham tu csdl.
+   * @throws ParseException e
    */
   
-  public void loadHangHoa() {
+  public void loadHangHoa() throws ParseException {
     String sql = "select name, price, producer, produce_date, expire_date, remain_amount,"
         + " sold_amount, id_nha_cung_cap from goods_tb as g, import_bill_tb as i where g.code "
         + "= i.code and g.code = " + this.maHangHoa;
@@ -108,8 +111,11 @@ public class HangHoa {
         this.giaSanPham = result.getInt(2);
         this.nhaSanXuat = result.getString(3);
         this.maNhaCungCap = result.getInt(8);
-        this.ngaySanXuat = new MyDate(result.getString(4));
-        this.ngayHetHan = new MyDate(result.getString(5));
+        //to do///
+        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+        this.ngaySanXuat = df.parse(result.getString(4));
+        this.ngayHetHan = df.parse(result.getString(5));
         this.soLuongHienCo = result.getInt(6);
         this.soLuongDaBan = result.getInt(7);
       }

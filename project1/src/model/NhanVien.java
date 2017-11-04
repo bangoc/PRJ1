@@ -2,6 +2,9 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
@@ -11,13 +14,13 @@ public class NhanVien {
   private String tenNhanVien;
   private int tuoiNhanVien;
   private String gioiTinh;
-  private MyDate ngaySinh;
-  private MyDate ngayVaoLam;
+  private Date ngaySinh;
+  private Date ngayVaoLam;
   private int luongCoBan;
   private ArrayList<LichSuLamViec> lsLamViec;
   
   public NhanVien() {
-
+    this.lsLamViec = new ArrayList<>();
   }
 
   
@@ -62,19 +65,19 @@ public class NhanVien {
     this.gioiTinh = gioiTinh;
   }
 
-  public MyDate getNgaySinh() {
+  public Date getNgaySinh() {
     return ngaySinh;
   }
 
-  public void setNgaySinh(MyDate ngaySinh) {
+  public void setNgaySinh(Date ngaySinh) {
     this.ngaySinh = ngaySinh;
   }
 
-  public MyDate getNgayVaoLam() {
+  public Date getNgayVaoLam() {
     return ngayVaoLam;
   }
 
-  public void setNgayVaoLam(MyDate ngayVaoLam) {
+  public void setNgayVaoLam(Date ngayVaoLam) {
     this.ngayVaoLam = ngayVaoLam;
   }
 
@@ -87,9 +90,10 @@ public class NhanVien {
   }
   /**
    * Phuong thuc nay lay du lieu thong tin cua nhanVien theo id cua nhanVien tu csdl.
+   * @throws ParseException e
    */
   
-  public void loadNhanVien() {
+  public void loadNhanVien() throws ParseException {
     // code here to get data from database
     String sql = "select * from employeeinfo_tb where id = " + this.idNhanVien;
     KetNoiCsdl con = new KetNoiCsdl();
@@ -99,8 +103,10 @@ public class NhanVien {
         this.tenNhanVien = result.getString(2);
         this.tuoiNhanVien = result.getInt(3);
         this.gioiTinh = result.getString(4);
-        this.ngaySinh = new MyDate(result.getString(5));
-        this.ngayVaoLam = new MyDate(result.getString(6));
+        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+        this.ngaySinh = df.parse(result.getString(5));
+        this.ngayVaoLam = df.parse(result.getString(6));
         this.luongCoBan = result.getInt(7);
       }
     } catch (SQLException e) {
@@ -146,14 +152,18 @@ public class NhanVien {
   
   /**
    * .
+   * @throws ParseException e
    */
   
-  public void batDauThangLamViecMoi() {
+  public void batDauThangLamViecMoi() throws ParseException {
     LichSuLamViec ls = new LichSuLamViec();
+    
     this.lsLamViec.add(ls);
+    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
     String sql = "insert into work_time_tb (id, begin_date, end_date, session_count, salary)"
-        + " values (" + this.getIdNhanVien() + ", '" + ls.getNgayBatDau().toString() 
-        + "', '99-99-9999', 0, " + this.getLuongCoBan() + ")";
+        + " values (" + this.getIdNhanVien() + ", '" + df.format(ls.getNgayBatDau()) 
+        + "', '11/11/2100', 0, " + this.getLuongCoBan() + ")";
     try {
       new KetNoiCsdl().getStatement().executeUpdate(sql);
     } catch (SQLException e) {
@@ -169,10 +179,11 @@ public class NhanVien {
   public void traLuong() {
 
     LichSuLamViec ls = this.lsLamViec.get(this.lsLamViec.size() - 1);
-    ls.setNgayKetThuc(new MyDate(new Date()));
+    ls.setNgayKetThuc(new Date());
     ls.setLuongThoiDiem(this.luongCoBan);
     KetNoiCsdl con = new KetNoiCsdl();
-    String sql1 = "update work_time_tb as w set end_date = '" + new MyDate(new Date()).toString() 
+    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+    String sql1 = "update work_time_tb as w set end_date = '" + df.format(new Date()) 
         + "'," + " salary = " + this.getLuongCoBan() + " where w.id = " + this.getIdNhanVien() 
         + " and end_date = '99-99-9999'";
     try {
@@ -186,13 +197,16 @@ public class NhanVien {
   /**
    * .
    * @return vector luu chu lich su lam viec cua nhan vien
+   * @throws ParseException e
    */
   
-  public Vector<String[]> convertVector() {
+  public Vector<String[]> vectorThongTinLichSuLamViec() throws ParseException {
     this.loadLsLamViec();
     Vector<String[]> vector = new Vector<>();
+    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
     for (LichSuLamViec ls : this.lsLamViec) {
-      String[] str = {ls.getNgayBatDau().toString(), ls.getNgayKetThuc().toString(),
+      String[] str = {df.format(ls.getNgayBatDau()), df.format(ls.getNgayKetThuc()),
           "" + ls.getSoCaLamViec(), "" + ls.getLuongThoiDiem()};
       vector.add(str);
     }
@@ -203,18 +217,20 @@ public class NhanVien {
   
   /**
    * Lay du lieu lich su lam viec cho nhan vien.
+   * @throws ParseException  e
    */
   
-  public void loadLsLamViec() {
+  public void loadLsLamViec() throws ParseException {
     String sql = "select begin_date, end_date, session_count, "
         + "salary from work_time_tb where id = " + this.idNhanVien;
-    this.lsLamViec = new ArrayList<>();
     try {
       ResultSet result = new KetNoiCsdl().getStatement().executeQuery(sql);
       while (result.next()) {
         LichSuLamViec ls = new LichSuLamViec();
-        ls.setNgayBatDau(new MyDate(result.getString(1)));
-        ls.setNgayKetThuc(new MyDate(result.getString(2)));
+        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+        ls.setNgayBatDau(df.parse(result.getString(1)));
+        ls.setNgayKetThuc(df.parse(result.getString(2)));
         ls.setSoCaLamViec(result.getInt(3));
         ls.setLuongThoiDiem(result.getInt(4));
         this.lsLamViec.add(ls);

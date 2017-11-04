@@ -1,33 +1,43 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LichSuLamViec {
-  private MyDate ngayBatDau;
-  private MyDate ngayKetThuc;
+  private Date ngayBatDau;
+  private Date ngayKetThuc;
   private int luongThoiDiem;
   private int soCaLamViec;
   
-  public LichSuLamViec() {
-    this.ngayBatDau = new MyDate(new Date());
-    this.ngayKetThuc = new MyDate("99-99-9999");
+  /**
+   * Constructor.
+   * @throws ParseException e
+   */
+  
+  public LichSuLamViec() throws ParseException {
+    this.ngayBatDau = new Date();
+    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+    this.ngayKetThuc = df.parse("11/11/2100");
     this.luongThoiDiem = 0;
     this.soCaLamViec = 0;
   }
 
-  public MyDate getNgayBatDau() {
+  public Date getNgayBatDau() {
     return ngayBatDau;
   }
 
-  public void setNgayBatDau(MyDate ngayBatDau) {
+  public void setNgayBatDau(Date ngayBatDau) {
     this.ngayBatDau = ngayBatDau;
   }
 
-  public MyDate getNgayKetThuc() {
+  public Date getNgayKetThuc() {
     return ngayKetThuc;
   }
 
-  public void setNgayKetThuc(MyDate ngayKetThuc) {
+  public void setNgayKetThuc(Date ngayKetThuc) {
     this.ngayKetThuc = ngayKetThuc;
   }
 

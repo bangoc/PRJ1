@@ -2,10 +2,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 
-import model.MyDate;
 import model.NhanVien;
 import model.QuanLy;
 import view.ThemNhanVienView;
@@ -49,9 +51,11 @@ public class ThemNhanVienController implements ActionListener {
       return;
     }
     try {
-      nhanVien.setNgaySinh(new MyDate(view.getTxtNgaySinh().getText()));
-      nhanVien.setNgayVaoLam(new MyDate(view.getTxtNgayVaoLam().getText()));
-    } catch (NumberFormatException e) {
+      DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+      nhanVien.setNgaySinh(df.parse(view.getTxtNgaySinh().getText()));
+      nhanVien.setNgayVaoLam(df.parse(view.getTxtNgayVaoLam().getText()));
+    } catch (ParseException e) {
       JOptionPane.showMessageDialog(null, "Ban phai nhap ngay dinh dang dd/mm/yyyy" + e);
       return;
     } catch (ArrayIndexOutOfBoundsException e) {
@@ -64,7 +68,12 @@ public class ThemNhanVienController implements ActionListener {
       JOptionPane.showMessageDialog(null, "Ban phai nhap vao so" + e);
       return;
     }
-    new QuanLy().themNhanVien(nhanVien);
+    try {
+      new QuanLy().themNhanVien(nhanVien);
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     new QuanLy().taoTaiKhoanDangNhapChoNhanVien(nhanVien);
     view.getFrame().setVisible(false);
   }

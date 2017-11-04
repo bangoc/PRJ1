@@ -2,11 +2,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 
-import model.HangHoa;
-import model.MyDate;
+import model.Hh;
 import model.NhaCungCap;
 import model.QuanLy;
 import view.ThemHangHoaView;
@@ -20,7 +22,7 @@ public class ThemHangHoaController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    HangHoa hangHoa = new HangHoa();
+    Hh hangHoa = new Hh();
     //xu li ten san pham
     String tenSanPham = themHangHoaView.getTxtName().getText();
     if (tenSanPham.isEmpty()) {
@@ -75,9 +77,14 @@ public class ThemHangHoaController implements ActionListener {
     }
     //xu li ngay san xuat va ngay het han
     try {
-      hangHoa.setNgaySanXuat(new MyDate(themHangHoaView.getTxtProduceDate().getText()));
-      hangHoa.setNgayHetHan(new MyDate(themHangHoaView.getTxtExpireDate().getText()));
+      DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+      hangHoa.setNgaySanXuat(df.parse(themHangHoaView.getTxtProduceDate().getText()));
+      hangHoa.setNgayHetHan(df.parse(themHangHoaView.getTxtExpireDate().getText()));
     } catch (NumberFormatException ex) {
+      JOptionPane.showMessageDialog(null, "Ban phai nhap time dang dd/mm/yyyy");
+      return;
+    } catch (ParseException ex) {
       JOptionPane.showMessageDialog(null, "Ban phai nhap time dang dd/mm/yyyy");
       return;
     } catch (ArrayIndexOutOfBoundsException ex) {
