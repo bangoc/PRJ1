@@ -50,7 +50,7 @@ public class Employee {
     this.dateOfBirth = dateOfBirth;
   }
 
-  public String getDiaChi() {
+  public String getAddress() {
     return address;
   }
 
@@ -96,8 +96,7 @@ public class Employee {
    */
   
   public String[] toArrayString() {
-    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
-
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     String[] array = {"" + this.idNumber, this.name, this.sex, 
         df.format(this.dateOfBirth), this.address, this.phoneNumber, "" + this.coefficientsSalary, 
         "Employee"};

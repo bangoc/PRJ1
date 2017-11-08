@@ -34,7 +34,7 @@ public class WorkHistory {
    */
   
   public String[] toArrayString() {
-    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     String[] array = {df.format(paidTime), "" + this.salary};
     return array;
   }

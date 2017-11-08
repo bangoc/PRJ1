@@ -7,7 +7,6 @@ public class ExportReceipt {
   private int code;
   private SalesPerson salesPerson;
   private LinkedHashMap<Product, Integer[]> listItem;
-  private int total;
   private Date time;
   
   public ExportReceipt() {
@@ -38,13 +37,6 @@ public class ExportReceipt {
     this.listItem = listItem;
   }
 
-  public int getTotal() {
-    return total;
-  }
-
-  public void setTotal(int donGia) {
-    this.total = donGia;
-  }
 
   public Date getTime() {
     return time;

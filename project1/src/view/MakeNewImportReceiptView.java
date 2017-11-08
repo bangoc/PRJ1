@@ -1,0 +1,188 @@
+package view;
+
+import controller.AddNewSupplierViewController;
+import controller.CancelMakingNewImportReceiptController;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+
+public class MakeNewImportReceiptView {
+
+  private JFrame frame;
+  private JTextField txtName;
+  private JTextField txtPrice;
+  private JTextField txtProducer;
+  private JTextField txtImportPrice;
+  private JTextField txtExpireDate;
+  private JTextField txtProduceDate;
+  private JTextField txtAmount;
+  private JComboBox<String> comboBox;
+
+  public MakeNewImportReceiptView() {
+    initialize();
+  }
+
+  /**
+   * Initialize the contents of the frame.
+   */
+  private void initialize() {
+    frame = new JFrame();
+    frame.setBounds(80, 40, 1500, 800);
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    frame.getContentPane().setLayout(null);
+    frame.setVisible(true);
+    
+    JLabel lblNewLabel = new JLabel("Import Receipt");
+    lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    lblNewLabel.setBounds(96, 11, 719, 44);
+    frame.getContentPane().add(lblNewLabel);
+    
+    JLabel lblName = new JLabel("Name");
+    lblName.setBounds(65, 99, 150, 22);
+    frame.getContentPane().add(lblName);
+    
+    txtName = new JTextField();
+    txtName.setBounds(265, 99, 420, 22);
+    frame.getContentPane().add(txtName);
+    txtName.setColumns(10);
+    
+    JButton btnInsert = new JButton("Insert");
+    btnInsert.setEnabled(false);
+    btnInsert.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg0) {
+      }
+    });
+    btnInsert.setBounds(65, 231, 89, 23);
+    frame.getContentPane().add(btnInsert);
+    
+    JScrollPane scrollPane = new JScrollPane();
+    scrollPane.setBounds(65, 265, 1295, 306);
+    frame.getContentPane().add(scrollPane);
+    String[] columnNames =  {"Name", "Price", "Producer", "Produce Date", "Expire Date", 
+        "Amount", "Import Price"};
+    MyTable table = new MyTable(columnNames, 65, 265, 1295, 306);
+    scrollPane.setViewportView(table);
+    
+    JLabel lblSelectSupplier = new JLabel("Select Supplier");
+    lblSelectSupplier.setHorizontalAlignment(SwingConstants.LEFT);
+    lblSelectSupplier.setFont(new Font("Tahoma", Font.BOLD, 18));
+    lblSelectSupplier.setBounds(65, 582, 567, 33);
+    frame.getContentPane().add(lblSelectSupplier);
+    
+    comboBox = new JComboBox<>();
+    comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"No data"}));
+    comboBox.setBounds(65, 626, 488, 22);
+    frame.getContentPane().add(comboBox);
+    
+    JButton btnNewButton = new JButton("+");
+    btnNewButton.addActionListener(new AddNewSupplierViewController());
+    btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 23));
+    btnNewButton.setBounds(585, 626, 89, 23);
+    frame.getContentPane().add(btnNewButton);
+    
+    btnInsert.setEnabled(true);
+    
+    JButton btnCreate = new JButton("Create");
+    btnCreate.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg0) {
+
+      }
+    });
+    btnCreate.setBounds(65, 683, 89, 23);
+    frame.getContentPane().add(btnCreate);
+    
+    txtPrice = new JTextField();
+    txtPrice.setColumns(10);
+    txtPrice.setBounds(940, 99, 420, 22);
+    frame.getContentPane().add(txtPrice);
+    
+    JLabel lblPrice = new JLabel("Price");
+    lblPrice.setBounds(729, 99, 150, 22);
+    frame.getContentPane().add(lblPrice);
+    
+    JLabel lblProducer = new JLabel("Producer");
+    lblProducer.setBounds(65, 132, 150, 22);
+    frame.getContentPane().add(lblProducer);
+    
+    JLabel lblImportPrice = new JLabel("Import Price");
+    lblImportPrice.setBounds(65, 165, 150, 22);
+    frame.getContentPane().add(lblImportPrice);
+    
+    txtProducer = new JTextField();
+    txtProducer.setColumns(10);
+    txtProducer.setBounds(265, 132, 420, 22);
+    frame.getContentPane().add(txtProducer);
+    
+    txtImportPrice = new JTextField();
+    txtImportPrice.setColumns(10);
+    txtImportPrice.setBounds(265, 165, 420, 22);
+    frame.getContentPane().add(txtImportPrice);
+    
+    JLabel lblProducerDate = new JLabel("Producer Date\r\n");
+    lblProducerDate.setBounds(729, 132, 150, 22);
+    frame.getContentPane().add(lblProducerDate);
+    
+    JLabel lblExpireDate = new JLabel("Expire Date");
+    lblExpireDate.setBounds(729, 165, 150, 22);
+    frame.getContentPane().add(lblExpireDate);
+    
+    txtExpireDate = new JTextField();
+    txtExpireDate.setToolTipText("dd/mm/yyyy");
+    txtExpireDate.setColumns(10);
+    txtExpireDate.setBounds(940, 165, 420, 22);
+    frame.getContentPane().add(txtExpireDate);
+    
+    txtProduceDate = new JTextField();
+    txtProduceDate.setToolTipText("dd/mm/yyyy");
+    txtProduceDate.setColumns(10);
+    txtProduceDate.setBounds(940, 132, 420, 22);
+    frame.getContentPane().add(txtProduceDate);
+    
+    JLabel lblAmount = new JLabel("Amount");
+    lblAmount.setBounds(65, 198, 150, 22);
+    frame.getContentPane().add(lblAmount);
+    
+    txtAmount = new JTextField();
+    txtAmount.setColumns(10);
+    txtAmount.setBounds(265, 198, 420, 22);
+    frame.getContentPane().add(txtAmount);
+    
+    JLabel lblInputProductsInformation = new JLabel("Input product's information into Cells below");
+    lblInputProductsInformation.setFont(new Font("Tahoma", Font.PLAIN, 15));
+    lblInputProductsInformation.setBounds(65, 66, 490, 22);
+    frame.getContentPane().add(lblInputProductsInformation);
+    
+    JButton btnCancel = new JButton("Cancel");
+    btnCancel.setBounds(185, 683, 89, 23);
+    btnCancel.addActionListener(new CancelMakingNewImportReceiptController(frame));
+    frame.getContentPane().add(btnCancel);
+    
+    
+  }
+
+  public JFrame getFrame() {
+    return frame;
+  }
+
+  public void setFrame(JFrame frame) {
+    this.frame = frame;
+  }
+
+  public JComboBox<String> getComboBox() {
+    return comboBox;
+  }
+
+  public void setComboBox(JComboBox<String> comboBox) {
+    this.comboBox = comboBox;
+  }
+}

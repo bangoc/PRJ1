@@ -70,7 +70,7 @@ public class Product {
    */
   
   public String[] toArrayString() {
-    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     String[] array = {"" + this.idNumber, this.name, "" + this.price, this.producer, 
         df.format(this.produceTime), df.format(this.expireTime)};
     return array;

@@ -8,7 +8,6 @@ public class ImportReceipt {
   private Manager importer;
   private Supplier supplier;
   private LinkedHashMap<Product, Integer[]> listItem;
-  private int total;
   private Date time;
   
   public ImportReceipt() {
@@ -45,14 +44,6 @@ public class ImportReceipt {
 
   public void setListItem(LinkedHashMap<Product, Integer[]> listItem) {
     this.listItem = listItem;
-  }
-
-  public int getTotal() {
-    return total;
-  }
-
-  public void setTotal(int total) {
-    this.total = total;
   }
 
   public Date getTime() {

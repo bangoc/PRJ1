@@ -3,6 +3,7 @@ package mdl;
 public class Supplier {
   private int idNumber;
   private String name;
+  private String address;
   private String email;
   private String phoneNumber;
   
@@ -25,7 +26,15 @@ public class Supplier {
   public void setName(String name) {
     this.name = name;
   }
-
+  
+  public String getAddress() {
+    return address;
+  }
+  
+  public void setAddress(String address) {
+    this.address = address;
+  }
+  
   public String getEmail() {
     return email;
   }
@@ -48,7 +57,9 @@ public class Supplier {
    */
   
   public String[] toArrayString() {
-    String[] array = {"" + this.idNumber, this.name, this.email, this.phoneNumber};
+    String[] array = {"" + this.idNumber, this.address, this.name, this.email, this.phoneNumber};
     return array;
   }
+
+ 
 }

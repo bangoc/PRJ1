@@ -2,7 +2,6 @@ package mdl;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Manager extends Employee {
   private int commission;
@@ -46,14 +45,6 @@ public class Manager extends Employee {
     receipt.setListItem(listItem);
     receipt.setImporter(this);
     receipt.setTime(new Date());
-   
-    
-    int total = 0;
-    
-    for (Map.Entry<Product, Integer[]> pair : listItem.entrySet()) {
-      total += pair.getValue()[0] * pair.getValue()[1];
-    }
-    receipt.setTotal(total);
     return receipt;
     
   }
@@ -61,7 +52,7 @@ public class Manager extends Employee {
   @Override
   public String[] toArrayString() {
     String[] array = super.toArrayString();
-    array[array.length - 1] = "Manager";
+    array[7] = "Manager";
     return array;
   }
 

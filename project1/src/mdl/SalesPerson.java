@@ -1,8 +1,9 @@
 package mdl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class SalesPerson extends Employee {
   private int subsidy;
@@ -42,19 +43,16 @@ public class SalesPerson extends Employee {
     receipt.setSalesPerson(this);
     receipt.setTime(new Date());
     
-    int total = 0;
-    for (Map.Entry<Product, Integer[]> pair : listItem.entrySet()) {
-      total += pair.getValue()[0] * pair.getValue()[1];
-    }
-    receipt.setTotal(total);
     return receipt;
     
   }
   
   @Override
   public String[] toArrayString() {
-    String[] array = super.toArrayString();
-    array[array.length - 1] = "Sale Staff";
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    String[] array = {"" + this.getIdNumber(), this.getName(), this.getSex(), 
+        df.format(this.getDateOfBirth()), this.getAddress(), this.getPhoneNumber(),
+        "" + this.getCoefficientsSalary(), "Salesman"};
     return array;
   }
 }

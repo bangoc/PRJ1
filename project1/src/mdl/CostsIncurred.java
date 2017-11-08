@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CostsIncurred {
+  private int idNumber;
   private String name;
   private int total;
   private Date time;
@@ -12,7 +13,15 @@ public class CostsIncurred {
   public CostsIncurred() {
     
   }
-
+  
+  public int getIdNumber() {
+    return idNumber;
+  }
+  
+  public void setIdNumber(int idNumber) {
+    this.idNumber = idNumber;
+  }
+  
   public String getName() {
     return name;
   }
@@ -43,8 +52,8 @@ public class CostsIncurred {
    */
   
   public String[] toArrayString() {
-    DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
-    String[] array = {this.name, "" + this.total, df.format(this.time)};
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    String[] array = {"" + this.idNumber, this.name, "" + this.total, df.format(this.time)};
     return array;
   }
   
