@@ -470,5 +470,14 @@ public class Loader {
     return receiptList;
   }
   
+  public static String loadLinkPathImportReceipt() throws SQLException {
+    String sql = "select path from import_path where id = 1";
+    ResultSet result = new ConnectDatabase().getStatement().executeQuery(sql);
+    String path = "";
+    while (result.next()) {
+      path = result.getString(1);
+    }
+    return path;
+  }
   
 }

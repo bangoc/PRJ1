@@ -240,4 +240,9 @@ public class Saver {
     String sql = "insert into market (name) values ('" + market.getName() + "')";
     new ConnectDatabase().getStatement().executeUpdate(sql);
   }
+  
+  public static void saveLinkPathForExportReceipt(String link) throws SQLException {
+    String sql = "update import_path set path = '" + link + "' where id = 1";
+    new ConnectDatabase().getStatement().executeUpdate(sql);
+  }
 }

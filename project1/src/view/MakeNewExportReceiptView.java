@@ -112,7 +112,7 @@ public class MakeNewExportReceiptView {
     txtLocation.setBounds(210, 372, 200, 30);
     frame.getContentPane().add(txtLocation);
     
-    JButton btnChoose = new JButton("Choose");
+    JButton btnChoose = new JButton("New");
     btnChoose.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnChoose.setBounds(415, 372, 72, 30);
     btnChoose.addActionListener(new ChooseFileSaveDestinationController(this));

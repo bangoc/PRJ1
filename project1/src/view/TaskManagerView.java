@@ -2,8 +2,11 @@ package view;
 
 import controller.NavigateToManageEmployeeViewController;
 import controller.NavigateToManageProductViewController;
+import model.Loader;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,7 +44,16 @@ public class TaskManagerView {
       
       @Override
       public void actionPerformed(ActionEvent e) {
-        new MakeNewExportReceiptView();
+        MakeNewExportReceiptView view = new MakeNewExportReceiptView();
+        try {
+          System.out.println("dd");
+          String path = Loader.loadLinkPathImportReceipt();
+          System.out.println(path);
+          view.getTxtLocation().setText(path);
+          System.out.println(path);
+        } catch (SQLException e1) {
+          view.getTxtLocation().setText(null);
+        }
         frame.dispose();
         
       }
