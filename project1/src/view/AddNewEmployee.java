@@ -2,6 +2,8 @@
 package view;
 
 import controller.AddNewEmployeeController;
+import controller.ChooseImageFileForNewEmployeeController;
+
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -28,6 +30,8 @@ public class AddNewEmployee {
   private JComboBox<String> comboBox;
   private JLabel lblInput;
   private JTextField txtInput;
+  private JTextField txtLink;
+  private JLabel lblImage;
   
   public AddNewEmployee() {
     initialize();
@@ -124,15 +128,28 @@ public class AddNewEmployee {
   }
 
 
+  public JTextField getTxtLink() {
+    return txtLink;
+  }
+
+
+  public void setTxtLink(JTextField txtLink) {
+    this.txtLink = txtLink;
+  }
+
+
   /**
    * Initialize the contents of the frame.
    */
   private void initialize() {
     frame = new JFrame();
-    frame.setBounds(450, 200, 700, 500);
+
+    frame.setBounds(350, 200, 900, 500);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
+    
+  
     
     Container container = frame.getContentPane();
     Font font = new Font("Dialog", Font.BOLD, 15);
@@ -238,6 +255,21 @@ public class AddNewEmployee {
     });
     frame.getContentPane().add(comboBox);
     
+    lblImage = new JLabel("No Image");
+    lblImage.setBounds(600, 60, 280, 285);
+    frame.getContentPane().add(lblImage);
+    
+    txtLink = new JTextField();
+    txtLink.setBounds(600, 300, 200, 25);
+    txtLink.setFont(new Font("Dialog", Font.BOLD, 15));
+    frame.getContentPane().add(txtLink);
+    
+    JButton btnBrowse = new JButton("New");
+    btnBrowse.setBounds(810, 300, 80, 25);
+    btnBrowse.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnBrowse.addActionListener(new ChooseImageFileForNewEmployeeController(this));
+    frame.getContentPane().add(btnBrowse);
+    
     JButton btnAdd = new JButton("Add");
     btnAdd.setBounds(50, 440, 150, 25);
     btnAdd.setFont(font);
@@ -258,6 +290,16 @@ public class AddNewEmployee {
     container.add(btnBack);
     
     btnAdd.addActionListener(new AddNewEmployeeController(this));
+  }
+
+
+  public JLabel getLblImage() {
+    return lblImage;
+  }
+
+
+  public void setLblImage(JLabel lblImage) {
+    this.lblImage = lblImage;
   }
 
 }
