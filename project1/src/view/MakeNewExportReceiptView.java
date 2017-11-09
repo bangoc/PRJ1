@@ -100,6 +100,11 @@ public class MakeNewExportReceiptView {
     lblSellPrice.setBounds(88, 288, 141, 30);
     frame.getContentPane().add(lblSellPrice);
     
+    JLabel lblLocation = new JLabel("Location");
+    lblLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
+    lblLocation.setBounds(88, 320, 141, 30);
+    frame.getContentPane().add(lblLocation);
+    
     txtId = new JTextField();
     txtId.setBounds(255, 123, 277, 30);
     frame.getContentPane().add(txtId);
