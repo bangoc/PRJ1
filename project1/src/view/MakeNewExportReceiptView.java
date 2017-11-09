@@ -1,5 +1,6 @@
 package view;
 
+import controller.ChooseFileSaveDestinationController;
 import controller.CreateNewExportReceiptController;
 import controller.DeleteItemFromExportReceiptController;
 import controller.InsertItemToExportReceiptController;
@@ -22,6 +23,7 @@ public class MakeNewExportReceiptView {
   private JTextField txtAmount;
   private JTextField txtPrice;
   private JLabel lblTotalPrice;
+  private JTextField txtLocation;
 
   public JFrame getFrame() {
     return frame;
@@ -87,37 +89,48 @@ public class MakeNewExportReceiptView {
     
     JLabel lblId = new JLabel("ID");
     lblId.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblId.setBounds(88, 122, 141, 30);
+    lblId.setBounds(88, 122, 120, 30);
     frame.getContentPane().add(lblId);
     
     JLabel lblAmount = new JLabel("AMOUNT");
     lblAmount.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblAmount.setBounds(88, 204, 141, 30);
+    lblAmount.setBounds(88, 204, 120, 30);
     frame.getContentPane().add(lblAmount);
     
     JLabel lblSellPrice = new JLabel("Sell Price");
     lblSellPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblSellPrice.setBounds(88, 288, 141, 30);
+    lblSellPrice.setBounds(88, 288, 120, 30);
     frame.getContentPane().add(lblSellPrice);
     
     JLabel lblLocation = new JLabel("Location");
     lblLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblLocation.setBounds(88, 320, 141, 30);
+    lblLocation.setBounds(88, 372, 120, 30);
     frame.getContentPane().add(lblLocation);
     
+    txtLocation = new JTextField();
+    txtLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
+    txtLocation.setBounds(210, 372, 200, 30);
+    frame.getContentPane().add(txtLocation);
+    
+    JButton btnChoose = new JButton("Choose");
+    btnChoose.setFont(new Font("Tahoma", Font.BOLD, 15));
+    btnChoose.setBounds(415, 372, 72, 30);
+    btnChoose.addActionListener(new ChooseFileSaveDestinationController(this));
+    frame.getContentPane().add(btnChoose);
+    
     txtId = new JTextField();
-    txtId.setBounds(255, 123, 277, 30);
+    txtId.setBounds(210, 123, 277, 30);
     frame.getContentPane().add(txtId);
     txtId.setColumns(10);
     
     txtAmount = new JTextField();
     txtAmount.setColumns(10);
-    txtAmount.setBounds(255, 206, 277, 30);
+    txtAmount.setBounds(210, 206, 277, 30);
     frame.getContentPane().add(txtAmount);
     
     txtPrice = new JTextField();
     txtPrice.setColumns(10);
-    txtPrice.setBounds(255, 290, 277, 30);
+    txtPrice.setBounds(210, 290, 277, 30);
     frame.getContentPane().add(txtPrice);
     
     JScrollPane scrollPane = new JScrollPane();
@@ -130,13 +143,13 @@ public class MakeNewExportReceiptView {
     
     JButton btnInsert = new JButton("Insert");
     btnInsert.setFont(new Font("Tahoma", Font.BOLD, 15));
-    btnInsert.setBounds(88, 396, 163, 30);
+    btnInsert.setBounds(88, 470, 163, 30);
     btnInsert.addActionListener(new InsertItemToExportReceiptController(this));
     frame.getContentPane().add(btnInsert);
     
     JButton btnDelete = new JButton("Delete");
     btnDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
-    btnDelete.setBounds(88, 474, 163, 30);
+    btnDelete.setBounds(88, 580, 163, 30);
     btnDelete.addActionListener(new DeleteItemFromExportReceiptController(this));
     frame.getContentPane().add(btnDelete);
     
@@ -148,7 +161,7 @@ public class MakeNewExportReceiptView {
     
     JButton btnBack = new JButton("Back");
     btnBack.setFont(new Font("Tahoma", Font.BOLD, 15));
-    btnBack.setBounds(88, 555, 164, 30);
+    btnBack.setBounds(88, 690, 164, 30);
     frame.getContentPane().add(btnBack);
     
     JLabel lblTotal = new JLabel("Total :");
@@ -167,6 +180,14 @@ public class MakeNewExportReceiptView {
     lblVnd.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblVnd.setBounds(1308, 565, 37, 40);;
     frame.getContentPane().add(lblVnd);
+  }
+
+  public JTextField getTxtLocation() {
+    return txtLocation;
+  }
+
+  public void setTxtLocation(JTextField txtLocation) {
+    this.txtLocation = txtLocation;
   }
 
   public JLabel getLblTotalPrice() {
