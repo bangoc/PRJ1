@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
-public class AddNewEmployee {
+public class AddNewEmpployeeView {
 
   private JFrame frame;
   private JTextField txtName;
@@ -33,7 +33,7 @@ public class AddNewEmployee {
   private JTextField txtLink;
   private JLabel lblImage;
   
-  public AddNewEmployee() {
+  public AddNewEmpployeeView() {
     initialize();
   }
   
@@ -230,6 +230,7 @@ public class AddNewEmployee {
     txtInput.setFont(font);
     txtInput.setBounds(210, 340, 200, 25);
     txtInput.setVisible(false);
+    txtInput.setText("0");
     frame.getContentPane().add(txtInput);
     
     comboBox = new JComboBox<>();
@@ -256,13 +257,15 @@ public class AddNewEmployee {
     frame.getContentPane().add(comboBox);
     
     lblImage = new JLabel("No Image");
-    lblImage.setBounds(600, 60, 280, 285);
+    lblImage.setBounds(600, 60, 280, 230);
     frame.getContentPane().add(lblImage);
     
     txtLink = new JTextField();
     txtLink.setBounds(600, 300, 200, 25);
     txtLink.setFont(new Font("Dialog", Font.BOLD, 15));
+    txtLink.setEditable(false);
     frame.getContentPane().add(txtLink);
+    
     
     JButton btnBrowse = new JButton("New");
     btnBrowse.setBounds(810, 300, 80, 25);
@@ -288,8 +291,6 @@ public class AddNewEmployee {
       }
     });
     container.add(btnBack);
-    
-    btnAdd.addActionListener(new AddNewEmployeeController(this));
   }
 
 

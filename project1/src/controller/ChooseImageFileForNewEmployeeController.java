@@ -2,15 +2,21 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-import view.AddNewEmployee;
+import view.AddNewEmpployeeView;
 
 public class ChooseImageFileForNewEmployeeController implements ActionListener {
-  private AddNewEmployee view;
+  private AddNewEmpployeeView view;
   
-  public ChooseImageFileForNewEmployeeController(AddNewEmployee addNewEmployee) {
+  public ChooseImageFileForNewEmployeeController(AddNewEmpployeeView addNewEmployee) {
     this.view = addNewEmployee;
   }
 
@@ -21,7 +27,17 @@ public class ChooseImageFileForNewEmployeeController implements ActionListener {
       String link = chooser.getSelectedFile().getAbsolutePath();
       view.getTxtLink().setText(link);
       JLabel lblImage = view.getLblImage();
-      lblImage.setText(link);
+      BufferedImage img;
+      try {
+        img = ImageIO.read(chooser.getSelectedFile());
+        lblImage.setIcon(new ImageIcon(img));
+
+      } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Access file error!");
+        e.printStackTrace();
+      }
+     
+      
     } else {
       return;
     }

@@ -48,16 +48,19 @@ public class Saver {
     if (id == 0) {
       return;
     } 
+    System.out.println(id);
     employee.setIdNumber(id);
     if (employee instanceof Manager) {
+      
       String sql2 = "insert into employee_manager (id_manager, commission) values (" + id 
           + ", " + ((Manager) employee).getCommission() + ")";
       connect.getStatement().executeUpdate(sql2);
       
     } else if (employee instanceof SalesPerson) {
-      
-      String sql2 = "insert into employee_manager (id_salesman, subsidy) values (" + id 
+      System.out.println("ok salesman");
+      String sql2 = "insert into employee_salesman (id_salesman, subsidy) values (" + id 
           + ", " + ((SalesPerson) employee).getSubsidy() + ")";
+      System.out.println(sql2);
       connect.getStatement().executeUpdate(sql2);
     }
   }

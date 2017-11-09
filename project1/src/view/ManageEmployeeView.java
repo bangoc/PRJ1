@@ -50,7 +50,7 @@ public class ManageEmployeeView {
     JButton btnAdd = new JButton("Add");
     btnAdd.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
-        new AddNewEmployee();
+        new AddNewEmpployeeView();
       }
     });
     btnAdd.setBounds(150, 426, 117, 25);
