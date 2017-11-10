@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
+
 public class Employee {
   private int idNumber;
   private String name;
@@ -15,8 +17,16 @@ public class Employee {
   private int coefficientsSalary;
   private ArrayList<WorkHistory> workHistory;
   private static final int DEFAULT_SALARY = 1000000;
+  private ImageIcon image;
   
-  
+
+  public ImageIcon getImage() {
+    return image;
+  }
+
+  public void setImage(ImageIcon image) {
+    this.image = image;
+  }
 
   public int getIdNumber() {
     return idNumber;

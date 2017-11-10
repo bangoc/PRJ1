@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Blob;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -8,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
+
+import javax.swing.ImageIcon;
 
 import mdl.CostsIncurred;
 import mdl.Employee;
@@ -31,9 +35,11 @@ public class Loader {
    */
   
   public static Employee loadEmployeeById(int idNumber) throws SQLException, ParseException {
-    String sql = "select * from employee where id = " + idNumber;
+   
     ConnectDatabase connect = new ConnectDatabase();
-    ResultSet result = connect.getStatement().executeQuery(sql);
+    PreparedStatement ps = connect.getConnect().prepareStatement("select * from employee where id = ?");
+    ps.setInt(1, idNumber);
+    ResultSet result = ps.executeQuery();
     Employee employee = new Employee();
     
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -46,6 +52,9 @@ public class Loader {
       employee.setAddress(result.getString(5));
       employee.setPhoneNumber(result.getString(6));
       employee.setCoefficientsSalary(result.getInt(7));
+      Blob b=result.getBlob(8);
+      byte barr[]=b.getBytes(1,(int)b.length());
+      employee.setImage(new ImageIcon(barr));
     }
     ArrayList<WorkHistory> workHistoryList = loadWorkHistory(employee);
     employee.setWorkHistory(workHistoryList);

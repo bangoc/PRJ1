@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,24 @@ import java.util.Vector;
 
 public class ConnectDatabase {
   private Statement statement;
+  private PreparedStatement preparedStatement;
+  private Connection connect;
+  public Connection getConnect() {
+    return connect;
+  }
+
+  public void setConnect(Connection connect) {
+    this.connect = connect;
+  }
+
+  public PreparedStatement getPreparedStatement() {
+    return preparedStatement;
+  }
+
+  public void setPreparedStatement(PreparedStatement preparedStatement) {
+    this.preparedStatement = preparedStatement;
+  }
+
   private String databaseName;
   private String tenBangTaiKhoan;
   private String tenBangHoaDonXuat;
@@ -132,8 +151,9 @@ public class ConnectDatabase {
     
     try {  
       Class.forName(driverClass);  
-      Connection con = DriverManager.getConnection(url,userName,password);  
+      Connection con = DriverManager.getConnection(url,userName,password); 
       this.statement = con.createStatement();  
+      this.connect = con;
       this.databaseName = databaseName;
     } catch (ClassNotFoundException e) {
       System.out.println(e);

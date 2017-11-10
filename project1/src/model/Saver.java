@@ -1,7 +1,14 @@
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,17 +35,39 @@ public class Saver {
    * @throws SQLException  if a database access error occurs, this method is called on 
    *      a closed Statement, the given SQL statement produces a ResultSet object, the method 
    *      is called on a PreparedStatement or CallableStatement
+   * @throws ClassNotFoundException 
+   * @throws IOException 
    */
   
-  public static void saveEmployee(Employee employee) throws SQLException {
+  public static void saveEmployee(Employee employee, String link) throws SQLException, ClassNotFoundException, IOException {
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    String sql = "insert into employee (id, name, sex, birth_date, address, phone_no, "
-        + "coefficient_salary) values (null, '" + employee.getName() + "', '" + employee.getSex() 
-        + "', '" + df.format(employee.getDateOfBirth()) + "', '" + employee.getAddress() + "', '"
-        + employee.getPhoneNumber() + "', " + employee.getCoefficientsSalary() + ")";
+//    String sql = "insert into employee (id, name, sex, birth_date, address, phone_no, "
+//        + "coefficient_salary) values (null, '" + employee.getName() + "', '" + employee.getSex() 
+//        + "', '" + df.format(employee.getDateOfBirth()) + "', '" + employee.getAddress() + "', '"
+//        + employee.getPhoneNumber() + "', " + employee.getCoefficientsSalary() + ")";
+//    
+//  
     
     ConnectDatabase connect = new ConnectDatabase();
-    connect.getStatement().executeUpdate(sql);
+
+                  
+    PreparedStatement ps=connect.getConnect().prepareStatement("insert into employee values(null,?,?,?,?,?,?,?)", 
+        Statement.RETURN_GENERATED_KEYS);  
+   
+    ps.setString(1, employee.getName());
+    ps.setString(2, employee.getSex());
+    ps.setString(3, df.format(employee.getDateOfBirth()));
+    ps.setString(4, employee.getAddress());
+    ps.setString(5, employee.getPhoneNumber());
+    ps.setInt(6, employee.getCoefficientsSalary());
+      
+    FileInputStream fin=new FileInputStream(link);  
+    ps.setBinaryStream(7,fin,fin.available());  
+    
+    ps.executeUpdate();   
+    
+    
+//    connect.getStatement().executeUpdate(sql);
     String sql1 = "select max(id) from employee";
     ResultSet result = connect.getStatement().executeQuery(sql1);
     int id = 0;
@@ -60,9 +89,9 @@ public class Saver {
       System.out.println("ok salesman");
       String sql2 = "insert into employee_salesman (id_salesman, subsidy) values (" + id 
           + ", " + ((SalesPerson) employee).getSubsidy() + ")";
-      System.out.println(sql2);
       connect.getStatement().executeUpdate(sql2);
     }
+    connect.getConnect().close();
   }
   
   /**

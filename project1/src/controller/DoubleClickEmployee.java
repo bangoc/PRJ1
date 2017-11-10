@@ -56,6 +56,8 @@ public class DoubleClickEmployee implements MouseListener {
         listData.get(5).setText(employee.getPhoneNumber());
         listData.get(6).setText("" + employee.getCoefficientsSalary());
         
+        thongTinView.getLblImage().setIcon(employee.getImage());
+        
         DefaultTableModel newModel = thongTinView.getMyTable().getModel();
         for (WorkHistory history : employee.getWorkHistory()) {
           newModel.addRow(history.toArrayString());

@@ -16,6 +16,7 @@ public class EmployeeInfomationView {
   private ArrayList<JLabel> listLabel;
   private ArrayList<JLabel> listText;
   private MyTable myTable;
+  private JLabel lblImage;
   
 
   public EmployeeInfomationView() {
@@ -33,6 +34,9 @@ public class EmployeeInfomationView {
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
     
+    lblImage = new JLabel("No Image");
+    lblImage.setBounds(600, 60, 280, 230);
+    frame.getContentPane().add(lblImage);
     
     listLabel = new ArrayList<>();
     listText = new ArrayList<>();
@@ -75,6 +79,14 @@ public class EmployeeInfomationView {
     myTable = new MyTable(columnNames1, 20, 400, 1450, 300);
     con.add(myTable);
     
+  }
+
+  public JLabel getLblImage() {
+    return lblImage;
+  }
+
+  public void setLblImage(JLabel lblImage) {
+    this.lblImage = lblImage;
   }
 
   public MyTable getMyTable() {

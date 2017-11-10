@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -98,9 +99,15 @@ public class AddNewEmployeeController implements ActionListener {
       employee.setCoefficientsSalary(coefficientSalary);
       employee.setPhoneNumber(phoneNoStr);
       try {
-        Saver.saveEmployee(employee);
+        Saver.saveEmployee(employee, linkImageFile);
       } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Fail to save new Employee");
+        System.out.println(e);
+        return;
+      } catch (ClassNotFoundException e) {
+        System.out.println(e);
+        return;
+      } catch (IOException e) {
+        System.out.println(e);
         return;
       }
     } else if (index == 1) {
@@ -114,9 +121,13 @@ public class AddNewEmployeeController implements ActionListener {
       salesman.setSubsidy(input);
      
       try {
-        Saver.saveEmployee(salesman);
+        Saver.saveEmployee(salesman, linkImageFile);
       } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Fail to save new Salesman");
+        return;
+      }catch (ClassNotFoundException e) {
+        return;
+      } catch (IOException e) {
         return;
       }
     } else {
@@ -129,10 +140,14 @@ public class AddNewEmployeeController implements ActionListener {
       manager.setPhoneNumber(phoneNoStr);
       manager.setCommission(input);
       try {
-        Saver.saveEmployee(manager);
+        Saver.saveEmployee(manager, linkImageFile);
       } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Fail to save new Manager");
         return;      
+      } catch (ClassNotFoundException e) {
+        return;
+      } catch (IOException e) {
+        return;
       }
       
     }
