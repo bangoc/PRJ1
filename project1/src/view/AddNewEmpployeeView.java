@@ -144,7 +144,7 @@ public class AddNewEmpployeeView {
   private void initialize() {
     frame = new JFrame();
 
-    frame.setBounds(350, 200, 900, 500);
+    frame.setBounds(350, 100, 900, 700);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
@@ -256,19 +256,19 @@ public class AddNewEmpployeeView {
     });
     frame.getContentPane().add(comboBox);
     
-    lblImage = new JLabel("No Image");
-    lblImage.setBounds(600, 60, 280, 230);
+    lblImage = new JLabel();
+    lblImage.setBounds(600, 60, 280, 370);
     frame.getContentPane().add(lblImage);
     
     txtLink = new JTextField();
-    txtLink.setBounds(600, 300, 200, 25);
+    txtLink.setBounds(600, 465, 280, 25);
     txtLink.setFont(new Font("Dialog", Font.BOLD, 15));
     txtLink.setEditable(false);
     frame.getContentPane().add(txtLink);
     
     
-    JButton btnBrowse = new JButton("New");
-    btnBrowse.setBounds(810, 300, 80, 25);
+    JButton btnBrowse = new JButton("Browse");
+    btnBrowse.setBounds(600, 440, 280, 25);
     btnBrowse.setFont(new Font("Dialog", Font.BOLD, 15));
     btnBrowse.addActionListener(new ChooseImageFileForNewEmployeeController(this));
     frame.getContentPane().add(btnBrowse);

@@ -12,7 +12,6 @@ import java.util.Vector;
 
 public class ConnectDatabase {
   private Statement statement;
-  private PreparedStatement preparedStatement;
   private Connection connect;
   public Connection getConnect() {
     return connect;
@@ -22,13 +21,7 @@ public class ConnectDatabase {
     this.connect = connect;
   }
 
-  public PreparedStatement getPreparedStatement() {
-    return preparedStatement;
-  }
-
-  public void setPreparedStatement(PreparedStatement preparedStatement) {
-    this.preparedStatement = preparedStatement;
-  }
+  
 
   private String databaseName;
   private String tenBangTaiKhoan;

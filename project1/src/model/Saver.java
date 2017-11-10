@@ -41,17 +41,12 @@ public class Saver {
   
   public static void saveEmployee(Employee employee, String link) throws SQLException, ClassNotFoundException, IOException {
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//    String sql = "insert into employee (id, name, sex, birth_date, address, phone_no, "
-//        + "coefficient_salary) values (null, '" + employee.getName() + "', '" + employee.getSex() 
-//        + "', '" + df.format(employee.getDateOfBirth()) + "', '" + employee.getAddress() + "', '"
-//        + employee.getPhoneNumber() + "', " + employee.getCoefficientsSalary() + ")";
-//    
-//  
-    
+
     ConnectDatabase connect = new ConnectDatabase();
 
                   
-    PreparedStatement ps=connect.getConnect().prepareStatement("insert into employee values(null,?,?,?,?,?,?,?)", 
+    PreparedStatement ps;
+    ps = connect.getConnect().prepareStatement("insert into employee values(null,?,?,?,?,?,?,?)", 
         Statement.RETURN_GENERATED_KEYS);  
    
     ps.setString(1, employee.getName());
@@ -66,30 +61,24 @@ public class Saver {
     
     ps.executeUpdate();   
     
-    
-//    connect.getStatement().executeUpdate(sql);
-    String sql1 = "select max(id) from employee";
-    ResultSet result = connect.getStatement().executeQuery(sql1);
-    int id = 0;
-    while (result.next()) {
-      id = result.getInt(1);
-    }
-    if (id == 0) {
-      return;
-    } 
-    System.out.println(id);
+    ResultSet rs = ps.getGeneratedKeys();
+    rs.next();
+    int id = rs.getInt(1);
     employee.setIdNumber(id);
+    PreparedStatement ps1;
     if (employee instanceof Manager) {
       
-      String sql2 = "insert into employee_manager (id_manager, commission) values (" + id 
-          + ", " + ((Manager) employee).getCommission() + ")";
-      connect.getStatement().executeUpdate(sql2);
+      ps1 = connect.getConnect().prepareStatement("insert into employee_manager values(?, ?)");
+      ps1.setInt(1, id);
+      ps1.setInt(2, ((Manager) employee).getCommission());
+      ps1.executeUpdate();
       
     } else if (employee instanceof SalesPerson) {
-      System.out.println("ok salesman");
-      String sql2 = "insert into employee_salesman (id_salesman, subsidy) values (" + id 
-          + ", " + ((SalesPerson) employee).getSubsidy() + ")";
-      connect.getStatement().executeUpdate(sql2);
+      
+      PreparedStatement ps2 = connect.getConnect().prepareStatement("insert into employee_salesman values(?, ?)");
+      ps2.setInt(1, id);
+      ps2.setInt(2, ((SalesPerson) employee).getSubsidy());
+      ps2.executeUpdate();
     }
     connect.getConnect().close();
   }

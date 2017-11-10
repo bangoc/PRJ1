@@ -74,8 +74,7 @@ public class Loader {
         + "from employee as em, employee_manager as ma where em.id = ma.id_manager) "
         + "and id not in (select id from employee as em, employee_salesman as ma "
         + "where em.id = ma.id_salesman)";
-    ConnectDatabase connect = new ConnectDatabase();
-    ResultSet result = connect.getStatement().executeQuery(sql);
+    ResultSet result = new ConnectDatabase().getConnect().prepareStatement(sql).executeQuery();
     ArrayList<Employee> employeeList = new ArrayList<>();
     Employee employee;
     while (result.next()) {
@@ -95,9 +94,11 @@ public class Loader {
   
   public static Manager loadManagerById(int idManager) throws SQLException, ParseException {
     String sql = "select em.*, ma.commission from employee as em, employee_manager"
-        + " as ma where em.id = ma.id_manager and ma.id_manager = " + idManager;
+        + " as ma where em.id = ma.id_manager and ma.id_manager = ?";
     ConnectDatabase connect = new ConnectDatabase();
-    ResultSet result = connect.getStatement().executeQuery(sql);
+    PreparedStatement ps = connect.getConnect().prepareStatement(sql);
+    ps.setInt(1, idManager);
+    ResultSet result = ps.executeQuery();
   
     Manager manager = new Manager();
  ;
@@ -111,7 +112,10 @@ public class Loader {
       manager.setAddress(result.getString(5));
       manager.setPhoneNumber(result.getString(6));
       manager.setCoefficientsSalary(result.getInt(7));
-      manager.setCommission(result.getInt(8));
+      Blob b=result.getBlob(8);
+      byte barr[]=b.getBytes(1,(int)b.length());
+      manager.setImage(new ImageIcon(barr));
+      manager.setCommission(result.getInt(9));
       
     }
     ArrayList<WorkHistory> workHistoryList = loadWorkHistory(manager);
@@ -151,9 +155,11 @@ public class Loader {
   
   public static SalesPerson loadSalesPersonById(int idNumber) throws SQLException, ParseException {
     String sql = "select em.*, sale.subsidy from employee as em, employee_salesman "
-        + "as sale where em.id = sale.id_salesman and sale.id_salesman = " + idNumber;
+        + "as sale where em.id = sale.id_salesman and sale.id_salesman = ?";
     ConnectDatabase connect = new ConnectDatabase();
-    ResultSet result = connect.getStatement().executeQuery(sql);
+    PreparedStatement ps = connect.getConnect().prepareStatement(sql);
+    ps.setInt(1, idNumber);
+    ResultSet result = ps.executeQuery();
     SalesPerson salesman = new SalesPerson();
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     
@@ -165,7 +171,10 @@ public class Loader {
       salesman.setAddress(result.getString(5));
       salesman.setPhoneNumber(result.getString(6));
       salesman.setCoefficientsSalary(result.getInt(7));
-      salesman.setSubsidy(result.getInt(8));
+      Blob b=result.getBlob(8);
+      byte barr[]=b.getBytes(1,(int)b.length());
+      salesman.setImage(new ImageIcon(barr));
+      salesman.setSubsidy(result.getInt(9));
       
     }
     ArrayList<WorkHistory> workHistoryList = loadWorkHistory(salesman);

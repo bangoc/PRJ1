@@ -34,8 +34,8 @@ public class EmployeeInfomationView {
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
     
-    lblImage = new JLabel("No Image");
-    lblImage.setBounds(600, 60, 280, 230);
+    lblImage = new JLabel();
+    lblImage.setBounds(1000, 10, 280, 370);
     frame.getContentPane().add(lblImage);
     
     listLabel = new ArrayList<>();
@@ -60,7 +60,7 @@ public class EmployeeInfomationView {
       
     }
     JButton btnBack = new JButton("Back");
-    btnBack.setBounds(733, 720, 130, 30);
+    btnBack.setBounds(40, 720, 130, 30);
     btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
     con.add(btnBack);
     btnBack.addActionListener(new ActionListener() {

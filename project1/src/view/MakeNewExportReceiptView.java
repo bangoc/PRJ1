@@ -5,6 +5,9 @@ import controller.CreateNewExportReceiptController;
 import controller.DeleteItemFromExportReceiptController;
 import controller.InsertItemToExportReceiptController;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -110,6 +113,7 @@ public class MakeNewExportReceiptView {
     txtLocation = new JTextField();
     txtLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
     txtLocation.setBounds(210, 372, 200, 30);
+    txtLocation.setEditable(false);
     frame.getContentPane().add(txtLocation);
     
     JButton btnChoose = new JButton("New");
@@ -162,6 +166,14 @@ public class MakeNewExportReceiptView {
     JButton btnBack = new JButton("Back");
     btnBack.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnBack.setBounds(88, 690, 164, 30);
+    btnBack.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+        new TaskManagerView();
+      }
+    });
     frame.getContentPane().add(btnBack);
     
     JLabel lblTotal = new JLabel("Total :");
