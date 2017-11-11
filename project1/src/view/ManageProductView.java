@@ -167,10 +167,6 @@ public class ManageProductView {
     btnMakeNewImportReceipt.addActionListener(new MakeNewImportReceiptViewController(this));
     frame.getContentPane().add(btnMakeNewImportReceipt);
     
-    JButton btnInfo = new JButton("Info");
-    btnInfo.setBounds(630, 178, 150, 25);
-    btnInfo.setFont(new Font("Dialog", Font.BOLD, 15));
-    frame.getContentPane().add(btnInfo);
     
     //all infoPanel's components below
     

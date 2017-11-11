@@ -62,7 +62,14 @@ public class TaskManagerView {
     frame.getContentPane().add(btnExportTab);
     
     JButton btnOther = new JButton("Other");
-    btnOther.addActionListener(new NavigateToManageProductViewController(frame));
+    btnOther.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent arg0) {
+        frame.dispose();
+        new SupermarketInfoView();
+      }
+    });
     btnOther.setBounds(380, 220, 300, 30);
     frame.getContentPane().add(btnOther);
   }

@@ -42,10 +42,10 @@ public class ManageEmployeeView {
     
     Container contentPane = frame.getContentPane();
     JButton btnUpdate = new JButton("Update");
+    btnUpdate.addActionListener(new UpdateEmployeeListViewController(this));
     btnUpdate.setBounds(20, 426, 117, 25);
     contentPane.add(btnUpdate);
     
-    btnUpdate.addActionListener(new UpdateEmployeeListViewController(bangNhanVienView));
     
     JButton btnAdd = new JButton("Add");
     btnAdd.addActionListener(new ActionListener() {
