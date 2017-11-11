@@ -98,7 +98,6 @@ public class Saver {
         + "values (null, '" + product.getName() + "', " + product.getPrice() + ", '" 
         + product.getProducer() + "', '" + df.format(product.getProduceTime()) + "', '"
         + df.format(product.getExpireTime()) + "')";
-    System.out.println(sql);
     ConnectDatabase connect = new ConnectDatabase();
     connect.getStatement().executeUpdate(sql);
     int id = 0;

@@ -2,6 +2,9 @@ package view;
 
 import controller.AddNewSupplierViewController;
 import controller.CancelMakingNewImportReceiptController;
+import controller.CreateImportReceiptController;
+import controller.InsertItemToImportReceiptController;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +29,7 @@ public class MakeNewImportReceiptView {
   private JTextField txtProduceDate;
   private JTextField txtAmount;
   private JComboBox<String> comboBox;
+  private MyTable table;
 
   public MakeNewImportReceiptView() {
     initialize();
@@ -51,17 +55,14 @@ public class MakeNewImportReceiptView {
     lblName.setBounds(65, 99, 150, 22);
     frame.getContentPane().add(lblName);
     
-    txtName = new JTextField();
+    txtName = new JTextField("Banh Keo");
     txtName.setBounds(265, 99, 420, 22);
     frame.getContentPane().add(txtName);
     txtName.setColumns(10);
     
     JButton btnInsert = new JButton("Insert");
     btnInsert.setEnabled(false);
-    btnInsert.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
-      }
-    });
+    btnInsert.addActionListener(new InsertItemToImportReceiptController(this));
     btnInsert.setBounds(65, 231, 89, 23);
     frame.getContentPane().add(btnInsert);
     
@@ -70,7 +71,7 @@ public class MakeNewImportReceiptView {
     frame.getContentPane().add(scrollPane);
     String[] columnNames =  {"Name", "Price", "Producer", "Produce Date", "Expire Date", 
         "Amount", "Import Price"};
-    MyTable table = new MyTable(columnNames, 65, 265, 1295, 306);
+    table = new MyTable(columnNames, 65, 265, 1295, 306);
     scrollPane.setViewportView(table);
     
     JLabel lblSelectSupplier = new JLabel("Select Supplier");
@@ -93,15 +94,11 @@ public class MakeNewImportReceiptView {
     btnInsert.setEnabled(true);
     
     JButton btnCreate = new JButton("Create");
-    btnCreate.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
-
-      }
-    });
+    btnCreate.addActionListener(new CreateImportReceiptController(this));
     btnCreate.setBounds(65, 683, 89, 23);
     frame.getContentPane().add(btnCreate);
     
-    txtPrice = new JTextField();
+    txtPrice = new JTextField("10");
     txtPrice.setColumns(10);
     txtPrice.setBounds(940, 99, 420, 22);
     frame.getContentPane().add(txtPrice);
@@ -118,12 +115,12 @@ public class MakeNewImportReceiptView {
     lblImportPrice.setBounds(65, 165, 150, 22);
     frame.getContentPane().add(lblImportPrice);
     
-    txtProducer = new JTextField();
+    txtProducer = new JTextField("Ha noi");
     txtProducer.setColumns(10);
     txtProducer.setBounds(265, 132, 420, 22);
     frame.getContentPane().add(txtProducer);
     
-    txtImportPrice = new JTextField();
+    txtImportPrice = new JTextField("10000");
     txtImportPrice.setColumns(10);
     txtImportPrice.setBounds(265, 165, 420, 22);
     frame.getContentPane().add(txtImportPrice);
@@ -136,13 +133,13 @@ public class MakeNewImportReceiptView {
     lblExpireDate.setBounds(729, 165, 150, 22);
     frame.getContentPane().add(lblExpireDate);
     
-    txtExpireDate = new JTextField();
+    txtExpireDate = new JTextField("20/11/2019");
     txtExpireDate.setToolTipText("dd/mm/yyyy");
     txtExpireDate.setColumns(10);
     txtExpireDate.setBounds(940, 165, 420, 22);
     frame.getContentPane().add(txtExpireDate);
     
-    txtProduceDate = new JTextField();
+    txtProduceDate = new JTextField("20/11/2017");
     txtProduceDate.setToolTipText("dd/mm/yyyy");
     txtProduceDate.setColumns(10);
     txtProduceDate.setBounds(940, 132, 420, 22);
@@ -152,7 +149,7 @@ public class MakeNewImportReceiptView {
     lblAmount.setBounds(65, 198, 150, 22);
     frame.getContentPane().add(lblAmount);
     
-    txtAmount = new JTextField();
+    txtAmount = new JTextField("20");
     txtAmount.setColumns(10);
     txtAmount.setBounds(265, 198, 420, 22);
     frame.getContentPane().add(txtAmount);
@@ -184,5 +181,69 @@ public class MakeNewImportReceiptView {
 
   public void setComboBox(JComboBox<String> comboBox) {
     this.comboBox = comboBox;
+  }
+
+  public JTextField getTxtName() {
+    return txtName;
+  }
+
+  public void setTxtName(JTextField txtName) {
+    this.txtName = txtName;
+  }
+
+  public JTextField getTxtPrice() {
+    return txtPrice;
+  }
+
+  public void setTxtPrice(JTextField txtPrice) {
+    this.txtPrice = txtPrice;
+  }
+
+  public JTextField getTxtProducer() {
+    return txtProducer;
+  }
+
+  public void setTxtProducer(JTextField txtProducer) {
+    this.txtProducer = txtProducer;
+  }
+
+  public JTextField getTxtImportPrice() {
+    return txtImportPrice;
+  }
+
+  public void setTxtImportPrice(JTextField txtImportPrice) {
+    this.txtImportPrice = txtImportPrice;
+  }
+
+  public JTextField getTxtExpireDate() {
+    return txtExpireDate;
+  }
+
+  public void setTxtExpireDate(JTextField txtExpireDate) {
+    this.txtExpireDate = txtExpireDate;
+  }
+
+  public JTextField getTxtProduceDate() {
+    return txtProduceDate;
+  }
+
+  public void setTxtProduceDate(JTextField txtProduceDate) {
+    this.txtProduceDate = txtProduceDate;
+  }
+
+  public JTextField getTxtAmount() {
+    return txtAmount;
+  }
+
+  public void setTxtAmount(JTextField txtAmount) {
+    this.txtAmount = txtAmount;
+  }
+
+  public MyTable getTable() {
+    return table;
+  }
+
+  public void setTable(MyTable table) {
+    this.table = table;
   }
 }
