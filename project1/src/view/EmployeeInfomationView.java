@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,6 +29,8 @@ public class EmployeeInfomationView {
    * 
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.setBounds(80, 40, 1500, 800);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -42,8 +45,8 @@ public class EmployeeInfomationView {
     listText = new ArrayList<>();
     int i;
     Container con = frame.getContentPane();
-    String[] columnNames = {"ID", "Name", "Sex", "BirthOfDate", "Address", 
-        "Phone No.", "Coefficient Salary"};
+    String[] columnNames = {b.getString("ID"), b.getString("Name"), b.getString("Sex"), b.getString("BirthDate"), b.getString("Address"), 
+        b.getString("PhoneNo"), b.getString("Coefficient")};
     for (i = 0; i < 7; i ++) {
       JLabel lbl = new JLabel();
       lbl.setBounds(40, 20 + 50 * i, 150 , 25);
@@ -59,7 +62,7 @@ public class EmployeeInfomationView {
       con.add(txt);
       
     }
-    JButton btnBack = new JButton("Back");
+    JButton btnBack = new JButton(b.getString("Back"));
     btnBack.setBounds(40, 720, 130, 30);
     btnBack.setFont(new Font("Dialog", Font.BOLD, 20));
     con.add(btnBack);
@@ -71,11 +74,11 @@ public class EmployeeInfomationView {
       }
     });
     
-    JLabel lblLsLamViec = new JLabel("Lich su lam viec");
+    JLabel lblLsLamViec = new JLabel(b.getString("WorkHistory"));
     lblLsLamViec.setBounds(40, 370, 200, 25);
     lblLsLamViec.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(lblLsLamViec);
-    String[] columnNames1 = {"Paid time", "Total salary"};
+    String[] columnNames1 = {b.getString("PaidTime"), b.getString("Total")};
     myTable = new MyTable(columnNames1, 20, 400, 1450, 300);
     con.add(myTable);
     

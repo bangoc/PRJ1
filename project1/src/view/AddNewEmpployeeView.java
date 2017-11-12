@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ResourceBundle;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -142,6 +144,8 @@ public class AddNewEmpployeeView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
 
     frame.setBounds(350, 100, 900, 700);
@@ -154,7 +158,7 @@ public class AddNewEmpployeeView {
     Container container = frame.getContentPane();
     Font font = new Font("Dialog", Font.BOLD, 15);
     
-    JLabel lblName = new JLabel("Ho va Ten");
+    JLabel lblName = new JLabel(b.getString("Name"));
     lblName.setBounds(50, 60, 120, 25);
     lblName.setFont(font);
     container.add(lblName);
@@ -164,7 +168,7 @@ public class AddNewEmpployeeView {
     txtName.setFont(font);
     container.add(txtName);
     
-    JLabel lblSex = new JLabel("Gioi tinh");
+    JLabel lblSex = new JLabel(b.getString("Sex"));
     lblSex.setBounds(50, 100, 120, 25);
     lblSex.setFont(font);
     container.add(lblSex);
@@ -174,7 +178,7 @@ public class AddNewEmpployeeView {
     txtSex.setFont(font);
     container.add(txtSex);
     
-    JLabel lblDateOfBirth = new JLabel("Ngay sinh");
+    JLabel lblDateOfBirth = new JLabel(b.getString("BirthDate"));
     lblDateOfBirth.setBounds(50, 140, 120, 25);
     lblDateOfBirth.setFont(font);
     container.add(lblDateOfBirth);
@@ -189,7 +193,7 @@ public class AddNewEmpployeeView {
     txtDateOfBirth.setFont(font);
     container.add(txtDateOfBirth);
     
-    JLabel lblAddress = new JLabel("Dia chi");
+    JLabel lblAddress = new JLabel(b.getString("Address"));
     lblAddress.setBounds(50, 180, 120, 25);
     lblAddress.setFont(font);
     container.add(lblAddress);
@@ -199,7 +203,7 @@ public class AddNewEmpployeeView {
     txtAddress.setFont(font);
     container.add(txtAddress);
     
-    JLabel lblPhoneNo = new JLabel("So dien thoai");
+    JLabel lblPhoneNo = new JLabel(b.getString("PhoneNo"));
     lblPhoneNo.setBounds(50, 220, 120, 25);
     lblPhoneNo.setFont(font);
     container.add(lblPhoneNo);
@@ -209,7 +213,7 @@ public class AddNewEmpployeeView {
     txtPhoneNo.setFont(font);
     container.add(txtPhoneNo);
     
-    JLabel lblCoefficientSalary = new JLabel("He so luong");
+    JLabel lblCoefficientSalary = new JLabel(b.getString("Coefficient"));
     lblCoefficientSalary.setBounds(50, 260, 120, 25);
     lblCoefficientSalary.setFont(font);
     container.add(lblCoefficientSalary);
@@ -219,7 +223,7 @@ public class AddNewEmpployeeView {
     txtCoefficientSalary.setFont(font);
     container.add(txtCoefficientSalary);
     
-    JLabel lblPosition = new JLabel("Vi tri");
+    JLabel lblPosition = new JLabel(b.getString("Situation"));
     lblPosition.setFont(font);
     lblPosition.setBounds(50, 300, 150, 25);
     frame.getContentPane().add(lblPosition);
@@ -235,7 +239,7 @@ public class AddNewEmpployeeView {
     
     comboBox = new JComboBox<>();
     comboBox.setModel(new DefaultComboBoxModel<String>(
-        new String[] {"Nhan vien", "Ban hang", "Quan ly"}));
+        new String[] {b.getString("Employee"), b.getString("Salesman"), b.getString("Manager")}));
     comboBox.setBounds(210, 300, 200, 25);
     comboBox.addItemListener(new ItemListener() {
       
@@ -267,19 +271,19 @@ public class AddNewEmpployeeView {
     frame.getContentPane().add(txtLink);
     
     
-    JButton btnBrowse = new JButton("Browse");
+    JButton btnBrowse = new JButton(b.getString("Browse"));
     btnBrowse.setBounds(600, 440, 280, 25);
     btnBrowse.setFont(new Font("Dialog", Font.BOLD, 15));
     btnBrowse.addActionListener(new ChooseImageFileForNewEmployeeController(this));
     frame.getContentPane().add(btnBrowse);
     
-    JButton btnAdd = new JButton("Add");
+    JButton btnAdd = new JButton(b.getString("Add"));
     btnAdd.setBounds(50, 440, 150, 25);
     btnAdd.setFont(font);
     btnAdd.addActionListener(new AddNewEmployeeController(this));
     container.add(btnAdd);
     
-    JButton btnBack = new JButton("Back");
+    JButton btnBack = new JButton(b.getString("Back"));
     btnBack.setBounds(300, 440, 150, 25);
     btnBack.setFont(font);
     btnBack.addActionListener(new ActionListener() {

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 
@@ -107,9 +108,11 @@ public class Employee {
   
   public String[] toArrayString() {
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     String[] array = {"" + this.idNumber, this.name, this.sex, 
         df.format(this.dateOfBirth), this.address, this.phoneNumber, "" + this.coefficientsSalary, 
-        "Employee"};
+        b.getString("Employee")};
     return array;
   }
   

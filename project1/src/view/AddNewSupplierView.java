@@ -3,6 +3,7 @@ package view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -41,6 +42,8 @@ public class AddNewSupplierView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.setBounds(80, 40, 1500, 800);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -49,22 +52,22 @@ public class AddNewSupplierView {
     
     Font font = new Font("Đialog", Font.BOLD, 15);
     
-    JLabel lblName = new JLabel("Ten nha cung cap");
+    JLabel lblName = new JLabel(b.getString("SupplierName"));
     lblName.setFont(font);
     lblName.setBounds(40, 40, 150, 25);
     frame.getContentPane().add(lblName);
     
-    JLabel lblAddress = new JLabel("Dia chi");
+    JLabel lblAddress = new JLabel(b.getString("Address"));
     lblAddress.setFont(font);
     lblAddress.setBounds(40, 90, 150, 25);
     frame.getContentPane().add(lblAddress);
     
-    JLabel lblEmail = new JLabel("Email");
+    JLabel lblEmail = new JLabel(b.getString("Email"));
     lblEmail.setFont(font);
     lblEmail.setBounds(40, 140, 150, 25);
     frame.getContentPane().add(lblEmail);
     
-    JLabel lblPhoneNo = new JLabel("So dien thoai");
+    JLabel lblPhoneNo = new JLabel(b.getString("PhoneNo"));
     lblPhoneNo.setFont(font);
     lblPhoneNo.setBounds(40, 190, 150, 25);
     frame.getContentPane().add(lblPhoneNo);
@@ -89,7 +92,7 @@ public class AddNewSupplierView {
     txtPhoneNo.setBounds(250, 190, 300, 25);
     frame.getContentPane().add(txtPhoneNo);
     
-    JButton btnAdd = new JButton("Add");
+    JButton btnAdd = new JButton(b.getString("Add"));
     btnAdd.setFont(font);
     btnAdd.addActionListener(new AddNewSupplierController(this));
     btnAdd.setBounds(40, 250, 150, 25);
@@ -105,7 +108,7 @@ public class AddNewSupplierView {
     bangNhaCungCap = new MyTable(columnNames, 20, 400, 860, 300);
     frame.getContentPane().add(bangNhaCungCap);
     
-    JButton btnBack = new JButton("Back");
+    JButton btnBack = new JButton(b.getString("Back"));
     btnBack.setFont(font);
     btnBack.setBounds(320, 250, 150, 25);
     btnBack.addActionListener(new ActionListener() {

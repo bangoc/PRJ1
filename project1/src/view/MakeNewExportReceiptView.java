@@ -6,6 +6,7 @@ import controller.InsertItemToExportReceiptController;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -76,29 +77,31 @@ public class MakeNewExportReceiptView {
    */
   
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.setBounds(80, 40, 1500, 800);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
     
-    JLabel lblImportReceipt = new JLabel("Export Receipt");
+    JLabel lblImportReceipt = new JLabel(b.getString("ExportReceipt"));
     lblImportReceipt.setHorizontalAlignment(SwingConstants.CENTER);
     lblImportReceipt.setFont(new Font("Tahoma", Font.BOLD, 34));
     lblImportReceipt.setBounds(189, 11, 806, 79);
     frame.getContentPane().add(lblImportReceipt);
     
-    JLabel lblId = new JLabel("ID");
+    JLabel lblId = new JLabel(b.getString("ProductId"));
     lblId.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblId.setBounds(88, 122, 120, 30);
     frame.getContentPane().add(lblId);
     
-    JLabel lblAmount = new JLabel("AMOUNT");
+    JLabel lblAmount = new JLabel(b.getString("Amount"));
     lblAmount.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblAmount.setBounds(88, 204, 120, 30);
     frame.getContentPane().add(lblAmount);
     
-    JLabel lblSellPrice = new JLabel("Sell Price");
+    JLabel lblSellPrice = new JLabel(b.getString("SellPrice"));
     lblSellPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblSellPrice.setBounds(88, 288, 120, 30);
     frame.getContentPane().add(lblSellPrice);
@@ -122,29 +125,29 @@ public class MakeNewExportReceiptView {
     scrollPane.setBounds(672, 125, 673, 415);
     frame.getContentPane().add(scrollPane);
     
-    String[] columnNames = {"ID", "Name", "Amount", "Price"}; 
+    String[] columnNames = {b.getString("ProductId"), b.getString("ProductName"), b.getString("Amount"), b.getString("SellPrice")}; 
     panel = new MyTable(columnNames, 2, 2, 680, 430);
     scrollPane.setViewportView(panel);
     
-    JButton btnInsert = new JButton("Insert");
+    JButton btnInsert = new JButton(b.getString("Insert"));
     btnInsert.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnInsert.setBounds(88, 470, 163, 30);
     btnInsert.addActionListener(new InsertItemToExportReceiptController(this));
     frame.getContentPane().add(btnInsert);
     
-    JButton btnDelete = new JButton("Delete");
+    JButton btnDelete = new JButton(b.getString("Delete"));
     btnDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnDelete.setBounds(88, 580, 163, 30);
     btnDelete.addActionListener(new DeleteItemFromExportReceiptController(this));
     frame.getContentPane().add(btnDelete);
     
-    JButton btnCreate = new JButton("Create");
+    JButton btnCreate = new JButton(b.getString("Print"));
     btnCreate.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnCreate.setBounds(669, 641, 141, 30);
     btnCreate.addActionListener(new CreateNewExportReceiptController(this));
     frame.getContentPane().add(btnCreate);
     
-    JButton btnBack = new JButton("Back");
+    JButton btnBack = new JButton(b.getString("Back"));
     btnBack.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnBack.setBounds(88, 690, 164, 30);
     btnBack.addActionListener(new ActionListener() {
@@ -157,7 +160,7 @@ public class MakeNewExportReceiptView {
     });
     frame.getContentPane().add(btnBack);
     
-    JLabel lblTotal = new JLabel("Total :");
+    JLabel lblTotal = new JLabel(b.getString("Total") + ":");
     lblTotal.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblTotal.setBounds(669, 565, 200, 40);
     frame.getContentPane().add(lblTotal);

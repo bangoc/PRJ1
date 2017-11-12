@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import model.Saver;
@@ -146,9 +147,11 @@ public class SettingView {
           if (index == 1) {
             language = "English";
             Saver.saveLink(language, 3);
+            Locale.setDefault(new Locale("en", "US"));
           } else if (index == 2){
             language = "VietNamese";
             Saver.saveLink(language, 3);
+            Locale.setDefault(new Locale("vi", "VN"));
           } else {
             return;
           }

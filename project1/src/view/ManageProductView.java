@@ -5,6 +5,8 @@ import controller.MakeNewImportReceiptViewController;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -66,6 +68,8 @@ public class ManageProductView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.setBounds(80, 40, 1500, 800);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +86,7 @@ public class ManageProductView {
     panel.getTable().addMouseListener(new DoubleClickProductController(this));
     scrollPane.setViewportView(panel);
     
-    JButton btnBack = new JButton("Back");
+    JButton btnBack = new JButton(b.getString("Back"));
     btnBack.setBounds(750, 730, 100, 30);
     btnBack.setFont(new Font("Dialog", Font.BOLD, 15));
     btnBack.addActionListener(new ActionListener() {
@@ -96,7 +100,7 @@ public class ManageProductView {
     });
     frame.getContentPane().add(btnBack);
     
-    lblCode = new JLabel("Ma san pham");
+    lblCode = new JLabel(b.getString("ProductId"));
     lblCode.setFont(new Font("Dialog", Font.BOLD, 15));
     lblCode.setBounds(30, 27, 150, 25);
     frame.getContentPane().add(lblCode);
@@ -106,7 +110,7 @@ public class ManageProductView {
     frame.getContentPane().add(txtCode);
     txtCode.setColumns(10);
     
-    lblName = new JLabel("Ten san pham");
+    lblName = new JLabel(b.getString("ProductName"));
     lblName.setBounds(30, 75, 150, 25);
     lblName.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(lblName);
@@ -116,7 +120,7 @@ public class ManageProductView {
     txtName.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(txtName);
     
-    lblProviderId = new JLabel("Ma nha cung cap");
+    lblProviderId = new JLabel(b.getString("SupplierId"));
     lblProviderId.setBounds(420, 27, 150, 25);
     lblProviderId.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(lblProviderId);
@@ -126,7 +130,7 @@ public class ManageProductView {
     txtProviderId.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(txtProviderId);
     
-    lblProducer = new JLabel("Nha san xuat");
+    lblProducer = new JLabel(b.getString("Producer"));
     lblProducer.setBounds(420, 75, 150, 25);
     lblProducer.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(lblProducer);
@@ -156,13 +160,13 @@ public class ManageProductView {
     txtSoldAmount.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(txtSoldAmount);
     
-    JButton btnSearch = new JButton("Search");
+    JButton btnSearch = new JButton(b.getString("Search"));
     btnSearch.setBounds(30, 178, 150, 25);
     btnSearch.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(btnSearch);
     
-    JButton btnMakeNewImportReceipt = new JButton("Add goods");
-    btnMakeNewImportReceipt.setBounds(230, 178, 150, 25);
+    JButton btnMakeNewImportReceipt = new JButton(b.getString("ImportReceipt"));
+    btnMakeNewImportReceipt.setBounds(230, 178, 200, 25);
     btnMakeNewImportReceipt.setFont(new Font("Dialog", Font.BOLD, 15));
     btnMakeNewImportReceipt.addActionListener(new MakeNewImportReceiptViewController(this));
     frame.getContentPane().add(btnMakeNewImportReceipt);
@@ -178,9 +182,9 @@ public class ManageProductView {
     
     JLabel[] listKeyLabel = new JLabel[13];
     listValueLabel = new JLabel[13];
-    String[] arrayText = {"ID Product", "Name", "Price", "Producer", "Produce Date", 
-        "Expire Date", "Supplier Id", "Supplier Name", "Import Price", "Amount", "Import Date",
-        "Importer Id", "Importer Name"};
+    String[] arrayText = {b.getString("ProductId"), b.getString("ProductName"), b.getString("Price"), b.getString("Producer"), b.getString("ProduceDate"), 
+        b.getString("ExpireDate"), b.getString("SupplierId"), b.getString("SupplierName"), b.getString("ImportPrice"), b.getString("Amount"), b.getString("ImportDate"),
+        b.getString("ImporterId"), b.getString("ImporterName")};
     for (int i = 0; i < 13; i ++) {
       listValueLabel[i] = new JLabel("" + i);
       listKeyLabel[i] = new JLabel(arrayText[i]);

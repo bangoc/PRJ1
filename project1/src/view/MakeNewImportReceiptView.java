@@ -8,6 +8,8 @@ import controller.InsertItemToImportReceiptController;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -39,19 +41,21 @@ public class MakeNewImportReceiptView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.setBounds(80, 40, 1500, 800);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
     
-    JLabel lblNewLabel = new JLabel("Import Receipt");
+    JLabel lblNewLabel = new JLabel(b.getString("ImportReceipt"));
     lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
     lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
     lblNewLabel.setBounds(96, 11, 719, 44);
     frame.getContentPane().add(lblNewLabel);
     
-    JLabel lblName = new JLabel("Name");
+    JLabel lblName = new JLabel(b.getString("ProductName"));
     lblName.setBounds(65, 99, 150, 22);
     frame.getContentPane().add(lblName);
     
@@ -60,7 +64,7 @@ public class MakeNewImportReceiptView {
     frame.getContentPane().add(txtName);
     txtName.setColumns(10);
     
-    JButton btnInsert = new JButton("Insert");
+    JButton btnInsert = new JButton(b.getString("Insert"));
     btnInsert.setEnabled(false);
     btnInsert.addActionListener(new InsertItemToImportReceiptController(this));
     btnInsert.setBounds(65, 231, 89, 23);
@@ -69,12 +73,12 @@ public class MakeNewImportReceiptView {
     JScrollPane scrollPane = new JScrollPane();
     scrollPane.setBounds(65, 265, 1295, 306);
     frame.getContentPane().add(scrollPane);
-    String[] columnNames =  {"Name", "Price", "Producer", "Produce Date", "Expire Date", 
-        "Amount", "Import Price"};
+    String[] columnNames =  {b.getString("ProductName"), b.getString("Price"), b.getString("Producer"), b.getString("ProduceDate"), b.getString("ExpireDate"), 
+        b.getString("Amount"), b.getString("ImportPrice")};
     table = new MyTable(columnNames, 65, 265, 1295, 306);
     scrollPane.setViewportView(table);
     
-    JLabel lblSelectSupplier = new JLabel("Select Supplier");
+    JLabel lblSelectSupplier = new JLabel(b.getString("SelectSupplier"));
     lblSelectSupplier.setHorizontalAlignment(SwingConstants.LEFT);
     lblSelectSupplier.setFont(new Font("Tahoma", Font.BOLD, 18));
     lblSelectSupplier.setBounds(65, 582, 567, 33);
@@ -93,9 +97,9 @@ public class MakeNewImportReceiptView {
     
     btnInsert.setEnabled(true);
     
-    JButton btnCreate = new JButton("Create");
+    JButton btnCreate = new JButton(b.getString("Print"));
     btnCreate.addActionListener(new CreateImportReceiptController(this));
-    btnCreate.setBounds(65, 683, 89, 23);
+    btnCreate.setBounds(65, 670, 120, 23);
     frame.getContentPane().add(btnCreate);
     
     txtPrice = new JTextField("10");
@@ -103,15 +107,15 @@ public class MakeNewImportReceiptView {
     txtPrice.setBounds(940, 99, 420, 22);
     frame.getContentPane().add(txtPrice);
     
-    JLabel lblPrice = new JLabel("Price");
+    JLabel lblPrice = new JLabel(b.getString("Price"));
     lblPrice.setBounds(729, 99, 150, 22);
     frame.getContentPane().add(lblPrice);
     
-    JLabel lblProducer = new JLabel("Producer");
+    JLabel lblProducer = new JLabel(b.getString("Producer"));
     lblProducer.setBounds(65, 132, 150, 22);
     frame.getContentPane().add(lblProducer);
     
-    JLabel lblImportPrice = new JLabel("Import Price");
+    JLabel lblImportPrice = new JLabel(b.getString("ImportPrice"));
     lblImportPrice.setBounds(65, 165, 150, 22);
     frame.getContentPane().add(lblImportPrice);
     
@@ -125,11 +129,11 @@ public class MakeNewImportReceiptView {
     txtImportPrice.setBounds(265, 165, 420, 22);
     frame.getContentPane().add(txtImportPrice);
     
-    JLabel lblProducerDate = new JLabel("Producer Date\r\n");
+    JLabel lblProducerDate = new JLabel(b.getString("ProduceDate"));
     lblProducerDate.setBounds(729, 132, 150, 22);
     frame.getContentPane().add(lblProducerDate);
     
-    JLabel lblExpireDate = new JLabel("Expire Date");
+    JLabel lblExpireDate = new JLabel(b.getString("ExpireDate"));
     lblExpireDate.setBounds(729, 165, 150, 22);
     frame.getContentPane().add(lblExpireDate);
     
@@ -145,7 +149,7 @@ public class MakeNewImportReceiptView {
     txtProduceDate.setBounds(940, 132, 420, 22);
     frame.getContentPane().add(txtProduceDate);
     
-    JLabel lblAmount = new JLabel("Amount");
+    JLabel lblAmount = new JLabel(b.getString("Amount"));
     lblAmount.setBounds(65, 198, 150, 22);
     frame.getContentPane().add(lblAmount);
     
@@ -154,13 +158,13 @@ public class MakeNewImportReceiptView {
     txtAmount.setBounds(265, 198, 420, 22);
     frame.getContentPane().add(txtAmount);
     
-    JLabel lblInputProductsInformation = new JLabel("Input product's information into Cells below");
+    JLabel lblInputProductsInformation = new JLabel(b.getString("InputInfoProduct"));
     lblInputProductsInformation.setFont(new Font("Tahoma", Font.PLAIN, 15));
-    lblInputProductsInformation.setBounds(65, 66, 490, 22);
+    lblInputProductsInformation.setBounds(65, 66, 700, 22);
     frame.getContentPane().add(lblInputProductsInformation);
     
-    JButton btnCancel = new JButton("Cancel");
-    btnCancel.setBounds(185, 683, 89, 23);
+    JButton btnCancel = new JButton(b.getString("Back"));
+    btnCancel.setBounds(65, 710, 120, 23);
     btnCancel.addActionListener(new CancelMakingNewImportReceiptController(frame));
     frame.getContentPane().add(btnCancel);
     

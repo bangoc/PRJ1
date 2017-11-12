@@ -26,11 +26,13 @@ public class MakeNewImportReceiptViewController implements ActionListener {
   public void actionPerformed(ActionEvent arg0) {
     MakeNewImportReceiptView makeNewImportReceiptView = new MakeNewImportReceiptView();
     JComboBox<String> comboBox = makeNewImportReceiptView.getComboBox();
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+    
     try {
       ArrayList<Supplier> supplierList = Loader.loadSupplier();
       int size = supplierList.size();
       String[] data = new String[size + 1];
-      data[0] = "Select supplier's ID";
+      data[0] = b.getString("SelectSupplier");
       for (int i = 1; i < size + 1; i ++) {
         data[i] = "" + supplierList.get(i - 1).getIdNumber();
       }

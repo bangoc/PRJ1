@@ -7,6 +7,7 @@ import model.Loader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,23 +24,25 @@ public class TaskManagerView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.setBounds(400, 300, 800, 400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     
-    JButton btnEmployeeTab = new JButton("Employee Management Tab");
+    JButton btnEmployeeTab = new JButton(b.getString("EmployeeTab"));
     btnEmployeeTab.addActionListener(new NavigateToManageEmployeeViewController(frame));
     btnEmployeeTab.setBounds(20, 160, 300, 30);
     frame.getContentPane().add(btnEmployeeTab);
     frame.setVisible(true);
     
-    JButton btnProductTab = new JButton("Product Management Tab");
+    JButton btnProductTab = new JButton(b.getString("ProductTab"));
     btnProductTab.addActionListener(new NavigateToManageProductViewController(frame));
     btnProductTab.setBounds(380, 160, 300, 30);
     frame.getContentPane().add(btnProductTab);
     
-    JButton btnExportTab = new JButton("Make Export Receipt");
+    JButton btnExportTab = new JButton(b.getString("MakeExReceipt"));
     btnExportTab.addActionListener(new ActionListener() {
       
       @Override
@@ -52,7 +55,7 @@ public class TaskManagerView {
     btnExportTab.setBounds(20, 220, 300, 30);
     frame.getContentPane().add(btnExportTab);
     
-    JButton btnOther = new JButton("Manage Supermarket");
+    JButton btnOther = new JButton(b.getString("SupermarketTab"));
     btnOther.addActionListener(new ActionListener() {
       
       @Override
@@ -64,7 +67,7 @@ public class TaskManagerView {
     btnOther.setBounds(380, 220, 300, 30);
     frame.getContentPane().add(btnOther);
     
-    JButton btnSetting = new JButton("Setting");
+    JButton btnSetting = new JButton(b.getString("Setting"));
     btnSetting.setBounds(20, 280, 150, 30);
     btnSetting.addActionListener(new ActionListener() {
       

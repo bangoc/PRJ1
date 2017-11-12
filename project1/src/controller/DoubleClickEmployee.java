@@ -7,6 +7,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -34,17 +36,18 @@ public class DoubleClickEmployee implements MouseListener {
       String s = (String) model.getValueAt(row, 0);
       int id = Integer.parseInt(s);
       try {
-  
+        ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
         EmployeeInfomationView thongTinView = new EmployeeInfomationView();
         ArrayList<JLabel> listLabel = thongTinView.getListLabel();
-        listLabel.get(0).setText("ID");
-        listLabel.get(1).setText("Name");
-        listLabel.get(2).setText("Sex");
+        listLabel.get(0).setText(b.getString("ID"));
+        listLabel.get(1).setText(b.getString("Name"));
+        listLabel.get(2).setText(b.getString("Sex"));
 
-        listLabel.get(3).setText("Date Of Birth");
-        listLabel.get(4).setText("Address");
-        listLabel.get(5).setText("Phone No.");
-        listLabel.get(6).setText("Coefficient Salary");
+        listLabel.get(3).setText(b.getString("BirthDate"));
+        listLabel.get(4).setText(b.getString("Address"));
+        listLabel.get(5).setText(b.getString("PhoneNo"));
+        listLabel.get(6).setText(b.getString("Coefficient"));
         ArrayList<JLabel> listData = thongTinView.getListText();
         Employee employee = Loader.loadEmployeeById(id);
         listData.get(0).setText("" + employee.getIdNumber());

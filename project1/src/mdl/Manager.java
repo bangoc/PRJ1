@@ -2,6 +2,7 @@ package mdl;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.ResourceBundle;
 
 public class Manager extends Employee {
   private int commission;
@@ -51,8 +52,10 @@ public class Manager extends Employee {
   
   @Override
   public String[] toArrayString() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     String[] array = super.toArrayString();
-    array[7] = "Manager";
+    array[7] = b.getString("Manager");
     return array;
   }
 

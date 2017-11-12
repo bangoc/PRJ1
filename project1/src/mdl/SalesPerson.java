@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.ResourceBundle;
 
 public class SalesPerson extends Employee {
   private int subsidy;
@@ -49,10 +50,12 @@ public class SalesPerson extends Employee {
   
   @Override
   public String[] toArrayString() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     String[] array = {"" + this.getIdNumber(), this.getName(), this.getSex(), 
         df.format(this.getDateOfBirth()), this.getAddress(), this.getPhoneNumber(),
-        "" + this.getCoefficientsSalary(), "Salesman"};
+        "" + this.getCoefficientsSalary(), b.getString("Salesman")};
     return array;
   }
 }

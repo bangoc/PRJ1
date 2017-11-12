@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,10 +24,12 @@ public class NavigateToManageEmployeeViewController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     ManageEmployeeView view = new ManageEmployeeView();
     frame.dispose();
-    String [] columnNames = {"ID", "Name", "Sex", "Birth Of Date", "Address", 
-        "Phone No.", "Co. Salary", "Situation"};
+    String [] columnNames = {b.getString("ID"), b.getString("Name"), b.getString("Sex"), b.getString("BirthDate"), b.getString("Address"), 
+        b.getString("PhoneNo"), b.getString("Coefficient"), b.getString("Situation")};
     DefaultTableModel model = new MyModel(columnNames);
     
     ArrayList<Employee> employeeList;
