@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
+import java.util.ResourceBundle;
 
 import model.Saver;
 
@@ -33,12 +33,17 @@ public class SettingView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     frame = new JFrame();
     frame.getContentPane().setFont(new Font("Dialog", Font.PLAIN, 15));
     frame.getContentPane().setLayout(null);
     frame.setVisible(true);
+    frame.setTitle(b.getString("Setting"));
     
-    JLabel lblLanguage = new JLabel("Language : ");
+
+    
+    JLabel lblLanguage = new JLabel(b.getString("Language") + " : ");
     lblLanguage.setFont(new Font("Dialog", Font.BOLD, 20));
     lblLanguage.setBounds(33, 50, 138, 30);
     frame.getContentPane().add(lblLanguage);
@@ -46,13 +51,13 @@ public class SettingView {
     JComboBox<String> comboBox = new JComboBox<>();
     comboBox.setFont(new Font("Dialog", Font.BOLD, 15));
     comboBox.setModel(new DefaultComboBoxModel<String>(
-        new String[] {"English", "VietNamese" }));
-    comboBox.setBounds(33, 100, 157, 25);
+        new String[] {b.getString("SelectLang"), b.getString("English"), b.getString("VietNamese") }));
+    comboBox.setBounds(33, 100, 200, 25);
     frame.getContentPane().add(comboBox);
-    frame.setTitle("Setting");
+  
     
-    JLabel lblImport = new JLabel("Import Receipt Location : ");
-    lblImport.setBounds(33, 150, 300, 30);
+    JLabel lblImport = new JLabel(b.getString("Import") + " : ");
+    lblImport.setBounds(33, 150, 400, 30);
     lblImport.setFont(new Font("Dialog", Font.BOLD, 20));
     frame.getContentPane().add(lblImport);
     
@@ -62,7 +67,7 @@ public class SettingView {
     txtImportLocation.setEditable(false);
     frame.getContentPane().add(txtImportLocation);
     
-    JButton btnImport = new JButton("Browse");
+    JButton btnImport = new JButton(b.getString("Browse"));
     btnImport.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnImport.setBounds(400, 200, 100, 25);
     btnImport.addActionListener(new ActionListener() {
@@ -81,8 +86,8 @@ public class SettingView {
     });
     frame.getContentPane().add(btnImport);
     
-    JLabel lblExport = new JLabel("Export Receipt Location : ");
-    lblExport.setBounds(33, 250, 300, 30);
+    JLabel lblExport = new JLabel(b.getString("Export") + " : ");
+    lblExport.setBounds(33, 250, 400, 30);
     lblExport.setFont(new Font("Dialog", Font.BOLD, 20));
     frame.getContentPane().add(lblExport);
     
@@ -92,7 +97,7 @@ public class SettingView {
     txtExportLocation.setEditable(false);
     frame.getContentPane().add(txtExportLocation);
     
-    JButton btnExport = new JButton("Browse");
+    JButton btnExport = new JButton(b.getString("Browse"));
     btnExport.setFont(new Font("Tahoma", Font.BOLD, 15));
     btnExport.setBounds(400, 300, 100, 25);
     btnExport.addActionListener(new ActionListener() {
@@ -111,21 +116,22 @@ public class SettingView {
     });
     frame.getContentPane().add(btnExport);
     
-    JButton btnBack = new JButton("Back");
+    JButton btnBack = new JButton(b.getString("Back"));
     btnBack.setBounds(150, 350, 100, 25);
     btnBack.setFont(new Font("Dialog", Font.BOLD, 15));
     btnBack.addActionListener(new ActionListener() {
       
       @Override
       public void actionPerformed(ActionEvent e) {
+        frame.dispose();
         new TaskManagerView();
 
-        frame.dispose();
+        
       }
     });
     frame.getContentPane().add(btnBack);
     
-    JButton btnSave = new JButton("Save");
+    JButton btnSave = new JButton(b.getString("Save"));
     btnSave.setBounds(33, 350, 100, 25);
     btnSave.setFont(new Font("Dialog", Font.BOLD, 15));
     btnSave.addActionListener(new ActionListener() {
@@ -135,7 +141,17 @@ public class SettingView {
         try {
           Saver.saveLink(txtImportLocation.getText(), 1);
           Saver.saveLink(txtExportLocation.getText(), 2);
-          Saver.saveLink((String) comboBox.getSelectedItem(), 3);
+          int index = comboBox.getSelectedIndex();
+          String language = "";
+          if (index == 1) {
+            language = "English";
+            Saver.saveLink(language, 3);
+          } else if (index == 2){
+            language = "VietNamese";
+            Saver.saveLink(language, 3);
+          } else {
+            return;
+          }
           JOptionPane.showMessageDialog(null, "OK");
           frame.dispose();
           new TaskManagerView();
