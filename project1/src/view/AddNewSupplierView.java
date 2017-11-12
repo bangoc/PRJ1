@@ -5,9 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import controller.AddNewSupplierController;
 
 
 public class AddNewSupplierView {
@@ -16,6 +19,9 @@ public class AddNewSupplierView {
   private JTextField txtName;
   private JTextField txtAddress;
   private JTextField txtEmail;
+  private JTextField txtPhoneNo;
+  private MyTable bangNhaCungCap;
+  private JComboBox<String> comboBox;
   
   public MyTable getBangNhaCungCap() {
     return bangNhaCungCap;
@@ -25,11 +31,10 @@ public class AddNewSupplierView {
     this.bangNhaCungCap = bangNhaCungCap;
   }
 
-  private JTextField txtPhoneNo;
-  private MyTable bangNhaCungCap;
   
-  public AddNewSupplierView() {
+  public AddNewSupplierView(JComboBox<String> comboBox) {
     initialize();
+    this.comboBox = comboBox;
   }
 
   /**
@@ -86,6 +91,7 @@ public class AddNewSupplierView {
     
     JButton btnAdd = new JButton("Add");
     btnAdd.setFont(font);
+    btnAdd.addActionListener(new AddNewSupplierController(this));
     btnAdd.setBounds(40, 250, 150, 25);
     
     frame.getContentPane().add(btnAdd);
@@ -110,6 +116,14 @@ public class AddNewSupplierView {
       }
     });
     frame.getContentPane().add(btnBack);
+  }
+
+  public JComboBox<String> getComboBox() {
+    return comboBox;
+  }
+
+  public void setComboBox(JComboBox<String> comboBox) {
+    this.comboBox = comboBox;
   }
 
   public JFrame getFrame() {

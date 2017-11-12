@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 import mdl.Supplier;
@@ -13,10 +14,15 @@ import view.AddNewSupplierView;
 import view.MyModel;
 
 public class AddNewSupplierViewController implements ActionListener {
+  private JComboBox<String> comboBox;
+  
+  public AddNewSupplierViewController(JComboBox<String> comboBox) {
+    this.comboBox = comboBox;
+  }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    AddNewSupplierView view = new AddNewSupplierView();
+    AddNewSupplierView view = new AddNewSupplierView(comboBox);
     String[] columnNames = {"ID", "Name", "Address", "Email", "Phone Contact"};
     DefaultTableModel model = new MyModel(columnNames);
     try {

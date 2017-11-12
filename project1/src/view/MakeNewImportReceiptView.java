@@ -86,7 +86,7 @@ public class MakeNewImportReceiptView {
     frame.getContentPane().add(comboBox);
     
     JButton btnNewButton = new JButton("+");
-    btnNewButton.addActionListener(new AddNewSupplierViewController());
+    btnNewButton.addActionListener(new AddNewSupplierViewController(comboBox));
     btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 23));
     btnNewButton.setBounds(585, 626, 89, 23);
     frame.getContentPane().add(btnNewButton);

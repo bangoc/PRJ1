@@ -48,16 +48,16 @@ public class CreateNewExportReceiptController implements ActionListener {
       }
     }
     try {
-      SalesPerson salesman = Loader.loadSalesPersonById(2);
-      ExportReceipt receipt = new ExportReceipt();
-      receipt.setListItem(itemList);
-      receipt.setSalesPerson(salesman);
-      receipt.setTime(new Date());
+      SalesPerson salesman = Loader.loadSalesPersonById(9);
+      ExportReceipt receipt = salesman.makeExportReceipt(itemList);
       Saver.saveExportReceipt(receipt);
       JOptionPane.showMessageDialog(null, "Ok");
+      model.setRowCount(0);
       makeNewExportReceiptView.getLblTotalPrice().setText("0");
-    } catch (SQLException | ParseException e1) {
+    } catch (SQLException ex) {
       JOptionPane.showMessageDialog(null, "Error!");
+    } catch (ParseException ex) {
+      JOptionPane.showMessageDialog(null, "Parse error");
     }
     
     
