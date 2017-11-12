@@ -488,8 +488,8 @@ public class Loader {
     return receiptList;
   }
   
-  public static String loadLinkPathImportReceipt() throws SQLException {
-    String sql = "select path from import_path where id = 1";
+  public static String loadLink(int id) throws SQLException {
+    String sql = "select setting from setting where id = " + id;
     ResultSet result = new ConnectDatabase().getStatement().executeQuery(sql);
     String path = "";
     while (result.next()) {

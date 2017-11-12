@@ -44,16 +44,7 @@ public class TaskManagerView {
       
       @Override
       public void actionPerformed(ActionEvent e) {
-        MakeNewExportReceiptView view = new MakeNewExportReceiptView();
-        try {
-          System.out.println("dd");
-          String path = Loader.loadLinkPathImportReceipt();
-          System.out.println(path);
-          view.getTxtLocation().setText(path);
-          System.out.println(path);
-        } catch (SQLException e1) {
-          view.getTxtLocation().setText(null);
-        }
+        new MakeNewExportReceiptView();
         frame.dispose();
         
       }
@@ -61,7 +52,7 @@ public class TaskManagerView {
     btnExportTab.setBounds(20, 220, 300, 30);
     frame.getContentPane().add(btnExportTab);
     
-    JButton btnOther = new JButton("Other");
+    JButton btnOther = new JButton("Manage Supermarket");
     btnOther.addActionListener(new ActionListener() {
       
       @Override
@@ -72,5 +63,27 @@ public class TaskManagerView {
     });
     btnOther.setBounds(380, 220, 300, 30);
     frame.getContentPane().add(btnOther);
+    
+    JButton btnSetting = new JButton("Setting");
+    btnSetting.setBounds(20, 280, 150, 30);
+    btnSetting.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+        SettingView settingView = new SettingView();
+        try {
+          
+          String importLink = Loader.loadLink(1);
+          settingView.getTxtImportLocation().setText(importLink);
+          String exportLink = Loader.loadLink(2);
+          settingView.getTxtExportLocation().setText(exportLink);
+        } catch (SQLException e1) {
+          e1.printStackTrace();
+        }
+      }
+    });
+    frame.getContentPane().add(btnSetting);
+    
   }
 }

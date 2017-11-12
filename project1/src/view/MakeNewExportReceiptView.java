@@ -1,6 +1,5 @@
 package view;
 
-import controller.ChooseFileSaveDestinationController;
 import controller.CreateNewExportReceiptController;
 import controller.DeleteItemFromExportReceiptController;
 import controller.InsertItemToExportReceiptController;
@@ -26,7 +25,6 @@ public class MakeNewExportReceiptView {
   private JTextField txtAmount;
   private JTextField txtPrice;
   private JLabel lblTotalPrice;
-  private JTextField txtLocation;
 
   public JFrame getFrame() {
     return frame;
@@ -105,23 +103,6 @@ public class MakeNewExportReceiptView {
     lblSellPrice.setBounds(88, 288, 120, 30);
     frame.getContentPane().add(lblSellPrice);
     
-    JLabel lblLocation = new JLabel("Location");
-    lblLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblLocation.setBounds(88, 372, 120, 30);
-    frame.getContentPane().add(lblLocation);
-    
-    txtLocation = new JTextField();
-    txtLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
-    txtLocation.setBounds(210, 372, 200, 30);
-    txtLocation.setEditable(false);
-    frame.getContentPane().add(txtLocation);
-    
-    JButton btnChoose = new JButton("New");
-    btnChoose.setFont(new Font("Tahoma", Font.BOLD, 15));
-    btnChoose.setBounds(415, 372, 72, 30);
-    btnChoose.addActionListener(new ChooseFileSaveDestinationController(this));
-    frame.getContentPane().add(btnChoose);
-    
     txtId = new JTextField();
     txtId.setBounds(210, 123, 277, 30);
     frame.getContentPane().add(txtId);
@@ -192,14 +173,6 @@ public class MakeNewExportReceiptView {
     lblVnd.setFont(new Font("Tahoma", Font.BOLD, 15));
     lblVnd.setBounds(1308, 565, 37, 40);;
     frame.getContentPane().add(lblVnd);
-  }
-
-  public JTextField getTxtLocation() {
-    return txtLocation;
-  }
-
-  public void setTxtLocation(JTextField txtLocation) {
-    this.txtLocation = txtLocation;
   }
 
   public JLabel getLblTotalPrice() {

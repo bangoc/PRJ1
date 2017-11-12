@@ -1,57 +1,30 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
+import javax.swing.JFileChooser;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JCheckBox;
-import java.awt.CardLayout;
-import javax.swing.SpringLayout;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+
+import model.Saver;
 
 public class SettingView {
 
   private JFrame frame;
-  private JTextField textField;
+  private JTextField txtImportLocation;
+  private JTextField txtExportLocation;
 
-  /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          SettingView window = new SettingView();
-          window.frame.setVisible(true);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-  }
-
-  /**
-   * Create the application.
-   */
   public SettingView() {
     initialize();
   }
@@ -63,9 +36,143 @@ public class SettingView {
     frame = new JFrame();
     frame.getContentPane().setFont(new Font("Dialog", Font.PLAIN, 15));
     frame.getContentPane().setLayout(null);
+    frame.setVisible(true);
     
+    JLabel lblLanguage = new JLabel("Language : ");
+    lblLanguage.setFont(new Font("Dialog", Font.BOLD, 20));
+    lblLanguage.setBounds(33, 50, 138, 30);
+    frame.getContentPane().add(lblLanguage);
     
-    frame.setBounds(0, 0, 1500, 800);
+    JComboBox<String> comboBox = new JComboBox<>();
+    comboBox.setFont(new Font("Dialog", Font.BOLD, 15));
+    comboBox.setModel(new DefaultComboBoxModel<String>(
+        new String[] {"English", "VietNamese" }));
+    comboBox.setBounds(33, 100, 157, 25);
+    frame.getContentPane().add(comboBox);
+    frame.setTitle("Setting");
+    
+    JLabel lblImport = new JLabel("Import Receipt Location : ");
+    lblImport.setBounds(33, 150, 300, 30);
+    lblImport.setFont(new Font("Dialog", Font.BOLD, 20));
+    frame.getContentPane().add(lblImport);
+    
+    txtImportLocation = new JTextField();
+    txtImportLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
+    txtImportLocation.setBounds(33, 200, 350, 25);
+    txtImportLocation.setEditable(false);
+    frame.getContentPane().add(txtImportLocation);
+    
+    JButton btnImport = new JButton("Browse");
+    btnImport.setFont(new Font("Tahoma", Font.BOLD, 15));
+    btnImport.setBounds(400, 200, 100, 25);
+    btnImport.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+          String link = chooser.getSelectedFile().getAbsolutePath();
+          txtImportLocation.setText(link);   
+        } else {
+          return;
+        }
+      }
+    });
+    frame.getContentPane().add(btnImport);
+    
+    JLabel lblExport = new JLabel("Export Receipt Location : ");
+    lblExport.setBounds(33, 250, 300, 30);
+    lblExport.setFont(new Font("Dialog", Font.BOLD, 20));
+    frame.getContentPane().add(lblExport);
+    
+    txtExportLocation = new JTextField();
+    txtExportLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
+    txtExportLocation.setBounds(33, 300, 350, 25);
+    txtExportLocation.setEditable(false);
+    frame.getContentPane().add(txtExportLocation);
+    
+    JButton btnExport = new JButton("Browse");
+    btnExport.setFont(new Font("Tahoma", Font.BOLD, 15));
+    btnExport.setBounds(400, 300, 100, 25);
+    btnExport.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+          String link = chooser.getSelectedFile().getAbsolutePath();
+          txtExportLocation.setText(link);
+        } else {
+          return;
+        }
+      }
+    });
+    frame.getContentPane().add(btnExport);
+    
+    JButton btnBack = new JButton("Back");
+    btnBack.setBounds(150, 350, 100, 25);
+    btnBack.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnBack.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        new TaskManagerView();
+
+        frame.dispose();
+      }
+    });
+    frame.getContentPane().add(btnBack);
+    
+    JButton btnSave = new JButton("Save");
+    btnSave.setBounds(33, 350, 100, 25);
+    btnSave.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnSave.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          Saver.saveLink(txtImportLocation.getText(), 1);
+          Saver.saveLink(txtExportLocation.getText(), 2);
+          Saver.saveLink((String) comboBox.getSelectedItem(), 3);
+          JOptionPane.showMessageDialog(null, "OK");
+          frame.dispose();
+          new TaskManagerView();
+        } catch (SQLException e1) {
+          JOptionPane.showMessageDialog(null, "Error");
+        }
+
+      }
+    });
+    frame.getContentPane().add(btnSave);
+    
+    frame.setBounds(500, 200, 600, 450);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   }
+
+  public JFrame getFrame() {
+    return frame;
+  }
+
+  public void setFrame(JFrame frame) {
+    this.frame = frame;
+  }
+
+  public JTextField getTxtImportLocation() {
+    return txtImportLocation;
+  }
+
+  public void setTxtImportLocation(JTextField txtImportLocation) {
+    this.txtImportLocation = txtImportLocation;
+  }
+
+  public JTextField getTxtExportLocation() {
+    return txtExportLocation;
+  }
+
+  public void setTxtExportLocation(JTextField txtExportLocation) {
+    this.txtExportLocation = txtExportLocation;
+  }
+  
 }

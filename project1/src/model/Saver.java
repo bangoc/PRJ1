@@ -261,8 +261,8 @@ public class Saver {
     new ConnectDatabase().getStatement().executeUpdate(sql);
   }
   
-  public static void saveLinkPathForExportReceipt(String link) throws SQLException {
-    String sql = "update import_path set path = '" + link + "' where id = 1";
+  public static void saveLink(String setting, int id) throws SQLException {
+    String sql = "update setting set setting = '" + setting + "' where id = " + id;
     new ConnectDatabase().getStatement().executeUpdate(sql);
   }
 }
