@@ -22,9 +22,11 @@ public class Main {
     try {
       String language = Loader.loadLink(3);
       if (language.equals("English")) {
-      Locale.setDefault(locales[0]);
+        Locale.setDefault(locales[0]);
+        System.out.println("Language : English");
       } else if (language.equals("VietNamese")) {
         Locale.setDefault(locales[1]);
+	System.out.println("Ngôn ngữ : Tiếng Việt");
       } else {
         return;
       }
@@ -35,7 +37,6 @@ public class Main {
       return;
     }
     ResourceBundle mybundle = ResourceBundle.getBundle("view.Label");
-    System.out.println(mybundle.getString("Language"));
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
