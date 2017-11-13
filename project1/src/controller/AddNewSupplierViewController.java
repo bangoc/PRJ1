@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import mdl.Supplier;
@@ -22,8 +24,9 @@ public class AddNewSupplierViewController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
     AddNewSupplierView view = new AddNewSupplierView(comboBox);
-    String[] columnNames = {"ID", "Name", "Address", "Email", "Phone Contact"};
+    String[] columnNames = {b.getString("SupplierId"), b.getString("SupplierName"), b.getString("Address"), b.getString("Email"), b.getString("PhoneNo")};
     DefaultTableModel model = new MyModel(columnNames);
     try {
       ArrayList<Supplier> supplierList = Loader.loadSupplier();
@@ -33,7 +36,7 @@ public class AddNewSupplierViewController implements ActionListener {
       view.getBangNhaCungCap().setModel(model);
       view.getBangNhaCungCap().getTable().setModel(model);
     } catch (SQLException e1) {
-      e1.printStackTrace();
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
     }
   }
 

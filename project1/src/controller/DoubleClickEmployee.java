@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import mdl.Employee;
@@ -27,6 +28,7 @@ public class DoubleClickEmployee implements MouseListener {
   
   @Override
   public void mouseClicked(MouseEvent arg0) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
     if (arg0.getClickCount() != 2) {
       return;
     } else {
@@ -36,7 +38,6 @@ public class DoubleClickEmployee implements MouseListener {
       String s = (String) model.getValueAt(row, 0);
       int id = Integer.parseInt(s);
       try {
-        ResourceBundle b = ResourceBundle.getBundle("view.Label");
 
         EmployeeInfomationView thongTinView = new EmployeeInfomationView();
         ArrayList<JLabel> listLabel = thongTinView.getListLabel();
@@ -68,8 +69,12 @@ public class DoubleClickEmployee implements MouseListener {
         
 
 
-      } catch (SQLException | ParseException e) {
-        e.printStackTrace();
+      } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, b.getString("sqlError"));
+        return;
+      } catch (ParseException e) {
+        JOptionPane.showMessageDialog(null, b.getString("parseError"));
+        return;
       }
 
     }

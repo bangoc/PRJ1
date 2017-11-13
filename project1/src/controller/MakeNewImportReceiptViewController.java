@@ -24,9 +24,10 @@ public class MakeNewImportReceiptViewController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     MakeNewImportReceiptView makeNewImportReceiptView = new MakeNewImportReceiptView();
     JComboBox<String> comboBox = makeNewImportReceiptView.getComboBox();
-    ResourceBundle b = ResourceBundle.getBundle("view.Label");
     
     try {
       ArrayList<Supplier> supplierList = Loader.loadSupplier();
@@ -39,9 +40,9 @@ public class MakeNewImportReceiptViewController implements ActionListener {
       comboBox.setModel(new DefaultComboBoxModel<String>(data));
       view.getFrame().dispose();
     } catch (SQLException e) {
-      JOptionPane.showMessageDialog(null, "Something wrong!");
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
       makeNewImportReceiptView.getFrame().dispose();
-      e.printStackTrace();
+     
     }
    
     

@@ -99,12 +99,12 @@ public class AddNewSupplierView {
     
     frame.getContentPane().add(btnAdd);
     
-    JLabel lblDsNcc = new JLabel("Danh sach nha cung cap : ");
+    JLabel lblDsNcc = new JLabel(b.getString("supplierList"));
     lblDsNcc.setFont(new Font("Dialog", Font.BOLD, 25));
     lblDsNcc.setBounds(30, 350, 500, 40);
     frame.add(lblDsNcc);
     
-    String[] columnNames = {"No data"};
+    String[] columnNames = {b.getString("nodata")};
     bangNhaCungCap = new MyTable(columnNames, 20, 400, 860, 300);
     frame.getContentPane().add(bangNhaCungCap);
     

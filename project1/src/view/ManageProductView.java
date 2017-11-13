@@ -81,7 +81,7 @@ public class ManageProductView {
     scrollPane.setBounds(20, 250, 810, 400);
     frame.getContentPane().add(scrollPane);
     
-    String[] columnNames = {"No data"};
+    String[] columnNames = {b.getString("nodata")};
     panel = new MyTable(columnNames, 2, 2, 806, 396);
     panel.getTable().addMouseListener(new DoubleClickProductController(this));
     scrollPane.setViewportView(panel);

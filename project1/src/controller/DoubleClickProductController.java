@@ -4,8 +4,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +24,7 @@ public class DoubleClickProductController implements MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent e) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
     if (e.getClickCount() != 2) {
       return;
     } else {
@@ -38,9 +41,12 @@ public class DoubleClickProductController implements MouseListener {
         for (int i = 0; i < data.length; i ++) {
           listValueLabel[i].setText(data[i]);
         }
-      } catch (SQLException | ParseException e1) {
-        // TODO Auto-generated catch block
-        e1.printStackTrace();
+      } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, b.getString("sqlError"));
+        return;
+      } catch (ParseException ex) {
+        JOptionPane.showMessageDialog(null, b.getString("parseError"));
+        return;
       }
     }
   }

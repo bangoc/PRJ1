@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,15 +30,17 @@ public class CreateImportReceiptController implements ActionListener{
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     int index = view.getComboBox().getSelectedIndex();
     if (index == 0) {
-      JOptionPane.showMessageDialog(null, "You must select supplier's id");
+      JOptionPane.showMessageDialog(null, b.getString("SelectSupplier"));
       return;
     }
     DefaultTableModel model = view.getTable().getModel();
     LinkedHashMap<Product, Integer[]> itemList = new LinkedHashMap<>();
     if (model.getRowCount() == 0) {
-      JOptionPane.showMessageDialog(null, "Empty receipt");
+      JOptionPane.showMessageDialog(null, b.getString("emptyReceipt"));
       return;
     }
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -75,12 +78,12 @@ public class CreateImportReceiptController implements ActionListener{
       
       ImportReceipt receipt = manager.makeImportReceipt(supplier, itemList);
       Saver.saveImportReceipt(receipt);
-      JOptionPane.showMessageDialog(null, "Receipt created successfull");
+      JOptionPane.showMessageDialog(null, b.getString("successfull"));
     } catch (ParseException ex) {
-      JOptionPane.showMessageDialog(null, "Error");
+      JOptionPane.showMessageDialog(null, b.getString("parseError"));
       return;
     } catch (SQLException ex) {
-      JOptionPane.showMessageDialog(null, "Database access error");
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
     }
     
   }

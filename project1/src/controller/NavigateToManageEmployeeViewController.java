@@ -42,8 +42,12 @@ public class NavigateToManageEmployeeViewController implements ActionListener {
       }
       view.getBangNhanVienView().getTable().setModel(model);
       view.getBangNhanVienView().setModel(model);
-    } catch (SQLException | ParseException e1) {
-      JOptionPane.showMessageDialog(null, "Something wrong!" + e1);
+    } catch (SQLException ex) {
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
+      return;
+    } catch (ParseException ex) {
+      JOptionPane.showMessageDialog(null, b.getString("parseError"));
+      return;
     }
   
   }

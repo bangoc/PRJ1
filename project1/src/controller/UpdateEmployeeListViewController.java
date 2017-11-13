@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,8 +23,9 @@ public class UpdateEmployeeListViewController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    String [] columnNames = {"ID", "Name", "Sex", "Birth Of Date", "Address", 
-        "Phone No.", "Co. Salary", "Situation"};
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+    String [] columnNames = {b.getString("ID"), b.getString("Name"), b.getString("Sex"), b.getString("BirthDate"), b.getString("Address"), 
+        b.getString("PhoneNo"), b.getString("Coefficient"), b.getString("Situation")};
     DefaultTableModel model = new MyModel(columnNames);
     
     ArrayList<Employee> employeeList;
@@ -36,8 +38,10 @@ public class UpdateEmployeeListViewController implements ActionListener {
       }
       view.getBangNhanVienView().getTable().setModel(model);
       view.getBangNhanVienView().setModel(model);
-    } catch (SQLException | ParseException e1) {
-      JOptionPane.showMessageDialog(null, "Something wrong!" + e1);
+    } catch (SQLException ex) {
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
+    } catch (ParseException ex) {
+      JOptionPane.showMessageDialog(null, b.getString("parseError"));
     }
   }
 

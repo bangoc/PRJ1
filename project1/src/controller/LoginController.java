@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 import model.ConnectDatabase;
 import model.ResolveLoginProcess;
@@ -20,6 +22,8 @@ public class LoginController implements ActionListener {
   @Override
   
   public void actionPerformed(ActionEvent arg0) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     String taiKhoan = dangNhapView.getTxtTaiKhoan().getText();
     String matKhau = dangNhapView.getTxtMatKhau().getText();
     
@@ -52,11 +56,11 @@ public class LoginController implements ActionListener {
         new TaskManagerView();
         
       } else {
-        JOptionPane.showMessageDialog(null, "Dang nhap khong thanh cong");
+        JOptionPane.showMessageDialog(null, b.getString("fail"));
         dangNhapView.getTxtMatKhau().setText(null);
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
     }
     
   }

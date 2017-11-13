@@ -12,6 +12,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import controller.SaveSettingController;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -25,6 +27,15 @@ public class SettingView {
   private JFrame frame;
   private JTextField txtImportLocation;
   private JTextField txtExportLocation;
+  private JComboBox<String> comboBox;
+
+  public JComboBox<String> getComboBox() {
+    return comboBox;
+  }
+
+  public void setComboBox(JComboBox<String> comboBox) {
+    this.comboBox = comboBox;
+  }
 
   public SettingView() {
     initialize();
@@ -49,7 +60,7 @@ public class SettingView {
     lblLanguage.setBounds(33, 50, 138, 30);
     frame.getContentPane().add(lblLanguage);
     
-    JComboBox<String> comboBox = new JComboBox<>();
+    comboBox = new JComboBox<>();
     comboBox.setFont(new Font("Dialog", Font.BOLD, 15));
     comboBox.setModel(new DefaultComboBoxModel<String>(
         new String[] {b.getString("SelectLang"), b.getString("English"), b.getString("VietNamese") }));
@@ -135,35 +146,7 @@ public class SettingView {
     JButton btnSave = new JButton(b.getString("Save"));
     btnSave.setBounds(33, 350, 100, 25);
     btnSave.setFont(new Font("Dialog", Font.BOLD, 15));
-    btnSave.addActionListener(new ActionListener() {
-      
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        try {
-          Saver.saveLink(txtImportLocation.getText(), 1);
-          Saver.saveLink(txtExportLocation.getText(), 2);
-          int index = comboBox.getSelectedIndex();
-          String language = "";
-          if (index == 1) {
-            language = "English";
-            Saver.saveLink(language, 3);
-            Locale.setDefault(new Locale("en", "US"));
-          } else if (index == 2){
-            language = "VietNamese";
-            Saver.saveLink(language, 3);
-            Locale.setDefault(new Locale("vi", "VN"));
-          } else {
-            return;
-          }
-          JOptionPane.showMessageDialog(null, "OK");
-          frame.dispose();
-          new TaskManagerView();
-        } catch (SQLException e1) {
-          JOptionPane.showMessageDialog(null, "Error");
-        }
-
-      }
-    });
+    btnSave.addActionListener(new SaveSettingController(this));
     frame.getContentPane().add(btnSave);
     
     frame.setBounds(500, 200, 600, 450);

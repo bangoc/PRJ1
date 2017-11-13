@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ResourceBundle;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -21,6 +23,8 @@ public class InsertItemToExportReceiptController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+
     JTextField txtId = makeNewExportReceiptView.getTxtId();
     JTextField txtAmount = makeNewExportReceiptView.getTxtAmount();
     JTextField txtPrice = makeNewExportReceiptView.getTxtPrice();
@@ -31,7 +35,7 @@ public class InsertItemToExportReceiptController implements ActionListener {
       int price = Integer.parseInt(txtPrice.getText());
       Product product = Loader.loadProductById(idProduct);
       if (product.getIdNumber() == 0) {
-        JOptionPane.showMessageDialog(null, "Invalid id");
+        JOptionPane.showMessageDialog(null, b.getString("invalidID"));
         txtId.setText(null);
         txtAmount.setText(null);
         txtPrice.setText(null);
@@ -50,13 +54,13 @@ public class InsertItemToExportReceiptController implements ActionListener {
       txtAmount.setText(null);
       txtPrice.setText(null);
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Input number");
+      JOptionPane.showMessageDialog(null, b.getString("numberRequired"));
       return;
     } catch (SQLException e) {
-      JOptionPane.showMessageDialog(null, "Database error!");
+      JOptionPane.showMessageDialog(null, b.getString("sqlError"));
       return;
     } catch (ParseException e) {
-      JOptionPane.showMessageDialog(null, "Error!");
+      JOptionPane.showMessageDialog(null, b.getString("parseError"));
       return;
     }
   }

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ public class InsertItemToImportReceiptController implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
     try {
       String name = view.getTxtName().getText();
       String price = view.getTxtPrice().getText();
@@ -35,7 +37,7 @@ public class InsertItemToImportReceiptController implements ActionListener {
       String importPrice = view.getTxtImportPrice().getText();
       Integer.parseInt(importPrice);
       if (name.equals("") || producer.equals("")) {
-        JOptionPane.showMessageDialog(null, "You must fill all field");
+        JOptionPane.showMessageDialog(null, b.getString("nameRequired"));
         return;
       }
       String[] array = {name, price, producer, produceDate, expireDate,amount, importPrice};
@@ -43,18 +45,18 @@ public class InsertItemToImportReceiptController implements ActionListener {
       model.addRow(array);
       view.getTable().getTable().setModel(model);
       view.getTable().setModel(model);
-//      view.getTxtName().setText(null);
-//      view.getTxtPrice().setText(null);
-//      view.getTxtProducer().setText(null);
-//      view.getTxtProduceDate().setText(null);
-//      view.getTxtExpireDate().setText(null);
-//      view.getTxtAmount().setText(null);
-//      view.getTxtImportPrice().setText(null);
+      //      view.getTxtName().setText(null);
+      //      view.getTxtPrice().setText(null);
+      //      view.getTxtProducer().setText(null);
+      //      view.getTxtProduceDate().setText(null);
+      //      view.getTxtExpireDate().setText(null);
+      //      view.getTxtAmount().setText(null);
+      //      view.getTxtImportPrice().setText(null);
     } catch (NumberFormatException ex) {
-      JOptionPane.showMessageDialog(null, "Input number required!");
+      JOptionPane.showMessageDialog(null, b.getString("numberRequired"));
       return;
     } catch (ParseException ex ) {
-      JOptionPane.showMessageDialog(null, "Date must be in dd/MM/yyyy format");
+      JOptionPane.showMessageDialog(null, b.getString("inputDateForm"));
     }
     
   }

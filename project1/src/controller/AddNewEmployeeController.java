@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -26,16 +27,16 @@ public class AddNewEmployeeController implements ActionListener {
   
   @Override
   public void actionPerformed(ActionEvent arg0) {
-
+    ResourceBundle b = ResourceBundle.getBundle("view.Label");
     String nameStr = view.getTxtName().getText();
     if (nameStr.equals("")) {
-      JOptionPane.showMessageDialog(null, "Name required");
+      JOptionPane.showMessageDialog(null, b.getString("nameRequired"));
       return;
     }
     
     String sexStr = view.getTxtSex().getText();
     if (sexStr.equals("")) {
-      JOptionPane.showMessageDialog(null, "Sex required");
+      JOptionPane.showMessageDialog(null, b.getString("sexRequired"));
       return;
     }
     
@@ -45,37 +46,38 @@ public class AddNewEmployeeController implements ActionListener {
     try {
       dateOfBirth = df.parse(dateOfBirthStr);
     } catch (ParseException e) {
-      JOptionPane.showMessageDialog(null, "Input data form dd/MM/yy");
+      JOptionPane.showMessageDialog(null, b.getString("inputDateForm"));
+      return;
     }
     
     String addressStr = view.getTxtAddress().getText();
     if (addressStr.equals("")) {
-      JOptionPane.showMessageDialog(null, "Address required");
+      JOptionPane.showMessageDialog(null, b.getString("addressRequired"));
       return;
     }
     
     String phoneNoStr = view.getTxtPhoneNo().getText();
     if (phoneNoStr.equals("")) {
-      JOptionPane.showMessageDialog(null, "Phone No. required");
+      JOptionPane.showMessageDialog(null, b.getString("phoneRequired"));
       return;
     }
     
     String coefficientSalaryStr = view.getTxtCoefficientSalary().getText();
     if (coefficientSalaryStr.equals("")) {
-      JOptionPane.showMessageDialog(null, "CoefficientSalary required");
+      JOptionPane.showMessageDialog(null, b.getString("coRequired"));
       return;
     }
     int coefficientSalary = 0;
     try {
       coefficientSalary = Integer.parseInt(coefficientSalaryStr);
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Coefficient Salary must be number");
+      JOptionPane.showMessageDialog(null, b.getString("numberRequired"));
       return;
     }
     
     String linkImageFile = view.getTxtLink().getText();
     if (linkImageFile.equals("")) {
-      JOptionPane.showMessageDialog(null, "Image required");
+      JOptionPane.showMessageDialog(null, b.getString("imageRequired"));
       return;
     }
     
@@ -84,7 +86,7 @@ public class AddNewEmployeeController implements ActionListener {
     try {
       input = Integer.parseInt(inputStr);
     } catch (NumberFormatException e) {
-      JOptionPane.showMessageDialog(null, "Number required");
+      JOptionPane.showMessageDialog(null, b.getString("numberRequired"));
       return;
     }
     
@@ -101,13 +103,13 @@ public class AddNewEmployeeController implements ActionListener {
       try {
         Saver.saveEmployee(employee, linkImageFile);
       } catch (SQLException e) {
-        System.out.println(e);
+        JOptionPane.showMessageDialog(null, b.getString("sqlError"));
         return;
       } catch (ClassNotFoundException e) {
-        System.out.println(e);
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       } catch (IOException e) {
-        System.out.println(e);
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       }
     } else if (index == 1) {
@@ -122,12 +124,16 @@ public class AddNewEmployeeController implements ActionListener {
      
       try {
         Saver.saveEmployee(salesman, linkImageFile);
+        JOptionPane.showMessageDialog(null, b.getString("successfull"));
       } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Fail to save new Salesman");
+        JOptionPane.showMessageDialog(null, b.getString("sqlError") 
+            + ". " + b.getString("fail"));
         return;
       }catch (ClassNotFoundException e) {
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       }
     } else {
@@ -141,17 +147,20 @@ public class AddNewEmployeeController implements ActionListener {
       manager.setCommission(input);
       try {
         Saver.saveEmployee(manager, linkImageFile);
+        JOptionPane.showMessageDialog(null, b.getString("successfull"));
       } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Fail to save new Manager");
+        JOptionPane.showMessageDialog(null, b.getString("sqlError") 
+            + ". " + b.getString("fail"));
         return;      
       } catch (ClassNotFoundException e) {
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       }
       
     }
-    JOptionPane.showMessageDialog(null, "Add successfull");
     view.getFrame().dispose();
   }
   
