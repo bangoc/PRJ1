@@ -2,25 +2,16 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
 import controller.SaveSettingController;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.Locale;
 import java.util.ResourceBundle;
-
-import model.Saver;
 
 public class SettingView {
 

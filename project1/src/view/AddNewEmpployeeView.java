@@ -250,10 +250,10 @@ public class AddNewEmpployeeView {
           lblInput.setText(null);
           txtInput.setVisible(false);
         } else if (index == 1) {
-          lblInput.setText("Phu cap");
+          lblInput.setText(b.getString("Subsidy"));
           txtInput.setVisible(true);
         } else if (index == 2) {
-          lblInput.setText("Hoa hong");
+          lblInput.setText(b.getString("Commission"));
           txtInput.setVisible(true);
         }
       }

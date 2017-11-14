@@ -14,12 +14,13 @@ import mdl.Supplier;
 import model.Loader;
 import view.MakeNewImportReceiptView;
 import view.ManageProductView;
+import view.TaskManagerView;
 
 public class MakeNewImportReceiptViewController implements ActionListener {
-  private ManageProductView view;
+  private TaskManagerView view;
   
-  public MakeNewImportReceiptViewController(ManageProductView manageProductView) {
-    this.view = manageProductView;
+  public MakeNewImportReceiptViewController(TaskManagerView taskManagerView) {
+    this.view = taskManagerView;
   }
 
   @Override
@@ -38,7 +39,7 @@ public class MakeNewImportReceiptViewController implements ActionListener {
         data[i] = "" + supplierList.get(i - 1).getIdNumber();
       }
       comboBox.setModel(new DefaultComboBoxModel<String>(data));
-      view.getFrame().dispose();
+      
     } catch (SQLException e) {
       JOptionPane.showMessageDialog(null, b.getString("sqlError"));
       makeNewImportReceiptView.getFrame().dispose();

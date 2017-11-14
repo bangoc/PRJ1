@@ -1,9 +1,11 @@
 package view;
 
+import controller.MakeNewImportReceiptViewController;
 import controller.NavigateToManageEmployeeViewController;
 import controller.NavigateToManageProductViewController;
 import model.Loader;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -29,18 +31,26 @@ public class TaskManagerView {
     frame = new JFrame();
     frame.setBounds(400, 300, 800, 400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
     frame.getContentPane().setLayout(null);
     
     JButton btnEmployeeTab = new JButton(b.getString("EmployeeTab"));
     btnEmployeeTab.addActionListener(new NavigateToManageEmployeeViewController(frame));
     btnEmployeeTab.setBounds(20, 160, 300, 30);
     frame.getContentPane().add(btnEmployeeTab);
-    frame.setVisible(true);
+ 
     
     JButton btnProductTab = new JButton(b.getString("ProductTab"));
     btnProductTab.addActionListener(new NavigateToManageProductViewController(frame));
     btnProductTab.setBounds(380, 160, 300, 30);
     frame.getContentPane().add(btnProductTab);
+    
+    
+    JButton btnMakeNewImportReceipt = new JButton(b.getString("ImportReceipt"));
+    btnMakeNewImportReceipt.setBounds(380, 280, 300, 30);
+    btnMakeNewImportReceipt.setFont(new Font("Dialog", Font.BOLD, 15));
+    btnMakeNewImportReceipt.addActionListener(new MakeNewImportReceiptViewController(this));
+    frame.getContentPane().add(btnMakeNewImportReceipt);
     
     JButton btnExportTab = new JButton(b.getString("MakeExReceipt"));
     btnExportTab.addActionListener(new ActionListener() {
@@ -68,7 +78,7 @@ public class TaskManagerView {
     frame.getContentPane().add(btnOther);
     
     JButton btnSetting = new JButton(b.getString("Setting"));
-    btnSetting.setBounds(20, 280, 150, 30);
+    btnSetting.setBounds(20, 280, 300, 30);
     btnSetting.addActionListener(new ActionListener() {
       
       @Override
@@ -88,5 +98,13 @@ public class TaskManagerView {
     });
     frame.getContentPane().add(btnSetting);
     
+  }
+
+  public JFrame getFrame() {
+    return frame;
+  }
+
+  public void setFrame(JFrame frame) {
+    this.frame = frame;
   }
 }

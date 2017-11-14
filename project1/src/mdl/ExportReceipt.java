@@ -2,6 +2,7 @@ package mdl;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ExportReceipt {
   private int code;
@@ -46,7 +47,18 @@ public class ExportReceipt {
     this.time = time;
   }
   
-  
+  public boolean containsProductId(Product pro) {
+    boolean check = false;
+    Product product;
+    for (Map.Entry<Product, Integer[]> pair : this.listItem.entrySet()) {
+      product = pair.getKey();
+      if (product.getIdNumber() == pro.getIdNumber()) {
+        check = true;
+        break;
+      }
+    }
+    return check;
+  }
 
   
 }

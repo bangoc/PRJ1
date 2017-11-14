@@ -3,7 +3,11 @@ package model;
 public class DieuKien {
   private String maSanPham;
   private String maNhaCungCap;
-
+  private String dkTenSanPham;
+  private String dkSoLuongHienCo;
+  private String dkNhaSanXuat;
+  private String dkSoLuongDaBan;
+  
   public String getMaNhaCungCap() {
     return maNhaCungCap;
   }
@@ -11,12 +15,7 @@ public class DieuKien {
   public void setMaNhaCungCap(String maNhaCungCap) {
     this.maNhaCungCap = maNhaCungCap;
   }
-
-  private String dkTenSanPham;
-  private String dkSoLuongHienCo;
-  private String dkNhaSanXuat;
-  private String dkSoLuongDaBan;
-
+  
   public String getMaSanPham() {
     return maSanPham;
   }

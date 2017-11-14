@@ -387,7 +387,7 @@ public class Loader {
       strDate = result.getString(3);
     }
     Manager manager = loadManagerById(idManager);
-    String sql1 = "select id_product, amount, price from import_receipt where id = " + idNumber;
+    String sql1 = "select id_product, amount, price from import_receipt where id_receipt = " + idNumber;
     ResultSet result1 = connect.getStatement().executeQuery(sql1);
     LinkedHashMap<Product, Integer[]> listItem = new LinkedHashMap<>();
     Product product;
