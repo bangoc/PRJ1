@@ -393,9 +393,10 @@ public class Loader {
     Product product;
     while (result1.next()) {
       product = loadProductById(result1.getInt(1));
-      Integer[] array = {result1.getInt(1), result1.getInt(2)};
+      Integer[] array = {result1.getInt(2), result1.getInt(3)};
       listItem.put(product, array);
     }
+    
     ImportReceipt receipt = new ImportReceipt();
     receipt.setCode(idNumber);
     receipt.setImporter(manager);
@@ -449,13 +450,13 @@ public class Loader {
       strDate = result.getString(2);
     }
     SalesPerson salesman = loadSalesPersonById(idSalesman);
-    String sql1 = "select id_product, amount, price from export_receipt where id = " + idNumber;
+    String sql1 = "select id_product, amount, price from export_receipt where id_receipt = " + idNumber;
     ResultSet result1 = connect.getStatement().executeQuery(sql1);
     LinkedHashMap<Product, Integer[]> listItem = new LinkedHashMap<>();
     Product product;
     while (result1.next()) {
       product = loadProductById(result1.getInt(1));
-      Integer[] array = {result1.getInt(1), result1.getInt(2)};
+      Integer[] array = {result1.getInt(2), result1.getInt(3)};
       listItem.put(product, array);
     }
     ExportReceipt receipt = new ExportReceipt();

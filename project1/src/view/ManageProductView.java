@@ -73,11 +73,11 @@ public class ManageProductView {
     
     
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(25, 250, 1465, 400);
+    scrollPane.setBounds(25, 150, 809, 500);
     frame.getContentPane().add(scrollPane);
     
     String [] columnNames = {b.getString("nodata")};
-    panel = new MyTable(columnNames, 2, 2, 1455, 396);
+    panel = new MyTable(columnNames, 2, 2, 798, 496);
     scrollPane.setViewportView(panel);
     
     JButton btnBack = new JButton(b.getString("Back"));
@@ -107,12 +107,12 @@ public class ManageProductView {
     frame.getContentPane().add(comboBox);
     
     txtInput = new JTextField();
-    txtInput.setBounds(30, 140, 200, 25);
+    txtInput.setBounds(250, 100, 200, 25);
     txtInput.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(txtInput);
     
     JButton btnSearch = new JButton(b.getString("Search"));
-    btnSearch.setBounds(30, 178, 150, 25);
+    btnSearch.setBounds(460, 100, 150, 25);
     btnSearch.addActionListener(new SearchProductController(this));
     btnSearch.setFont(new Font("Dialog", Font.BOLD, 15));
     frame.getContentPane().add(btnSearch);

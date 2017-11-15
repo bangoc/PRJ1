@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
@@ -47,20 +48,22 @@ public class CreateNewExportReceiptController implements ActionListener {
         };
         itemList.put(product, array);
       } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Error");
+        JOptionPane.showMessageDialog(null, b.getString("Error"));
         return;
       } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "sqlError");
+        JOptionPane.showMessageDialog(null, b.getString("sqlError"));
         return;
       } catch (ParseException ex) {
-        JOptionPane.showMessageDialog(null, "parseError");
+        JOptionPane.showMessageDialog(null, b.getString("parseError"));
         return;
       }
     }
     try {
       SalesPerson salesman = Loader.loadSalesPersonById(9);
       ExportReceipt receipt = salesman.makeExportReceipt(itemList);
+      String urlFolder = Loader.loadLink(2);
       Saver.saveExportReceipt(receipt);
+      receipt.writeToFile(urlFolder);
       JOptionPane.showMessageDialog(null, b.getString("successfull"));
       model.setRowCount(0);
       makeNewExportReceiptView.getLblTotalPrice().setText("0");
@@ -70,6 +73,8 @@ public class CreateNewExportReceiptController implements ActionListener {
     } catch (ParseException ex) {
       JOptionPane.showMessageDialog(null, b.getString("parseError"));
       return;
+    } catch (IOException ex) {
+      JOptionPane.showMessageDialog(null, b.getString("Error") + "url");
     }
     
     

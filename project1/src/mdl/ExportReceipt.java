@@ -1,5 +1,8 @@
 package mdl;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -60,5 +63,31 @@ public class ExportReceipt {
     return check;
   }
 
-  
+  public void writeToFile(String urlFolder) throws IOException {
+    String urlFile = urlFolder + "/" + this.code + "export.txt";
+    FileWriter writer = new FileWriter(urlFile);
+    BufferedWriter bwriter = new BufferedWriter(writer);
+    writer.write("Receipt ID : " + this.code);
+    writer.write(System.lineSeparator());
+    writer.write("Employee Name : " + this.getSalesPerson().getName());
+    writer.write(System.lineSeparator());
+    writer.write("Date : ");
+    writer.write(this.time.toString());
+    writer.write(System.lineSeparator());
+    writer.write("Products : ");
+    writer.write(System.lineSeparator());
+    Product product;
+    for (Map.Entry<Product, Integer[]> pair : this.listItem.entrySet()) {
+      product = pair.getKey();
+      writer.write("" + product.getIdNumber());
+      writer.write("++++");
+      writer.write(product.getName());
+      writer.write("++++");
+      writer.write("" + pair.getValue()[0]);
+      writer.write("++++");
+      writer.write("" + pair.getValue()[1]);
+      writer.write(System.lineSeparator());
+    }
+    bwriter.close();
+  }
 }

@@ -154,6 +154,7 @@ public class Saver {
     while (result.next()) {
       idReceipt = result.getInt(1);
     }
+    connect.getStatement().close();
     return idReceipt;
   }
   
@@ -183,6 +184,7 @@ public class Saver {
       i = pair.getValue();
       saveDataIntoExportReceipt(idReceipt, product.getIdNumber(), i[0], i[1]);
     }
+    receipt.setCode(idReceipt);
   }
   
   private static void saveDataIntoImportReceipt(int idReceipt, int idProduct, int amount, int price)
@@ -231,7 +233,7 @@ public class Saver {
       idProduct = saveProduct(product);
       saveDataIntoImportReceipt(idReceipt, idProduct, i[0], i[1]);
     }
-    
+    receipt.setCode(idReceipt);
   }
  
   /**
