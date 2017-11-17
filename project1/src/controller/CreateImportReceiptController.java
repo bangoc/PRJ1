@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 //import java.sql.SQLException;
 import java.text.DateFormat;
@@ -78,12 +79,16 @@ public class CreateImportReceiptController implements ActionListener{
       
       ImportReceipt receipt = manager.makeImportReceipt(supplier, itemList);
       Saver.saveImportReceipt(receipt);
+      String urlFolder = Loader.loadLink(1);
+      receipt.writeToFile(urlFolder);
       JOptionPane.showMessageDialog(null, b.getString("successfull"));
     } catch (ParseException ex) {
       JOptionPane.showMessageDialog(null, b.getString("parseError"));
       return;
     } catch (SQLException ex) {
       JOptionPane.showMessageDialog(null, b.getString("sqlError"));
+    } catch (IOException ex) {
+      JOptionPane.showMessageDialog(null, b.getString("Error"));
     }
     
   }

@@ -103,6 +103,7 @@ public class Saver {
     while (result.next()) {
       id = result.getInt(1);
     }
+    product.setIdNumber(id);
     return id;
   }
   

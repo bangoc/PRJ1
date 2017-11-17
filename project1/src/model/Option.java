@@ -1,6 +1,6 @@
 package model;
 
-public class DieuKien {
+public class Option {
   private String maSanPham;
   private String maNhaCungCap;
   private String dkTenSanPham;
