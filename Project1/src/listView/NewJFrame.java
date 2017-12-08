@@ -6,6 +6,7 @@
 package listView;
 
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,9 +14,7 @@ import java.awt.event.KeyEvent;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+    
     public NewJFrame() {
         initComponents();
     }
@@ -48,6 +47,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Mật Khẩu :");
 
+        txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaiKhoanActionPerformed(evt);
+            }
+        });
         txtTaiKhoan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTaiKhoanKeyReleased(evt);
@@ -159,9 +163,26 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
+        // theo nhu y kien ca nhan thi 1 xu ly xu kien se co 3 buoc
+        // buoc 1 tien xu ly
+        // lam nhung viec nhu la kiem tra xem user co nhập đủ các truong hay k
+        // co nhap dung kieu hay dinh dang du lieu hay k
+        // buoc 2 xu ly du lieu// cai nay noi sau
+        // buoc 3 hien thi
+        //the h xu li tin hiue dang nhap di lam buoc 1 va duoc 3 truoc. lam di? neu k code duoc thi noi y tuong ra?
+                //tao 1 thong bao de xem ng dung da nhap dung kieu du lieu hay chua
+                // lam cach nao day de co su lien ket giua tai khoan va mat khau de xac nhan lai user co nhap du hay chua
+                
+        if (txtTaiKhoan.getText().equals("") || pfMatKhau.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap du tai khoan mat khau vao");
+            return;
+        }      
+        
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void txtTaiKhoanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTaiKhoanKeyReleased
@@ -171,6 +192,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void pfMatKhauKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfMatKhauKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER)btnDangNhap.doClick();
     }//GEN-LAST:event_pfMatKhauKeyReleased
+
+    private void txtTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaiKhoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTaiKhoanActionPerformed
 
     /**
      * @param args the command line arguments

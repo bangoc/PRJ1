@@ -7,6 +7,7 @@ package application;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import listView.NewJFrame;
 import model.connectDatabase.ConnectDatabase;
 
 /**
@@ -15,6 +16,6 @@ import model.connectDatabase.ConnectDatabase;
  */
 public class ManageMarketSystem {
     public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
-        ConnectDatabase.createConnect();
+       new NewJFrame().setVisible(true);
     }
 }
