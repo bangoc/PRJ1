@@ -135,22 +135,7 @@ public class Game extends Canvas implements ActionListener {
 		strategy.show();
 	}
 
-<<<<<<< HEAD
-	private void startGame() {
-		entities.clear();
-		initEntities(row);
-		score = 0;
-		buttonPlay.setVisible(false);
-		buttonQuit.setVisible(false);
-		leftPressed = false;
-		rightPressed = false;
-		firePressed = false;
-		gameState = IN_GAME;
-		gameRunning = true;
-		waitingForKeyPress = false;
-		this.setFocusable(true);
-	}
-=======
+
         private void startGame() {
         		music.start();
                 entities.clear();
@@ -166,7 +151,6 @@ public class Game extends Canvas implements ActionListener {
                 waitingForKeyPress = false;
                 this.setFocusable(true);
         }
->>>>>>> 07c97ae08675d020ab1967aab272f5ef634d61cc
 
 	public void gameLoop() {
 		long lastLoopTime = System.currentTimeMillis();
@@ -229,22 +213,7 @@ public class Game extends Canvas implements ActionListener {
 		gameState = GAME_OVER;
 	}
 
-<<<<<<< HEAD
-	public void gameOver() {
-		Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 800, 600);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Arial", Font.BOLD, 50));
-		g.drawString("GAME OVER", 250, 150);
-		g.setColor(Color.RED);
-		g.setFont(new Font("Arial", Font.BOLD, 20));
-		g.drawString("SCORE:           " + Math.round(score), 310, 300);
-		g.drawString("HIGH SCORE: " + Math.round(highScore.Read()), 310, 340);
-		g.dispose();
-		strategy.show();
-	}
-=======
+
         public void gameOver() {
         		music.stop();
                 Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
@@ -260,7 +229,6 @@ public class Game extends Canvas implements ActionListener {
                 g.dispose();
                 strategy.show();
         }
->>>>>>> 07c97ae08675d020ab1967aab272f5ef634d61cc
 
 	private JButton createButton1(String action1, String buttonName1) {
 		URL url = getClass().getResource("/sprites/buttonPlay.png");
@@ -293,7 +261,21 @@ public class Game extends Canvas implements ActionListener {
 			System.exit(0);
 		}
 	}
+	//tam dung game
+	private void pause()  {
+	
+		//Thread.sleep(firingInterval);
+		//Thread.sleep(90000);
+		buttonPlay.setVisible(true);
+		buttonQuit.setVisible(true);
 
+		
+	}
+	//continue
+	public void continueGame() {
+		buttonPlay.setVisible(false);
+		buttonQuit.setVisible(false);
+	}
 	private class KeyInputHandler extends KeyAdapter {
 		public void keyPressed(KeyEvent e) {
 			if (waitingForKeyPress) {
@@ -308,6 +290,13 @@ public class Game extends Canvas implements ActionListener {
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = true;
 				music.run("shoot.mp3");
+			}
+			if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+				pause();
+				
+			}
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				continueGame();
 			}
 		}
 
@@ -325,6 +314,7 @@ public class Game extends Canvas implements ActionListener {
 				firePressed = false;
 				music.stop();
 			}
+			
 		}
 	}
 
