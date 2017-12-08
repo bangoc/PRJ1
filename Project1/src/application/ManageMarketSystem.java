@@ -5,12 +5,16 @@
  */
 package application;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import model.connectDatabase.ConnectDatabase;
+
 /**
  *
  * @author leo
  */
 public class ManageMarketSystem {
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
+        ConnectDatabase.createConnect();
     }
 }

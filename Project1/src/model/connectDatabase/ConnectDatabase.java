@@ -23,8 +23,9 @@ public class ConnectDatabase {
     
     // tao ket noi toi co so du lieu
     Connection connect = DriverManager.getConnection(url,userName,password); 
+      System.out.println("Ket noi da duoc tao");
     return connect;
- 
+    
   }
  
 }
