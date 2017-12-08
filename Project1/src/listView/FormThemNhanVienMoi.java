@@ -5,6 +5,20 @@
  */
 package listView;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import model.MyUtils.MyDate;
+import model.connectDatabase.ConnectEmployee;
+import model.employee.Division;
+import model.employee.Employee;
+import model.employee.Gender;
+
 /**
  *
  * @author PhamThiDuyen
@@ -83,7 +97,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
         jLabel8.setText("Vị trí");
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        jComboBox1.setModel(new DefaultComboBoxModel<Gender>(new Gender[] {Gender.FEMALE, Gender.MALE}));
 
         txtNgaySinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,10 +112,16 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
         });
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân Viên", "Quản Lý", "Bán hàng" }));
+        jComboBox2.setModel(new DefaultComboBoxModel<Division> (new Division[] {Division.EMPLOYEE, Division.IMPORTER, Division.MANAGER, Division.SALESMAN})
+        );
 
         btnThem.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnThem.setLabel("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnTroVe.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnTroVe.setLabel("Trở Về");
@@ -185,7 +205,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         imgThemNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-list-add-user-icon.png"))); // NOI18N
@@ -235,48 +255,69 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoDienThoaiActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        // kiem tra nhap ten
+        if (txtTen.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap vao ten");
+            return;
         }
-        //</editor-fold>
+        
+        // kiem tra nhap ngay sinh
+        if (txtNgaySinh.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap vao ngay sinh");
+            return;
+        }
+        
+        // kiem tra nhap ngay sinh dung dinh dang
+        Date birthday;
+        try {
+            birthday = MyDate.parseDateString1(txtNgaySinh.getText());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Nhap ngay sinh dang yyyy-MM-dd");
+            Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+        // kiem tra nhap dia chi
+        if (txtDiaChi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap vao dia chi");
+            return;
+        }
+        
+        // kiem tra nhap he so luong dang so
+        int heSoLuong;
+        try {
+            heSoLuong = Integer.parseInt(txtHeSoLuong.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Nhap he so luong dang so");
+            return;
+        }
+        
+        // kiem tra nhap so dien thoai
+        if (txtSoDienThoai.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap so dien thoai");
+            return;
+        }
+        
+        Employee employee = new Employee(txtTen.getText(), (Gender) jComboBox1.getSelectedItem(), 
+                birthday, txtDiaChi.getText(), txtSoDienThoai.getText(), heSoLuong);
+        try {
+            ConnectEmployee.saveNewEmployee(employee, "/home/leo/Pictures/download.jpeg", (Division) jComboBox2.getSelectedItem());
+            JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
+        } catch (SQLException | IOException | ClassNotFoundException ex) {
+            Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormThemNhanVienMoi().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnMoRong;
     private java.awt.Button btnThem;
     private java.awt.Button btnTroVe;
     private javax.swing.JLabel imgThemNV;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<Gender> jComboBox1;
+    private javax.swing.JComboBox<Division> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

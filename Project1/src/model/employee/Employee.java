@@ -1,17 +1,15 @@
 package model.employee;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
+import model.MyUtils.MyDate;
 
 public class Employee {
   private int employeeId;
   private String name;
-  private String sex;
+  private Gender gender;
   private Date dateOfBirth;
   private String address;
   private String phoneNumber;
@@ -20,7 +18,18 @@ public class Employee {
   private static final int DEFAULT_SALARY = 1000000;
   private ImageIcon image;
   
-
+  public Employee() {
+      
+  }
+  
+  public Employee(String name, Gender gender, Date birthday, String address, String phone, int coefficient) {
+      this.name = name;
+      this.gender = gender;
+      this.dateOfBirth = birthday;
+      this.address = address;
+      this.phoneNumber = phone;
+      this.coefficientsSalary = coefficient;
+  }
   public ImageIcon getImage() {
     return image;
   }
@@ -45,12 +54,12 @@ public class Employee {
     this.name = name;
   }
 
-  public String getSex() {
-    return sex;
+  public Gender getGender() {
+    return gender;
   }
 
-  public void setSex(String sex) {
-    this.sex = sex;
+  public void setGender(Gender gender) {
+    this.gender = gender;
   }
 
   public Date getDateOfBirth() {
@@ -97,6 +106,8 @@ public class Employee {
     this.workHistory = workHistory;
   }
   
+  
+  
   public int countSalary() {
     return coefficientsSalary * this.getDefaultSalary();
   }
@@ -105,15 +116,15 @@ public class Employee {
    * Method convert attributes of an instance of Employee Class to String[].
    * @return String[]
    */
-  
-  public String[] toArrayString() {
-    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    ResourceBundle b = ResourceBundle.getBundle("view.Label");
-
-    String[] array = {"" + this.employeeId, this.name, this.sex, 
-        df.format(this.dateOfBirth), this.address, this.phoneNumber, "" + this.coefficientsSalary, 
-        b.getString("Employee")};
-    return array;
-  }
+//  
+//  public String[] toArrayString() {
+//    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+//
+//    String[] array = {"" + this.employeeId, this.name, this.sex, 
+//        df.format(this.dateOfBirth), this.address, this.phoneNumber, "" + this.coefficientsSalary, 
+//        b.getString("Employee")};
+//    return array;
+//  }
   
 }
