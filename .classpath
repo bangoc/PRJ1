@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="PRJ1/src"/>
+	<classpathentry kind="lib" path="C:/Users/vuduc/Desktop/JLayer1.0.1/jl1.0.1.jar"/>
+	<classpathentry kind="output" path="PRJ1/bin"/>
+</classpath>
