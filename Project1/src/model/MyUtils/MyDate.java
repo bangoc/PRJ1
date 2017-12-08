@@ -6,6 +6,7 @@
 package model.MyUtils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,14 +14,22 @@ import java.util.Date;
  *
  * @author leo
  */
-public class MyDate extends Date {
-    public MyDate() {
-        super();
+public class MyDate {
+    static DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+    static DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+ 
+    
+    public static Date parseDateString(String date) throws ParseException {
+   
+        return df.parse(date);
     }
     
-    @Override
-    public String toString() {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd hh/mm/ss");
-        return df.format(this);
+    public static String formatDate(Date date) {
+       
+      return df.format(date);
+    }
+    
+    public static Date parseDateString1(String date) throws ParseException {
+        return df1.parse(date);
     }
 }

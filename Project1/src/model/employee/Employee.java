@@ -10,7 +10,7 @@ public class Employee {
   private int employeeId;
   private String name;
   private Gender gender;
-  private MyDate dateOfBirth;
+  private Date dateOfBirth;
   private String address;
   private String phoneNumber;
   private int coefficientsSalary;
@@ -18,7 +18,18 @@ public class Employee {
   private static final int DEFAULT_SALARY = 1000000;
   private ImageIcon image;
   
-
+  public Employee() {
+      
+  }
+  
+  public Employee(String name, Gender gender, Date birthday, String address, String phone, int coefficient) {
+      this.name = name;
+      this.gender = gender;
+      this.dateOfBirth = birthday;
+      this.address = address;
+      this.phoneNumber = phone;
+      this.coefficientsSalary = coefficient;
+  }
   public ImageIcon getImage() {
     return image;
   }
@@ -51,11 +62,11 @@ public class Employee {
     this.gender = gender;
   }
 
-  public MyDate getDateOfBirth() {
+  public Date getDateOfBirth() {
     return dateOfBirth;
   }
 
-  public void setDateOfBirth(MyDate dateOfBirth) {
+  public void setDateOfBirth(Date dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
 
