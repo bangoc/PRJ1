@@ -30,15 +30,15 @@ public class Salesman extends Employee {
   
 
 
-  
-  @Override
-  public String[] toArrayString() {
-    ResourceBundle b = ResourceBundle.getBundle("view.Label");
-
-    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    String[] array = {"" + this.getEmployeeId(), this.getName(), this.getSex(), 
-        df.format(this.getDateOfBirth()), this.getAddress(), this.getPhoneNumber(),
-        "" + this.getCoefficientsSalary(), b.getString("Salesman")};
-    return array;
-  }
+//  
+//  @Override
+//  public String[] toArrayString() {
+//    ResourceBundle b = ResourceBundle.getBundle("view.Label");
+//
+//    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//    String[] array = {"" + this.getEmployeeId(), this.getName(), this.getSex(), 
+//        df.format(this.getDateOfBirth()), this.getAddress(), this.getPhoneNumber(),
+//        "" + this.getCoefficientsSalary(), b.getString("Salesman")};
+//    return array;
+//  }
 }
