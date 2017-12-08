@@ -43,45 +43,45 @@ public class CaiDatView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CÀI ĐẶT");
         setBackground(new java.awt.Color(153, 153, 255));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+       // getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Settings-5-icon.png"))); // NOI18N
         jLabel1.setText("CÀI ĐẶT");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 200, 70));
+      //  getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 200, 70));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/English-Language-Flag-1-icon.png"))); // NOI18N
         jLabel2.setText("Ngôn ngữ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, 40));
+       // getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, 40));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiếng Việt", "Tiếng Anh", "Tiếng Nhật", " " }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+      //  getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 240, 40));
+      //  getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 240, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Vị trí lưu hóa đơn nhập");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 205, 210, 50));
+       // getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 205, 210, 50));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Mở rộng");
         jButton1.setActionCommand("btnLuu1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, 40));
+       // getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Vị trí lưu hóa đơn xuất");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, -1));
+       // getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 240, 40));
+      //  getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 240, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Mở rộng");
         jButton3.setActionCommand("btnLuU2");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 90, 40));
+      //  getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 90, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
