@@ -38,7 +38,7 @@ public class ConnectEmployee {
         ps.setString(5, employee.getPhoneNumber());
         ps.setInt(6, employee.getCoefficientsSalary());
 
-  
+        // get image as stream to save to database
         FileInputStream fin=new FileInputStream(linkImage);  
         ps.setBinaryStream(7,fin,fin.available());  
         ps.setString(8, division.toString());
