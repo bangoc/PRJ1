@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 
 public class Employee {
-  private int idNumber;
+  private int employeeId;
   private String name;
   private String sex;
   private Date dateOfBirth;
@@ -29,12 +29,12 @@ public class Employee {
     this.image = image;
   }
 
-  public int getIdNumber() {
-    return idNumber;
+  public int getEmployeeId() {
+    return employeeId;
   }
 
-  public void setIdNumber(int idNumber) {
-    this.idNumber = idNumber;
+  public void setEmployeeId(int employeeId) {
+    this.employeeId = employeeId;
   }
 
   public String getName() {
@@ -110,7 +110,7 @@ public class Employee {
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     ResourceBundle b = ResourceBundle.getBundle("view.Label");
 
-    String[] array = {"" + this.idNumber, this.name, this.sex, 
+    String[] array = {"" + this.employeeId, this.name, this.sex, 
         df.format(this.dateOfBirth), this.address, this.phoneNumber, "" + this.coefficientsSalary, 
         b.getString("Employee")};
     return array;
