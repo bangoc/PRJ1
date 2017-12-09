@@ -29,4 +29,17 @@ public class ConnectAccount {
         
         ps.executeUpdate();
     }
+    
+    public static void saveChangedAccount(Account account, int id) throws IOException, ClassNotFoundException, SQLException {
+        String query = "update account set user_name = ?, password = ? where employee_id = ?";
+        Connection con = ConnectDatabase.createConnect();
+        
+        PreparedStatement ps = con.prepareStatement(query);
+        
+        ps.setInt(3, id);
+        ps.setString(1, account.getUsername());
+        ps.setString(2, account.getPassword());
+        
+        ps.executeUpdate();
+    }
 }

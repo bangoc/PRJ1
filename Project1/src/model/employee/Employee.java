@@ -17,6 +17,7 @@ public class Employee {
   private ArrayList<WorkHistory> workHistory;
   private static final int DEFAULT_SALARY = 1000000;
   private ImageIcon image;
+  private Account account;
   
   public Employee() {
       
@@ -29,6 +30,7 @@ public class Employee {
       this.address = address;
       this.phoneNumber = phone;
       this.coefficientsSalary = coefficient;
+      this.account = new Account(this.phoneNumber, this.phoneNumber);
   }
   public ImageIcon getImage() {
     return image;
@@ -105,6 +107,14 @@ public class Employee {
   public void setWorkHistory(ArrayList<WorkHistory> workHistory) {
     this.workHistory = workHistory;
   }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
   
   
   

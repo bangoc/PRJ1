@@ -52,7 +52,9 @@ public class ConnectEmployee {
         }
 
         employee.setEmployeeId(key);
-
+        
+        // save account
+        ConnectAccount.saveNewAccount(employee.getAccount(), key);
         
     }
     

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
+import model.MyUtils.Sender;
 import model.connectDatabase.ConnectEmployee;
 import model.employee.Division;
 import model.employee.Employee;
@@ -303,6 +304,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
                 birthday, txtDiaChi.getText(), txtSoDienThoai.getText(), heSoLuong);
         try {
             ConnectEmployee.saveNewEmployee(employee, "/home/leo/Pictures/download.jpeg", (Division) jComboBox2.getSelectedItem());
+            Sender.sendPassword(employee);
             JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
         } catch (SQLException | IOException | ClassNotFoundException ex) {
             Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
