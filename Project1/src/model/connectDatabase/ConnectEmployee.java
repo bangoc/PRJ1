@@ -5,7 +5,6 @@
  */
 package model.connectDatabase;
 
-import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,8 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.imageio.ImageIO;
-
 import model.MyUtils.MyDate;
 import model.employee.Division;
 import model.employee.Employee;
@@ -27,7 +24,7 @@ public class ConnectEmployee {
     public static void saveNewEmployee(Employee employee, String linkImage, Division division) throws SQLException, FileNotFoundException, IOException, ClassNotFoundException {
         String query = "insert into employee "
                 + "(id, name, sex, birth_date, address, phone_no, coefficient_salary, image, division) "
-                + "values (null, ?, ?, ?, ?, ?, ?, null, ?)";
+                + "values (null, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         
         Connection con = ConnectDatabase.createConnect();
@@ -41,15 +38,10 @@ public class ConnectEmployee {
         ps.setString(5, employee.getPhoneNumber());
         ps.setInt(6, employee.getCoefficientsSalary());
 
-        //
-//        FileInputStream in = new FileInputStream(linkImage);
-//        BufferedImage bi = ImageIO.read(in);
-//        byte[] byteArray= bi.
-//
-//        ps.setBytes(1, byteArray);
-//  
-//        ps.setBinaryStream(7, in);
-        ps.setString(7, division.toString());
+  
+        FileInputStream fin=new FileInputStream(linkImage);  
+        ps.setBinaryStream(7,fin,fin.available());  
+        ps.setString(8, division.toString());
         // execute query
         ps.executeUpdate();
 
