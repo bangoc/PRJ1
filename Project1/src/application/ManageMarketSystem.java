@@ -5,28 +5,14 @@
  */
 package application;
 
-<<<<<<< HEAD
-import java.io.IOException;
-import java.sql.SQLException;
-import listView.NewJFrame;
-import model.connectDatabase.ConnectDatabase;
-=======
 import listView.FormThemNhanVienMoi;
 
->>>>>>> e7867c1fb33de241f886402e8d0a37db7472b38e
 
 /**
  *
  * @author leo
  */
 public class ManageMarketSystem {
-<<<<<<< HEAD
-    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
-       new NewJFrame().setVisible(true);
-=======
-      /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -57,7 +43,7 @@ public class ManageMarketSystem {
                 new FormThemNhanVienMoi().setVisible(true);
             }
         });
->>>>>>> e7867c1fb33de241f886402e8d0a37db7472b38e
+
     }
 
 }

@@ -3,11 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< HEAD
-package java;
-=======
 package listView;
->>>>>>> 5b9a226b5b0275d91eb9cadb41bec9f37369b0a2
 
 /**
  *
@@ -220,10 +216,6 @@ public class GiaoDien extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GiaoDien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-<<<<<<< HEAD
-=======
-        //</editor-fold>
->>>>>>> 5b9a226b5b0275d91eb9cadb41bec9f37369b0a2
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -246,9 +238,5 @@ public class GiaoDien extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-<<<<<<< HEAD
-=======
-    // dya cha thay cai eo gi
-    
->>>>>>> 5b9a226b5b0275d91eb9cadb41bec9f37369b0a2
+
 }
