@@ -56,7 +56,27 @@ public class ConnectEmployee {
         
     }
     
-    public void saveChangedEmployee(Employee employee) {
-        
+    public void saveChangedEmployee(Employee employee, String linkImage, Division division) throws IOException, ClassNotFoundException, SQLException {
+        String query = "update employee "
+                + "set name = ?, sex = ?, birth_date = ?, address = ?, phone_no = ?, "
+                + "coefficient_salary = ?, image = ?, division = ? where id = ?";
+        Connection con = ConnectDatabase.createConnect();
+        PreparedStatement ps = con.prepareStatement(query);
+
+        // set values
+        ps.setString(1, employee.getName());
+        ps.setString(2, employee.getGender().toString());
+        ps.setString(3, MyDate.formatDate(employee.getDateOfBirth()));
+        ps.setString(4, employee.getAddress());
+        ps.setString(5, employee.getPhoneNumber());
+        ps.setInt(6, employee.getCoefficientsSalary());
+
+        // get image as stream to save to database
+        FileInputStream fin=new FileInputStream(linkImage);  
+        ps.setBinaryStream(7,fin,fin.available());  
+        ps.setString(8, division.toString());
+        ps.setInt(9, employee.getEmployeeId());
+        // execute query
+        ps.executeUpdate();
     }
 }
