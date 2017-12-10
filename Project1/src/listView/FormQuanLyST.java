@@ -230,6 +230,7 @@ public class FormQuanLyST extends javax.swing.JFrame {
 
     private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new FormQuanLiNhanVien().setVisible(true);
     }//GEN-LAST:event_btnQuanLiNVActionPerformed
 

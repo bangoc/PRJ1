@@ -189,12 +189,15 @@ public class FormDangNhap extends javax.swing.JFrame {
         try {
             Object object = ConnectAccount.createLogin(account);
             if (object instanceof Importer) {
+                this.dispose();
                 new HoaDonNhapView().setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Manager) {
-                new FormDangNhap().setVisible(true);
+                this.dispose();
+                new FormQuanLyST().setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Salesman) {
+                this.dispose();
                 new BanHang().setVisible(true);
                 processSavedAccount(account);
             } else {
