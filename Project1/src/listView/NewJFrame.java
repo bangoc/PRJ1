@@ -6,7 +6,18 @@
 package listView;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.connectDatabase.ConnectAccount;
+import model.employee.Account;
+import model.employee.Employee;
+import model.employee.Importer;
+import model.employee.Manager;
+import model.employee.Salesman;
 
 /**
  *
@@ -173,6 +184,22 @@ public class NewJFrame extends javax.swing.JFrame {
             return;
         }      
         
+        Account account = new Account(txtTaiKhoan.getText(), pfMatKhau.getText());
+        try {
+            Object object = ConnectAccount.createLogin(account);
+            if (object instanceof Importer) {
+                new HoaDonNhapView().setVisible(true);
+            } else if (object instanceof Manager) {
+                new FormDangNhap().setVisible(true);
+            } else if (object instanceof Salesman) {
+                new BanHang().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
+                
+            } 
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void txtTaiKhoanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTaiKhoanKeyReleased

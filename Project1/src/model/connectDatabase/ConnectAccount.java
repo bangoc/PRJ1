@@ -19,6 +19,9 @@ import model.employee.Account;
 import model.employee.Division;
 import model.employee.Employee;
 import model.employee.Gender;
+import model.employee.Importer;
+import model.employee.Manager;
+import model.employee.Salesman;
 
 /**
  *
@@ -90,9 +93,15 @@ public class ConnectAccount {
             ImageIcon img = new ImageIcon(barr);
             
             String division = rs.getString(9);
-            if (division.equals(Division.EMPLOYEE)) {
-                return new Employee();
-            }    
+            if (division.equals(Division.EMPLOYEE.toString())) {
+                return new Employee(id, name, gender, date, address, phone, coefficientSalary, img, account);
+            } else if (division.equals(Division.IMPORTER.toString())) {
+                return new Importer(id, name, gender, date, address, phone, coefficientSalary, img, account);
+            } else if (division.equals(Division.MANAGER.toString())) {
+                return new Manager(id, name, gender, date, address, phone, coefficientSalary, img, account);
+            } else if (division.equals(Division.SALESMAN.toString())) {
+                return new Salesman(id, name, gender, date, address, phone, coefficientSalary, img, account);
+            }
            
         }
         return null;
