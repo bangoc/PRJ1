@@ -5,17 +5,30 @@
  */
 package listView;
 
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.MyUtils.ObjectWithFile;
+import model.connectDatabase.ConnectAccount;
+import model.employee.Account;
+import model.employee.Importer;
+import model.employee.Manager;
+import model.employee.Salesman;
+
 /**
  *
  * @author PhamThiDuyen
  */
 public class FormDangNhap extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormDangNhap
-     */
+    
     public FormDangNhap() {
         initComponents();
+        displaySavedAccount();
     }
 
     /**
@@ -29,178 +42,112 @@ public class FormDangNhap extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtTaiKhoan = new javax.swing.JTextField();
+        pfMatKhau = new javax.swing.JPasswordField();
+        btnDangNhap = new javax.swing.JButton();
+        cbLuuMK = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnQuanLiNV = new javax.swing.JButton();
-        btnBanHang = new javax.swing.JButton();
-        btnCaiDat = new javax.swing.JButton();
-        btnQuanLiSP = new javax.swing.JButton();
-        btnQuanLiST = new javax.swing.JButton();
-        btnHoaDonNhap = new javax.swing.JButton();
-        imgQuanLiNhanVien = new javax.swing.JLabel();
-        imgBanHang = new javax.swing.JLabel();
-        imgSell = new javax.swing.JLabel();
-        imgCaiDat = new javax.swing.JLabel();
-        imgQuanLySP = new javax.swing.JLabel();
-        imgQuanLyST = new javax.swing.JLabel();
-        imgHoaDonNhap = new javax.swing.JLabel();
+        img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Chào Mừng Đến Với Hệ thống Quản Lí Siêu Thị");
+        jLabel1.setText("Tài Khoản :");
+
+        jLabel2.setText("Mật Khẩu :");
+
+        txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaiKhoanActionPerformed(evt);
+            }
+        });
+        txtTaiKhoan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTaiKhoanKeyReleased(evt);
+            }
+        });
+
+        pfMatKhau.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pfMatKhauKeyReleased(evt);
+            }
+        });
+
+        btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
+
+        cbLuuMK.setSelected(true);
+        cbLuuMK.setText("Lưu Mật Khẩu");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel3.setText("Đăng nhập hệ thống QLST");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(237, 237, 237))
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnDangNhap)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbLuuMK))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
+                            .addGap(68, 68, 68)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(pfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDangNhap)
+                    .addComponent(cbLuuMK))
+                .addGap(41, 41, 41))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        btnQuanLiNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLiNV.setText("Quản Lí Nhân Viên");
-        btnQuanLiNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanLiNVActionPerformed(evt);
-            }
-        });
-
-        btnBanHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnBanHang.setText("Bán Hàng");
-        btnBanHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBanHangActionPerformed(evt);
-            }
-        });
-
-        btnCaiDat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCaiDat.setText("Cài Đặt");
-        btnCaiDat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCaiDatActionPerformed(evt);
-            }
-        });
-
-        btnQuanLiSP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLiSP.setText("Quản Lí Sản Phẩm");
-        btnQuanLiSP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanLiSPActionPerformed(evt);
-            }
-        });
-
-        btnQuanLiST.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLiST.setText("Quản Lí Siêu Thị");
-        btnQuanLiST.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanLiSTActionPerformed(evt);
-            }
-        });
-
-        btnHoaDonNhap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnHoaDonNhap.setText("Hóa Đơn Nhập");
-        btnHoaDonNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHoaDonNhapActionPerformed(evt);
-            }
-        });
-
-        imgQuanLiNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/users-icon.png"))); // NOI18N
-
-        imgSell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Ecommerce-Sell-icon (1).png"))); // NOI18N
-
-        imgCaiDat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Settings-icon.png"))); // NOI18N
-
-        imgQuanLySP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Ecommerce-Product-icon.png"))); // NOI18N
-
-        imgQuanLyST.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Picture-Manager-icon.png"))); // NOI18N
-
-        imgHoaDonNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/folder-invoices-icon.png"))); // NOI18N
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imgQuanLiNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(imgBanHang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgCaiDat)
-                            .addComponent(imgSell, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnQuanLiNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(210, 210, 210)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnQuanLiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuanLiST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHoaDonNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgQuanLySP)
-                    .addComponent(imgQuanLyST)
-                    .addComponent(imgHoaDonNhap))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnQuanLiNV)
-                            .addComponent(btnQuanLiSP)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(imgQuanLiNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(imgQuanLySP)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBanHang)
-                            .addComponent(btnQuanLiST)
-                            .addComponent(imgBanHang)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgQuanLyST)
-                            .addComponent(imgSell))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCaiDat)
-                            .addComponent(btnHoaDonNhap)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgHoaDonNhap)
-                            .addComponent(imgCaiDat))))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,10 +155,9 @@ public class FormDangNhap extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -219,91 +165,116 @@ public class FormDangNhap extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 11, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
 
-    private void btnHoaDonNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonNhapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHoaDonNhapActionPerformed
+        if (txtTaiKhoan.getText().equals("") || pfMatKhau.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap du tai khoan mat khau vao");
+            return;
+        }      
+        
+        Account account = new Account(txtTaiKhoan.getText(), pfMatKhau.getText());
+        try {
+            Object object = ConnectAccount.createLogin(account);
+            if (object instanceof Importer) {
+                new HoaDonNhapView().setVisible(true);
+                processSavedAccount(account);
+            } else if (object instanceof Manager) {
+                new FormDangNhap().setVisible(true);
+                processSavedAccount(account);
+            } else if (object instanceof Salesman) {
+                new BanHang().setVisible(true);
+                processSavedAccount(account);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
+                
+            } 
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(FormDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
-    private void btnQuanLiSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnQuanLiSTActionPerformed
+    private void txtTaiKhoanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTaiKhoanKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)pfMatKhau.requestFocus();
+    }//GEN-LAST:event_txtTaiKhoanKeyReleased
 
-    private void btnQuanLiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnQuanLiSPActionPerformed
+    private void pfMatKhauKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfMatKhauKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)btnDangNhap.doClick();
+    }//GEN-LAST:event_pfMatKhauKeyReleased
 
-    private void btnCaiDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaiDatActionPerformed
+    private void txtTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCaiDatActionPerformed
 
-    private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBanHangActionPerformed
-
-    private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
-        // TODO add your handling code here:
         this.dispose();
         new FormQuanLiNhanVien().setVisible(true);
-    }//GEN-LAST:event_btnQuanLiNVActionPerformed
+    }                                           
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+                                               
+
+
+    private void processSavedAccount(Account account) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            if (cbLuuMK.isSelected()) {
+                ObjectWithFile.saveAccountToFile(account);
+            } else {
+                ObjectWithFile.saveAccountToFile(new Account("", ""));
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormDangNhap().setVisible(true);
-            }
-        });
+
+       
     }
+    
+    private void displaySavedAccount() {
+        try {
+            Account account = ObjectWithFile.getAccountFromFile();
+            if (account.getUsername().equals("") && account.getPassword().equals("")) {
+                cbLuuMK.setSelected(false);
+            } else {
+                txtTaiKhoan.setText(account.getUsername());
+                pfMatKhau.setText(account.getPassword());
+
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(FormDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBanHang;
-    private javax.swing.JButton btnCaiDat;
-    private javax.swing.JButton btnHoaDonNhap;
-    private javax.swing.JButton btnQuanLiNV;
-    private javax.swing.JButton btnQuanLiSP;
-    private javax.swing.JButton btnQuanLiST;
-    private javax.swing.JLabel imgBanHang;
-    private javax.swing.JLabel imgCaiDat;
-    private javax.swing.JLabel imgHoaDonNhap;
-    private javax.swing.JLabel imgQuanLiNhanVien;
-    private javax.swing.JLabel imgQuanLySP;
-    private javax.swing.JLabel imgQuanLyST;
-    private javax.swing.JLabel imgSell;
+    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JCheckBox cbLuuMK;
+    private javax.swing.JLabel img;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField pfMatKhau;
+    private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }
