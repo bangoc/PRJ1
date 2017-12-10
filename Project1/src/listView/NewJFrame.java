@@ -6,12 +6,14 @@
 package listView;
 
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectAccount;
 import model.employee.Account;
 import model.employee.Importer;
@@ -27,6 +29,7 @@ public class NewJFrame extends javax.swing.JFrame {
     
     public NewJFrame() {
         initComponents();
+        displaySavedAccount();
     }
 
     /**
@@ -188,10 +191,13 @@ public class NewJFrame extends javax.swing.JFrame {
             Object object = ConnectAccount.createLogin(account);
             if (object instanceof Importer) {
                 new HoaDonNhapView().setVisible(true);
+                processSavedAccount(account);
             } else if (object instanceof Manager) {
                 new FormDangNhap().setVisible(true);
+                processSavedAccount(account);
             } else if (object instanceof Salesman) {
                 new BanHang().setVisible(true);
+                processSavedAccount(account);
             } else {
                 JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
                 
@@ -213,7 +219,31 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTaiKhoanActionPerformed
 
-  
+    private void processSavedAccount(Account account) {
+        try {
+            if (cbLuuMK.isSelected()) {
+                ObjectWithFile.saveAccountToFile(account);
+            } else {
+                ObjectWithFile.saveAccountToFile(new Account("", ""));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void displaySavedAccount() {
+        try {
+            Account account = ObjectWithFile.getAccountFromFile();
+            if (account.getUsername().equals("") && account.getPassword().equals("")) {
+                cbLuuMK.setSelected(false);
+            } else {
+                txtTaiKhoan.setText(account.getUsername());
+                pfMatKhau.setText(account.getPassword());
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
