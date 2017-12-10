@@ -5,19 +5,29 @@
  */
 package listView;
 
+import java.util.ArrayList;
+import model.employee.Employee;
+
 /**
  *
  * @author PhamThiDuyen
  */
 public class FormQuanLiNhanVien extends javax.swing.JFrame {
-
+    private ArrayList<Employee> employees;
     /**
      * Creates new form FormQuanLiNhanVien
      */
     public FormQuanLiNhanVien() {
         initComponents();
     }
-
+    
+    public void setEmployees(ArrayList<Employee> employees) {
+        this.employees = employees;
+    }
+    
+    public ArrayList<Employee> getEmployees() {
+        return employees;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

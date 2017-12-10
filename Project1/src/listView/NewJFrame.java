@@ -6,7 +6,6 @@
 package listView;
 
 import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -190,12 +189,15 @@ public class NewJFrame extends javax.swing.JFrame {
         try {
             Object object = ConnectAccount.createLogin(account);
             if (object instanceof Importer) {
+                this.dispose();
                 new HoaDonNhapView().setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Manager) {
+                this.dispose();
                 new FormDangNhap().setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Salesman) {
+                this.dispose();
                 new BanHang().setVisible(true);
                 processSavedAccount(account);
             } else {
