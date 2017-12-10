@@ -6,6 +6,7 @@
 package application;
 
 import listView.FormThemNhanVienMoi;
+import listView.NewJFrame;
 
 
 /**
@@ -40,7 +41,7 @@ public class ManageMarketSystem {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormThemNhanVienMoi().setVisible(true);
+                new NewJFrame().setVisible(true);
             }
         });
 

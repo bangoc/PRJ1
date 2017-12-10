@@ -6,7 +6,19 @@
 package listView;
 
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.MyUtils.ObjectWithFile;
+import model.connectDatabase.ConnectAccount;
+import model.employee.Account;
+import model.employee.Importer;
+import model.employee.Manager;
+import model.employee.Salesman;
 
 /**
  *
@@ -17,6 +29,7 @@ public class FormLogin extends javax.swing.JFrame {
     
     public FormLogin() {
         initComponents();
+        displaySavedAccount();
     }
 
     /**
@@ -167,22 +180,31 @@ public class FormLogin extends javax.swing.JFrame {
     
     
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
-        // theo nhu y kien ca nhan thi 1 xu ly xu kien se co 3 buoc
-        // buoc 1 tien xu ly
-        // lam nhung viec nhu la kiem tra xem user co nhập đủ các truong hay k
-        // co nhap dung kieu hay dinh dang du lieu hay k
-        // buoc 2 xu ly du lieu// cai nay noi sau
-        // buoc 3 hien thi
-        //the h xu li tin hiue dang nhap di lam buoc 1 va duoc 3 truoc. lam di? neu k code duoc thi noi y tuong ra?
-                //tao 1 thong bao de xem ng dung da nhap dung kieu du lieu hay chua
-                // lam cach nao day de co su lien ket giua tai khoan va mat khau de xac nhan lai user co nhap du hay chua
-                
+
         if (txtTaiKhoan.getText().equals("") || pfMatKhau.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Nhap du tai khoan mat khau vao");
             return;
         }      
         
+        Account account = new Account(txtTaiKhoan.getText(), pfMatKhau.getText());
+        try {
+            Object object = ConnectAccount.createLogin(account);
+            if (object instanceof Importer) {
+                new HoaDonNhapView().setVisible(true);
+                processSavedAccount(account);
+            } else if (object instanceof Manager) {
+                new FormDangNhap().setVisible(true);
+                processSavedAccount(account);
+            } else if (object instanceof Salesman) {
+                new BanHang().setVisible(true);
+                processSavedAccount(account);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
+                
+            } 
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void txtTaiKhoanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTaiKhoanKeyReleased
@@ -197,22 +219,14 @@ public class FormLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTaiKhoanActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void processSavedAccount(Account account) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            if (cbLuuMK.isSelected()) {
+                ObjectWithFile.saveAccountToFile(account);
+            } else {
+                ObjectWithFile.saveAccountToFile(new Account("", ""));
             }
+<<<<<<< HEAD:Project1/src/listView/FormLogin.java
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -229,10 +243,26 @@ public class FormLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormLogin().setVisible(true);
-            }
-        });
+=======
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-  
+    
+    private void displaySavedAccount() {
+        try {
+            Account account = ObjectWithFile.getAccountFromFile();
+            if (account.getUsername().equals("") && account.getPassword().equals("")) {
+                cbLuuMK.setSelected(false);
+            } else {
+                txtTaiKhoan.setText(account.getUsername());
+                pfMatKhau.setText(account.getPassword());
+>>>>>>> f81125bef728b0b916c05f72b17383d1a1b00ed3:Project1/src/listView/NewJFrame.java
+            }
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

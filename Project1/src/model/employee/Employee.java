@@ -14,10 +14,10 @@ public class Employee {
   private String address;
   private String phoneNumber;
   private int coefficientsSalary;
-  private ArrayList<WorkHistory> workHistory;
-  private static final int DEFAULT_SALARY = 1000000;
   private ImageIcon image;
   private Account account;
+  private ArrayList<WorkHistory> workHistory;
+  private static final int DEFAULT_SALARY = 1000000;
   
   public Employee() {
       
@@ -32,6 +32,20 @@ public class Employee {
       this.coefficientsSalary = coefficient;
       this.account = new Account(this.phoneNumber, this.phoneNumber);
   }
+  
+  public Employee(int id, String name, Gender gender, Date birthday, String address, 
+          String phone, int coefficient, ImageIcon img, Account account) {
+      this.employeeId = id;
+      this.name = name;
+      this.gender = gender;
+      this.dateOfBirth = birthday;
+      this.address = address;
+      this.phoneNumber = phone;
+      this.coefficientsSalary = coefficient;
+      this.image = img;
+      this.account = account;
+  }
+  
   public ImageIcon getImage() {
     return image;
   }

@@ -175,6 +175,11 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         jButton1.setText("Cập Nhật");
 
         jButton2.setText("Thêm");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Trả Lương");
 
@@ -339,6 +344,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -346,6 +352,12 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+=======
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new FormThemNhanVienMoi().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>> f81125bef728b0b916c05f72b17383d1a1b00ed3
 
     /**
      * @param args the command line arguments
