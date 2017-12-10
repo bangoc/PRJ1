@@ -9,12 +9,12 @@ package listView;
  *
  * @author PhamThiDuyen
  */
-public class FormDangNhap extends javax.swing.JFrame {
+public class FormQuanLyST extends javax.swing.JFrame {
 
     /**
      * Creates new form FormDangNhap
      */
-    public FormDangNhap() {
+    public FormQuanLyST() {
         initComponents();
     }
 
@@ -29,20 +29,19 @@ public class FormDangNhap extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnDangXuat = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnQuanLiNV = new javax.swing.JButton();
-        btnBanHang = new javax.swing.JButton();
         btnCaiDat = new javax.swing.JButton();
         btnQuanLiSP = new javax.swing.JButton();
         btnQuanLiST = new javax.swing.JButton();
-        btnHoaDonNhap = new javax.swing.JButton();
         imgQuanLiNhanVien = new javax.swing.JLabel();
         imgBanHang = new javax.swing.JLabel();
-        imgSell = new javax.swing.JLabel();
         imgCaiDat = new javax.swing.JLabel();
         imgQuanLySP = new javax.swing.JLabel();
         imgQuanLyST = new javax.swing.JLabel();
-        imgHoaDonNhap = new javax.swing.JLabel();
+        btnQuanLyNCC = new javax.swing.JButton();
+        imgNCC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,20 +51,27 @@ public class FormDangNhap extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Chào Mừng Đến Với Hệ thống Quản Lí Siêu Thị");
 
+        btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDangXuat.setText("Đăng Xuất");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                .addContainerGap(235, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(237, 237, 237))
+                .addGap(103, 103, 103)
+                .addComponent(btnDangXuat)
+                .addGap(61, 61, 61))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -76,14 +82,6 @@ public class FormDangNhap extends javax.swing.JFrame {
         btnQuanLiNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuanLiNVActionPerformed(evt);
-            }
-        });
-
-        btnBanHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnBanHang.setText("Bán Hàng");
-        btnBanHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBanHangActionPerformed(evt);
             }
         });
 
@@ -111,17 +109,7 @@ public class FormDangNhap extends javax.swing.JFrame {
             }
         });
 
-        btnHoaDonNhap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnHoaDonNhap.setText("Hóa Đơn Nhập");
-        btnHoaDonNhap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHoaDonNhapActionPerformed(evt);
-            }
-        });
-
         imgQuanLiNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/users-icon.png"))); // NOI18N
-
-        imgSell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Ecommerce-Sell-icon (1).png"))); // NOI18N
 
         imgCaiDat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Settings-icon.png"))); // NOI18N
 
@@ -129,7 +117,15 @@ public class FormDangNhap extends javax.swing.JFrame {
 
         imgQuanLyST.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Picture-Manager-icon.png"))); // NOI18N
 
-        imgHoaDonNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/folder-invoices-icon.png"))); // NOI18N
+        btnQuanLyNCC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnQuanLyNCC.setText("Quản Lý Nhà Cung Cấp");
+        btnQuanLyNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuanLyNCCActionPerformed(evt);
+            }
+        });
+
+        imgNCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cargo-2-icon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -137,30 +133,30 @@ public class FormDangNhap extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(178, 178, 178)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imgQuanLiNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(imgQuanLiNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnQuanLiNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(imgBanHang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(imgCaiDat)
-                            .addComponent(imgSell, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnQuanLiNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(210, 210, 210)
+                            .addComponent(imgNCC))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnQuanLyNCC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(176, 176, 176)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnQuanLiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuanLiST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHoaDonNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnQuanLiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(btnQuanLiST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(imgQuanLySP)
-                    .addComponent(imgQuanLyST)
-                    .addComponent(imgHoaDonNhap))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(imgQuanLyST))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,28 +175,21 @@ public class FormDangNhap extends javax.swing.JFrame {
                         .addComponent(imgQuanLySP)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBanHang)
-                            .addComponent(btnQuanLiST)
-                            .addComponent(imgBanHang)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgQuanLyST)
-                            .addComponent(imgSell))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(imgQuanLyST))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCaiDat)
-                            .addComponent(btnHoaDonNhap)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgHoaDonNhap)
-                            .addComponent(imgCaiDat))))
-                .addContainerGap(131, Short.MAX_VALUE))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(imgCaiDat)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnQuanLiST)
+                                .addComponent(imgBanHang)
+                                .addComponent(btnCaiDat)))))
+                .addGap(98, 98, 98)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnQuanLyNCC)
+                    .addComponent(imgNCC))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,10 +216,6 @@ public class FormDangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHoaDonNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonNhapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHoaDonNhapActionPerformed
-
     private void btnQuanLiSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQuanLiSTActionPerformed
@@ -243,13 +228,13 @@ public class FormDangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCaiDatActionPerformed
 
-    private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBanHangActionPerformed
-
     private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQuanLiNVActionPerformed
+
+    private void btnQuanLyNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyNCCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQuanLyNCCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,38 +253,38 @@ public class FormDangNhap extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormQuanLyST.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormQuanLyST.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormQuanLyST.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormQuanLyST.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormDangNhap().setVisible(true);
+                new FormQuanLyST().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBanHang;
     private javax.swing.JButton btnCaiDat;
-    private javax.swing.JButton btnHoaDonNhap;
+    private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnQuanLiNV;
     private javax.swing.JButton btnQuanLiSP;
     private javax.swing.JButton btnQuanLiST;
+    private javax.swing.JButton btnQuanLyNCC;
     private javax.swing.JLabel imgBanHang;
     private javax.swing.JLabel imgCaiDat;
-    private javax.swing.JLabel imgHoaDonNhap;
+    private javax.swing.JLabel imgNCC;
     private javax.swing.JLabel imgQuanLiNhanVien;
     private javax.swing.JLabel imgQuanLySP;
     private javax.swing.JLabel imgQuanLyST;
-    private javax.swing.JLabel imgSell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
