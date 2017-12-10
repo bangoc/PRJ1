@@ -167,17 +167,7 @@ public class NewJFrame extends javax.swing.JFrame {
     
     
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
-        // theo nhu y kien ca nhan thi 1 xu ly xu kien se co 3 buoc
-        // buoc 1 tien xu ly
-        // lam nhung viec nhu la kiem tra xem user co nhập đủ các truong hay k
-        // co nhap dung kieu hay dinh dang du lieu hay k
-        // buoc 2 xu ly du lieu// cai nay noi sau
-        // buoc 3 hien thi
-        //the h xu li tin hiue dang nhap di lam buoc 1 va duoc 3 truoc. lam di? neu k code duoc thi noi y tuong ra?
-                //tao 1 thong bao de xem ng dung da nhap dung kieu du lieu hay chua
-                // lam cach nao day de co su lien ket giua tai khoan va mat khau de xac nhan lai user co nhap du hay chua
-                
+
         if (txtTaiKhoan.getText().equals("") || pfMatKhau.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Nhap du tai khoan mat khau vao");
             return;
