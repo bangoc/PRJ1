@@ -8,13 +8,18 @@ package model.connectDatabase;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import model.MyUtils.MyDate;
 import model.employee.Division;
 import model.employee.Employee;
+import model.employee.Gender;
 
 /**
  *
@@ -55,7 +60,7 @@ public class ConnectEmployee {
         
         // save account
         ConnectAccount.saveNewAccount(employee.getAccount(), key);
-        
+        con.close();
     }
     
     public void saveChangedEmployee(Employee employee, String linkImage, Division division) throws IOException, ClassNotFoundException, SQLException {
@@ -80,5 +85,62 @@ public class ConnectEmployee {
         ps.setInt(9, employee.getEmployeeId());
         // execute query
         ps.executeUpdate();
+        
+        con.close();
+    }
+    
+    public static ArrayList<Employee> getEmployees() throws IOException, ClassNotFoundException, SQLException, ParseException {
+        String query = "select * from employee";
+        Connection con = ConnectDatabase.createConnect();
+        PreparedStatement ps = con.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Employee> employees = new ArrayList<>();
+        Employee employee;
+        while (rs.next()) {
+            employee = new Employee();
+            
+            employee.setEmployeeId(rs.getInt(1));
+            
+            employee.setName(rs.getString(2));
+            
+            Gender gender;
+            if (rs.getString(3).equals(Gender.FEMALE.toString())) {
+                gender = Gender.FEMALE;
+            } else {
+                gender = Gender.MALE;
+            }
+            employee.setGender(gender);
+            
+            employee.setDateOfBirth(MyDate.parseDateString(rs.getString(4)));
+            
+            employee.setAddress(rs.getString(5));
+            
+            employee.setPhoneNumber(rs.getString(6));
+            
+            employee.setCoefficientsSalary(rs.getInt(7));
+            
+            Blob b=rs.getBlob(8);
+            byte barr[]=b.getBytes(1,(int)b.length());
+            ImageIcon img = new ImageIcon(barr);
+            employee.setImage(img);
+            
+            String div = rs.getString(9);
+            Division division;
+            if (div.equals(Division.EMPLOYEE.toString())) {
+                division = Division.EMPLOYEE;
+            } else if (div.equals(Division.IMPORTER.toString())) {
+                division = Division.IMPORTER;
+            } else if (div.equals(Division.MANAGER.toString())) {
+                division = Division.MANAGER;
+            } else {
+                division = Division.SALESMAN;
+            }
+            employee.setDivision(division);
+            
+            employees.add(employee);
+        }
+        con.close();
+        return employees;
     }
 }

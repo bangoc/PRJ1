@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
-import model.MyUtils.MyDate;
+
 
 public class Employee {
   private int employeeId;
@@ -16,6 +16,7 @@ public class Employee {
   private int coefficientsSalary;
   private ImageIcon image;
   private Account account;
+  private Division division;
   private ArrayList<WorkHistory> workHistory;
   private static final int DEFAULT_SALARY = 1000000;
   
@@ -122,15 +123,23 @@ public class Employee {
     this.workHistory = workHistory;
   }
 
-    public Account getAccount() {
-        return account;
-    }
+  public Account getAccount() {
+    return account;
+  }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-  
-  
+  public void setAccount(Account account) {
+    this.account = account;
+  }
+
+  public Division getDivision() {
+    return division;
+  }
+
+  public void setDivision(Division division) {
+    this.division = division;
+  }
+
+    
   
   public int countSalary() {
     return coefficientsSalary * this.getDefaultSalary();

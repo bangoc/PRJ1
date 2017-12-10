@@ -21,6 +21,11 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         initComponents();
     }
     
+    public FormQuanLiNhanVien(ArrayList<Employee> employees) {
+        initComponents();
+        this.employees = employees;
+    }
+    
     public void setEmployees(ArrayList<Employee> employees) {
         this.employees = employees;
     }

@@ -5,6 +5,16 @@
  */
 package listView;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.connectDatabase.ConnectEmployee;
+import model.employee.Employee;
+
 /**
  *
  * @author PhamThiDuyen
@@ -229,9 +239,15 @@ public class FormQuanLyST extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCaiDatActionPerformed
 
     private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        new FormQuanLiNhanVien().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            ArrayList<Employee> employees = ConnectEmployee.getEmployees();
+            new FormQuanLiNhanVien(employees).setVisible(true);
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(FormQuanLyST.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Loi he thong");
+        }
     }//GEN-LAST:event_btnQuanLiNVActionPerformed
 
     private void btnQuanLyNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyNCCActionPerformed

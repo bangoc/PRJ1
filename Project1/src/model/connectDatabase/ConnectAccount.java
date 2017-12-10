@@ -40,6 +40,8 @@ public class ConnectAccount {
         ps.setString(3, account.getPassword());
         
         ps.executeUpdate();
+        
+        con.close();
     }
     
     public static void saveChangedAccount(Account account, int id) throws IOException, ClassNotFoundException, SQLException {
@@ -53,6 +55,7 @@ public class ConnectAccount {
         ps.setString(2, account.getPassword());
         
         ps.executeUpdate();
+        con.close();
     }
     
     public static Object createLogin(Account account) throws IOException, ClassNotFoundException, SQLException, ParseException {
@@ -68,6 +71,7 @@ public class ConnectAccount {
         ps.setString(2, account.getPassword());
         
         ResultSet rs = ps.executeQuery();
+ 
         while (rs.next()) {
             int id = rs.getInt(1);
             
@@ -93,6 +97,7 @@ public class ConnectAccount {
             ImageIcon img = new ImageIcon(barr);
             
             String division = rs.getString(9);
+            con.close();
             if (division.equals(Division.EMPLOYEE.toString())) {
                 return new Employee(id, name, gender, date, address, phone, coefficientSalary, img, account);
             } else if (division.equals(Division.IMPORTER.toString())) {
@@ -104,6 +109,7 @@ public class ConnectAccount {
             }
            
         }
+        con.close();
         return null;
     }
 }
