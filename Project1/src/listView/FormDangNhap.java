@@ -249,6 +249,7 @@ public class FormDangNhap extends javax.swing.JFrame {
 
     private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
         // TODO add your handling code here:
+        new FormQuanLiNhanVien().setVisible(true);
     }//GEN-LAST:event_btnQuanLiNVActionPerformed
 
     /**
