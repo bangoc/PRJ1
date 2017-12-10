@@ -6,7 +6,6 @@
 package listView;
 
 import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -24,10 +23,10 @@ import model.employee.Salesman;
  *
  * @author PhamThiDuyen
  */
-public class FormLogin extends javax.swing.JFrame {
+public class FormDangNhap extends javax.swing.JFrame {
 
     
-    public FormLogin() {
+    public FormDangNhap() {
         initComponents();
         displaySavedAccount();
     }
@@ -203,7 +202,7 @@ public class FormLogin extends javax.swing.JFrame {
                 
             } 
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -226,27 +225,22 @@ public class FormLogin extends javax.swing.JFrame {
             } else {
                 ObjectWithFile.saveAccountToFile(new Account("", ""));
             }
-<<<<<<< HEAD:Project1/src/listView/FormLogin.java
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormLogin().setVisible(true);
-=======
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+       
     }
     
     private void displaySavedAccount() {
@@ -257,10 +251,10 @@ public class FormLogin extends javax.swing.JFrame {
             } else {
                 txtTaiKhoan.setText(account.getUsername());
                 pfMatKhau.setText(account.getPassword());
->>>>>>> f81125bef728b0b916c05f72b17383d1a1b00ed3:Project1/src/listView/NewJFrame.java
+
             }
         } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
