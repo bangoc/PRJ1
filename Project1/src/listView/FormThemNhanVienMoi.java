@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
      */
     public FormThemNhanVienMoi() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -360,17 +362,32 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
             ConnectEmployee.saveNewEmployee(employee, linkImage, (Division) jComboBox2.getSelectedItem());
             Sender.sendPassword(employee);
             JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
-     
+            display();
         } catch (SQLException | IOException | ClassNotFoundException ex) {
             Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
            
         }
         linkImage = null;
     }//GEN-LAST:event_btnThemActionPerformed
-
+    
+    private void display() {
+        txtDiaChi.setText(null);
+        txtHeSoLuong.setText(null);
+        txtNgaySinh.setText(null);
+        txtSoDienThoai.setText(null);
+        txtTen.setText(null);
+        imgNV.setIcon(null);
+    }
+    
     private void btnTroVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTroVeActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        try {
+            ArrayList<Employee> employees = ConnectEmployee.getEmployees();
+            new FormQuanLiNhanVien(employees).setVisible(true);
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnTroVeActionPerformed
 
     private void btnMoRongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoRongActionPerformed

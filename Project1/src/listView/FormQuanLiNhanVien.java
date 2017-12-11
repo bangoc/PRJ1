@@ -6,9 +6,15 @@
 package listView;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import model.MyUtils.MyDate;
 import model.employee.Division;
@@ -21,18 +27,23 @@ import model.employee.Gender;
  */
 public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private ArrayList<Employee> employees;
+    private boolean update;
+    private String linkImage;
+    
     /**
      * Creates new form FormQuanLiNhanVien
      */
     public FormQuanLiNhanVien() {
         initComponents();
-     
+  
     }
     
     public FormQuanLiNhanVien(ArrayList<Employee> employees) {
         initComponents();
         this.employees = employees;
+        display(employees.get(0));
         displayEmployees(employees);
+        jButton6.setVisible(false);
     }
     
     public void setEmployees(ArrayList<Employee> employees) {
@@ -74,9 +85,9 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -98,6 +109,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         imgNhanVien = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,11 +178,21 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
         jLabel3.setText("Hoặc Theo Họ Tên :");
 
-        jLabel4.setText("Hoặc Theo SĐT :");
+        jLabel4.setText("Hoặc Chức Vụ");
 
         jButton5.setText("Tìm Kiếm");
 
         jButton4.setText("Trở Về");
+
+        jComboBox3.setModel(new DefaultComboBoxModel<Division>(
+            new Division[] {
+                Division.ALL,
+                Division.EMPLOYEE,
+                Division.IMPORTER,
+                Division.MANAGER,
+                Division.SALESMAN
+            })
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -185,13 +207,13 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(35, 35, 35))
         );
@@ -205,15 +227,20 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin Nhân Viên"));
 
         jButton1.setText("Cập Nhật");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Thêm");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +267,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
         jLabel12.setText("Vị Trí :");
 
+        txtID.setEditable(false);
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
@@ -266,6 +294,13 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         })
     );
 
+    jButton6.setText("Mở rộng");
+    jButton6.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton6ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
     jPanel4.setLayout(jPanel4Layout);
     jPanel4Layout.setHorizontalGroup(
@@ -273,11 +308,11 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         .addGroup(jPanel4Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(imgNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton1)
-                .addComponent(imgNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton6))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, 0)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                     .addComponent(jButton3)
@@ -339,8 +374,9 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel11)
-                .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton6))
+            .addGap(18, 18, 18)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel12)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -395,6 +431,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new FormThemNhanVienMoi().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -403,6 +440,57 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         int index = jTable1.getSelectedRow();
         display(employees.get(index));
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (update == false) {
+            jButton1.setText("Lưu");
+            jButton6.setVisible(true);
+            update = true;
+            
+        } else {
+            jButton1.setText("Cập nhật");
+            update = false;
+            jButton6.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new FileNameExtensionFilter("*.jpg", "jpg"));
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+         
+          String link = chooser.getSelectedFile().getAbsolutePath();
+          String extension = "";
+
+          int i = link.lastIndexOf('.');
+          if (i > 0) {
+              extension = link.substring(i+1);
+          }
+          if (!extension.equals("jpg")) {
+            JOptionPane.showMessageDialog(null, "You must choose file with .jpg extension");
+            return;
+          }
+          linkImage = link;
+          
+          BufferedImage img;
+          try {
+            imgNhanVien.setText(null);
+            img = ImageIO.read(chooser.getSelectedFile());
+            Image dimg = img.getScaledInstance(imgNhanVien.getHeight(), imgNhanVien.getWidth(), Image.SCALE_SMOOTH);
+            imgNhanVien.setIcon(new ImageIcon(dimg));
+
+          } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"Loi");
+            
+          }
+         
+          
+        } else {
+          return;
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
     
     private void display(Employee employee) {
         txtID.setText("" + employee.getEmployeeId());
@@ -411,7 +499,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         txtBirthday.setText(MyDate.formatDate(employee.getDateOfBirth()));
         txtAddress.setText(employee.getAddress());
         txtPhone.setText(employee.getPhoneNumber());
-        txtSalary.setText("" + employee.countSalary());
+        txtSalary.setText("" + employee.getCoefficientsSalary());
         jComboBox2.setSelectedItem(employee.getDivision());
         
         Image dimg = employee.getImage().getImage().getScaledInstance(imgNhanVien.getWidth(), imgNhanVien.getHeight(),
@@ -426,8 +514,10 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<Gender> jComboBox1;
     private javax.swing.JComboBox<Division> jComboBox2;
+    private javax.swing.JComboBox<Division> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -448,7 +538,6 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBirthday;
     private javax.swing.JTextField txtID;

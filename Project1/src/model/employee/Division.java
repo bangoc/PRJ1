@@ -10,6 +10,7 @@ package model.employee;
  * @author leo
  */
 public enum Division {
+    ALL,
     EMPLOYEE,
     IMPORTER,
     SALESMAN,

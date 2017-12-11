@@ -26,6 +26,7 @@ public class FormQuanLyST extends javax.swing.JFrame {
      */
     public FormQuanLyST() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
