@@ -76,7 +76,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
         imgThemNVMoi = new javax.swing.JLabel();
         btnDangXuat = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 255));
         setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
 
