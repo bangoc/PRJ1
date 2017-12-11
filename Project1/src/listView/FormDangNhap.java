@@ -190,7 +190,7 @@ public class FormDangNhap extends javax.swing.JFrame {
             Object object = ConnectAccount.createLogin(account);
             if (object instanceof Importer) {
                 this.dispose();
-                new HoaDonNhapView().setVisible(true);
+                new GiaoDien().setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Manager) {
                 this.dispose();
