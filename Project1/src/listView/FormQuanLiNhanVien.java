@@ -8,7 +8,11 @@ package listView;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -17,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import model.MyUtils.MyDate;
+import model.connectDatabase.ConnectEmployee;
 import model.employee.Division;
 import model.employee.Employee;
 import model.employee.Gender;
@@ -27,6 +32,7 @@ import model.employee.Gender;
  */
 public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private ArrayList<Employee> employees;
+    private ArrayList<Employee> filterdEmployees;
     private boolean update;
     private String linkImage;
     
@@ -41,8 +47,10 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     public FormQuanLiNhanVien(ArrayList<Employee> employees) {
         initComponents();
         this.employees = employees;
-        display(employees.get(0));
-        displayEmployees(employees);
+        
+        filterdEmployees = filter(employees, Division.ALL);
+        display(filterdEmployees.get(0));
+        displayEmployees(filterdEmployees);
         jButton6.setVisible(false);
     }
     
@@ -57,14 +65,32 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     public void displayEmployees(ArrayList<Employee> employees) {
         String[] columnNames = {"ID", "Name", "Division"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
         for (Employee employee : employees) {
             String[] row = {"" + employee.getEmployeeId(), employee.getName(), employee.getDivision().toString()};
-            model.addRow(row);
+             model.addRow(row);
         }
+
+       
         
         jTable1.setModel(model);
         
     }
+    
+    private ArrayList<Employee> filter(ArrayList<Employee> employees, Division division) {
+        if (division.equals(Division.ALL)) {
+            return employees;
+        }
+        
+        ArrayList<Employee> filtered = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (employee.getDivision().equals(division)) {
+                filtered.add(employee);
+            }
+        }
+        return filtered;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,15 +166,23 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Tên", "Giới Tính", "Ngày Sinh", "Địa Chỉ", "SĐT", "Hệ Số Lương", "Vị Trí"
+                "ID", "Tên", "Vị Trí"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -178,9 +212,14 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
         jLabel3.setText("Hoặc Theo Họ Tên :");
 
-        jLabel4.setText("Hoặc Chức Vụ");
+        jLabel4.setText(" Chức Vụ");
 
         jButton5.setText("Tìm Kiếm");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Trở Về");
 
@@ -193,6 +232,16 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                 Division.SALESMAN
             })
         );
+        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox3ItemStateChanged(evt);
+            }
+        });
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -213,7 +262,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(35, 35, 35))
         );
@@ -438,7 +487,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
-        display(employees.get(index));
+        display(filterdEmployees.get(index));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -449,9 +498,33 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
             update = true;
             
         } else {
+            try {
+                
+                Employee employee = filterdEmployees.get(jTable1.getSelectedRow());
+                employee.setName(txtName.getText());
+                employee.setGender((Gender) jComboBox1.getSelectedItem());
+                employee.setDateOfBirth(MyDate.parseDateString(txtBirthday.getText()));
+                employee.setAddress(txtAddress.getText());
+                employee.setPhoneNumber(txtPhone.getText());
+                employee.setCoefficientsSalary(Integer.parseInt(txtSalary.getText()));
+                employee.setDivision((Division) jComboBox2.getSelectedItem());
+                try {
+                    ConnectEmployee.saveChangedEmployee(employee, linkImage);
+                    JOptionPane.showMessageDialog(null, "OK!");
+                    displayEmployees(filterdEmployees);
+                } catch (IOException | ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Loi he thong");
+                    Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Du lieu nhap vao sai dinh dang chuan");
+            }
+            
             jButton1.setText("Cập nhật");
             update = false;
             jButton6.setVisible(false);
+            linkImage = null;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -491,6 +564,20 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
           return;
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+        filterdEmployees = filter(employees, (Division) jComboBox3.getSelectedItem());
+        displayEmployees(filterdEmployees);
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
     
     private void display(Employee employee) {
         txtID.setText("" + employee.getEmployeeId());

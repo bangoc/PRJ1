@@ -46,6 +46,18 @@ public class Employee {
       this.image = img;
       this.account = account;
   }
+
+    public Employee(int id, String name, Gender gender, Date birthday, String address, 
+            String phone, int coefficient, Division division) {
+        this.employeeId = id;
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = birthday;
+        this.address = address;
+        this.phoneNumber = phone;
+        this.coefficientsSalary = coefficient;
+        this.division = division;
+    }
   
   public ImageIcon getImage() {
     return image;
