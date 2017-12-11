@@ -154,6 +154,10 @@ public class Employee {
     
   
   public int countSalary() {
+    if (this.division.equals(Division.RETIRED)) {
+        return 0;
+    }
+    
     return coefficientsSalary * this.getDefaultSalary();
   }
   

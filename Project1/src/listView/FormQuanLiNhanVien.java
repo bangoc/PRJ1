@@ -21,10 +21,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.MyUtils.MyDate;
+import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectEmployee;
+import model.connectDatabase.ConnectMarket;
 import model.employee.Division;
 import model.employee.Employee;
 import model.employee.Gender;
+import model.employee.Manager;
+import model.market.Cost;
 
 /**
  *
@@ -316,6 +320,11 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         });
 
         jButton3.setText("Trả Lương");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("ID :");
 
@@ -692,6 +701,20 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         this.dispose();
         new FormQuanLyST().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Cost paySalary = Manager.createSalaryCost(employees);
+       
+        try {
+            ConnectMarket.saveCost(paySalary);
+            ObjectWithFile.printSalaryTable(employees);
+            JOptionPane.showMessageDialog(null, "Ok");
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Loi he thong");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     private void display(Employee employee) {
         txtID.setText("" + employee.getEmployeeId());

@@ -1,10 +1,13 @@
 package model.employee;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import model.market.Cost;
+import model.market.TypeCost;
 
 public class Manager extends Employee {
-  private int commission;
+
   
   public Manager() {
     
@@ -15,17 +18,13 @@ public class Manager extends Employee {
     super(id, name, gender, birthday, address, phone, coefficient, img, account);
   }
   
-  public int getCommission() {
-    return commission;
+  public static Cost createSalaryCost(ArrayList<Employee> employees) {
+      int total = 0;
+      total = employees.stream().map((employee) -> employee.countSalary()).reduce(total, Integer::sum);
+      
+      return new Cost(TypeCost.TIENLUONG, new Date(), total);
   }
-
-  public void setCommission(int commission) {
-    if (commission > 100) {
-      this.commission = 0;
-    } else {
-      this.commission = commission;
-    }
-  }
-  
-  
 }
+  
+  
+

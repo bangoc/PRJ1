@@ -17,7 +17,7 @@ import model.market.Cost;
  * @author leo
  */
 public class ConnectMarket {
-    public void saveCost(Cost cost) throws IOException, ClassNotFoundException, SQLException {
+    public static void saveCost(Cost cost) throws IOException, ClassNotFoundException, SQLException {
         String query = "insert into costs_incurred (id, name, total, paid_date) values (null, ?, ?, ?)";
         Connection con = ConnectDatabase.createConnect();
         

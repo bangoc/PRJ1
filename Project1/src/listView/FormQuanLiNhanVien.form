@@ -451,6 +451,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Tr&#x1ea3; L&#x1b0;&#x1a1;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
