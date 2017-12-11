@@ -14,5 +14,6 @@ public enum Division {
     EMPLOYEE,
     IMPORTER,
     SALESMAN,
-    MANAGER
+    MANAGER,
+    RETIRED
 }

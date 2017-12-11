@@ -389,6 +389,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Xu&#xe2;&#x301;t"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangXuatActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

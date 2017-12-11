@@ -235,7 +235,8 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                 Division.EMPLOYEE,
                 Division.IMPORTER,
                 Division.MANAGER,
-                Division.SALESMAN
+                Division.SALESMAN,
+                Division.RETIRED
             })
         );
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
@@ -364,7 +365,8 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
             Division.EMPLOYEE,
             Division.IMPORTER,
             Division.MANAGER,
-            Division.SALESMAN
+            Division.SALESMAN,
+            Division.RETIRED
         })
     );
 

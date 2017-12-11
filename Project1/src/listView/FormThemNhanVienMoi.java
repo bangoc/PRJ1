@@ -247,6 +247,11 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
 
         btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDangXuat.setText("Đăng Xuất");
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -426,6 +431,12 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
           return;
         }
     }//GEN-LAST:event_btnMoRongActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new FormDangNhap().setVisible(true);
+    }//GEN-LAST:event_btnDangXuatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
