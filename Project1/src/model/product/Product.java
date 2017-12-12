@@ -16,6 +16,16 @@ public class Product {
     
   }
 
+    public Product(String name, int price, String producer, Date produceTime, Date expireTime) {
+        this.name = name;
+        this.price = price;
+        this.producer = producer;
+        this.produceTime = produceTime;
+        this.expireTime = expireTime;
+    }
+  
+  
+
   public int getProductId() {
     return productId;
   }

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectAccount;
+import model.connectDatabase.ConnectMarket;
 import model.employee.Account;
 import model.employee.Importer;
 import model.employee.Manager;
@@ -190,7 +191,8 @@ public class FormDangNhap extends javax.swing.JFrame {
             Object object = ConnectAccount.createLogin(account);
             if (object instanceof Importer) {
                 this.dispose();
-                new GiaoDien().setVisible(true);
+                
+                new ImporterView((Importer) object, ConnectMarket.getSuppliers()).setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Manager) {
                 this.dispose();

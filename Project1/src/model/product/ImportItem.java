@@ -8,8 +8,11 @@ public class ImportItem {
   private int amount;
   private Supplier supplier;
   
-  public ImportItem(Product product, int price, Supplier supplier) {
-    
+  public ImportItem(Product product, int quantity, int price, Supplier supplier) {
+      this.product = product;
+      this.price = price;
+      this.amount = quantity;
+      this.supplier = supplier;
   }
 
   public Product getProduct() {
