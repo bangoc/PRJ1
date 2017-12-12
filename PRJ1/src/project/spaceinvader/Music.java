@@ -13,7 +13,8 @@ public class Music extends Thread implements Runnable {
                 firePlay.play();
         }
 
-	public void run(String name) {
+	public void run(String name ) {
+		
 		try {
 			playSound(name);
 		} catch (FileNotFoundException | JavaLayerException e) {

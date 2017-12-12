@@ -10,7 +10,7 @@ public class HighScore {
                 if (theScore >= count) {
                         count = theScore;
                         try {
-                                FileOutputStream fos = new FileOutputStream("High_Score.txt");
+                                FileOutputStream fos = new FileOutputStream("./PRJ1/High_Score.txt");
                                 DataOutputStream dos = new DataOutputStream(fos);
                                 dos.writeDouble(count);
                                 fos.close();
@@ -23,7 +23,7 @@ public class HighScore {
 
         public static double Read() {
                 try {
-                        FileInputStream fis = new FileInputStream("High_Score.txt");
+                        FileInputStream fis = new FileInputStream("./PRJ1/High_Score.txt");
                         DataInputStream dis = new DataInputStream(fis);
                         count = dis.readDouble();
                         fis.close();

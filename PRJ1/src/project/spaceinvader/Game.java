@@ -50,7 +50,7 @@ public class Game extends Canvas implements ActionListener {
 	private boolean logicRequiredThisLoop = false;
 	private Image imageBackgroundStart, imageButtonPlay, imageButtonQuit, imageStars;
 	//
-	public Music music = new Music();
+	public MusicStart music_start = new MusicStart();
 
 	public Game() {
 		display = new JFrame(
@@ -74,7 +74,6 @@ public class Game extends Canvas implements ActionListener {
 		strategy = getBufferStrategy();
 		initEntities(row);
 	}
-
 	private void initEntities(int rowT) {
 		ship = new ShipEntity(this, "sprites/ship.jpg", 370, 550);
 		entities.add(ship);
@@ -97,8 +96,9 @@ public class Game extends Canvas implements ActionListener {
 	}
 
 	public void notifyUFOKilled() {
-		UFOCount--;
-		music.run("killUFO.mp3");
+
+		MusicFired music_boom2 = new MusicFired();
+		music_boom2.start();
 		tryToBoom();
 		if (UFOCount == 0) {
 			entities.clear();
@@ -113,10 +113,13 @@ public class Game extends Canvas implements ActionListener {
 	}
 
 	public void tryToFire() {
+		
 		if (System.currentTimeMillis() - lastFire < firingInterval) {
 			return;
 		}
 		lastFire = System.currentTimeMillis();
+		MusicFire music_fire = new MusicFire();
+		music_fire.start();
 		ShotEntity shot = new ShotEntity(this, "sprites/rocket.png", ship.getX() + 10, ship.getY() - 30);
 		entities.add(shot);
 	}
@@ -135,24 +138,9 @@ public class Game extends Canvas implements ActionListener {
 		strategy.show();
 	}
 
-<<<<<<< HEAD
-	private void startGame() {
-		entities.clear();
-		initEntities(row);
-		score = 0;
-		buttonPlay.setVisible(false);
-		buttonQuit.setVisible(false);
-		leftPressed = false;
-		rightPressed = false;
-		firePressed = false;
-		gameState = IN_GAME;
-		gameRunning = true;
-		waitingForKeyPress = false;
-		this.setFocusable(true);
-	}
-=======
+
         private void startGame() {
-        		music.start();
+//        		music_start.start();
                 entities.clear();
                 initEntities(row);
                 score = 0;
@@ -166,7 +154,6 @@ public class Game extends Canvas implements ActionListener {
                 waitingForKeyPress = false;
                 this.setFocusable(true);
         }
->>>>>>> 07c97ae08675d020ab1967aab272f5ef634d61cc
 
 	public void gameLoop() {
 		long lastLoopTime = System.currentTimeMillis();
@@ -219,34 +206,20 @@ public class Game extends Canvas implements ActionListener {
 				ship.setHorizontalMovement(speed);
 			}
 			if (firePressed) {
+//				MusicFire music_fire = new MusicFire();
+//				music_fire.start();
 				tryToFire();
 			}
 			try {
-				Thread.sleep(5);
+				Thread.sleep(5);				
 			} catch (Exception e) {
 			}
 		}
 		gameState = GAME_OVER;
 	}
 
-<<<<<<< HEAD
-	public void gameOver() {
-		Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 800, 600);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Arial", Font.BOLD, 50));
-		g.drawString("GAME OVER", 250, 150);
-		g.setColor(Color.RED);
-		g.setFont(new Font("Arial", Font.BOLD, 20));
-		g.drawString("SCORE:           " + Math.round(score), 310, 300);
-		g.drawString("HIGH SCORE: " + Math.round(highScore.Read()), 310, 340);
-		g.dispose();
-		strategy.show();
-	}
-=======
         public void gameOver() {
-        		music.stop();
+
                 Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
                 g.setColor(Color.BLACK);
                 g.fillRect(0, 0, 800, 600);
@@ -260,7 +233,6 @@ public class Game extends Canvas implements ActionListener {
                 g.dispose();
                 strategy.show();
         }
->>>>>>> 07c97ae08675d020ab1967aab272f5ef634d61cc
 
 	private JButton createButton1(String action1, String buttonName1) {
 		URL url = getClass().getResource("/sprites/buttonPlay.png");
@@ -307,7 +279,6 @@ public class Game extends Canvas implements ActionListener {
 			}
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = true;
-				music.run("shoot.mp3");
 			}
 		}
 
@@ -323,13 +294,13 @@ public class Game extends Canvas implements ActionListener {
 			}
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = false;
-				music.stop();
 			}
 		}
 	}
 
 	public void mainGameLoop() {
 		while (true) {
+			
 			switch (gameState) {
 			case MAIN_MENU:
 				mainMenu();
