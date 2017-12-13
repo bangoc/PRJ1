@@ -5,16 +5,14 @@
  */
 package model.connectDatabase;
 
-import model.product.Product;
+import model.product.ImportReceipt;
 
 /**
  *
  * @author leo
  */
-public class ConnectProduct {
-    public void saveChangedProduct(Product product) {
+public class ConnectImportReceipt {
+    public static void saveNewImportReceipt(ImportReceipt receipt) {
         
     }
-    
-    
 }

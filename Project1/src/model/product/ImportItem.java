@@ -1,18 +1,21 @@
 package model.product;
 
+import model.employee.Importer;
 import model.market.Supplier;
 
 public class ImportItem {
   private Product product;
-  private int price;
-  private int amount;
+  private int importPrice;
+  private int quantity;
   private Supplier supplier;
+  private Importer importer;
   
-  public ImportItem(Product product, int quantity, int price, Supplier supplier) {
+  public ImportItem(Product product, int quantity, int price, Supplier supplier, Importer importer) {
       this.product = product;
-      this.price = price;
-      this.amount = quantity;
+      this.importPrice = price;
+      this.quantity = quantity;
       this.supplier = supplier;
+      this.importer = importer;
   }
 
   public Product getProduct() {
@@ -23,20 +26,20 @@ public class ImportItem {
     this.product = product;
   }
 
-  public int getPrice() {
-    return price;
+  public int getImportPrice() {
+    return importPrice;
   }
 
-  public void setPrice(int price) {
-    this.price = price;
+  public void setImportPrice(int importPrice) {
+    this.importPrice = importPrice;
   }
 
-  public int getAmount() {
-    return amount;
+  public int getQuantity() {
+    return quantity;
   }
 
-  public void setAmount(int amount) {
-    this.amount = amount;
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   public Supplier getSupplier() {

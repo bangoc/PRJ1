@@ -8,9 +8,11 @@ package listView;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import model.connectDatabase.ConnectImportReceipt;
 import model.employee.Importer;
 import model.market.Supplier;
 import model.product.ImportItem;
+import model.product.ImportReceipt;
 import model.product.Product;
 
 /**
@@ -72,12 +74,17 @@ public class ImporterView extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        btnPrint = new javax.swing.JButton();
+        lblTotalValue = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnSetting = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         lblImporterName = new javax.swing.JLabel();
+        lblClock = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1061, 800));
 
         tabs.setName(""); // NOI18N
 
@@ -89,7 +96,7 @@ public class ImporterView extends javax.swing.JFrame {
         );
         storeTabLayout.setVerticalGroup(
             storeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addGap(0, 632, Short.MAX_VALUE)
         );
 
         tabs.addTab("Store", storeTab);
@@ -102,7 +109,7 @@ public class ImporterView extends javax.swing.JFrame {
         );
         profileTabLayout.setVerticalGroup(
             profileTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addGap(0, 632, Short.MAX_VALUE)
         );
 
         tabs.addTab("Profile", profileTab);
@@ -190,17 +197,34 @@ public class ImporterView extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Quantity");
+        jLabel8.setText("Supplier");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+
+        lblTotalValue.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalValue.setText("0");
+
+        lblTotal.setText("Total :");
 
         javax.swing.GroupLayout importTabLayout = new javax.swing.GroupLayout(importTab);
         importTab.setLayout(importTabLayout);
         importTabLayout.setHorizontalGroup(
             importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(importTabLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(importTabLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblTotal)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblTotalValue, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(importTabLayout.createSequentialGroup()
                         .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -210,7 +234,8 @@ public class ImporterView extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnInsert))
+                            .addComponent(btnInsert)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,10 +261,10 @@ public class ImporterView extends javax.swing.JFrame {
                                         .addComponent(txtQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addGap(12, 12, 12))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPrint)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(58, 58, 58))
         );
         importTabLayout.setVerticalGroup(
@@ -284,11 +309,15 @@ public class ImporterView extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete)
-                            .addComponent(btnInsert))
-                        .addContainerGap(136, Short.MAX_VALUE))
-                    .addGroup(importTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnInsert)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(importTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalValue)
+                    .addComponent(lblTotal))
+                .addGap(28, 28, 28)
+                .addComponent(btnPrint)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         tabs.addTab("Import", importTab);
@@ -302,9 +331,11 @@ public class ImporterView extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblImporterName, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblClock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblImporterName, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
                 .addComponent(btnSetting)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -314,7 +345,8 @@ public class ImporterView extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(lblClock, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -342,8 +374,8 @@ public class ImporterView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -397,22 +429,23 @@ public class ImporterView extends javax.swing.JFrame {
             ImportItem item = new ImportItem(new Product(txtName.getText(), Integer.parseInt(txtPrice.getText()),
                 txtProducer.getText(), jDateChooser1.getDate(), jDateChooser2.getDate()), 
                 Integer.parseInt(txtQuantity.getText()), Integer.parseInt(txtImportPrice.getText()), 
-                suppliers.get(jComboBox1.getSelectedIndex()));
+                suppliers.get(jComboBox1.getSelectedIndex()), this.importer);
             items.add(item);
-            
+          
             
         } else {
+            System.out.println("dm");
             ImportItem item = items.get(importItemTb.getSelectedRow());
             item.getProduct().setName(txtName.getText());
             item.getProduct().setProducer(txtProducer.getText());
             item.getProduct().setExpireTime(jDateChooser2.getDate());
             item.getProduct().setProduceTime(jDateChooser1.getDate());
             item.getProduct().setPrice(Integer.parseInt(txtPrice.getText()));
-            item.setPrice(Integer.parseInt(txtQuantity.getText()));
-            item.setPrice(Integer.parseInt(txtImportPrice.getText()));
-            
+            item.setImportPrice(Integer.parseInt(txtImportPrice.getText()));
+            item.setQuantity(Integer.parseInt(txtQuantity.getText()));
+          
         }
-        
+        displayTotal();
         refresh();
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -439,9 +472,9 @@ public class ImporterView extends javax.swing.JFrame {
         ImportItem it = items.get(importItemTb.getSelectedRow());
         txtName.setText(it.getProduct().getName());
         txtPrice.setText("" + it.getProduct().getPrice());
-        txtImportPrice.setText("" + it.getPrice());
+        txtImportPrice.setText("" + it.getImportPrice());
         txtProducer.setText(it.getProduct().getProducer());
-        txtQuantity.setText("" + it.getAmount());
+        txtQuantity.setText("" + it.getQuantity());
         jDateChooser1.setDate(it.getProduct().getProduceTime());
         jDateChooser2.setDate(it.getProduct().getExpireTime());
         jComboBox1.setSelectedIndex(getIndex(it.getSupplier()));
@@ -453,8 +486,20 @@ public class ImporterView extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         items.remove(importItemTb.getSelectedRow());
+        displayTotal();
         refresh();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        if (items.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Empty!");
+            return;
+        }
+        ImportReceipt receipt = new ImportReceipt(items, Integer.parseInt(lblTotalValue.getText()));
+        ConnectImportReceipt.saveNewImportReceipt(receipt);
+        
+    }//GEN-LAST:event_btnPrintActionPerformed
     
     private int getIndex(Supplier s) {
         for (int i = 0; i < suppliers.size(); i ++) {
@@ -481,15 +526,25 @@ public class ImporterView extends javax.swing.JFrame {
     private void displayItems() {
         MyModel model = new MyModel(COLUMNNAMES);
         for (ImportItem it : items) {
-            String[] row = {it.getProduct().getName(), "" + it.getAmount(), "" + it.getPrice()};
+            String[] row = {it.getProduct().getName(), "" + it.getQuantity(), "" + it.getImportPrice()};
             model.addRow(row);
         }
         importItemTb.setModel(model);
     }
+    
+    private void displayTotal() {
+        long total = 0;
+        for (ImportItem it : items) {
+            total += it.getImportPrice() * it.getQuantity();
+        }
+        lblTotalValue.setText("" + total);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnSetting;
     private javax.swing.JTable importItemTb;
     private javax.swing.JPanel importTab;
@@ -507,7 +562,10 @@ public class ImporterView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblImporterName;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalValue;
     private javax.swing.JPanel profileTab;
     private javax.swing.JPanel storeTab;
     private javax.swing.JTabbedPane tabs;

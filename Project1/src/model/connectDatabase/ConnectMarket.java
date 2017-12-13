@@ -8,6 +8,7 @@ package model.connectDatabase;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.MyUtils.MyDate;
@@ -33,15 +34,19 @@ public class ConnectMarket {
         con.close();
     }
     
-    public static ArrayList<Supplier> getSuppliers() {
-        Supplier s = new Supplier("ncc1", "ha noi", "a", "139320");
-        s.setSupplierId(1);
+    public static ArrayList<Supplier> getSuppliers() throws IOException, ClassNotFoundException, SQLException {
+        String query = "select * from supplier";
+        Connection con = ConnectDatabase.createConnect();
+        PreparedStatement ps = con.prepareStatement(query);
         
-        Supplier s1 = new Supplier("ncc2", "ha noi", "a", "139320");
-        s1.setSupplierId(2);
+        
+        ResultSet rs = ps.executeQuery();
+        
         ArrayList<Supplier> list = new ArrayList<>();
-        list.add(s);
-        list.add(s1);
+        while (rs.next()) {
+            list.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+        }
+        
         
         
         return list;
