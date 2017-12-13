@@ -5,9 +5,14 @@
  */
 package listView;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectImportReceipt;
 import model.employee.Importer;
 import model.market.Supplier;
@@ -38,6 +43,8 @@ public class ImporterView extends javax.swing.JFrame {
        initComponents();
        lblImporterName.setText(importer.getName());
        setImportTab();
+       MyClock mc = new MyClock(lblClock);
+       mc.start();
     }
 
     /**
@@ -326,6 +333,11 @@ public class ImporterView extends javax.swing.JFrame {
         btnSetting.setText("Setting");
 
         btnLogOut.setText("Log out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -497,9 +509,25 @@ public class ImporterView extends javax.swing.JFrame {
             return;
         }
         ImportReceipt receipt = new ImportReceipt(items, Integer.parseInt(lblTotalValue.getText()));
-        ConnectImportReceipt.saveNewImportReceipt(receipt);
+        try {
+            ConnectImportReceipt.saveNewImportReceipt(receipt);
+            JOptionPane.showMessageDialog(null, "Receipt created");
+            ObjectWithFile.printImportReceipt(receipt);
+            items = new ArrayList<>();
+            refresh();
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ImporterView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new FormDangNhap().setVisible(true);
+    }//GEN-LAST:event_btnLogOutActionPerformed
     
     private int getIndex(Supplier s) {
         for (int i = 0; i < suppliers.size(); i ++) {
@@ -529,6 +557,7 @@ public class ImporterView extends javax.swing.JFrame {
             String[] row = {it.getProduct().getName(), "" + it.getQuantity(), "" + it.getImportPrice()};
             model.addRow(row);
         }
+        displayTotal();
         importItemTb.setModel(model);
     }
     

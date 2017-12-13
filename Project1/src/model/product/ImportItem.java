@@ -49,6 +49,14 @@ public class ImportItem {
   public void setSupplier(Supplier supplier) {
     this.supplier = supplier;
   }
+
+    public Importer getImporter() {
+        return importer;
+    }
+
+    public void setImporter(Importer importer) {
+        this.importer = importer;
+    }
   
   
 }

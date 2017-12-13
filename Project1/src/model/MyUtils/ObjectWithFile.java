@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import model.employee.Account;
 import model.employee.Employee;
+import model.product.ImportReceipt;
 
 /**
  *
@@ -39,5 +40,9 @@ public class ObjectWithFile {
         System.out.println("salary table printed");
     }
     
+    
+    public static void printImportReceipt(ImportReceipt receipt) {
+        System.out.println("Receipt printed");
+    }
     
 }
