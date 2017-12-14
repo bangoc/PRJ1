@@ -11,7 +11,7 @@ public class Product {
   private String producer;
   private Date produceTime;
   private Date expireTime;
-  
+  private int saleOff;
   public Product() {
     
   }
@@ -22,6 +22,16 @@ public class Product {
         this.producer = producer;
         this.produceTime = produceTime;
         this.expireTime = expireTime;
+    }
+
+    public Product(int productId, String name, int price, String producer, Date produceTime, Date expireTime, int saleOff) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.producer = producer;
+        this.produceTime = produceTime;
+        this.expireTime = expireTime;
+        this.saleOff = saleOff;
     }
   
   
@@ -85,6 +95,14 @@ public class Product {
         df.format(this.produceTime), df.format(this.expireTime)};
     return array;
   }
+
+    public int getSaleOff() {
+        return this.saleOff;
+    }
+    
+    public void setSaleOff(int saleOff) {
+        this.saleOff = saleOff;
+    }
   
 }
 

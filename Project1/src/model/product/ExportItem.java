@@ -8,10 +8,10 @@ public class ExportItem {
   private int price;
   private Salesman salesman;
   
-  public ExportItem(Product product, int amount, int price, Salesman salesman) {
+  public ExportItem(Product product, int amount, Salesman salesman) {
     this.product = product;
     this.amount = amount;
-    this.price = price;
+    countSaleOffPrice();
     this.salesman = salesman;
   }
 
@@ -47,5 +47,8 @@ public class ExportItem {
     this.salesman = salesman;
   }
   
-  
+  private void countSaleOffPrice() {
+      this.price = this.product.getPrice() * (1 - this.product.getSaleOff() / 100);
+      
+  }
 }

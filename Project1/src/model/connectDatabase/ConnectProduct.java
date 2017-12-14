@@ -16,5 +16,8 @@ public class ConnectProduct {
         
     }
     
+    public static void saveChangedSold(int product_id, int amount) {
+        
+    }
     
 }

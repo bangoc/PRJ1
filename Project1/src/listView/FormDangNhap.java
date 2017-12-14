@@ -200,7 +200,7 @@ public class FormDangNhap extends javax.swing.JFrame {
                 processSavedAccount(account);
             } else if (object instanceof Salesman) {
                 this.dispose();
-                new BanHang().setVisible(true);
+                new BanHang((Salesman) object).setVisible(true);
                 processSavedAccount(account);
             } else {
                 JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");

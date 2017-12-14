@@ -15,4 +15,5 @@ public class Salesman extends Employee {
     super(id, name, gender, birthday, address, phone, coefficient, img, account);
   }
 
+  
 }

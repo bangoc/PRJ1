@@ -58,7 +58,6 @@ public class ImporterView extends javax.swing.JFrame {
 
         tabs = new javax.swing.JTabbedPane();
         storeTab = new javax.swing.JPanel();
-        profileTab = new javax.swing.JPanel();
         importTab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -107,19 +106,6 @@ public class ImporterView extends javax.swing.JFrame {
         );
 
         tabs.addTab("Store", storeTab);
-
-        javax.swing.GroupLayout profileTabLayout = new javax.swing.GroupLayout(profileTab);
-        profileTab.setLayout(profileTabLayout);
-        profileTabLayout.setHorizontalGroup(
-            profileTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
-        );
-        profileTabLayout.setVerticalGroup(
-            profileTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
-        );
-
-        tabs.addTab("Profile", profileTab);
 
         jLabel1.setText("Produce Date");
 
@@ -595,7 +581,6 @@ public class ImporterView extends javax.swing.JFrame {
     private javax.swing.JLabel lblImporterName;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotalValue;
-    private javax.swing.JPanel profileTab;
     private javax.swing.JPanel storeTab;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTextField txtImportPrice;

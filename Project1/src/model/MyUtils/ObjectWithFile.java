@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import model.employee.Account;
 import model.employee.Employee;
+import model.product.ExportReceipt;
 import model.product.ImportReceipt;
 
 /**
@@ -45,4 +46,7 @@ public class ObjectWithFile {
         System.out.println("Receipt printed");
     }
     
+    public static void printExportReceipt(ExportReceipt receipt) {
+        System.out.println("Receipt printed");
+    }
 }

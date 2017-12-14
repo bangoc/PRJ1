@@ -5,12 +5,28 @@
  */
 package listView;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.MyUtils.ObjectWithFile;
+import model.connectDatabase.ConnectExportReceipt;
+import model.connectDatabase.ConnectProductItem;
+import model.employee.Salesman;
+import model.product.ExportItem;
+import model.product.ExportReceipt;
+
 /**
  *
  * @author PhamThiDuyen
  */
 public class BanHang extends javax.swing.JFrame {
-
+    private Salesman salesman;
+    private ArrayList<ExportItem> items;
+    
     /**
      * Creates new form BanHang
      */
@@ -18,6 +34,12 @@ public class BanHang extends javax.swing.JFrame {
         initComponents();
     }
 
+    BanHang(Salesman salesman) {
+        initComponents();
+        mySetting(salesman);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,13 +54,6 @@ public class BanHang extends javax.swing.JFrame {
         imgSell = new javax.swing.JLabel();
         btnDangXuat = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jlabel = new javax.swing.JLabel();
-        txtMaHoaDon = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtNgayTao = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtMaSanPham = new javax.swing.JTextField();
@@ -46,12 +61,17 @@ public class BanHang extends javax.swing.JFrame {
         txtSoLuong = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         txtTongTien = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnInHoaDon = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -66,6 +86,11 @@ public class BanHang extends javax.swing.JFrame {
 
         btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDangXuat.setText("Đăng Xuất");
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,7 +115,7 @@ public class BanHang extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(btnDangXuat)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(txtBanHang)
@@ -98,63 +123,10 @@ public class BanHang extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 20, 990, 110);
+        jPanel1.setBounds(30, 80, 990, 100);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel2.setLayout(null);
-
-        jlabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jlabel.setText("Mã Hóa Đơn");
-        jPanel2.add(jlabel);
-        jlabel.setBounds(16, 28, 75, 17);
-        jPanel2.add(txtMaHoaDon);
-        txtMaHoaDon.setBounds(124, 28, 157, 20);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Ngày Tạo");
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(584, 28, 59, 17);
-        jPanel2.add(txtNgayTao);
-        txtNgayTao.setBounds(706, 28, 158, 20);
-
-        jTable1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Đơn Giá", "Số Lượng"
-            }
-        ));
-        jTable1.setPreferredSize(new java.awt.Dimension(450, 108));
-        jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel4);
-        jPanel4.setBounds(434, 81, 522, 294);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -167,10 +139,20 @@ public class BanHang extends javax.swing.JFrame {
         btnInsert.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-insert-table-icon.png"))); // NOI18N
         btnInsert.setText("Chèn");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
 
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Button-Close-icon.png"))); // NOI18N
         btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -213,78 +195,188 @@ public class BanHang extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(16, 81, 367, 294);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Hình Thức Thanh Toán");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(16, 405, 141, 17);
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thanh Toán Thẻ", "Tiền Mặt", "Hình Thức Khác" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(180, 400, 141, 23);
+        jPanel3.setBounds(16, 81, 377, 296);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 0, 0));
         jLabel6.setText("Tổng Tiền");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(616, 405, 82, 17);
+        jLabel6.setBounds(630, 410, 82, 30);
         jPanel2.add(txtTongTien);
-        txtTongTien.setBounds(764, 405, 151, 20);
+        txtTongTien.setBounds(760, 410, 151, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("VNĐ");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(925, 405, 27, 17);
+        jLabel7.setBounds(925, 410, 30, 30);
 
         btnInHoaDon.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         btnInHoaDon.setForeground(new java.awt.Color(0, 0, 153));
         btnInHoaDon.setText("IN HÓA ĐƠN");
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInHoaDonActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnInHoaDon);
-        btnInHoaDon.setBounds(390, 430, 149, 31);
+        btnInHoaDon.setBounds(390, 410, 210, 34);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(420, 80, 550, 300);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(30, 140, 990, 500);
+        jPanel2.setBounds(30, 190, 990, 500);
 
-        setSize(new java.awt.Dimension(1068, 691));
+        jLabel1.setText("Nhan vien : ");
+
+        lblName.setText("Salesman's Name");
+
+        jLabel4.setText("Date");
+
+        lblTime.setText("Time");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(46, 46, 46)
+                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel5);
+        jPanel5.setBounds(30, 10, 990, 50);
+
+        setSize(new java.awt.Dimension(1068, 747));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        // TODO add your handling code here:
+        int id = 0;
+        int quantity = 0;
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            id = Integer.parseInt(txtMaSanPham.getText());
+            quantity = Integer.parseInt(txtSoLuong.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Dien du 2 so");
+            return;
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BanHang().setVisible(true);
+ 
+        
+        try {
+            ExportItem item = ConnectProductItem.createExportItem(salesman, id, quantity);
+            if (item == null) {
+                JOptionPane.showMessageDialog(null, "Ma san pham hoac so luong khong hop le!");
+                return;
             }
-        });
+            items.add(item);
+            displayItem(items);
+            resetTextField();
+          
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(BanHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnInsertActionPerformed
+    
+    private void displayItem(ArrayList<ExportItem> items) {
+        String[] columnNames = {"ID", "Name", "Amount", "Price", "SaleOff", "ExPrice"};
+        MyModel model = new MyModel(columnNames);
+        long total = 0;
+        for (ExportItem it : items) {
+            String[] row = {"" + it.getProduct().getProductId(), it.getProduct().getName(),
+                "" + it.getAmount(), "" + it.getProduct().getPrice(), "" + it.getProduct().getSaleOff(),
+                "" + it.getPrice()};
+            model.addRow(row);
+            total += it.getAmount() * it.getPrice();
+        }
+        txtTongTien.setText("" + total);
+        jTable2.setModel(model);
+        btnDelete.setVisible(false);
     }
+    
+    private void resetTextField() {
+        txtMaSanPham.setText(null);
+        txtSoLuong.setText(null);
+        
+    }
+    
+    private void mySetting(Salesman salesman) {
+        this.salesman = salesman;
+        this.items = new ArrayList<>();
+        lblName.setText(salesman.getName());
+        MyClock mc = new MyClock(lblTime);
+        mc.start();
+        displayItem(items);
+        
+    }
+    
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new FormDangNhap().setVisible(true);
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        btnDelete.setVisible(true);
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        items.remove(jTable2.getSelectedRow());
+        displayItem(items);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
+        // TODO add your handling code here:
+        ExportReceipt receipt = new ExportReceipt(items, Integer.parseInt(txtTongTien.getText()));
+        
+        try {
+            ConnectExportReceipt.saveNewExportReceipt(receipt);
+            JOptionPane.showMessageDialog(null, "Receipt created");
+            ObjectWithFile.printExportReceipt(receipt);
+            
+        } catch (IOException | SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BanHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnInHoaDonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangXuat;
@@ -292,24 +384,22 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JButton btnInHoaDon;
     private javax.swing.JButton btnInsert;
     private javax.swing.JLabel imgSell;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel jlabel;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblTime;
     private javax.swing.JLabel txtBanHang;
-    private javax.swing.JTextField txtMaHoaDon;
     private javax.swing.JTextField txtMaSanPham;
-    private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
