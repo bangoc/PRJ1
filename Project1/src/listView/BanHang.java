@@ -375,6 +375,9 @@ public class BanHang extends javax.swing.JFrame {
         } catch (IOException | SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BanHang.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        items = new ArrayList<>();
+        displayItem(items);
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
 

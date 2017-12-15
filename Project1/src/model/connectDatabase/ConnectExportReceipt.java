@@ -38,8 +38,9 @@ public class ConnectExportReceipt {
         
         receipt.setCode(id);
         for (ExportItem it : receipt.getItems()) {
-            ConnectProduct.saveChangedSold(it.getProduct().getProductId(), it.getAmount());
+            ConnectProduct.saveChangedSold(con, it.getProduct().getProductId(), it.getAmount());
             saveExportItem(id, it, con);
+            System.out.println(it.getProduct().getProductId());
         }
         con.close();
     }

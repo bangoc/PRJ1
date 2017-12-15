@@ -5,6 +5,10 @@
  */
 package model.connectDatabase;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import model.product.Product;
 
 /**
@@ -16,7 +20,15 @@ public class ConnectProduct {
         
     }
     
-    public static void saveChangedSold(int product_id, int amount) {
+    public static void saveChangedSold(Connection con, int product_id, int amount) throws IOException, ClassNotFoundException, SQLException {
+        String query = "update product set sold = (sold + ?) where id = ?";
+ 
+        PreparedStatement ps = con.prepareStatement(query);
+        
+        ps.setInt(1, amount);
+        ps.setInt(2, product_id);
+        
+        ps.executeUpdate();
         
     }
     
