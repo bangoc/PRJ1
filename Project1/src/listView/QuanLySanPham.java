@@ -304,15 +304,20 @@ public class QuanLySanPham extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
-        getContentPane().add(txtFindInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 200, 170, 40));
+        getContentPane().add(txtFindInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 200, 120, 40));
 
-        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Hàng khuyến mãi", "Hàng hết hạn", "Hàng hết hàng" }));
+        searchOption.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                searchOptionItemStateChanged(evt);
+            }
+        });
         searchOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchOptionActionPerformed(evt);
             }
         });
-        getContentPane().add(searchOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 198, 90, 40));
+        getContentPane().add(searchOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 198, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -356,6 +361,24 @@ public class QuanLySanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
         displayItemInfo(items.get(jTable1.getSelectedRow()));
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void searchOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchOptionItemStateChanged
+        // TODO add your handling code here:
+        int index = searchOption.getSelectedIndex();
+        if (index == 0) {
+            items = ConnectProductItem.getProductItem(ConnectProductItem.GETALL);
+           
+        } else if (index == 1) {
+            items = ConnectProductItem.getProductItem(ConnectProductItem.GETSALE);
+        } else if (index == 2) {
+            items = ConnectProductItem.getProductItem(ConnectProductItem.GETEXPIRE);
+          
+        } else if (index == 3) {
+            items = ConnectProductItem.getProductItem(ConnectProductItem.GET0QUANTITY);
+        }
+        displayProductItem(items);
+        displayItemInfo(null);
+    }//GEN-LAST:event_searchOptionItemStateChanged
 
     private void mySetting() {
         this.setLocationRelativeTo(null);

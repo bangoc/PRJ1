@@ -496,7 +496,7 @@
     <Component class="javax.swing.JTextField" name="txtFindInput">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="840" y="200" width="170" height="40"/>
+          <AbsoluteConstraints x="890" y="200" width="120" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -504,14 +504,15 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
+            <StringItem index="1" value="H&#xe0;ng khuy&#x1ebf;n m&#xe3;i"/>
+            <StringItem index="2" value="H&#xe0;ng h&#x1ebf;t h&#x1ea1;n"/>
+            <StringItem index="3" value="H&#xe0;ng h&#x1ebf;t h&#xe0;ng"/>
           </StringArray>
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="searchOptionItemStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchOptionActionPerformed"/>
       </Events>
       <AuxValues>
@@ -519,7 +520,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="730" y="198" width="90" height="40"/>
+          <AbsoluteConstraints x="730" y="198" width="150" height="40"/>
         </Constraint>
       </Constraints>
     </Component>

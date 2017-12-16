@@ -48,7 +48,8 @@ public class ExportItem {
   }
   
   private void countSaleOffPrice() {
-      this.price = this.product.getPrice() * (1 - this.product.getSaleOff() / 100);
-      
+      float x = 1 - (float) this.product.getSaleOff() / 100;
+      this.price = (int) (x * this.product.getPrice());
+
   }
 }

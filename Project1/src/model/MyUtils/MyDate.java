@@ -15,7 +15,7 @@ import java.util.Date;
  * @author leo
  */
 public class MyDate {
-    static DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+    static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     static DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
  
     
