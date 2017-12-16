@@ -67,7 +67,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         txtFindInput = new javax.swing.JTextField();
         searchOption = new javax.swing.JComboBox<>();
 
@@ -193,7 +192,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                         .addComponent(txtSold)
                         .addComponent(txtSale))
                     .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +243,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     .addComponent(eDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.getAccessibleContext().setAccessibleName("lblMaSanPham");
@@ -255,7 +254,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jLabel8.getAccessibleContext().setAccessibleName("lblNgayHetHan");
         txtProductId.getAccessibleContext().setAccessibleName("txtMaSanPham");
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 680, 440));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 680, 440));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,7 +271,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 430, 440));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 200, 430, 390));
 
         jLabel2.setText("Danh sách sản phẩm");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 20));
@@ -281,7 +280,12 @@ public class QuanLySanPham extends javax.swing.JFrame {
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Search-icon.png"))); // NOI18N
         btnSearch.setText("Tìm kiếm");
-        getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 200, -1, 40));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 150, -1, 40));
 
         btnBack.setBackground(new java.awt.Color(102, 102, 255));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -292,19 +296,8 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
-
-        btnDelete.setBackground(new java.awt.Color(102, 102, 255));
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Close-2-icon.png"))); // NOI18N
-        btnDelete.setText("Xóa");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
-        getContentPane().add(txtFindInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 200, 120, 40));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 620, -1, -1));
+        getContentPane().add(txtFindInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 150, 120, 40));
 
         searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Hàng khuyến mãi", "Hàng hết hạn", "Hàng hết hàng" }));
         searchOption.addItemListener(new java.awt.event.ItemListener() {
@@ -317,7 +310,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 searchOptionActionPerformed(evt);
             }
         });
-        getContentPane().add(searchOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 198, 150, 40));
+        getContentPane().add(searchOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -348,10 +341,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSaleActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void searchOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchOptionActionPerformed
         // TODO add your handling code here:
         
@@ -379,6 +368,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
         displayProductItem(items);
         displayItemInfo(null);
     }//GEN-LAST:event_searchOptionItemStateChanged
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void mySetting() {
         this.setLocationRelativeTo(null);
@@ -431,7 +424,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser eDate;
