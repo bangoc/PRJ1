@@ -23,6 +23,7 @@ public class ConnectSupplier {
     public static void saveNewSupplier(Supplier supplier) {
         Connection con = null;
         PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
             String query = "insert into supplier "
                     + "(id, name, address, mail, phone_no) "
@@ -37,7 +38,7 @@ public class ConnectSupplier {
             
             ps.executeUpdate();
             
-            ResultSet rs = ps.getGeneratedKeys();
+            rs = ps.getGeneratedKeys();
             int key = 0;
             while (rs.next()) {
                 key = rs.getInt(1);
@@ -58,6 +59,14 @@ public class ConnectSupplier {
             if (ps != null) {
                 try {
                     ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (rs != null) {
+                try {
+                    rs.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
                 }
