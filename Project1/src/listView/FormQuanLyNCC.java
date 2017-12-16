@@ -5,19 +5,24 @@
  */
 package listView;
 
+import java.util.ArrayList;
+import model.connectDatabase.ConnectSupplier;
+import model.market.Supplier;
+
 /**
  *
  * @author PhamThiDuyen
  */
 public class FormQuanLyNCC extends javax.swing.JFrame {
-
+    private ArrayList<Supplier> suppliers;
     /**
      * Creates new form FormQuanLyNCC
      */
     public FormQuanLyNCC() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        suppliers = ConnectSupplier.getSuppliers();
+        mySetting();
     }
 
     /**
@@ -189,22 +194,10 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã NCC", "Tên NCC", "Địa Chỉ", "Số Điện Thoại"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -265,7 +258,18 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
         this.dispose();
         new FormQuanLyST().setVisible(true);
     }//GEN-LAST:event_btnXoaActionPerformed
-
+    
+    private void mySetting() {
+        String[] columnNames = {"ID", "Name"};
+        MyModel model = new MyModel(columnNames);
+        
+        for (Supplier s : suppliers) {
+            String[] row = {"" + s.getSupplierId(), s.getName()};
+            model.addRow(row);
+        }
+        jTable1.setModel(model);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThemMoi;
