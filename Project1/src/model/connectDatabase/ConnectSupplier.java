@@ -164,4 +164,110 @@ public class ConnectSupplier {
         }
         return suppliers;
     }
+    
+    public static ArrayList<Supplier> getSupplierByName(String name) {
+        String query = "select * from supplier where name like '%" + name + "%'";
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Supplier> suppliers = null;
+        Supplier sup = null;
+        try {
+            con = ConnectDatabase.createConnect();
+            ps = con.prepareStatement(query);
+         
+            rs = ps.executeQuery();
+            suppliers = new ArrayList<>();
+            
+            while (rs.next()) {
+                sup = new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5));
+                suppliers.add(sup);
+            }
+            
+            
+            
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return suppliers;
+    }
+    
+    
+    public static ArrayList<Supplier> getSupplierById(int id) {
+        String query = "select * from supplier where id = ?";
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Supplier> suppliers = null;
+        Supplier sup = null;
+        try {
+            con = ConnectDatabase.createConnect();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            suppliers = new ArrayList<>();
+            
+            while (rs.next()) {
+                sup = new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5));
+                suppliers.add(sup);
+            }
+            
+            
+            
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return suppliers;
+    }
+    
 }

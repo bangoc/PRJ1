@@ -25,7 +25,7 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         suppliers = ConnectSupplier.getSuppliers();
         isInsert = true;
-        mySetting();
+        displaySuppliers();
         txtMaNCC.setEditable(false);
         txtMaNCC.setVisible(false);
         lblId.setVisible(false);
@@ -113,6 +113,11 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
         btnTimKiem.setForeground(new java.awt.Color(153, 0, 0));
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Search-icon.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnThemMoi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnThemMoi.setForeground(new java.awt.Color(153, 0, 0));
@@ -304,7 +309,9 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
         lblId.setVisible(false);
         suppliers = ConnectSupplier.getSuppliers();
         displaySupplierInfo(null);
+        displaySuppliers();
         isInsert = true;
+        txtTimKiem.setText(null);
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -318,6 +325,7 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
 
     private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
         // TODO add your handling code here:
+   
         String name = txtTenNCC.getText();
         if (name.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhap ten nha cung cap");
@@ -347,17 +355,35 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
             ConnectSupplier.saveNewSupplier(supplier);
             JOptionPane.showMessageDialog(null, "Them thanh cong");
             suppliers = ConnectSupplier.getSuppliers();
-            mySetting();
+            displaySuppliers();
         } else {
             supplier = new Supplier(Integer.parseInt(txtMaNCC.getText()), name, address, email, phone);
             ConnectSupplier.saveChangedSupplier(supplier);
             JOptionPane.showMessageDialog(null, "Cap nhat thanh cong");
             suppliers = ConnectSupplier.getSuppliers();
-            mySetting();
+            displaySuppliers();
         }
     }//GEN-LAST:event_btnThemMoiActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+        if (txtTimKiem.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhap Ma ncc hoac Ten ncc!");
+            return;
+        }
+        
+        try {
+            int id = Integer.parseInt(txtTimKiem.getText());
+            suppliers = ConnectSupplier.getSupplierById(id);
+            displaySuppliers();
+        } catch (NumberFormatException ex) {
+            String name = txtTimKiem.getText();
+            suppliers = ConnectSupplier.getSupplierByName(name);
+            displaySuppliers();
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
     
-    private void mySetting() {
+    private void displaySuppliers() {
         String[] columnNames = {"ID", "Name"};
         MyModel model = new MyModel(columnNames);
         
@@ -366,6 +392,7 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
             model.addRow(row);
         }
         jTable1.setModel(model);
+        displaySupplierInfo(null);
     }
     
     private void displaySupplierInfo(Supplier supplier) {
