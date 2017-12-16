@@ -5,18 +5,28 @@
  */
 package listView;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+import model.connectDatabase.ConnectStatistics;
+import model.market.Result;
+
 /**
  *
  * @author anhsang
  */
 public class GiaoDien extends javax.swing.JFrame {
-
+    private ArrayList<Result> results;
     /**
      * Creates new form GiaoDien
      */
     public GiaoDien() {
         initComponents();
         setLocationRelativeTo(null);
+        jDateChooser1.setDate(new Date());
+        jDateChooser2.setDate(new Date());
+        results = ConnectStatistics.statistics(new Date(), new Date(), ConnectStatistics.PERDAY);
+        displayResults(results);
     }
 
     /**
@@ -63,7 +73,12 @@ public class GiaoDien extends javax.swing.JFrame {
         jButton2.setText("Hiển Thị");
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo ngày", "Theo tháng", "Theo Quý", "Theo năm" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo ngày", "Theo tháng", "Theo năm" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Thông kê");
@@ -239,39 +254,32 @@ public class GiaoDien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GiaoDien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GiaoDien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GiaoDien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GiaoDien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        int index = jComboBox1.getSelectedIndex();
+        if (index == 1) {
+            results = ConnectStatistics.statistics(jDateChooser1.getDate(), 
+                    jDateChooser2.getDate(), ConnectStatistics.PERMONTH);
+            displayResults(results);
+        } else if (index == 2) {
+            results = ConnectStatistics.statistics(jDateChooser1.getDate(), 
+                    jDateChooser2.getDate(), ConnectStatistics.PERYEAR);
+            displayResults(results);
+        } else {
+            results = ConnectStatistics.statistics(jDateChooser1.getDate(), 
+                    jDateChooser2.getDate(), ConnectStatistics.PERDAY);
+            displayResults(results);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GiaoDien().setVisible(true);
-            }
-        });
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+    
+    private void displayResults(ArrayList<Result> results) {
+        String[] columnNames = {"Time", "Total"};
+        MyModel model = new MyModel(columnNames);
+        for (Result rs : results) {
+            String[] row = {rs.getName(), "" + rs.getValue()};
+            model.addRow(row);
+        }
+        jTable2.setModel(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
