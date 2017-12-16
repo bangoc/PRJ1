@@ -238,6 +238,8 @@ public class FormQuanLyST extends javax.swing.JFrame {
 
     private void btnQuanLiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSPActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new QuanLySanPham().setVisible(true);
     }//GEN-LAST:event_btnQuanLiSPActionPerformed
 
     private void btnCaiDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaiDatActionPerformed

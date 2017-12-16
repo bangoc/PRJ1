@@ -133,7 +133,6 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
-        txtBirthday = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         txtSalary = new javax.swing.JTextField();
@@ -352,13 +351,6 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
         txtName.setEditable(false);
 
-        txtBirthday.setEditable(false);
-        txtBirthday.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBirthdayActionPerformed(evt);
-            }
-        });
-
         txtAddress.setEditable(false);
 
         txtPhone.setEditable(false);
@@ -411,22 +403,18 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addGap(37, 37, 37)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                                .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtBirthday, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtID)
-                                .addComponent(txtName)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                        .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtID)
+                        .addComponent(txtName)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton3)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addContainerGap(142, Short.MAX_VALUE))
     );
     jPanel4Layout.setVerticalGroup(
         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,11 +433,9 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGap(12, 12, 12)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
+                        .addComponent(jLabel8)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(12, 12, 12)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -514,10 +500,6 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
-    private void txtBirthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthdayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBirthdayActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -539,12 +521,12 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
             update = true;
             
         } else if (update == true && !txtID.getText().equals("")) {
-            try {
+            
                 
                 Employee employee = filterdEmployees.get(jTable1.getSelectedRow());
                 employee.setName(txtName.getText());
                 employee.setGender((Gender) jComboBox1.getSelectedItem());
-                employee.setDateOfBirth(MyDate.parseDateString(txtBirthday.getText()));
+                employee.setDateOfBirth(jDateChooser1.getDate());
                 employee.setAddress(txtAddress.getText());
                 employee.setPhoneNumber(txtPhone.getText());
                 employee.setCoefficientsSalary(Integer.parseInt(txtSalary.getText()));
@@ -570,10 +552,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Loi he thong");
                     Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (ParseException ex) {
-                Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Du lieu nhap vao sai dinh dang chuan");
-            }
+            
             
             jButton1.setText("Cập nhật");
             update = false;
@@ -584,7 +563,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
 
     private void setEditableForTextField(boolean value) {
         txtAddress.setEditable(value);
-        txtBirthday.setEditable(value);
+      
         txtName.setEditable(value);
         txtPhone.setEditable(value);
         txtSalary.setEditable(value);
@@ -678,11 +657,12 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private void resetTextFields() {
         txtID.setText(null);
         txtAddress.setText(null);
-        txtBirthday.setText(null);
+       
         txtName.setText(null);
         txtPhone.setText(null);
         txtSalary.setText(null);
         imgNhanVien.setIcon(null);
+        jDateChooser1.setDate(null);
         imgNhanVien.setText("Image");
     }
     
@@ -726,12 +706,12 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         txtID.setText("" + employee.getEmployeeId());
         txtName.setText(employee.getName());
         jComboBox1.setSelectedItem(employee.getGender());
-        txtBirthday.setText(MyDate.formatDate(employee.getDateOfBirth()));
+     
         txtAddress.setText(employee.getAddress());
         txtPhone.setText(employee.getPhoneNumber());
         txtSalary.setText("" + employee.getCoefficientsSalary());
         jComboBox2.setSelectedItem(employee.getDivision());
-        
+        jDateChooser1.setDate(employee.getDateOfBirth());
         Image dimg = employee.getImage().getImage().getScaledInstance(imgNhanVien.getWidth(), imgNhanVien.getHeight(),
         Image.SCALE_SMOOTH);
         imgNhanVien.setIcon(new ImageIcon(dimg));
@@ -769,7 +749,6 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtBirthday;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;

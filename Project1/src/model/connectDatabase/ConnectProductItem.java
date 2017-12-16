@@ -11,38 +11,61 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.MyUtils.MyDate;
-import model.employee.Salesman;
-import model.product.ExportItem;
 import model.product.Product;
+import model.product.ProductItem;
 
 /**
  *
  * @author leo
  */
 public class ConnectProductItem {
-    public static ExportItem createExportItem(Salesman salesman, int id, int quantity
-           ) throws IOException, ClassNotFoundException, SQLException, ParseException {
-        
-        String query = "select product.* from product, import_item "
-                + "where product.id = ? and product.id = import_item.product_id and (product.sold + ?) <= import_item.quantity";
-        Connection con = ConnectDatabase.createConnect();
-        PreparedStatement ps = con.prepareStatement(query);
-        
-        ps.setInt(1, id);
-        ps.setInt(2, quantity);
-        
-        ResultSet rs = ps.executeQuery();
-        
-        while (rs.next()) {
-            ExportItem it = new ExportItem(new Product(rs.getInt(1), rs.getString(2),
-                    rs.getInt(3), rs.getString(4), MyDate.parseDateString(rs.getString(5)),
-                    MyDate.parseDateString(rs.getString(6)), rs.getInt(7)), quantity, salesman);
-            con.close();
-            return it;
+    public static final int GETALL = 1;
+    
+    public static ArrayList<ProductItem> getProductItem(int option) {
+        switch(option) {
+            case(1) :
+                return getAll();
+            default :
+                return null;
+                   
         }
-        con.close();
+       
+    } 
+    
+    private static ArrayList<ProductItem> getAll() {
+        Connection con = null;
+        ArrayList<ProductItem> items = new ArrayList<>();
+        try {
+            String query = "select product.*, importer_id, supplier_id, quantity, import_price "
+                    + "from product, import_item "
+                    + "where product.id = import_item.product_id";
+            con = ConnectDatabase.createConnect();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                items.add(new ProductItem(
+                        new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4),
+                        MyDate.parseDateString(rs.getString(5)), MyDate.parseDateString(rs.getString(6)), rs.getInt(7)), 
+                        rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12)));
+            }
+            
+            return items;
+        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return null;
     }
-    
 }

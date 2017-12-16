@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectExportReceipt;
-import model.connectDatabase.ConnectProductItem;
+import model.connectDatabase.ConnectExportItem;
 import model.employee.Salesman;
 import model.product.ExportItem;
 import model.product.ExportReceipt;
@@ -299,7 +299,7 @@ public class BanHang extends javax.swing.JFrame {
  
         
         try {
-            ExportItem item = ConnectProductItem.createExportItem(salesman, id, quantity);
+            ExportItem item = ConnectExportItem.createExportItem(salesman, id, quantity);
             if (item == null) {
                 JOptionPane.showMessageDialog(null, "Ma san pham hoac so luong khong hop le!");
                 return;
@@ -343,6 +343,7 @@ public class BanHang extends javax.swing.JFrame {
         MyClock mc = new MyClock(lblTime);
         mc.start();
         displayItem(items);
+        txtTongTien.setEditable(false);
         
     }
     
