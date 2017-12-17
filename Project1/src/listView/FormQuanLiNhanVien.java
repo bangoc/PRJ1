@@ -656,11 +656,18 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     
     private void resetTextFields() {
         txtID.setText(null);
+        txtID.setEditable(false);
         txtAddress.setText(null);
-       
+        txtAddress.setEditable(false);
+        update = false;
+        jButton6.setVisible(false);
+        jButton1.setText("Cập nhật");
         txtName.setText(null);
+        txtName.setEditable(false);
         txtPhone.setText(null);
+        txtPhone.setEditable(false);
         txtSalary.setText(null);
+        txtSalary.setEditable(false);
         imgNhanVien.setIcon(null);
         jDateChooser1.setDate(null);
         imgNhanVien.setText("Image");
