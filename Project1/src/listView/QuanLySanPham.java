@@ -299,7 +299,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 620, -1, -1));
         getContentPane().add(txtFindInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 150, 120, 40));
 
-        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Hàng khuyến mãi", "Hàng hết hạn", "Hàng hết hàng" }));
+        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Hàng khuyến mãi", "Hàng hết hạn", "Hàng hết hàng", "Bán chạy nhất" }));
         searchOption.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 searchOptionItemStateChanged(evt);
@@ -356,14 +356,14 @@ public class QuanLySanPham extends javax.swing.JFrame {
         int index = searchOption.getSelectedIndex();
         if (index == 0) {
             items = ConnectProductItem.getProductItem(ConnectProductItem.GETALL);
-           
         } else if (index == 1) {
             items = ConnectProductItem.getProductItem(ConnectProductItem.GETSALE);
         } else if (index == 2) {
             items = ConnectProductItem.getProductItem(ConnectProductItem.GETEXPIRE);
-          
         } else if (index == 3) {
             items = ConnectProductItem.getProductItem(ConnectProductItem.GET0QUANTITY);
+        } else if (index == 4) {
+            items = ConnectProductItem.getProductItem(ConnectProductItem.GETTOPSALE);
         }
         displayProductItem(items);
         displayItemInfo(null);
