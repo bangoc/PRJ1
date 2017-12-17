@@ -327,8 +327,11 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
         // TODO add your handling code here:
    
         String name = txtTenNCC.getText();
+        System.out.println("ok");
         if (name.equals("")) {
+            System.out.println("ok1");
             JOptionPane.showMessageDialog(null, "Nhap ten nha cung cap");
+            System.out.println("listView.FormQuanLyNCC.btnThemMoiActionPerformed()");
             return;
         }
         

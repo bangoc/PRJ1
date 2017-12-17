@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.MyUtils.MyDate;
 import model.market.Cost;
 import model.market.Supplier;
@@ -20,18 +22,40 @@ import model.market.Supplier;
  * @author leo
  */
 public class ConnectMarket {
-    public static void saveCost(Cost cost) throws IOException, ClassNotFoundException, SQLException {
-        String query = "insert into costs_incurred (id, name, total, paid_date) values (null, ?, ?, ?)";
-        Connection con = ConnectDatabase.createConnect();
-        
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, cost.getCostName().toString());
-        ps.setInt(2, cost.getTotal());
-        ps.setString(3, MyDate.formatDate(cost.getDate()));
-        
-        ps.executeUpdate();
-        
-        con.close();
+    public static void saveCost(Cost cost) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            String query = "insert into costs_incurred (id, name, total, paid_date) values (null, ?, ?, ?)";
+            con = ConnectDatabase.createConnect();
+            
+            ps = con.prepareStatement(query);
+            ps.setString(1, cost.getCostName().toString());
+            ps.setInt(2, cost.getTotal());
+            ps.setString(3, MyDate.formatDate(cost.getDate()));
+            
+            ps.executeUpdate();
+            
+            con.close();
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectMarket.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectMarket.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectMarket.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
     
     public static ArrayList<Supplier> getSuppliers() throws IOException, ClassNotFoundException, SQLException {

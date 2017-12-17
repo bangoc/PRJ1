@@ -235,7 +235,7 @@ public class FormQuanLyST extends javax.swing.JFrame {
     private void btnQuanLiSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSTActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new GiaoDien().setVisible(true);
+        new FormQuanLyThuChi().setVisible(true);
     }//GEN-LAST:event_btnQuanLiSTActionPerformed
 
     private void btnQuanLiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSPActionPerformed
