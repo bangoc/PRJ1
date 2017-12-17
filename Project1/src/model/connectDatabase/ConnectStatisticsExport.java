@@ -22,12 +22,12 @@ import model.market.Result;
  *
  * @author leo
  */
-public class ConnectStatistics {
+public class ConnectStatisticsExport {
     public static final int PERDAY = 1;
     public static final int PERMONTH = 2;
     public static final int PERYEAR = 3;
     
-    public static ArrayList<Result> statistics(Date from, Date to, int option) {
+    public static ArrayList<Result> statisticsR(Date from, Date to, int option) {
         ArrayList<Result> results = new ArrayList<>();
         switch(option) {
             case(PERDAY) :
