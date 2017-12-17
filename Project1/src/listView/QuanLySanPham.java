@@ -6,8 +6,11 @@
 package listView;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
+import model.connectDatabase.ConnectProduct;
 import model.connectDatabase.ConnectProductItem;
+import model.product.Product;
 import model.product.ProductItem;
 
 /**
@@ -151,7 +154,12 @@ public class QuanLySanPham extends javax.swing.JFrame {
         btnUpdate.setBackground(new java.awt.Color(102, 102, 255));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Repair-icon.png"))); // NOI18N
-        btnUpdate.setText("Sửa");
+        btnUpdate.setText("Khuyến mãi");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,18 +189,18 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdate)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtImportPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtImportPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                         .addComponent(txtImport, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtImporterId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addComponent(txtImporterId, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtSold)
-                        .addComponent(txtSale))
-                    .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtSale)
+                        .addComponent(txtSupplierId)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,9 +249,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(eDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jLabel3.getAccessibleContext().setAccessibleName("lblMaSanPham");
@@ -349,6 +357,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         displayItemInfo(items.get(jTable1.getSelectedRow()));
+        btnUpdate.setVisible(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void searchOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_searchOptionItemStateChanged
@@ -367,14 +376,30 @@ public class QuanLySanPham extends javax.swing.JFrame {
         }
         displayProductItem(items);
         displayItemInfo(null);
+        btnUpdate.setVisible(false);
     }//GEN-LAST:event_searchOptionItemStateChanged
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            Product product = items.get(jTable1.getSelectedRow()).getProduct();
+            product.setSaleOff(Integer.parseInt(txtSale.getText()));
+            ConnectProduct.saveChangedSaleProduct(product);
+            JOptionPane.showMessageDialog(null, "Ok");
+            
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Nhap khuyen mai cho san pham dang so");
+            return;
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
     private void mySetting() {
         this.setLocationRelativeTo(null);
+        btnUpdate.setVisible(false);
     }
     
     private void displayProductItem(ArrayList<ProductItem> items) {
