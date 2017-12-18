@@ -67,7 +67,7 @@ public class ManagerView extends javax.swing.JFrame {
         jLabel1.setText("Wellcome to Supermarket Management System!");
 
         btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDangXuat.setText("Đăng Xuất");
+        btnDangXuat.setText("Log out");
         btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangXuatActionPerformed(evt);
@@ -79,7 +79,7 @@ public class ManagerView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
+                .addContainerGap(224, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(103, 103, 103)
                 .addComponent(btnDangXuat)

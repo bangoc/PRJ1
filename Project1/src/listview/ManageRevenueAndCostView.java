@@ -53,6 +53,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
         displayResults(resultsImport, importTable);
         resultCost = ConnectStatisticsCost.statisticsR(from, new Date(), ConnectStatisticsCost.PERDAY);
         displayCostResults(resultCost, costTable);
+        profit.setText("" + Manager.countProfit(resultsExport, resultsImport, resultCost));
     }
 
     /**
@@ -87,9 +88,9 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         importTable = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        profitTable = new javax.swing.JTable();
+        lblProfit = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        profit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -305,34 +306,28 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Profit Table"));
+    lblProfit.setBorder(javax.swing.BorderFactory.createTitledBorder("Profit Table"));
 
-    profitTable.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        },
-        new String [] {
-            "Title 1", "Title 2", "Title 3", "Title 4"
-        }
-    ));
-    jScrollPane4.setViewportView(profitTable);
+    jLabel7.setText("Profit\n");
 
-    javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-    jPanel5.setLayout(jPanel5Layout);
-    jPanel5Layout.setHorizontalGroup(
-        jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel5Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane4))
+    javax.swing.GroupLayout lblProfitLayout = new javax.swing.GroupLayout(lblProfit);
+    lblProfit.setLayout(lblProfitLayout);
+    lblProfitLayout.setHorizontalGroup(
+        lblProfitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(lblProfitLayout.createSequentialGroup()
+            .addGap(24, 24, 24)
+            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(50, 50, 50)
+            .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
-    jPanel5Layout.setVerticalGroup(
-        jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel5Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+    lblProfitLayout.setVerticalGroup(
+        lblProfitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(lblProfitLayout.createSequentialGroup()
+            .addGap(70, 70, 70)
+            .addGroup(lblProfitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel7)
+                .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -348,12 +343,12 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             .addGap(27, 27, 27)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblProfit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGap(39, 39, 39))
         .addGroup(layout.createSequentialGroup()
             .addGap(57, 57, 57)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(98, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +362,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblProfit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap(40, Short.MAX_VALUE))
     );
 
@@ -412,6 +407,8 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             
             resultCost = ConnectStatisticsCost.statisticsR(from, to, ConnectStatisticsCost.PERDAY);
             displayCostResults(resultCost, costTable);
+            
+            profit.setText("" + Manager.countProfit(resultsExport, resultsImport, resultCost));
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
@@ -477,16 +474,16 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable profitTable;
+    private javax.swing.JPanel lblProfit;
+    private javax.swing.JLabel profit;
     private javax.swing.JTable revenueTable;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
