@@ -20,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import model.MyUtils.MyDate;
 import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectEmployee;
 import model.connectDatabase.ConnectMarket;
@@ -509,6 +508,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
+        resetTextFields();
         display(filterdEmployees.get(index));
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -699,14 +699,9 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         Cost paySalary = Manager.createSalaryCost(employees);
        
-        try {
-            ConnectMarket.saveCost(paySalary);
-            ObjectWithFile.printSalaryTable(employees);
-            JOptionPane.showMessageDialog(null, "Ok");
-        } catch (IOException | ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Loi he thong");
-        }
+        ConnectMarket.saveCost(paySalary);
+        ObjectWithFile.printSalaryTable(employees);
+        JOptionPane.showMessageDialog(null, "Ok");
     }//GEN-LAST:event_jButton3ActionPerformed
     
     private void display(Employee employee) {

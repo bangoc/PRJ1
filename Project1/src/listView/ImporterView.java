@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.MyUtils.ObjectWithFile;
 import model.connectDatabase.ConnectImportReceipt;
+import model.employee.Account;
 import model.employee.Importer;
 import model.market.Supplier;
 import model.product.ImportItem;
@@ -45,6 +47,7 @@ public class ImporterView extends javax.swing.JFrame {
        setImportTab();
        MyClock mc = new MyClock(lblClock);
        mc.start();
+       txtFolderPath.setText(ObjectWithFile.getSavedDirectory(ObjectWithFile.IMPORT_OPTION));
     }
 
     /**
@@ -57,7 +60,6 @@ public class ImporterView extends javax.swing.JFrame {
     private void initComponents() {
 
         tabs = new javax.swing.JTabbedPane();
-        storeTab = new javax.swing.JPanel();
         importTab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -83,8 +85,23 @@ public class ImporterView extends javax.swing.JFrame {
         btnPrint = new javax.swing.JButton();
         lblTotalValue = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtFolderPath = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
+        txtPreUsername = new javax.swing.JTextField();
+        pfPrePassword = new javax.swing.JPasswordField();
+        txtNewUsername = new javax.swing.JPasswordField();
+        pfFirstNewPassword = new javax.swing.JPasswordField();
+        pfSecondNewPassword = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
-        btnSetting = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         lblImporterName = new javax.swing.JLabel();
         lblClock = new javax.swing.JLabel();
@@ -93,19 +110,6 @@ public class ImporterView extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1061, 800));
 
         tabs.setName(""); // NOI18N
-
-        javax.swing.GroupLayout storeTabLayout = new javax.swing.GroupLayout(storeTab);
-        storeTab.setLayout(storeTabLayout);
-        storeTabLayout.setHorizontalGroup(
-            storeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
-        );
-        storeTabLayout.setVerticalGroup(
-            storeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
-        );
-
-        tabs.addTab("Store", storeTab);
 
         jLabel1.setText("Produce Date");
 
@@ -316,7 +320,99 @@ public class ImporterView extends javax.swing.JFrame {
         tabs.addTab("Import", importTab);
         importTab.getAccessibleContext().setAccessibleName("");
 
-        btnSetting.setText("Setting");
+        jLabel9.setText("Select File saved Folder");
+
+        jButton1.setText("Browse");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Change Account's info");
+
+        jLabel11.setText("User Name");
+
+        jLabel12.setText("Password");
+
+        jLabel13.setText("New User Name");
+
+        jLabel14.setText("New Password");
+
+        jLabel15.setText("New Password");
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFolderPath)
+                            .addComponent(txtPreUsername)
+                            .addComponent(pfPrePassword)
+                            .addComponent(txtNewUsername)
+                            .addComponent(pfFirstNewPassword)
+                            .addComponent(pfSecondNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
+                .addContainerGap(443, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFolderPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPreUsername)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pfPrePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNewUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pfFirstNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pfSecondNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSave)
+                .addContainerGap(183, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("Setting", jPanel1);
 
         btnLogOut.setText("Log out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -334,9 +430,7 @@ public class ImporterView extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblClock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblImporterName, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
-                .addComponent(btnSetting)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(63, 63, 63))
         );
@@ -346,9 +440,7 @@ public class ImporterView extends javax.swing.JFrame {
                 .addComponent(lblClock, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogOut))
+                    .addComponent(btnLogOut)
                     .addComponent(lblImporterName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -514,6 +606,31 @@ public class ImporterView extends javax.swing.JFrame {
         this.dispose();
         new FormDangNhap().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            
+            String folderPath = fileChooser.getSelectedFile().getAbsolutePath();
+            txtFolderPath.setText(folderPath);
+            
+            ObjectWithFile.saveDirectory(folderPath, ObjectWithFile.IMPORT_OPTION);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        if (importer.getAccount().equals(
+                new Account(txtPreUsername.getText(), pfPrePassword.getText()))) {
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Your account info is invalid");
+            
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
     
     private int getIndex(Supplier s) {
         for (int i = 0; i < suppliers.size(); i ++) {
@@ -560,14 +677,21 @@ public class ImporterView extends javax.swing.JFrame {
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnSetting;
+    private javax.swing.JButton btnSave;
     private javax.swing.JTable importItemTb;
     private javax.swing.JPanel importTab;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -575,16 +699,23 @@ public class ImporterView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblImporterName;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotalValue;
-    private javax.swing.JPanel storeTab;
+    private javax.swing.JPasswordField pfFirstNewPassword;
+    private javax.swing.JPasswordField pfPrePassword;
+    private javax.swing.JPasswordField pfSecondNewPassword;
     private javax.swing.JTabbedPane tabs;
+    private javax.swing.JTextField txtFolderPath;
     private javax.swing.JTextField txtImportPrice;
     private javax.swing.JTextField txtName;
+    private javax.swing.JPasswordField txtNewUsername;
+    private javax.swing.JTextField txtPreUsername;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProducer;
     private javax.swing.JTextField txtQuantity;

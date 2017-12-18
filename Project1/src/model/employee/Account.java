@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author leo
  */
 public class Account implements Serializable {
+    
     String username;
     String password;
     
@@ -36,5 +37,8 @@ public class Account implements Serializable {
         this.password = password;
     }
     
+    public boolean equals(Account account) {
+        return account.username.equals(this.username) && account.password.equals(this.password);
+    }
     
 }
