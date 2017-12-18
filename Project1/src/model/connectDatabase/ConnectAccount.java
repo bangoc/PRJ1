@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.MyUtils.MyDate;
 import model.employee.Account;
@@ -44,18 +46,40 @@ public class ConnectAccount {
         con.close();
     }
     
-    public static void saveChangedAccount(Account account, int id) throws IOException, ClassNotFoundException, SQLException {
-        String query = "update account set user_name = ?, password = ? where employee_id = ?";
-        Connection con = ConnectDatabase.createConnect();
-        
-        PreparedStatement ps = con.prepareStatement(query);
-        
-        ps.setInt(3, id);
-        ps.setString(1, account.getUsername());
-        ps.setString(2, account.getPassword());
-        
-        ps.executeUpdate();
-        con.close();
+    public static void saveChangedAccount(Account account, int id) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            String query = "update account set user_name = ?, password = ? where employee_id = ?";
+            con = ConnectDatabase.createConnect();
+            
+            ps = con.prepareStatement(query);
+            
+            ps.setInt(3, id);
+            ps.setString(1, account.getUsername());
+            ps.setString(2, account.getPassword());
+            
+            ps.executeUpdate();
+            con.close();
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
     
     public static Object createLogin(Account account) throws IOException, ClassNotFoundException, SQLException, ParseException {

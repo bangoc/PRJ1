@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.MyUtils.ObjectWithFile;
+import model.connectDatabase.ConnectAccount;
 import model.connectDatabase.ConnectImportReceipt;
 import model.employee.Account;
 import model.employee.Importer;
@@ -98,9 +99,9 @@ public class ImporterView extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         txtPreUsername = new javax.swing.JTextField();
         pfPrePassword = new javax.swing.JPasswordField();
-        txtNewUsername = new javax.swing.JPasswordField();
         pfFirstNewPassword = new javax.swing.JPasswordField();
         pfSecondNewPassword = new javax.swing.JPasswordField();
+        txtNewUsername = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         btnLogOut = new javax.swing.JButton();
         lblImporterName = new javax.swing.JLabel();
@@ -370,9 +371,9 @@ public class ImporterView extends javax.swing.JFrame {
                             .addComponent(txtFolderPath)
                             .addComponent(txtPreUsername)
                             .addComponent(pfPrePassword)
-                            .addComponent(txtNewUsername)
                             .addComponent(pfFirstNewPassword)
-                            .addComponent(pfSecondNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                            .addComponent(pfSecondNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(txtNewUsername))
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
                 .addContainerGap(443, Short.MAX_VALUE))
@@ -625,7 +626,25 @@ public class ImporterView extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (importer.getAccount().equals(
                 new Account(txtPreUsername.getText(), pfPrePassword.getText()))) {
-            
+            if (txtNewUsername.getText().equals("") 
+                    || pfFirstNewPassword.getText().equals("")
+                    | pfSecondNewPassword.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "You must input data all field");
+                return;
+            }
+            if (pfFirstNewPassword.getText().equals(pfSecondNewPassword.getText())) {
+                Account account = new Account(txtNewUsername.getText(), pfFirstNewPassword.getText());
+                importer.setAccount(account);
+                ConnectAccount.saveChangedAccount(account, importer.getEmployeeId());
+                JOptionPane.showMessageDialog(null, "OK");
+                txtPreUsername.setText(null);
+                txtNewUsername.setText(null);
+                pfFirstNewPassword.setText(null);
+                pfPrePassword.setText(null);
+                pfSecondNewPassword.setText(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "New password is not like each other!");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Your account info is invalid");
             
@@ -714,7 +733,7 @@ public class ImporterView extends javax.swing.JFrame {
     private javax.swing.JTextField txtFolderPath;
     private javax.swing.JTextField txtImportPrice;
     private javax.swing.JTextField txtName;
-    private javax.swing.JPasswordField txtNewUsername;
+    private javax.swing.JTextField txtNewUsername;
     private javax.swing.JTextField txtPreUsername;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProducer;
