@@ -149,7 +149,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Quản Lí Nhân Viên");
+        jLabel1.setText("Manage Employee");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,7 +168,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh Sách Nhân Viên"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee List"));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,20 +214,20 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel2.setText("Tìm Nhân Viên Theo ID :");
+        jLabel2.setText("Search by ID");
 
-        jLabel3.setText("Hoặc Theo Họ Tên :");
+        jLabel3.setText("Or by Name");
 
-        jLabel4.setText(" Chức Vụ");
+        jLabel4.setText("Division");
 
-        jButton5.setText("Tìm Kiếm");
+        jButton5.setText("Search");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Trở Về");
+        jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -255,7 +255,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Đăng xuất");
+        jButton7.setText("Log out");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -285,7 +285,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addGap(37, 37, 37)
                 .addComponent(jButton7)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,23 +304,23 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin Nhân Viên"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee's Information"));
 
-        jButton1.setText("Cập Nhật");
+        jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Thêm");
+        jButton2.setText("Add");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Trả Lương");
+        jButton3.setText("Pay salary");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -329,19 +329,19 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
         jLabel5.setText("ID :");
 
-        jLabel6.setText("Tên :");
+        jLabel6.setText("Name:");
 
-        jLabel7.setText("Giới Tính :");
+        jLabel7.setText("Gender:");
 
-        jLabel8.setText("Ngày Sinh :");
+        jLabel8.setText("Birthday :");
 
-        jLabel9.setText("Địa Chỉ :");
+        jLabel9.setText("Address:");
 
-        jLabel10.setText("SĐT :");
+        jLabel10.setText("Phone:");
 
-        jLabel11.setText("Hệ Số Lương :");
+        jLabel11.setText("Salary base:");
 
-        jLabel12.setText("Vị Trí :");
+        jLabel12.setText("Division:");
 
         txtID.setEditable(false);
         txtID.addActionListener(new java.awt.event.ActionListener() {
@@ -373,7 +373,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         })
     );
 
-    jButton6.setText("Mở rộng");
+    jButton6.setText("Browse");
     jButton6.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton6ActionPerformed(evt);
@@ -415,7 +415,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                             .addComponent(jButton3)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addContainerGap(142, Short.MAX_VALUE))
+            .addContainerGap(154, Short.MAX_VALUE))
     );
     jPanel4Layout.setVerticalGroup(
         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -69,7 +69,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Xin M&#x1a1;&#x300;i Nh&#xe2;&#x323;p N&#xf4;&#x323;i Dung D&#x1b0;&#x1a1;&#x301;i &#x110;&#xe2;y">
+            <TitledBorder title="Input new employee&apos;s information.">
               <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
               <Color PropertyName="color" blue="0" green="0" red="99" type="rgb"/>
             </TitledBorder>
@@ -204,7 +204,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n"/>
+            <Property name="text" type="java.lang.String" value="Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -212,7 +212,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gi&#x1a1;&#x301;i ti&#x301;nh"/>
+            <Property name="text" type="java.lang.String" value="Gender"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -220,7 +220,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nga&#x300;y sinh"/>
+            <Property name="text" type="java.lang.String" value="Birthday"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -228,7 +228,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;i&#x323;a chi&#x309;"/>
+            <Property name="text" type="java.lang.String" value="Address"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -236,7 +236,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="S&#xf4;&#x301; &#x111;i&#xea;&#x323;n thoa&#x323;i"/>
+            <Property name="text" type="java.lang.String" value="Phone"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -244,7 +244,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="H&#xea;&#x323; s&#xf4;&#x301; l&#x1b0;&#x1a1;ng"/>
+            <Property name="text" type="java.lang.String" value="Salary base"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -252,7 +252,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Vi&#x323; tri&#x301;"/>
+            <Property name="text" type="java.lang.String" value="Division"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTen">
@@ -297,7 +297,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="label" type="java.lang.String" value="Th&#xea;m"/>
+            <Property name="label" type="java.lang.String" value="Add"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
@@ -308,7 +308,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="label" type="java.lang.String" value="Tr&#x1a1;&#x309; V&#xea;&#x300;"/>
+            <Property name="label" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTroVeActionPerformed"/>
@@ -319,7 +319,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="label" type="java.lang.String" value="M&#x1a1;&#x309; r&#xf4;&#x323;ng"/>
+            <Property name="label" type="java.lang.String" value="Browse"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoRongActionPerformed"/>
@@ -380,7 +380,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Th&#xea;m Nh&#xe2;n Vi&#xea;n M&#x1a1;&#x301;i"/>
+            <Property name="text" type="java.lang.String" value="Add New Employee"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="imgThemNVMoi">
@@ -395,7 +395,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Xu&#xe2;&#x301;t"/>
+            <Property name="text" type="java.lang.String" value="Log out"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangXuatActionPerformed"/>

@@ -21,9 +21,10 @@ import model.employee.Manager;
  * @author PhamThiDuyen
  */
 public class ManagerView extends javax.swing.JFrame {
-    private Manager manager;
+    private final Manager manager;
     /**
      * Creates new form FormDangNhap
+     * @param manager
      */
     public ManagerView(Manager manager) {
         this.manager = manager;
@@ -63,7 +64,7 @@ public class ManagerView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Chào Mừng Đến Với Hệ thống Quản Lí Siêu Thị");
+        jLabel1.setText("Wellcome to Supermarket Management System!");
 
         btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDangXuat.setText("Đăng Xuất");
@@ -78,7 +79,7 @@ public class ManagerView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(235, Short.MAX_VALUE)
+                .addContainerGap(203, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(103, 103, 103)
                 .addComponent(btnDangXuat)
@@ -97,7 +98,7 @@ public class ManagerView extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnQuanLiNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLiNV.setText("Quản Lí Nhân Viên");
+        btnQuanLiNV.setText("Manage Employee");
         btnQuanLiNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuanLiNVActionPerformed(evt);
@@ -105,7 +106,7 @@ public class ManagerView extends javax.swing.JFrame {
         });
 
         btnCaiDat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCaiDat.setText("Cài Đặt");
+        btnCaiDat.setText("System setting");
         btnCaiDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCaiDatActionPerformed(evt);
@@ -113,7 +114,7 @@ public class ManagerView extends javax.swing.JFrame {
         });
 
         btnQuanLiSP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLiSP.setText("Quản Lí Sản Phẩm");
+        btnQuanLiSP.setText("Manage Product");
         btnQuanLiSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuanLiSPActionPerformed(evt);
@@ -121,7 +122,7 @@ public class ManagerView extends javax.swing.JFrame {
         });
 
         btnQuanLiST.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLiST.setText("Quản Lí Siêu Thị");
+        btnQuanLiST.setText("Manage Revenue and Costs");
         btnQuanLiST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuanLiSTActionPerformed(evt);
@@ -137,7 +138,7 @@ public class ManagerView extends javax.swing.JFrame {
         imgQuanLyST.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Picture-Manager-icon.png"))); // NOI18N
 
         btnQuanLyNCC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnQuanLyNCC.setText("Quản Lý Nhà Cung Cấp");
+        btnQuanLyNCC.setText("Manage Supplier");
         btnQuanLyNCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuanLyNCCActionPerformed(evt);
@@ -176,7 +177,7 @@ public class ManagerView extends javax.swing.JFrame {
                             .addComponent(btnCaiDat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(176, 176, 176)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnQuanLiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(btnQuanLiSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQuanLiST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51)

@@ -96,13 +96,13 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Từ");
+        jLabel2.setText("From");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Đến");
+        jLabel3.setText("To");
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Trở về");
+        jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -110,7 +110,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
         });
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo ngày", "Theo tháng", "Theo năm" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Per day", "Per month", "Per year" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -123,11 +123,11 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Thông kê");
+        jLabel4.setText("Statistics");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel5.setText("QUẢN LÝ DOANH THU");
+        jLabel5.setText("Manage Revenue And Costs");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -136,16 +136,13 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(255, 255, 255))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(94, 94, 94)
                         .addComponent(jLabel3)
@@ -153,7 +150,11 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
                         .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addGap(48, 48, 48))))
+                        .addGap(48, 48, 48))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +174,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Bảng doanh thu"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Revenue Table"));
 
         revenueTable.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createCompoundBorder()));
         revenueTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -203,7 +204,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Bảng chi trả"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Costs Table"));
 
         costTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,7 +216,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(costTable);
 
-        jLabel1.setText("Thanh toán chi phí");
+        jLabel1.setText("Pay Cost");
 
         jComboBox2.setModel(new DefaultComboBoxModel<TypeCost> (new TypeCost[] {
             TypeCost.TIENDIEN,
@@ -223,14 +224,14 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             TypeCost.TIENTHUE})
     );
 
-    jButton1.setText("Thực thi");
+    jButton1.setText("Execute");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton1ActionPerformed(evt);
         }
     });
 
-    jLabel6.setText("Tổng tiền");
+    jLabel6.setText("Total");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -272,7 +273,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             .addGap(3, 3, 3))
     );
 
-    jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Bảng nhập hàng"));
+    jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Import Price Table\n"));
 
     importTable.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -304,7 +305,7 @@ public class ManageRevenueAndCostView extends javax.swing.JFrame {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Bảng lợi nhuận"));
+    jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Profit Table"));
 
     profitTable.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {

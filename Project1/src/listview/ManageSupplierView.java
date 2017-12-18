@@ -77,7 +77,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
 
         txtQuanLyNCC.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtQuanLyNCC.setForeground(new java.awt.Color(0, 102, 102));
-        txtQuanLyNCC.setText("Quản Lý Nhà Cung Cấp");
+        txtQuanLyNCC.setText("Manage Supplier");
         jPanel1.add(txtQuanLyNCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 50, -1, 38));
 
         imgQuanLiNcc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cargo-2-icon (1).png"))); // NOI18N
@@ -85,17 +85,17 @@ public class ManageSupplierView extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 970, 140));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Chi Tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14), new java.awt.Color(204, 0, 0))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14), new java.awt.Color(204, 0, 0))); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(481, 250));
 
         lblId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblId.setText("Mã Nhà Cung Cấp");
+        lblId.setText("Supplier ID");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Tên Nhà Cung Cấp");
+        jLabel2.setText("Supplier Name");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Địa Chỉ");
+        jLabel3.setText("Address");
 
         txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Số Điện Thoại");
+        jLabel4.setText("Phone Contact");
 
         txtSoDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +115,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(153, 0, 0));
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Search-icon.png"))); // NOI18N
-        btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.setText("Search");
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -125,7 +125,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         btnThemMoi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnThemMoi.setForeground(new java.awt.Color(153, 0, 0));
         btnThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Button-Add-icon.png"))); // NOI18N
-        btnThemMoi.setText("Thêm Mới");
+        btnThemMoi.setText("Add");
         btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemMoiActionPerformed(evt);
@@ -135,7 +135,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         btnCapNhat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCapNhat.setForeground(new java.awt.Color(153, 0, 0));
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Button-Upload-icon.png"))); // NOI18N
-        btnCapNhat.setText("Cập Nhật");
+        btnCapNhat.setText("Update");
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
@@ -145,14 +145,14 @@ public class ManageSupplierView extends javax.swing.JFrame {
         btnXoa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(153, 0, 0));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Close-2-icon.png"))); // NOI18N
-        btnXoa.setText("Trở về");
+        btnXoa.setText("Back");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Email");
+        jLabel5.setText("Email Contact");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -177,7 +177,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -230,7 +230,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh Sách Nhà Cung Cấp", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14), new java.awt.Color(204, 0, 0))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Supplier List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14), new java.awt.Color(204, 0, 0))); // NOI18N
         jPanel4.setPreferredSize(new java.awt.Dimension(499, 300));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

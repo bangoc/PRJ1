@@ -83,29 +83,29 @@ public class AddEmployeeView extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Xin Mời Nhập Nội Dung Dưới Đây", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(153, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Input new employee's information.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(153, 0, 0))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(836, 670));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Tên");
+        jLabel2.setText("Name");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Giới tính");
+        jLabel3.setText("Gender");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Ngày sinh");
+        jLabel4.setText("Birthday");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Địa chỉ");
+        jLabel5.setText("Address");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Số điện thoại");
+        jLabel6.setText("Phone");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Hệ số lương");
+        jLabel7.setText("Salary base");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Vị trí");
+        jLabel8.setText("Division");
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox1.setModel(new DefaultComboBoxModel<Gender>(new Gender[] {Gender.FEMALE, Gender.MALE}));
@@ -121,7 +121,7 @@ public class AddEmployeeView extends javax.swing.JFrame {
         );
 
         btnThem.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnThem.setLabel("Thêm");
+        btnThem.setLabel("Add");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -129,7 +129,7 @@ public class AddEmployeeView extends javax.swing.JFrame {
         });
 
         btnTroVe.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnTroVe.setLabel("Trở Về");
+        btnTroVe.setLabel("Back");
         btnTroVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTroVeActionPerformed(evt);
@@ -137,7 +137,7 @@ public class AddEmployeeView extends javax.swing.JFrame {
         });
 
         btnMoRong.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnMoRong.setLabel("Mở rộng");
+        btnMoRong.setLabel("Browse");
         btnMoRong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoRongActionPerformed(evt);
@@ -240,12 +240,12 @@ public class AddEmployeeView extends javax.swing.JFrame {
 
         txtThemNVMoi.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtThemNVMoi.setForeground(new java.awt.Color(0, 102, 102));
-        txtThemNVMoi.setText("Thêm Nhân Viên Mới");
+        txtThemNVMoi.setText("Add New Employee");
 
         imgThemNVMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-list-add-user-icon.png"))); // NOI18N
 
         btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDangXuat.setText("Đăng Xuất");
+        btnDangXuat.setText("Log out");
         btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangXuatActionPerformed(evt);

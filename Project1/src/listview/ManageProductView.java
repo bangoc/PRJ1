@@ -82,29 +82,29 @@ public class ManageProductView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("QUẢN LÝ SẢN PHẨM");
+        jLabel1.setText("Manage Product");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Thông tin sản phẩm"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Product's Information"));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Mã sản phẩm");
+        jLabel3.setText("Product ID");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Tên sản phẩm");
+        jLabel4.setText("Name");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Nhà sản xuất");
+        jLabel5.setText("Producer");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Đơn giá");
+        jLabel6.setText("Price");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("Ngày Sản Xuất");
+        jLabel7.setText("ProduceTime");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Ngày hết hạn");
+        jLabel8.setText("ExpiredTime");
 
         txtProductId.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtProductId.addActionListener(new java.awt.event.ActionListener() {
@@ -124,9 +124,9 @@ public class ManageProductView extends javax.swing.JFrame {
 
         txtPrice.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabel12.setText("Mã nhà cung cấp");
+        jLabel12.setText("Supplier's ID");
 
-        jLabel13.setText("Mã người nhập");
+        jLabel13.setText("Importer's ID");
 
         txtSupplierId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,13 +140,13 @@ public class ManageProductView extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("Giá nhập");
+        jLabel14.setText("Import Price");
 
-        jLabel15.setText("Số lượng nhập");
+        jLabel15.setText("Import Quantity");
 
-        jLabel16.setText("Số lượng đã bán");
+        jLabel16.setText("Sold Quantity");
 
-        jLabel18.setText("Khuyến mại");
+        jLabel18.setText("Sale off");
 
         txtSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +157,7 @@ public class ManageProductView extends javax.swing.JFrame {
         btnUpdate.setBackground(new java.awt.Color(102, 102, 255));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Repair-icon.png"))); // NOI18N
-        btnUpdate.setText("Khuyến mãi");
+        btnUpdate.setText("Sale");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -203,7 +203,7 @@ public class ManageProductView extends javax.swing.JFrame {
                         .addComponent(txtSold)
                         .addComponent(txtSale)
                         .addComponent(txtSupplierId)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,13 +284,13 @@ public class ManageProductView extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 200, 430, 390));
 
-        jLabel2.setText("Danh sách sản phẩm");
+        jLabel2.setText("Product List");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 20));
 
         btnSearch.setBackground(new java.awt.Color(102, 102, 255));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Search-icon.png"))); // NOI18N
-        btnSearch.setText("Tìm kiếm");
+        btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -301,7 +301,7 @@ public class ManageProductView extends javax.swing.JFrame {
         btnBack.setBackground(new java.awt.Color(102, 102, 255));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-icon.png"))); // NOI18N
-        btnBack.setText("Quay lại");
+        btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -310,7 +310,7 @@ public class ManageProductView extends javax.swing.JFrame {
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 620, -1, -1));
         getContentPane().add(txtFindInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 150, 120, 40));
 
-        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Hàng khuyến mãi", "Hàng hết hạn", "Hàng hết hàng", "Bán chạy nhất" }));
+        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Sale", "Expired", "OutQuantity", "BestSell" }));
         searchOption.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 searchOptionItemStateChanged(evt);
