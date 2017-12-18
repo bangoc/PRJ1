@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -24,10 +24,10 @@ import model.employee.Salesman;
  *
  * @author PhamThiDuyen
  */
-public class FormDangNhap extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame {
 
     
-    public FormDangNhap() {
+    public LoginView() {
         initComponents();
         displaySavedAccount();
     }
@@ -196,18 +196,18 @@ public class FormDangNhap extends javax.swing.JFrame {
                 processSavedAccount(account);
             } else if (object instanceof Manager) {
                 this.dispose();
-                new FormQuanLyST().setVisible(true);
+                new ManagerView((Manager) object).setVisible(true);
                 processSavedAccount(account);
             } else if (object instanceof Salesman) {
                 this.dispose();
-                new BanHang((Salesman) object).setVisible(true);
+                new SalesmanView((Salesman) object).setVisible(true);
                 processSavedAccount(account);
             } else {
                 JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
                 
             } 
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(FormDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -223,7 +223,7 @@ public class FormDangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         this.dispose();
-        new FormQuanLiNhanVien().setVisible(true);
+        new ManageEmployeeView().setVisible(true);
     }                                           
 
                                                
@@ -237,8 +237,18 @@ public class FormDangNhap extends javax.swing.JFrame {
                 ObjectWithFile.saveAccountToFile(new Account("", ""));
             }
         } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(FormDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -265,7 +275,7 @@ public class FormDangNhap extends javax.swing.JFrame {
 
             }
         } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(FormDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

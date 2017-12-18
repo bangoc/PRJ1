@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -25,18 +25,20 @@ import model.connectDatabase.ConnectEmployee;
 import model.employee.Division;
 import model.employee.Employee;
 import model.employee.Gender;
+import model.employee.Manager;
 
 /**
  *
  * @author PhamThiDuyen
  */
-public class FormThemNhanVienMoi extends javax.swing.JFrame {
+public class AddEmployeeView extends javax.swing.JFrame {
     private String linkImage;
-    
+    private Manager manager;
     /**
      * Creates new form FormThemNhanVienMoi
      */
-    public FormThemNhanVienMoi() {
+    public AddEmployeeView(Manager manager) {
+        this.manager = manager;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -355,7 +357,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
             display();
         } catch (SQLException | IOException | ClassNotFoundException ex) {
-            Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
            
         }
         linkImage = null;
@@ -375,9 +377,9 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
         this.dispose();
         try {
             ArrayList<Employee> employees = ConnectEmployee.getEmployees();
-            new FormQuanLiNhanVien(employees).setVisible(true);
+            new ManageEmployeeView(manager, employees).setVisible(true);
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(FormThemNhanVienMoi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnTroVeActionPerformed
 
@@ -421,7 +423,7 @@ public class FormThemNhanVienMoi extends javax.swing.JFrame {
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormDangNhap().setVisible(true);
+        new LoginView().setVisible(true);
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
 

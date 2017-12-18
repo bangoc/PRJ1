@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
 import model.connectDatabase.ConnectProduct;
 import model.connectDatabase.ConnectProductItem;
+import model.employee.Manager;
 import model.product.Product;
 import model.product.ProductItem;
 
@@ -17,12 +18,14 @@ import model.product.ProductItem;
  *
  * @author anhsang
  */
-public class QuanLySanPham extends javax.swing.JFrame {
+public class ManageProductView extends javax.swing.JFrame {
     private ArrayList<ProductItem> items;
+    private Manager manager;
     /**
      * Creates new form QuanLySanPham
      */
-    public QuanLySanPham() {
+    public ManageProductView(Manager manager) {
+        this.manager = manager;
         initComponents();
         mySetting();
         items = ConnectProductItem.getProductItem(ConnectProductItem.GETALL);
@@ -338,7 +341,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormQuanLyST().setVisible(true);
+        new ManagerView(manager).setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtImporterIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImporterIdActionPerformed

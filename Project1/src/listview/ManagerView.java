@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,17 +14,19 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.connectDatabase.ConnectEmployee;
 import model.employee.Employee;
+import model.employee.Manager;
 
 /**
  *
  * @author PhamThiDuyen
  */
-public class FormQuanLyST extends javax.swing.JFrame {
-
+public class ManagerView extends javax.swing.JFrame {
+    private Manager manager;
     /**
      * Creates new form FormDangNhap
      */
-    public FormQuanLyST() {
+    public ManagerView(Manager manager) {
+        this.manager = manager;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -53,6 +55,7 @@ public class FormQuanLyST extends javax.swing.JFrame {
         imgQuanLyST = new javax.swing.JLabel();
         btnQuanLyNCC = new javax.swing.JButton();
         imgNCC = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -143,6 +146,13 @@ public class FormQuanLyST extends javax.swing.JFrame {
 
         imgNCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cargo-2-icon.png"))); // NOI18N
 
+        jButton1.setText("Change Password");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -167,12 +177,13 @@ public class FormQuanLyST extends javax.swing.JFrame {
                 .addGap(176, 176, 176)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnQuanLiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(btnQuanLiST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnQuanLiST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(imgQuanLySP)
                     .addComponent(imgQuanLyST))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,11 +212,12 @@ public class FormQuanLyST extends javax.swing.JFrame {
                                 .addComponent(btnQuanLiST)
                                 .addComponent(imgBanHang)
                                 .addComponent(btnCaiDat)))))
-                .addGap(98, 98, 98)
+                .addGap(97, 97, 97)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnQuanLyNCC)
-                    .addComponent(imgNCC))
-                .addContainerGap(144, Short.MAX_VALUE))
+                    .addComponent(imgNCC)
+                    .addComponent(jButton1))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,19 +247,19 @@ public class FormQuanLyST extends javax.swing.JFrame {
     private void btnQuanLiSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSTActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormQuanLyThuChi().setVisible(true);
+        new ManageRevenueAndCostView(manager).setVisible(true);
     }//GEN-LAST:event_btnQuanLiSTActionPerformed
 
     private void btnQuanLiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiSPActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new QuanLySanPham().setVisible(true);
+        new ManageProductView(manager).setVisible(true);
     }//GEN-LAST:event_btnQuanLiSPActionPerformed
 
     private void btnCaiDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaiDatActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new CaiDatView().setVisible(true);
+        new SettingView(manager).setVisible(true);
     }//GEN-LAST:event_btnCaiDatActionPerformed
 
     private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
@@ -255,9 +267,9 @@ public class FormQuanLyST extends javax.swing.JFrame {
             // TODO add your handling code here:
             this.dispose();
             ArrayList<Employee> employees = ConnectEmployee.getEmployees();
-            new FormQuanLiNhanVien(employees).setVisible(true);
+            new ManageEmployeeView(manager, employees).setVisible(true);
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(FormQuanLyST.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManagerView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Loi he thong");
         }
     }//GEN-LAST:event_btnQuanLiNVActionPerformed
@@ -265,14 +277,19 @@ public class FormQuanLyST extends javax.swing.JFrame {
     private void btnQuanLyNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyNCCActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormQuanLyNCC().setVisible(true);
+        new ManageSupplierView(manager).setVisible(true);
     }//GEN-LAST:event_btnQuanLyNCCActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormDangNhap().setVisible(true);
+        new LoginView().setVisible(true);
     }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new ChangePasswordView(manager, ChangePasswordView.CHECK_ACCOUNT).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCaiDat;
@@ -287,6 +304,7 @@ public class FormQuanLyST extends javax.swing.JFrame {
     private javax.swing.JLabel imgQuanLiNhanVien;
     private javax.swing.JLabel imgQuanLySP;
     private javax.swing.JLabel imgQuanLyST;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

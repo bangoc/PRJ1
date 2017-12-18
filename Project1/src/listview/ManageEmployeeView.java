@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -33,21 +33,23 @@ import model.market.Cost;
  *
  * @author PhamThiDuyen
  */
-public class FormQuanLiNhanVien extends javax.swing.JFrame {
+public class ManageEmployeeView extends javax.swing.JFrame {
     private ArrayList<Employee> employees;
     private ArrayList<Employee> filterdEmployees;
     private boolean update;
     private String linkImage;
+    private Manager manager;
     
     /**
      * Creates new form FormQuanLiNhanVien
      */
-    public FormQuanLiNhanVien() {
+    public ManageEmployeeView() {
         initComponents();
   
     }
     
-    public FormQuanLiNhanVien(ArrayList<Employee> employees) {
+    public ManageEmployeeView(Manager manager, ArrayList<Employee> employees) {
+        this.manager = manager;
         initComponents();
         this.employees = employees;
        
@@ -502,7 +504,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormThemNhanVienMoi().setVisible(true);
+        new AddEmployeeView(manager).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -550,7 +552,7 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
                     setEditableForTextField(false);
                 } catch (IOException | ClassNotFoundException | SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Loi he thong");
-                    Logger.getLogger(FormQuanLiNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             
@@ -686,13 +688,13 @@ public class FormQuanLiNhanVien extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormDangNhap().setVisible(true);
+        new LoginView().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormQuanLyST().setVisible(true);
+        new ManagerView(manager).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -129,8 +129,6 @@ public class ConnectAccount {
             } else if (division.equals(Division.MANAGER.toString())) {
                 return new Manager(id, name, gender, date, address, phone, coefficientSalary, img, account);
             } else if (division.equals(Division.SALESMAN.toString())) {
-                System.out.println("ok");
-                System.out.println(name);
                 return new Salesman(id, name, gender, date, address, phone, coefficientSalary, img, account);
             }
            

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import model.connectDatabase.ConnectStatisticsCost;
 import model.connectDatabase.ConnectStatisticsExport;
 import model.connectDatabase.ConnectStatisticsImport;
 import model.connectDatabase.CostResult;
+import model.employee.Manager;
 import model.market.Cost;
 import model.market.Result;
 import model.market.TypeCost;
@@ -26,14 +27,16 @@ import model.market.TypeCost;
  *
  * @author anhsang
  */
-public class FormQuanLyThuChi extends javax.swing.JFrame {
+public class ManageRevenueAndCostView extends javax.swing.JFrame {
     private ArrayList<Result> resultsExport;
     private ArrayList<Result> resultsImport;
     private ArrayList<CostResult> resultCost;
+    private Manager manager;
     /**
      * Creates new form GiaoDien
      */
-   FormQuanLyThuChi() {
+   ManageRevenueAndCostView(Manager manager) {
+        this.manager = manager;
         initComponents();
         setLocationRelativeTo(null);
         Date from = null;
@@ -435,7 +438,7 @@ public class FormQuanLyThuChi extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormQuanLyST().setVisible(true);
+        new ManagerView(manager).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     private void displayResults(ArrayList<Result> results, JTable table) {

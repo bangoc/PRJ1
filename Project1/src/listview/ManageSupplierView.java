@@ -3,24 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listView;
+package listview;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.connectDatabase.ConnectSupplier;
+import model.employee.Manager;
 import model.market.Supplier;
 
 /**
  *
  * @author PhamThiDuyen
  */
-public class FormQuanLyNCC extends javax.swing.JFrame {
+public class ManageSupplierView extends javax.swing.JFrame {
     private ArrayList<Supplier> suppliers;
+    private Manager manager;
     private boolean isInsert;
     /**
      * Creates new form FormQuanLyNCC
      */
-    public FormQuanLyNCC() {
+    public ManageSupplierView(Manager manager) {
+        this.manager = manager;
         initComponents();
         this.setLocationRelativeTo(null);
         suppliers = ConnectSupplier.getSuppliers();
@@ -300,7 +303,7 @@ public class FormQuanLyNCC extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FormQuanLyST().setVisible(true);
+        new ManagerView(manager).setVisible(true);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
