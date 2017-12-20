@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
 import model.market.Cost;
 import model.market.Supplier;
@@ -58,21 +59,54 @@ public class ConnectMarket {
         }
     }
     
-    public static ArrayList<Supplier> getSuppliers() throws IOException, ClassNotFoundException, SQLException {
-        String query = "select * from supplier";
-        Connection con = ConnectDatabase.createConnect();
-        PreparedStatement ps = con.prepareStatement(query);
-        
-        
-        ResultSet rs = ps.executeQuery();
-        
-        ArrayList<Supplier> list = new ArrayList<>();
-        while (rs.next()) {
-            list.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+    public static ArrayList<Supplier> getSuppliers() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "select * from supplier";
+            con = ConnectDatabase.createConnect();
+            ps = con.prepareStatement(query);
+            
+            
+            rs = ps.executeQuery();
+            
+            ArrayList<Supplier> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            
+            
+            
+            return list;
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectMarket.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
+            return null;
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-        
-        
-        
-        return list;
     }
 }

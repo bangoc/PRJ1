@@ -545,15 +545,10 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
                     }
                 }
-                try {
-                    ConnectEmployee.saveChangedEmployee(employee, linkImage);
-                    JOptionPane.showMessageDialog(null, "OK!");
-                    displayEmployees(filterdEmployees);
-                    setEditableForTextField(false);
-                } catch (IOException | ClassNotFoundException | SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Loi he thong");
-                    Logger.getLogger(ManageEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                ConnectEmployee.saveChangedEmployee(employee, linkImage);
+                JOptionPane.showMessageDialog(null, "OK!");
+                displayEmployees(filterdEmployees);
+                setEditableForTextField(false);
             
             
             jButton1.setText("Cập nhật");
@@ -699,6 +694,10 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        int userOption = JOptionPane.showConfirmDialog(null, "You really want to pay salary for all employees ?");
+        if (userOption != JOptionPane.OK_OPTION) {
+            return;
+        }
         Cost paySalary = Manager.createSalaryCost(employees);
        
         ConnectMarket.saveCost(paySalary);

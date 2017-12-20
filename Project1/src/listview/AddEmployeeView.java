@@ -351,15 +351,10 @@ public class AddEmployeeView extends javax.swing.JFrame {
         
         Employee employee = new Employee(txtTen.getText(), (Gender) jComboBox1.getSelectedItem(), 
                 jDateChooser1.getDate(), txtDiaChi.getText(), txtSoDienThoai.getText(), heSoLuong);
-        try {
-            ConnectEmployee.saveNewEmployee(employee, linkImage, (Division) jComboBox2.getSelectedItem());
-            Sender.sendPassword(employee);
-            JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
-            display();
-        } catch (SQLException | IOException | ClassNotFoundException ex) {
-            Logger.getLogger(AddEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
-           
-        }
+        ConnectEmployee.saveNewEmployee(employee, linkImage, (Division) jComboBox2.getSelectedItem());
+        Sender.sendPassword(employee);
+        JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
+        display();
         linkImage = null;
     }//GEN-LAST:event_btnThemActionPerformed
     
@@ -375,12 +370,8 @@ public class AddEmployeeView extends javax.swing.JFrame {
     private void btnTroVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTroVeActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        try {
-            ArrayList<Employee> employees = ConnectEmployee.getEmployees();
-            new ManageEmployeeView(manager, employees).setVisible(true);
-        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(AddEmployeeView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ArrayList<Employee> employees = ConnectEmployee.getEmployees();
+        new ManageEmployeeView(manager, employees).setVisible(true);
     }//GEN-LAST:event_btnTroVeActionPerformed
 
     private void btnMoRongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoRongActionPerformed
