@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
         displaySavedAccount();
+        setLanguage();
     }
 
     /**
@@ -42,13 +44,13 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
+        lblPass = new javax.swing.JLabel();
         txtTaiKhoan = new javax.swing.JTextField();
         pfMatKhau = new javax.swing.JPasswordField();
         btnDangNhap = new javax.swing.JButton();
         cbLuuMK = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         img = new javax.swing.JLabel();
 
@@ -56,9 +58,9 @@ public class LoginView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel1.setText("Username");
+        lblUser.setText("Username");
 
-        jLabel2.setText("Password");
+        lblPass.setText("Password");
 
         txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +89,9 @@ public class LoginView extends javax.swing.JFrame {
         cbLuuMK.setSelected(true);
         cbLuuMK.setText("Save");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("Supermarket Management System");
+        lblTitle.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 102, 102));
+        lblTitle.setText("Supermarket Management System");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,29 +106,29 @@ public class LoginView extends javax.swing.JFrame {
                         .addComponent(cbLuuMK))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(lblUser)
+                            .addComponent(lblPass))
                         .addGap(68, 68, 68)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(49, 49, 49))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lblUser))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblPass)
                     .addComponent(pfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(82, 82, 82)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -188,27 +190,23 @@ public class LoginView extends javax.swing.JFrame {
         }      
         
         Account account = new Account(txtTaiKhoan.getText(), pfMatKhau.getText());
-        try {
-            Object object = ConnectAccount.createLogin(account);
-            if (object instanceof Importer) {
-                this.dispose();
-                
-                new ImporterView((Importer) object, ConnectMarket.getSuppliers()).setVisible(true);
-                processSavedAccount(account);
-            } else if (object instanceof Manager) {
-                this.dispose();
-                new ManagerView((Manager) object).setVisible(true);
-                processSavedAccount(account);
-            } else if (object instanceof Salesman) {
-                this.dispose();
-                new SalesmanView((Salesman) object).setVisible(true);
-                processSavedAccount(account);
-            } else {
-                JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
-                
-            } 
-        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        Object object = ConnectAccount.createLogin(account);
+        if (object instanceof Importer) {
+            this.dispose();
+            
+            new ImporterView((Importer) object, ConnectMarket.getSuppliers()).setVisible(true);
+            processSavedAccount(account);
+        } else if (object instanceof Manager) {
+            this.dispose();
+            new ManagerView((Manager) object).setVisible(true);
+            processSavedAccount(account);
+        } else if (object instanceof Salesman) {
+            this.dispose();
+            new SalesmanView((Salesman) object).setVisible(true);
+            processSavedAccount(account);
+        } else {
+            JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
+            
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -279,17 +277,25 @@ public class LoginView extends javax.swing.JFrame {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    private void setLanguage() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resourceBundle.Label");
+        btnDangNhap.setText(resourceBundle.getString("Login"));
+        cbLuuMK.setText(resourceBundle.getString("Save"));
+        lblUser.setText(resourceBundle.getString("Username"));
+        lblPass.setText(resourceBundle.getString("Password"));
+        lblTitle.setText(resourceBundle.getString("SMS"));
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JCheckBox cbLuuMK;
     private javax.swing.JLabel img;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JPasswordField pfMatKhau;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables

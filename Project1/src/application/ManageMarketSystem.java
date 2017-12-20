@@ -5,8 +5,10 @@
  */
 package application;
 
+import java.util.Locale;
 import listview.LoginView;
 import listview.AddEmployeeView;
+import listview.ConnectLocale;
 
 
 
@@ -42,7 +44,13 @@ public class ManageMarketSystem {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
+                Locale locale = ConnectLocale.getSettingLocale();
+                if (locale != null) {
+                    Locale.setDefault(locale);
+                }
+                String localeStr = locale.toString();
                 new LoginView().setVisible(true);
             }
         });

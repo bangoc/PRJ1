@@ -9,11 +9,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -39,24 +36,28 @@ public class ManageEmployeeView extends javax.swing.JFrame {
     private boolean update;
     private String linkImage;
     private Manager manager;
-    
+    private String[] columnNames;
+    private String saveStr;
+    private String updateStr;
     /**
      * Creates new form FormQuanLiNhanVien
      */
     public ManageEmployeeView() {
         initComponents();
-  
+        
     }
     
     public ManageEmployeeView(Manager manager, ArrayList<Employee> employees) {
         this.manager = manager;
         initComponents();
+        setLanguage();
         this.employees = employees;
        
         filterdEmployees = filter(employees, Division.ALL);
 
         displayEmployees(filterdEmployees);
-        jButton6.setVisible(false);
+        btnBrowse.setVisible(false);
+        
     }
     
     public void setEmployees(ArrayList<Employee> employees) {
@@ -68,7 +69,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
     }
     
     private void displayEmployees(ArrayList<Employee> employees) {
-        String[] columnNames = {"ID", "Name", "Division"};
+       
         MyModel model = new MyModel(columnNames);
 
         for (Employee employee : employees) {
@@ -116,14 +117,14 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtSearchName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnSeach = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnPay = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -140,7 +141,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         imgNhanVien = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        btnBrowse = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -220,17 +221,17 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
         jLabel4.setText("Division");
 
-        jButton5.setText("Search");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSeach.setText("Search");
+        btnSeach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSeachActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -255,10 +256,10 @@ public class ManageEmployeeView extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Log out");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setText("Log out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -280,11 +281,11 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addComponent(jButton5)
+                .addComponent(btnSeach)
                 .addGap(41, 41, 41)
-                .addComponent(jButton4)
+                .addComponent(btnBack)
                 .addGap(37, 37, 37)
-                .addComponent(jButton7)
+                .addComponent(btnLogout)
                 .addContainerGap(288, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -297,33 +298,33 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
+                    .addComponent(btnSeach)
+                    .addComponent(btnBack)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(btnLogout))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee's Information"));
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Add");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Pay salary");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnPay.setText("Pay salary");
+        btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnPayActionPerformed(evt);
             }
         });
 
@@ -373,10 +374,10 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         })
     );
 
-    jButton6.setText("Browse");
-    jButton6.addActionListener(new java.awt.event.ActionListener() {
+    btnBrowse.setText("Browse");
+    btnBrowse.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton6ActionPerformed(evt);
+            btnBrowseActionPerformed(evt);
         }
     });
 
@@ -388,11 +389,11 @@ public class ManageEmployeeView extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(imgNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton1)
-                .addComponent(jButton6))
+                .addComponent(btnUpdate)
+                .addComponent(btnBrowse))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -412,7 +413,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                         .addComponent(txtName)
                         .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3)
+                            .addComponent(btnPay)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap(154, Short.MAX_VALUE))
@@ -451,16 +452,16 @@ public class ManageEmployeeView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel11)
                 .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton6))
+                .addComponent(btnBrowse))
             .addGap(18, 18, 18)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel12)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton3)
-                .addComponent(jButton2)
-                .addComponent(jButton1))
+                .addComponent(btnPay)
+                .addComponent(btnAdd)
+                .addComponent(btnUpdate))
             .addGap(52, 52, 52))
     );
 
@@ -501,11 +502,11 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new AddEmployeeView(manager).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -514,12 +515,12 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         display(filterdEmployees.get(index));
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         if (update == false && !txtID.getText().equals("")) {
             setEditableForTextField(true);
-            jButton1.setText("Lưu");
-            jButton6.setVisible(true);
+            btnUpdate.setText(saveStr);
+            btnBrowse.setVisible(true);
             update = true;
             
         } else if (update == true && !txtID.getText().equals("")) {
@@ -551,12 +552,12 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                 setEditableForTextField(false);
             
             
-            jButton1.setText("Cập nhật");
+            btnUpdate.setText(updateStr);
             update = false;
-            jButton6.setVisible(false);
+            btnBrowse.setVisible(false);
             linkImage = null;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void setEditableForTextField(boolean value) {
         txtAddress.setEditable(value);
@@ -566,7 +567,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         txtSalary.setEditable(value);
     }
     
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FileNameExtensionFilter("*.jpg", "jpg"));
@@ -601,9 +602,9 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         } else {
           return;
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnBrowseActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachActionPerformed
         // TODO add your handling code here:
         if (!txtSearchId.getText().equals("")) {
             try {
@@ -614,7 +615,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
             }
         }
         search();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnSeachActionPerformed
 
     private void search() {
         resetTextFields();
@@ -657,8 +658,8 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         txtAddress.setText(null);
         txtAddress.setEditable(false);
         update = false;
-        jButton6.setVisible(false);
-        jButton1.setText("Cập nhật");
+        btnBrowse.setVisible(false);
+        btnUpdate.setText(updateStr);
         txtName.setText(null);
         txtName.setEditable(false);
         txtPhone.setText(null);
@@ -680,19 +681,19 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         resetTextFields();
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new LoginView().setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new ManagerView(manager).setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         // TODO add your handling code here:
         int userOption = JOptionPane.showConfirmDialog(null, "You really want to pay salary for all employees ?");
         if (userOption != JOptionPane.OK_OPTION) {
@@ -702,8 +703,8 @@ public class ManageEmployeeView extends javax.swing.JFrame {
        
         ConnectMarket.saveCost(paySalary);
         ObjectWithFile.printSalaryTable(employees);
-        JOptionPane.showMessageDialog(null, "Ok");
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_btnPayActionPerformed
     
     private void display(Employee employee) {
         txtID.setText("" + employee.getEmployeeId());
@@ -719,16 +720,45 @@ public class ManageEmployeeView extends javax.swing.JFrame {
         Image.SCALE_SMOOTH);
         imgNhanVien.setIcon(new ImageIcon(dimg));
     }
-   
+    
+    private void setLanguage() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resourceBundle.Label");
+        jLabel1.setText(resourceBundle.getString("ManageE"));
+        jLabel2.setText(resourceBundle.getString("SearchId"));
+        jLabel3.setText(resourceBundle.getString("SearchName"));
+        jLabel5.setText(resourceBundle.getString("ID"));
+        jLabel6.setText(resourceBundle.getString("Name"));
+        jLabel7.setText(resourceBundle.getString("Gender"));
+        jLabel8.setText(resourceBundle.getString("Birthday"));
+        jLabel9.setText(resourceBundle.getString("Address"));
+        jLabel10.setText(resourceBundle.getString("Phone"));
+        jLabel11.setText(resourceBundle.getString("Salarybase"));
+        jLabel12.setText(resourceBundle.getString("Division"));
+        btnAdd.setText(resourceBundle.getString("Add"));
+        btnBack.setText(resourceBundle.getString("Back"));
+        btnUpdate.setText(resourceBundle.getString("Update"));
+        btnBrowse.setText(resourceBundle.getString("Browse"));
+        btnLogout.setText(resourceBundle.getString("Logout"));
+        btnPay.setText(resourceBundle.getString("PaySalary"));
+        btnSeach.setText(resourceBundle.getString("Search"));
+        columnNames = new String[] {resourceBundle.getString("ID"), 
+            resourceBundle.getString("Name"), resourceBundle.getString("Division")};
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceBundle.getString("EmployeeList")));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceBundle.getString("EmployeeInfo")));
+     
+        saveStr = resourceBundle.getString("Save");
+        updateStr = resourceBundle.getString("Update");
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBrowse;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPay;
+    private javax.swing.JButton btnSeach;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel imgNhanVien;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<Gender> jComboBox1;
     private javax.swing.JComboBox<Division> jComboBox2;
     private javax.swing.JComboBox<Division> jComboBox3;

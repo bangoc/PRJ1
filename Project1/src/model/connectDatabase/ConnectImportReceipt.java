@@ -52,7 +52,7 @@ public class ConnectImportReceipt {
                 saveImportItem(con, receiptId, it);
             }
             
-            
+            JOptionPane.showMessageDialog(null, "Receipt created");
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectImportReceipt.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "System error!");

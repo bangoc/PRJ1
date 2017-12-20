@@ -5,6 +5,10 @@
  */
 package listview;
 
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import javax.swing.DefaultComboBoxModel;
 import model.employee.Manager;
 
 /**
@@ -13,13 +17,24 @@ import model.employee.Manager;
  */
 public class SettingView extends javax.swing.JFrame {
     private Manager manager;
+    private ArrayList<Locale> locales;
     /**
      * Creates new form CaiDatView
      */
     public SettingView(Manager manager) {
         this.manager = manager;
         initComponents();
+        settingLanguage();
         setLocationRelativeTo(null);
+        locales = ConnectLocale.getLocales();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        if (!locales.isEmpty()) {
+            for (Locale l : locales) {
+                model.addElement(rb.getString(l.toString()));
+            }
+        }
+        jComboBox1.setModel(model);
     }
 
     /**
@@ -33,12 +48,12 @@ public class SettingView extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblSetting = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
+        lblLanguage = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -47,9 +62,9 @@ public class SettingView extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 153, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Settings-5-icon.png"))); // NOI18N
-        jLabel1.setText("Setting");
+        lblSetting.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Settings-5-icon.png"))); // NOI18N
+        lblSetting.setText("Setting");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,42 +72,41 @@ public class SettingView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(211, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblSetting)
                 .addGap(184, 184, 184))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1)
+                .addComponent(lblSetting)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 560, 140));
 
-        jButton4.setText("Save");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/English-Language-Flag-1-icon.png"))); // NOI18N
-        jLabel2.setText("Language");
+        lblLanguage.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblLanguage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/English-Language-Flag-1-icon.png"))); // NOI18N
+        lblLanguage.setText("Language");
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiếng Việt", "Tiếng Anh", "Tiếng Nhật", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -104,12 +118,12 @@ public class SettingView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
-                        .addComponent(jButton1))
+                        .addComponent(btnBack))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jLabel2)
+                        .addComponent(lblLanguage)
                         .addGap(89, 89, 89)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -120,11 +134,11 @@ public class SettingView extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
+                    .addComponent(btnSave)
+                    .addComponent(btnBack))
                 .addGap(55, 55, 55))
         );
 
@@ -133,31 +147,39 @@ public class SettingView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        ConnectLocale.saveSettingLocale(locales.get(jComboBox1.getSelectedIndex()));
+        Locale.setDefault(locales.get(jComboBox1.getSelectedIndex()));
         this.dispose();
         new ManagerView(manager).setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new ManagerView(manager).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-
+    
+    private void settingLanguage() {
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        lblLanguage.setText(rb.getString("Language"));
+        lblSetting.setText(rb.getString("Setting"));
+        btnBack.setText(rb.getString("Back"));
+        btnSave.setText(rb.getString("Save"));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblLanguage;
+    private javax.swing.JLabel lblSetting;
     // End of variables declaration//GEN-END:variables
 }

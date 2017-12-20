@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class ManagerView extends javax.swing.JFrame {
         this.manager = manager;
         initComponents();
         setLocationRelativeTo(null);
+        setLanguage();
     }
 
     /**
@@ -264,15 +266,10 @@ public class ManagerView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCaiDatActionPerformed
 
     private void btnQuanLiNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNVActionPerformed
-        try {
-            // TODO add your handling code here:
-            this.dispose();
-            ArrayList<Employee> employees = ConnectEmployee.getEmployees();
-            new ManageEmployeeView(manager, employees).setVisible(true);
-        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(ManagerView.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Loi he thong");
-        }
+        // TODO add your handling code here:
+        this.dispose();
+        ArrayList<Employee> employees = ConnectEmployee.getEmployees();
+        new ManageEmployeeView(manager, employees).setVisible(true);
     }//GEN-LAST:event_btnQuanLiNVActionPerformed
 
     private void btnQuanLyNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyNCCActionPerformed
@@ -291,7 +288,19 @@ public class ManagerView extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ChangePasswordView(manager, ChangePasswordView.CHECK_ACCOUNT).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    private void setLanguage() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resourceBundle.Label");
+        btnDangXuat.setText(resourceBundle.getString("Logout"));
+        btnCaiDat.setText(resourceBundle.getString("SysSetting"));
+        btnQuanLiNV.setText(resourceBundle.getString("ManageE"));
+        btnQuanLiSP.setText(resourceBundle.getString("ManageP"));
+        btnQuanLiST.setText(resourceBundle.getString("ManageRC"));
+        btnQuanLyNCC.setText(resourceBundle.getString("ManageS"));
+        jButton1.setText(resourceBundle.getString("ChangePwd"));
+        jLabel1.setText(resourceBundle.getString("WSMS"));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCaiDat;
     private javax.swing.JButton btnDangXuat;

@@ -314,19 +314,14 @@ public class SalesmanView extends javax.swing.JFrame {
         }
  
         
-        try {
-            ExportItem item = ConnectExportItem.createExportItem(salesman, id, quantity);
-            if (item == null) {
-                JOptionPane.showMessageDialog(null, "Ma san pham hoac so luong khong hop le!");
-                return;
-            }
-            items.add(item);
-            displayItem(items);
-            resetTextField();
-          
-        } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
-            Logger.getLogger(SalesmanView.class.getName()).log(Level.SEVERE, null, ex);
+        ExportItem item = ConnectExportItem.createExportItem(salesman, id, quantity);
+        if (item == null) {
+            JOptionPane.showMessageDialog(null, "Ma san pham hoac so luong khong hop le!");
+            return;
         }
+        items.add(item);
+        displayItem(items);
+        resetTextField();
         
     }//GEN-LAST:event_btnInsertActionPerformed
     
@@ -388,14 +383,9 @@ public class SalesmanView extends javax.swing.JFrame {
         // TODO add your handling code here:
         ExportReceipt receipt = new ExportReceipt(items, Integer.parseInt(txtTongTien.getText()));
         
-        try {
-            ConnectExportReceipt.saveNewExportReceipt(receipt);
-            JOptionPane.showMessageDialog(null, "Receipt created");
-            ObjectWithFile.printExportReceipt(receipt);
-            
-        } catch (IOException | SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(SalesmanView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ConnectExportReceipt.saveNewExportReceipt(receipt);
+        
+        ObjectWithFile.printExportReceipt(receipt);
         
         items = new ArrayList<>();
         displayItem(items);

@@ -592,15 +592,11 @@ public class ImporterView extends javax.swing.JFrame {
             return;
         }
         ImportReceipt receipt = new ImportReceipt(items, Integer.parseInt(lblTotalValue.getText()));
-        try {
-            ConnectImportReceipt.saveNewImportReceipt(receipt);
-            JOptionPane.showMessageDialog(null, "Receipt created");
-            ObjectWithFile.printImportReceipt(receipt);
-            items = new ArrayList<>();
-            refresh();
-        } catch (IOException | ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ImporterView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ConnectImportReceipt.saveNewImportReceipt(receipt);
+        
+        ObjectWithFile.printImportReceipt(receipt);
+        items = new ArrayList<>();
+        refresh();
         
         
         
