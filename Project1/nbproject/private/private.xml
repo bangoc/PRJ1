@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/CostResult.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectMarket.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectStatisticsProfit.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/MyUtils/ObjectWithFile.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectExportItem.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectProductItem.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectExportReceipt.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/listview/ManageSupplierView.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectProduct.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectImportReceipt.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectSupplier.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/listview/AddEmployeeView.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectStatisticsExport.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectStatisticsCost.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectStatisticsImport.java</file>
+        </group>
     </open-files>
 </project-private>

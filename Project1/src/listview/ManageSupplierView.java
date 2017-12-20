@@ -135,7 +135,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         btnCapNhat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCapNhat.setForeground(new java.awt.Color(153, 0, 0));
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Button-Upload-icon.png"))); // NOI18N
-        btnCapNhat.setText("Update");
+        btnCapNhat.setText("Refresh");
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);

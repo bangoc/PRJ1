@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2017 at 12:09 PM
+-- Generation Time: Dec 20, 2017 at 02:21 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -41,9 +41,9 @@ CREATE TABLE `account` (
 INSERT INTO `account` (`employee_id`, `user_name`, `password`) VALUES
 (13, '019', '019'),
 (14, '020', '020'),
-(15, '021', '021'),
-(16, '022', '022'),
-(17, '111', '111'),
+(15, 'importer', 'importer'),
+(16, 'salesman', 'salesman'),
+(17, 'manager', 'manager'),
 (18, '234', '234');
 
 -- --------------------------------------------------------
@@ -68,7 +68,8 @@ INSERT INTO `costs_incurred` (`id`, `name`, `total`, `paid_date`) VALUES
 (2, 'tien dien', 100000, '0000-00-00'),
 (3, 'TIENLUONG', 111000000, '2017-12-11'),
 (4, 'TIENLUONG', 111000000, '2017-12-16'),
-(5, 'TIENNUOC', 10000, '2017-12-17');
+(5, 'TIENNUOC', 10000, '2017-12-17'),
+(6, 'TIENLUONG', 111000000, '2017-12-18');
 
 -- --------------------------------------------------------
 
@@ -353,7 +354,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `costs_incurred`
 --
 ALTER TABLE `costs_incurred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `employee`
 --
