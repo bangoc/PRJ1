@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
 import model.product.Product;
 import model.product.ProductItem;
@@ -70,6 +71,7 @@ public class ConnectProductItem {
             return items;
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             try {
                 if (con != null) {
@@ -103,6 +105,7 @@ public class ConnectProductItem {
             return items;
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             try {
                 if (con != null) {
@@ -138,6 +141,7 @@ public class ConnectProductItem {
             return items;
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             try {
                 if (con != null) {
@@ -171,6 +175,7 @@ public class ConnectProductItem {
             return items;
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             try {
                 if (con != null) {
@@ -207,6 +212,7 @@ public class ConnectProductItem {
             return items;
         } catch (IOException | ClassNotFoundException | SQLException | ParseException ex) {
             Logger.getLogger(ConnectProductItem.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             try {
                 if (con != null) {

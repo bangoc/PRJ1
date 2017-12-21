@@ -49,7 +49,7 @@ public class ConnectExportReceipt {
                 saveExportItem(id, it, con);
                 
             }
-            JOptionPane.showMessageDialog(null, "Receipt created");
+            JOptionPane.showMessageDialog(null, "OK");
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectExportReceipt.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "System error!");

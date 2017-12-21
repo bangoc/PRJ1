@@ -67,7 +67,7 @@ public class ConnectEmployee {
             
             // save account
             ConnectAccount.saveNewAccount(employee.getAccount(), key);
-        
+            JOptionPane.showMessageDialog(null, "OK");
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectEmployee.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "System error!");
@@ -147,7 +147,7 @@ public class ConnectEmployee {
                 // execute query
                 ps.executeUpdate();
             } 
-               
+            JOptionPane.showMessageDialog(null, "OK");   
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectEmployee.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "System error!");

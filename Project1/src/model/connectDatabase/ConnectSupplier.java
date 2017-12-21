@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.market.Supplier;
 
 /**
@@ -45,8 +46,10 @@ public class ConnectSupplier {
             }
             
             supplier.setSupplierId(key);
+            JOptionPane.showMessageDialog(null, "OK");
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
@@ -91,9 +94,10 @@ public class ConnectSupplier {
             ps.setInt(5, supplier.getSupplierId());
             
             ps.executeUpdate();
-            
+            JOptionPane.showMessageDialog(null, "OK");
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
@@ -137,6 +141,7 @@ public class ConnectSupplier {
             
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
@@ -189,6 +194,7 @@ public class ConnectSupplier {
             
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
@@ -242,6 +248,7 @@ public class ConnectSupplier {
             
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {

@@ -37,9 +37,10 @@ public class ConnectMarket {
             
             ps.executeUpdate();
             
-            con.close();
+            JOptionPane.showMessageDialog(null, "OK");
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectMarket.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {

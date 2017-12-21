@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
 import model.market.Result;
 
@@ -78,6 +79,7 @@ public class ConnectStatisticsProfit {
             
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
@@ -133,6 +135,7 @@ public class ConnectStatisticsProfit {
             
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
@@ -187,6 +190,7 @@ public class ConnectStatisticsProfit {
             
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {

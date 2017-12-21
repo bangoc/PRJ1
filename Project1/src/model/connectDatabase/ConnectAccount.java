@@ -47,7 +47,7 @@ public class ConnectAccount {
             
             ps.executeUpdate();
             
-            con.close();
+            
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "New account's not saved succuessfull");
