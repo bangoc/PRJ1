@@ -33,6 +33,7 @@ public class ConnectProduct {
             ps.executeUpdate();
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ConnectProduct.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
         } finally {
             if (con != null) {
                 try {
