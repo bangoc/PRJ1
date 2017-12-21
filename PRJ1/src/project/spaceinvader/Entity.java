@@ -4,62 +4,77 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public abstract class Entity {
-        protected double dx;
-        protected double dy;
-        protected double x;
-        protected double y;
-        protected Sprite sprite;
-        private Rectangle me = new Rectangle();
-        private Rectangle him = new Rectangle();
+	// The current speed of this entity horizontally
+	protected double dx;
+	// The current speed of this entity vertically
+	protected double dy;
+	// The current x location of this entity
+	protected double x;
+	// The current y location of this entity
+	protected double y;
+	protected Sprite sprite;
+	// The rectangle used for this entity during collisions resolution
+	private Rectangle me = new Rectangle();
+	// The rectangle used for other entities during collision resolution
+	private Rectangle him = new Rectangle();
 
-        public Entity(String ref, int x, int y) {
-                this.sprite = SpriteStore.get().getSprite(ref);
-                this.x = x;
-                this.y = y;
-        }
+	// Construct a entity based on a sprite image and a location.
+	public Entity(String ref, int x, int y) {
+		this.sprite = SpriteStore.get().getSprite(ref);
+		this.x = x;
+		this.y = y;
+	}
 
-        public void move(long delta) {
-                x += (delta * dx) / 1000;
-                y += (delta * dy) / 1000;
-        }
+	// Update the location of the entity based on move speeds
+	public void move(long delta) {
+		x += (delta * dx) / 1000;
+		y += (delta * dy) / 1000;
+	}
 
-        public void setHorizontalMovement(double dx) {
-                this.dx = dx;
-        }
+	// Set the horizontal speed of this entity
+	public void setHorizontalMovement(double dx) {
+		this.dx = dx;
+	}
 
-        public void setVerticalMovement(double dy) {
-                this.dy = dy;
-        }
+	// Set the vertical speed of this entity
+	public void setVerticalMovement(double dy) {
+		this.dy = dy;
+	}
 
-        public double getHorizontalMovement() {
-                return dx;
-        }
+	// Get the horizontal speed of this entity
+	public double getHorizontalMovement() {
+		return dx;
+	}
 
-        public double getVerticalMovement() {
-                return dy;
-        }
+	// Get the vertical speed of this entity
+	public double getVerticalMovement() {
+		return dy;
+	}
 
-        public void doLogic() {
-        }
+	public void doLogic() {
+	}
 
-        public void draw(Graphics g) {
-                sprite.draw(g, (int) x, (int) y);
-        }
+	// Draw this entity to the graphics context provided
+	public void draw(Graphics g) {
+		sprite.draw(g, (int) x, (int) y);
+	}
 
-        public int getX() {
-                return (int) x;
-        }
+	// Get the x location of this entity
+	public int getX() {
+		return (int) x;
+	}
 
-        public int getY() {
-                return (int) y;
-        }
+	// Get the y location of this entity
+	public int getY() {
+		return (int) y;
+	}
 
-        public boolean collidesWith(Entity other) {
-                me.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
-                him.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(),
-                                other.sprite.getHeight());
-                return me.intersects(him);
-        }
+	// Check if this entity collised with another
+	public boolean collidesWith(Entity other) {
+		me.setBounds((int) x, (int) y, sprite.getWidth(), sprite.getHeight());
+		him.setBounds((int) other.x, (int) other.y, other.sprite.getWidth(), other.sprite.getHeight());
+		return me.intersects(him);
+	}
 
-        public abstract void collidedWith(Entity other);
+	public abstract void collidedWith(Entity other);
 }

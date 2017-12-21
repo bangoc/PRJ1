@@ -1,31 +1,35 @@
 package project.spaceinvader;
 
 public class BoomEntity extends Entity {
-        private Game game;
-        private boolean used = false;
-        private double moveSpeed = 100;
+	private Game game;
+	private boolean used = false;
+	// The vertical speed at which the boom moves
+	private double moveSpeed = 100;
 
-        public BoomEntity(Game game, String sprite, int x, int y) {
-                super(sprite, x, y);
-                this.game = game;
-                dy = moveSpeed;
-        }
+	// Create a new entity to represent the boom
+	public BoomEntity(Game game, String sprite, int x, int y) {
+		super(sprite, x, y);
+		this.game = game;
+		dy = moveSpeed;
+	}
 
-        public void move(long delta) {
-                super.move(delta);
-                if (y > 650) {
-                        game.removeEntity(this);
-                }
-        }
+	// Request that this boom moved based on time elapsed
+	public void move(long delta) {
+		super.move(delta);
+		if (y > 650) {
+			game.removeEntity(this);
+		}
+	}
 
-        public void collidedWith(Entity other) {
-                if (used) {
-                        return;
-                }
-                if (other instanceof ShipEntity) {
-                        game.gameOver();
-                        game.gameRunning = false;
-                        used = true;
-                }
-        }
+	// Notification that this boom has collided with ship
+	public void collidedWith(Entity other) {
+		if (used) {
+			return;
+		}
+		if (other instanceof ShipEntity) {
+			game.gameOver();
+			game.gameRunning = false;
+			used = true;
+		}
+	}
 }

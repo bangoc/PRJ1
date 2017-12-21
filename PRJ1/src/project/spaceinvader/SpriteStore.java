@@ -11,40 +11,39 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 public class SpriteStore {
-        private static SpriteStore single = new SpriteStore();
+	private static SpriteStore single = new SpriteStore();
 
-        public static SpriteStore get() {
-                return single;
-        }
+	public static SpriteStore get() {
+		return single;
+	}
 
-        private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
+	private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 
-        public Sprite getSprite(String ref) {
-                if (sprites.get(ref) != null) {
-                        return sprites.get(ref);
-                }
-                BufferedImage sourceImage = null;
-                try {
-                        URL url = this.getClass().getClassLoader().getResource(ref);
-                        if (url == null) {
-                                fail("Can't find ref: " + ref);
-                        }
-                        sourceImage = ImageIO.read(url);
-                } catch (IOException e) {
-                        fail("Failed to load: " + ref);
-                }
-                GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment()
-                                .getDefaultScreenDevice().getDefaultConfiguration();
-                Image image = gc.createCompatibleImage(sourceImage.getWidth(),
-                                sourceImage.getHeight(), Transparency.BITMASK);
-                image.getGraphics().drawImage(sourceImage, 0, 0, null);
-                Sprite sprite = new Sprite(image);
-                sprites.put(ref, sprite);
-                return sprite;
-        }
+	public Sprite getSprite(String ref) {
+		if (sprites.get(ref) != null) {
+			return sprites.get(ref);
+		}
+		BufferedImage sourceImage = null;
+		try {
+			URL url = this.getClass().getClassLoader().getResource(ref);
+			if (url == null) {
+				fail("Can't find ref: " + ref);
+			}
+			sourceImage = ImageIO.read(url);
+		} catch (IOException e) {
+			fail("Failed to load: " + ref);
+		}
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration();
+		Image image = gc.createCompatibleImage(sourceImage.getWidth(), sourceImage.getHeight(), Transparency.BITMASK);
+		image.getGraphics().drawImage(sourceImage, 0, 0, null);
+		Sprite sprite = new Sprite(image);
+		sprites.put(ref, sprite);
+		return sprite;
+	}
 
-        private void fail(String string) {
-                System.err.println(string);
-                System.exit(0);
-        }
+	private void fail(String string) {
+		System.err.println(string);
+		System.exit(0);
+	}
 }
