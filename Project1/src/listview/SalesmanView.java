@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ import model.product.ExportReceipt;
 public class SalesmanView extends javax.swing.JFrame {
     private Salesman salesman;
     private ArrayList<ExportItem> items;
-    
+    private String[] columnNames;
     /**
      * Creates new form BanHang
      */
@@ -36,6 +37,7 @@ public class SalesmanView extends javax.swing.JFrame {
 
     SalesmanView(Salesman salesman) {
         initComponents();
+        settingLanguage();
         mySetting(salesman);
     }
     
@@ -50,29 +52,30 @@ public class SalesmanView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtBanHang = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         imgSell = new javax.swing.JLabel();
         btnDangXuat = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSetting = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblPId = new javax.swing.JLabel();
         txtMaSanPham = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblQuantity = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtTongTien = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        btnInHoaDon = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        btnInHoaDon = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        txtTongTien = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -80,9 +83,9 @@ public class SalesmanView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtBanHang.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        txtBanHang.setForeground(new java.awt.Color(0, 102, 102));
-        txtBanHang.setText("Sale");
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 102, 102));
+        lblTitle.setText("Sale");
 
         imgSell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/basket-icon.png"))); // NOI18N
 
@@ -94,17 +97,17 @@ public class SalesmanView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Setting");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSetting.setText("Setting");
+        btnSetting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSettingActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Change Password");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnChange.setText("Change Password");
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnChangeActionPerformed(evt);
             }
         });
 
@@ -114,13 +117,13 @@ public class SalesmanView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(329, 329, 329)
-                .addComponent(txtBanHang)
+                .addComponent(lblTitle)
                 .addGap(39, 39, 39)
                 .addComponent(imgSell)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnChange)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnSetting)
                 .addGap(18, 18, 18)
                 .addComponent(btnDangXuat)
                 .addGap(76, 76, 76))
@@ -136,12 +139,12 @@ public class SalesmanView extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDangXuat)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnSetting)
+                            .addComponent(btnChange))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtBanHang)
+                .addComponent(lblTitle)
                 .addGap(32, 32, 32))
         );
 
@@ -153,11 +156,11 @@ public class SalesmanView extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Product's ID");
+        lblPId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblPId.setText("Product's ID");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Quantity");
+        lblQuantity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblQuantity.setText("Quantity");
 
         btnInsert.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-insert-table-icon.png"))); // NOI18N
@@ -186,18 +189,18 @@ public class SalesmanView extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblPId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(53, 53, 53)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMaSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                            .addComponent(txtSoLuong)))
+                            .addComponent(txtSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(txtMaSanPham)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnInsert)
-                        .addGap(65, 65, 65)
+                        .addGap(18, 18, 18)
                         .addComponent(btnDelete)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,10 +208,10 @@ public class SalesmanView extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblPId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,31 +221,7 @@ public class SalesmanView extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(16, 81, 377, 296);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel6.setText("Total");
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(630, 410, 82, 30);
-        jPanel2.add(txtTongTien);
-        txtTongTien.setBounds(760, 410, 151, 30);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("VNĐ");
-        jPanel2.add(jLabel7);
-        jLabel7.setBounds(925, 410, 30, 30);
-
-        btnInHoaDon.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        btnInHoaDon.setForeground(new java.awt.Color(0, 0, 153));
-        btnInHoaDon.setText("Print");
-        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInHoaDonActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnInHoaDon);
-        btnInHoaDon.setBounds(420, 410, 180, 30);
+        jPanel3.setBounds(16, 81, 280, 296);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -260,27 +239,75 @@ public class SalesmanView extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(420, 80, 550, 300);
+        jScrollPane2.setBounds(320, 80, 650, 300);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        btnInHoaDon.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        btnInHoaDon.setForeground(new java.awt.Color(0, 0, 153));
+        btnInHoaDon.setText("Print");
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInHoaDonActionPerformed(evt);
+            }
+        });
+
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(204, 0, 0));
+        lblTotal.setText("Total");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("VNĐ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(320, 390, 650, 60);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(30, 190, 990, 500);
 
-        jLabel1.setText("Name : ");
+        name.setText("Name : ");
 
-        jLabel4.setText("Date :");
+        time.setText("Date :");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(name)
                 .addGap(46, 46, 46)
                 .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+                .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,8 +315,8 @@ public class SalesmanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -326,7 +353,7 @@ public class SalesmanView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsertActionPerformed
     
     private void displayItem(ArrayList<ExportItem> items) {
-        String[] columnNames = {"ID", "Name", "Amount", "Price", "SaleOff", "ExPrice"};
+        
         MyModel model = new MyModel(columnNames);
         long total = 0;
         for (ExportItem it : items) {
@@ -391,39 +418,58 @@ public class SalesmanView extends javax.swing.JFrame {
         displayItem(items);
     }//GEN-LAST:event_btnInHoaDonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSettingActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
         new ChangePasswordView(this.salesman, ChangePasswordView.CHECK_ACCOUNT).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnChangeActionPerformed
+    
+    private void settingLanguage() {
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        name.setText(rb.getString("EmployeeName"));
+        time.setText(rb.getString("Time"));
+        btnDangXuat.setText(rb.getString("Logout"));
+        btnChange.setText(rb.getString("ChangePwd"));
+        btnSetting.setText(rb.getString("Setting"));
+        btnDelete.setText(rb.getString("Delete"));
+        btnInHoaDon.setText(rb.getString("Print"));
+        lblPId.setText(rb.getString("ProductId"));
+        lblQuantity.setText(rb.getString("Quantity"));
+        lblTotal.setText(rb.getString("Total"));
+        lblTitle.setText(rb.getString("SaleP"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(rb.getString("ReceiptInfo")));
+        columnNames = new String[] {rb.getString("ProductId"), rb.getString("ProductName"), 
+            rb.getString("Quantity"), rb.getString("Price"), rb.getString("SaleOff"), rb.getString("ExPrice")};
 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChange;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInHoaDon;
     private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnSetting;
     private javax.swing.JLabel imgSell;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPId;
+    private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblTime;
-    private javax.swing.JLabel txtBanHang;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel time;
     private javax.swing.JTextField txtMaSanPham;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTongTien;
