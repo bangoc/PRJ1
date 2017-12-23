@@ -426,6 +426,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         btnCapNhat.setText(rb.getString("Update"));
         btnThemMoi.setText(rb.getString("Add"));
+        btnXoa.setText(rb.getString("Back"));
         btnTimKiem.setText(rb.getString("Search"));
         lblId.setText(rb.getString("SupplierId"));
         lblName.setText(rb.getString("SupplierName"));
@@ -433,6 +434,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         lblPhone.setText(rb.getString("Phone"));
         lblEmail.setText(rb.getString("Email"));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(rb.getString("SupplierList")));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(rb.getString("DetailInfo")));
         columnNames = new String[] {rb.getString("SupplierId"), rb.getString("SupplierName")};
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

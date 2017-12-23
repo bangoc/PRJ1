@@ -10,10 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.MyUtils.MyDate;
+import model.product.ExportReceipt;
 import model.product.ImportItem;
 import model.product.ImportReceipt;
 import model.product.Product;
@@ -157,5 +160,59 @@ public class ConnectImportReceipt {
                 }
             }
         }
+    }
+    
+    public static ArrayList<ImportReceipt> getImportReceipts() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<ImportReceipt> receipts = new ArrayList<>();
+        try {
+            String query = "select * from import_receipt";
+            con = ConnectDatabase.createConnect();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            ImportReceipt receipt;
+            while (rs.next()) {
+                receipt = new ImportReceipt();
+                receipt.setId(rs.getInt(1));
+                receipt.setDate(MyDate.parseDateString(rs.getString(2)));
+                receipt.setTotal(rs.getInt(3));
+                receipts.add(receipt);
+            }
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectExportReceipt.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
+        } catch (ParseException ex) {
+            Logger.getLogger(ConnectExportReceipt.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        return receipts;
+        
     }
 }

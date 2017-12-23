@@ -17,6 +17,10 @@ public class ImportReceipt {
         this.date = new Date();
     }
 
+    public ImportReceipt() {
+        
+    }
+
     public ArrayList<ImportItem> getItems() {
         return items;
     }

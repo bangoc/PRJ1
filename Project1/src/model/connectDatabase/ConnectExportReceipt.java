@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -108,5 +110,59 @@ public class ConnectExportReceipt {
             
            
         }
+    }
+    
+    public static ArrayList<ExportReceipt> getExportReceipts() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<ExportReceipt> receipts = new ArrayList<>();
+        try {
+            String query = "select * from export_receipt";
+            con = ConnectDatabase.createConnect();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            ExportReceipt receipt;
+            while (rs.next()) {
+              
+                receipt = new ExportReceipt();
+                receipt.setCode(rs.getInt(1));
+                receipt.setTime(MyDate.parseDateString(rs.getString(2)));
+                receipt.setTotal(rs.getInt(3));
+                receipts.add(receipt);
+            }
+        } catch (IOException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectExportReceipt.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "System error!");
+        } catch (ParseException ex) {
+            Logger.getLogger(ConnectExportReceipt.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConnectAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+ 
+        return receipts;
     }
 }
