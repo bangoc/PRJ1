@@ -2,6 +2,7 @@ package model.product;
 
 import java.util.ArrayList;
 import java.util.Date;
+import model.MyUtils.MyDate;
 
 
 
@@ -53,7 +54,42 @@ public class ImportReceipt {
         this.id = id;
     }
     
- 
+    @Override
+  public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append("Export Receipt Detail");
+      sb.append(System.lineSeparator());
+      
+      sb.append("Date created : ");
+      sb.append(MyDate.formatDate(this.date));
+      sb.append(System.lineSeparator());
+      
+      sb.append("Creator : ");
+      sb.append(this.items.get(0).getImporter().getName());
+      sb.append(System.lineSeparator());
+      
+      sb.append("ProductItem List : ");
+      sb.append(System.lineSeparator());
+      
+      for (ImportItem it : this.items) {
+          sb.append("Product ID : ");
+          sb.append("" + it.getProduct().getProductId());
+          sb.append("___");
+          sb.append("Product Name : ");
+          sb.append(it.getProduct().getName());
+          sb.append("___");
+          sb.append("Quantity : ");
+          sb.append("" + it.getQuantity());
+          sb.append("___");
+          sb.append("Price : ");
+          sb.append("" + it.getImportPrice());
+
+          sb.append(System.lineSeparator());
+      }
+      sb.append("Total : " + this.total);
+      return sb.toString();
+  }
+
   
 
   

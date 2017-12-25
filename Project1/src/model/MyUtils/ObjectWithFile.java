@@ -8,6 +8,7 @@ package model.MyUtils;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -50,11 +51,41 @@ public class ObjectWithFile {
     
     
     public static void printImportReceipt(ImportReceipt receipt) {
-        System.out.println("Receipt printed");
+        FileWriter writer = null;
+        
+        try {
+            String fileName = "../import/ImportReceitp" + receipt.getId() + ".txt";
+            writer = new FileWriter(fileName);
+            writer.write(receipt.toString());
+            System.out.println("Receipt printed");
+        } catch (IOException ex) {
+            Logger.getLogger(ObjectWithFile.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ObjectWithFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }
     
     public static void printExportReceipt(ExportReceipt receipt) {
-        System.out.println("Receipt printed");
+        FileWriter writer = null;
+        try {
+            String fileName = "../export/ExportReceitp" + receipt.getCode() + ".txt";
+            writer = new FileWriter(fileName);
+            writer.write(receipt.toString());
+            System.out.println("Receipt printed");
+        } catch (IOException ex) {
+            Logger.getLogger(ObjectWithFile.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ObjectWithFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public static void saveDirectory(String folderPath, int option) {
