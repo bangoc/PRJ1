@@ -469,14 +469,14 @@ public class ManageProductView extends javax.swing.JFrame {
 
     private void btnSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaleActionPerformed
         // TODO add your handling code here:
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+
         try {
             Product product = items.get(jTable1.getSelectedRow()).getProduct();
             product.setSaleOff(Integer.parseInt(txtSale.getText()));
-            ConnectProduct.saveChangedSaleProduct(product);
-            JOptionPane.showMessageDialog(null, "Ok");
-            
+            ConnectProduct.saveChangedSaleProduct(product);       
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Nhap khuyen mai cho san pham dang so");
+            JOptionPane.showMessageDialog(null, rb.getString("InputNumber"));
             return;
         }
     }//GEN-LAST:event_btnSaleActionPerformed

@@ -183,9 +183,9 @@ public class LoginView extends javax.swing.JFrame {
     
     
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         if (txtTaiKhoan.getText().equals("") || pfMatKhau.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap du tai khoan mat khau vao");
+            JOptionPane.showMessageDialog(null, rb.getString("InputAccount"));
             return;
         }      
         
@@ -205,7 +205,7 @@ public class LoginView extends javax.swing.JFrame {
             new SalesmanView((Salesman) object).setVisible(true);
             processSavedAccount(account);
         } else {
-            JOptionPane.showMessageDialog(null, "Tai khoan khong hop le");
+            JOptionPane.showMessageDialog(null, rb.getString("InvalidAccount"));
             
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
@@ -238,27 +238,7 @@ public class LoginView extends javax.swing.JFrame {
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+     
 
        
     }

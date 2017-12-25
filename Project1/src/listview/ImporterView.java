@@ -5,12 +5,8 @@
  */
 package listview;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -514,15 +510,15 @@ public class ImporterView extends javax.swing.JFrame {
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
         // Check name
-        
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         if (txtName.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Input name");
+            JOptionPane.showMessageDialog(null, rb.getString("InputName"));
             return;
         }
         
         // check producer
         if (txtProducer.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Input producer name");
+            JOptionPane.showMessageDialog(null, rb.getString("InputProducerName"));
             return;
         }
         
@@ -531,7 +527,7 @@ public class ImporterView extends javax.swing.JFrame {
             Integer.parseInt(txtImportPrice.getText());
             Integer.parseInt(txtQuantity.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Input number formet");
+            JOptionPane.showMessageDialog(null, rb.getString("InputNumber"));
             return;
         }
         
@@ -544,7 +540,7 @@ public class ImporterView extends javax.swing.JFrame {
           
             
         } else {
-            System.out.println("dm");
+    
             ImportItem item = items.get(importItemTb.getSelectedRow());
             item.getProduct().setName(txtName.getText());
             item.getProduct().setProducer(txtProducer.getText());
@@ -565,6 +561,7 @@ public class ImporterView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void refresh() {
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         txtName.setText(null);
         txtPrice.setText(null);
         txtImportPrice.setText(null);
@@ -573,12 +570,13 @@ public class ImporterView extends javax.swing.JFrame {
         jDateChooser1.setDate(null);
         jDateChooser2.setDate(null);
         btnDelete.setVisible(false);
-        btnInsert.setText("Insert");
+        btnInsert.setText(rb.getString("Insert"));
         isInsert = true;
         displayItems();
     }
     private void importItemTbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importItemTbMouseClicked
         // TODO add your handling code here:
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         ImportItem it = items.get(importItemTb.getSelectedRow());
         txtName.setText(it.getProduct().getName());
         txtPrice.setText("" + it.getProduct().getPrice());
@@ -589,7 +587,7 @@ public class ImporterView extends javax.swing.JFrame {
         jDateChooser2.setDate(it.getProduct().getExpireTime());
         jComboBox1.setSelectedIndex(getIndex(it.getSupplier()));
         btnDelete.setVisible(true);
-        btnInsert.setText("Update");
+        btnInsert.setText(rb.getString("Update"));
         isInsert = false;
     }//GEN-LAST:event_importItemTbMouseClicked
 
@@ -602,8 +600,9 @@ public class ImporterView extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         if (items.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Empty!");
+            JOptionPane.showMessageDialog(null, rb.getString("Empty"));
             return;
         }
         ImportReceipt receipt = new ImportReceipt(items, Integer.parseInt(lblTotalValue.getText()));
@@ -619,7 +618,8 @@ public class ImporterView extends javax.swing.JFrame {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        int option = JOptionPane.showConfirmDialog(null, "Exit ?!");
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        int option = JOptionPane.showConfirmDialog(null, rb.getString("Exit?"));
         if (option == JOptionPane.OK_OPTION) {
             this.dispose();
             new LoginView().setVisible(true);
@@ -642,12 +642,13 @@ public class ImporterView extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         if (importer.getAccount().equals(
                 new Account(txtPreUsername.getText(), pfPrePassword.getText()))) {
             if (txtNewUsername.getText().equals("") 
                     || pfFirstNewPassword.getText().equals("")
                     | pfSecondNewPassword.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "You must input data all field");
+                JOptionPane.showMessageDialog(null, rb.getString("InputAll"));
                 return;
             }
             if (pfFirstNewPassword.getText().equals(pfSecondNewPassword.getText())) {
@@ -661,10 +662,10 @@ public class ImporterView extends javax.swing.JFrame {
                 pfPrePassword.setText(null);
                 pfSecondNewPassword.setText(null);
             } else {
-                JOptionPane.showMessageDialog(null, "New password is not like each other!");
+                JOptionPane.showMessageDialog(null, rb.getString("TwoPwdNotSame"));
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Your account info is invalid");
+            JOptionPane.showMessageDialog(null, rb.getString("InvalidAccount"));
             
         }
     }//GEN-LAST:event_btnSaveActionPerformed

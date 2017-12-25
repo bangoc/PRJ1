@@ -58,17 +58,17 @@ public class AddEmployeeView extends javax.swing.JFrame {
         lblPhone = new javax.swing.JLabel();
         lblSalarybase = new javax.swing.JLabel();
         lblDivision = new javax.swing.JLabel();
-        txtTen = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         txtDiaChi = new javax.swing.JTextField();
-        txtSoDienThoai = new javax.swing.JTextField();
-        txtHeSoLuong = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        txtSalarybase = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         btnThem = new java.awt.Button();
         btnTroVe = new java.awt.Button();
         btnMoRong = new java.awt.Button();
         imgNV = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateChooserBirthday = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         lblAddTitle = new javax.swing.JLabel();
         imgThemNVMoi = new javax.swing.JLabel();
@@ -107,9 +107,9 @@ public class AddEmployeeView extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox1.setModel(new DefaultComboBoxModel<Gender>(new Gender[] {Gender.FEMALE, Gender.MALE}));
 
-        txtSoDienThoai.addActionListener(new java.awt.event.ActionListener() {
+        txtPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoDienThoaiActionPerformed(evt);
+                txtPhoneActionPerformed(evt);
             }
         });
 
@@ -160,7 +160,7 @@ public class AddEmployeeView extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateChooserBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imgNV, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95))
@@ -168,10 +168,10 @@ public class AddEmployeeView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTen)
+                                    .addComponent(txtName)
                                     .addComponent(txtDiaChi)
-                                    .addComponent(txtSoDienThoai)
-                                    .addComponent(txtHeSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                                    .addComponent(txtPhone)
+                                    .addComponent(txtSalarybase, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +190,7 @@ public class AddEmployeeView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,7 +198,7 @@ public class AddEmployeeView extends javax.swing.JFrame {
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateChooserBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -216,13 +216,13 @@ public class AddEmployeeView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblSalarybase, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHeSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSalarybase, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -302,65 +302,66 @@ public class AddEmployeeView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSoDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoDienThoaiActionPerformed
+    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoDienThoaiActionPerformed
+    }//GEN-LAST:event_txtPhoneActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         // kiem tra nhap ten
-        if (txtTen.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap vao ten");
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        if (txtName.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, rb.getString("InputName"));
             return;
         }
         
         // kiem tra nhap ngay sinh
-        if (jDateChooser1.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "Chon ngay sinh");
+        if (dateChooserBirthday.getDate() == null) {
+            JOptionPane.showMessageDialog(null, rb.getString("InputBirthday"));
             return;
         }
         
         // kiem tra nhap dia chi
         if (txtDiaChi.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap vao dia chi");
+            JOptionPane.showMessageDialog(null, rb.getString("InputAddress"));
             return;
         }
         
         // kiem tra nhap he so luong dang so
         int heSoLuong;
         try {
-            heSoLuong = Integer.parseInt(txtHeSoLuong.getText());
+            heSoLuong = Integer.parseInt(txtSalarybase.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Nhap he so luong dang so");
+            JOptionPane.showMessageDialog(null, rb.getString("InputSalary"));
             return;
         }
         
         // kiem tra nhap so dien thoai
-        if (txtSoDienThoai.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap so dien thoai");
+        if (txtPhone.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, rb.getString("InputPhone"));
             return;
         }
         
         if (linkImage == null) {
-            JOptionPane.showMessageDialog(null, "Chon anh");
+            JOptionPane.showMessageDialog(null, rb.getString("Browse"));
             return;
         }
         
-        Employee employee = new Employee(txtTen.getText(), (Gender) jComboBox1.getSelectedItem(), 
-                jDateChooser1.getDate(), txtDiaChi.getText(), txtSoDienThoai.getText(), heSoLuong);
+        Employee employee = new Employee(txtName.getText(), (Gender) jComboBox1.getSelectedItem(), 
+                dateChooserBirthday.getDate(), txtDiaChi.getText(), txtPhone.getText(), heSoLuong);
         ConnectEmployee.saveNewEmployee(employee, linkImage, (Division) jComboBox2.getSelectedItem());
         Sender.sendPassword(employee);
-        JOptionPane.showMessageDialog(null, "Them thanh cong! Ma nhan vien moi la : " + employee.getEmployeeId());
+ 
         display();
         linkImage = null;
     }//GEN-LAST:event_btnThemActionPerformed
     
     private void display() {
         txtDiaChi.setText(null);
-        txtHeSoLuong.setText(null);
-        jDateChooser1.setDate(null);
-        txtSoDienThoai.setText(null);
-        txtTen.setText(null);
+        txtSalarybase.setText(null);
+        dateChooserBirthday.setDate(null);
+        txtPhone.setText(null);
+        txtName.setText(null);
         imgNV.setIcon(null);
     }
     
@@ -435,11 +436,11 @@ public class AddEmployeeView extends javax.swing.JFrame {
     private java.awt.Button btnMoRong;
     private java.awt.Button btnThem;
     private java.awt.Button btnTroVe;
+    private com.toedter.calendar.JDateChooser dateChooserBirthday;
     private javax.swing.JLabel imgNV;
     private javax.swing.JLabel imgThemNVMoi;
     private javax.swing.JComboBox<Gender> jComboBox1;
     private javax.swing.JComboBox<Division> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -452,8 +453,8 @@ public class AddEmployeeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblSalarybase;
     private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txtHeSoLuong;
-    private javax.swing.JTextField txtSoDienThoai;
-    private javax.swing.JTextField txtTen;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtSalarybase;
     // End of variables declaration//GEN-END:variables
 }

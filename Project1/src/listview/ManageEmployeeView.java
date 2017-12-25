@@ -542,12 +542,12 @@ public class ManageEmployeeView extends javax.swing.JFrame {
                       employee.setImage(new ImageIcon(img));
 
                     } catch (IOException e) {
-                      JOptionPane.showMessageDialog(null,"Loi");
+                      JOptionPane.showMessageDialog(null, "System Error!");
 
                     }
                 }
                 ConnectEmployee.saveChangedEmployee(employee, linkImage);
-                JOptionPane.showMessageDialog(null, "OK!");
+
                 displayEmployees(filterdEmployees);
                 setEditableForTextField(false);
             
@@ -594,7 +594,7 @@ public class ManageEmployeeView extends javax.swing.JFrame {
             imgNhanVien.setIcon(new ImageIcon(dimg));
 
           } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,"Loi");
+            JOptionPane.showMessageDialog(null, "System Error!");
             
           }
          
@@ -606,11 +606,13 @@ public class ManageEmployeeView extends javax.swing.JFrame {
 
     private void btnSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachActionPerformed
         // TODO add your handling code here:
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+
         if (!txtSearchId.getText().equals("")) {
             try {
                 Integer.parseInt(txtSearchId.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Nhap id dang so");
+                JOptionPane.showMessageDialog(null, rb.getString("InputNumber") );
                 return;
             }
         }

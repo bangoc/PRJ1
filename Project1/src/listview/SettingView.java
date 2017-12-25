@@ -5,6 +5,7 @@
  */
 package listview;
 
+import model.connectDatabase.ConnectLocale;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
