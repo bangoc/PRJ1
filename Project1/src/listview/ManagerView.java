@@ -317,6 +317,7 @@ public class ManagerView extends javax.swing.JFrame {
         btnQuanLyNCC.setText(resourceBundle.getString("ManageS"));
         jButton1.setText(resourceBundle.getString("ChangePwd"));
         jLabel1.setText(resourceBundle.getString("WSMS"));
+        btnManageInOut.setText(resourceBundle.getString("ManageInOut"));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

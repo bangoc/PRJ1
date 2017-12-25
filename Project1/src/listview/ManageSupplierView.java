@@ -61,7 +61,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         lblPhone = new javax.swing.JLabel();
         txtSoDT = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
-        txtTimKiem = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnThemMoi = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -171,7 +171,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTimKiem))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -203,7 +203,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTimKiem)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,7 +317,7 @@ public class ManageSupplierView extends javax.swing.JFrame {
         displaySupplierInfo(null);
         displaySuppliers();
         isInsert = true;
-        txtTimKiem.setText(null);
+        txtSearch.setText(null);
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -331,44 +331,41 @@ public class ManageSupplierView extends javax.swing.JFrame {
 
     private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
         // TODO add your handling code here:
-   
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         String name = txtTenNCC.getText();
-        System.out.println("ok");
+
         if (name.equals("")) {
-            System.out.println("ok1");
-            JOptionPane.showMessageDialog(null, "Nhap ten nha cung cap");
-            System.out.println("listView.FormQuanLyNCC.btnThemMoiActionPerformed()");
+  
+            JOptionPane.showMessageDialog(null, rb.getString("InputName"));
             return;
         }
         
         String address = txtDiaChi.getText();
         if (address.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap dia chi nha cung cap");
+            JOptionPane.showMessageDialog(null, rb.getString("InputAddress"));
             return;
         }
         
         String phone = txtSoDT.getText();
         if (address.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap SDT nha cung cap");
+            JOptionPane.showMessageDialog(null, rb.getString("InputPhone"));
             return;
         }
         
         String email = txtEmail.getText();
         if (address.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap dia chi nha cung cap");
+            JOptionPane.showMessageDialog(null, rb.getString("InputEmail"));
             return;
         }
         Supplier supplier;
         if (isInsert) {
             supplier = new Supplier(name, address, email, phone);
             ConnectSupplier.saveNewSupplier(supplier);
-            JOptionPane.showMessageDialog(null, "Them thanh cong");
             suppliers = ConnectSupplier.getSuppliers();
             displaySuppliers();
         } else {
             supplier = new Supplier(Integer.parseInt(txtMaNCC.getText()), name, address, email, phone);
             ConnectSupplier.saveChangedSupplier(supplier);
-            JOptionPane.showMessageDialog(null, "Cap nhat thanh cong");
             suppliers = ConnectSupplier.getSuppliers();
             displaySuppliers();
         }
@@ -376,17 +373,18 @@ public class ManageSupplierView extends javax.swing.JFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
-        if (txtTimKiem.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhap Ma ncc hoac Ten ncc!");
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        if (txtSearch.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, rb.getString("InputName"));
             return;
         }
         
         try {
-            int id = Integer.parseInt(txtTimKiem.getText());
+            int id = Integer.parseInt(txtSearch.getText());
             suppliers = ConnectSupplier.getSupplierById(id);
             displaySuppliers();
         } catch (NumberFormatException ex) {
-            String name = txtTimKiem.getText();
+            String name = txtSearch.getText();
             suppliers = ConnectSupplier.getSupplierByName(name);
             displaySuppliers();
         }
@@ -405,20 +403,21 @@ public class ManageSupplierView extends javax.swing.JFrame {
     }
     
     private void displaySupplierInfo(Supplier supplier) {
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         if (supplier == null) {
             txtMaNCC.setText(null);
             txtTenNCC.setText(null);
             txtDiaChi.setText(null);
             txtSoDT.setText(null);
             txtEmail.setText(null);
-            btnThemMoi.setText("Thêm mới");
+            btnThemMoi.setText(rb.getString("Add"));
         } else {
             txtMaNCC.setText("" + supplier.getSupplierId());
             txtTenNCC.setText(supplier.getName());
             txtDiaChi.setText(supplier.getAddress());
             txtSoDT.setText(supplier.getPhoneNumber());
             txtEmail.setText(supplier.getEmail());
-            btnThemMoi.setText("Chỉnh sửa");
+            btnThemMoi.setText(rb.getString("Update"));
         }
     }
     
@@ -458,8 +457,8 @@ public class ManageSupplierView extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaNCC;
     private javax.swing.JLabel txtQuanLyNCC;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSoDT;
     private javax.swing.JTextField txtTenNCC;
-    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

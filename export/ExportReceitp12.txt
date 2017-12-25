@@ -1,0 +1,6 @@
+Export Receipt Detail
+Date created : 2017-12-25
+Creator : ccc
+ProductItem List : 
+5Banh keo120000
+Total : 20000

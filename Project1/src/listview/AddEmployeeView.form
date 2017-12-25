@@ -97,7 +97,7 @@
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jDateChooser1" min="-2" pref="337" max="-2" attributes="0"/>
+                          <Component id="dateChooserBirthday" min="-2" pref="337" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="imgNV" min="-2" pref="198" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
@@ -106,10 +106,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTen" max="32767" attributes="0"/>
+                                      <Component id="txtName" max="32767" attributes="0"/>
                                       <Component id="txtDiaChi" max="32767" attributes="0"/>
-                                      <Component id="txtSoDienThoai" max="32767" attributes="0"/>
-                                      <Component id="txtHeSoLuong" pref="337" max="32767" attributes="0"/>
+                                      <Component id="txtPhone" max="32767" attributes="0"/>
+                                      <Component id="txtSalarybase" pref="337" max="32767" attributes="0"/>
                                       <Component id="jComboBox1" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -137,7 +137,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="txtTen" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="txtName" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="lblName" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -147,7 +147,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jDateChooser1" max="32767" attributes="0"/>
+                              <Component id="dateChooserBirthday" max="32767" attributes="0"/>
                               <Component id="lblBirthday" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -171,7 +171,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblPhone" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="txtSoDienThoai" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtPhone" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
@@ -180,7 +180,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblSalarybase" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="txtHeSoLuong" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="txtSalarybase" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -255,7 +255,7 @@
             <Property name="text" type="java.lang.String" value="Division"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTen">
+        <Component class="javax.swing.JTextField" name="txtName">
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox1">
           <Properties>
@@ -272,12 +272,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiaChi">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSoDienThoai">
+        <Component class="javax.swing.JTextField" name="txtPhone">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSoDienThoaiActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPhoneActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtHeSoLuong">
+        <Component class="javax.swing.JTextField" name="txtSalarybase">
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
@@ -330,7 +330,7 @@
             <Property name="text" type="java.lang.String" value="Image"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="dateChooserBirthday">
         </Component>
       </SubComponents>
     </Container>

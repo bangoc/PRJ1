@@ -1,5 +1,6 @@
 package model.connectDatabase;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +12,8 @@ public class ConnectDatabase {
   public static Connection createConnect() throws IOException, ClassNotFoundException, SQLException {
     // doc du lieu tu file properties
     Properties prop = new Properties();
-    prop.load(ConnectDatabase.class.getClassLoader()
-        .getResourceAsStream("jdbc.properties"));
+      FileInputStream input = new FileInputStream("../Project1/src/jdbc.properties");
+    prop.load(input);
 
     String driverClass = prop.getProperty("MYSQLJDBC.driver");
     String url = prop.getProperty("MYSQLJDBC.url");
@@ -23,7 +24,7 @@ public class ConnectDatabase {
     
     // tao ket noi toi co so du lieu
     Connection connect = DriverManager.getConnection(url,userName,password); 
-      System.out.println("Ket noi da duoc tao");
+
     return connect;
     
   }

@@ -190,14 +190,14 @@ public class ManageInOutView extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-        
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         int index = cmbOption.getSelectedIndex();
         int id = 0;
         
         try {
              id = Integer.parseInt(jTextField1.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Input numeric data");
+            JOptionPane.showMessageDialog(null, rb.getString("InputNumber"));
             return;
         }
         MyModel model = new MyModel(columnNames);

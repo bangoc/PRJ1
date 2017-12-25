@@ -2,6 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectLocale.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/model/connectDatabase/ConnectDatabase.java</file>
+            <file>file:/home/leo/github1/PRJ1/Project1/src/resourceBundle/Label_en_US.properties</file>
+        </group>
     </open-files>
 </project-private>

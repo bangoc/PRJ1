@@ -8,7 +8,7 @@ package application;
 import java.util.Locale;
 import listview.LoginView;
 import listview.AddEmployeeView;
-import listview.ConnectLocale;
+import model.connectDatabase.ConnectLocale;
 
 
 

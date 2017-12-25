@@ -1,0 +1,6 @@
+Export Receipt Detail
+Date created : 2017-12-25
+Creator : ccc
+ProductItem List : 
+Product ID : 1___Product Name : Banh keo___Quantity1___Price18000
+Total : 18000

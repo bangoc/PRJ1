@@ -332,18 +332,19 @@ public class SalesmanView extends javax.swing.JFrame {
         // TODO add your handling code here:
         int id = 0;
         int quantity = 0;
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
         try {
             id = Integer.parseInt(txtMaSanPham.getText());
             quantity = Integer.parseInt(txtSoLuong.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Dien du 2 so");
+            JOptionPane.showMessageDialog(null, rb.getString("InputNumber"));
             return;
         }
  
         
         ExportItem item = ConnectExportItem.createExportItem(salesman, id, quantity);
         if (item == null) {
-            JOptionPane.showMessageDialog(null, "Ma san pham hoac so luong khong hop le!");
+            JOptionPane.showMessageDialog(null, rb.getString("InvalidInput"));
             return;
         }
         items.add(item);
@@ -387,7 +388,8 @@ public class SalesmanView extends javax.swing.JFrame {
     
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         // TODO add your handling code here:
-        int option = JOptionPane.showConfirmDialog(null, "Exit ?");
+        ResourceBundle rb = ResourceBundle.getBundle("resourceBundle.Label");
+        int option = JOptionPane.showConfirmDialog(null, rb.getString("Exit?"));
         if (option == JOptionPane.OK_OPTION) {
             this.dispose();
             new LoginView().setVisible(true);
