@@ -121,24 +121,22 @@
                   <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnManageInOut" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="imgQuanLiNhanVien" min="-2" pref="62" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="btnQuanLiNV" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="imgQuanLiNhanVien" min="-2" pref="62" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btnQuanLiNV" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="imgBanHang" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="imgCaiDat" min="-2" max="-2" attributes="0"/>
+                              <Component id="imgNCC" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="imgBanHang" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="imgCaiDat" min="-2" max="-2" attributes="0"/>
-                                  <Component id="imgNCC" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnQuanLyNCC" max="32767" attributes="0"/>
-                                  <Component id="btnCaiDat" max="32767" attributes="0"/>
-                              </Group>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnQuanLyNCC" max="32767" attributes="0"/>
+                              <Component id="btnCaiDat" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

@@ -58,7 +58,7 @@ public class SettingView extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CÀI ĐẶT");
         setBackground(new java.awt.Color(153, 153, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
