@@ -5,17 +5,17 @@ import java.io.FileNotFoundException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-public class Music extends Thread implements Runnable {
+public class MusicShoot extends Thread {
 	
-	public void playSound(String nameMusic) throws FileNotFoundException, JavaLayerException {
-                FileInputStream music = new FileInputStream(nameMusic);
+	public void playSound() throws FileNotFoundException, JavaLayerException {
+                FileInputStream music = new FileInputStream("shoot.mp3");
                 Player firePlay = new Player(music);
                 firePlay.play();
         }
 
-	public void run(String name) {
+	public void run() {
 		try {
-			playSound(name);
+			playSound();
 		} catch (FileNotFoundException | JavaLayerException e) {
 			e.printStackTrace();
 		}
