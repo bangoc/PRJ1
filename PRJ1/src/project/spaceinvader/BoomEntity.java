@@ -27,8 +27,22 @@ public class BoomEntity extends Entity {
 			return;
 		}
 		if (other instanceof ShipEntity) {
-			game.gameOver();
-			game.gameRunning = false;
+			game.removeEntity(this);
+			game.removeEntity(game.ship);
+			try {
+				game.thread.sleep(200);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			game.numberTurn --;
+			if (game.numberTurn == -1) {
+				game.gameRunning = false;
+			}
+			game.removeEntity(game.shipNew1);
+			game.removeEntity(game.shipNew2);
+			game.removeEntity(game.shipNew3);
+			game.initNumberShip(game.numberTurn);
+			game.initShip();
 			used = true;
 		}
 	}

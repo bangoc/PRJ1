@@ -35,7 +35,6 @@ public class ShotEntity extends Entity {
 			game.removeEntity(other);
 			game.notifyUFOKilled();
 			game.score++;
-			highScore.Write(game.score);
 			used = true;
 		}
 	}

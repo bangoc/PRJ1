@@ -3,7 +3,7 @@ package project.spaceinvader;
 // An entity which represents one of space invader
 public class UFOEntity extends Entity {
 	// The speed at which the ufo moves horizontally
-	private double movespeed = 100;
+	private double movespeed = 75;
 	private Game game;
 
 	// Create a new ufo entity
@@ -26,7 +26,7 @@ public class UFOEntity extends Entity {
 	// Update the game logic related to ufo
 	public void doLogic() {
 		dx = -dx;
-		y += 15;
+		y += 10;
 		if (y > 570) {
 			game.gameRunning = false;
 		}
