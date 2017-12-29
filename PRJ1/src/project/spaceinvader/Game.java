@@ -38,7 +38,6 @@ public class Game extends Canvas implements ActionListener {
 	private String actionQuit = "quit";
 	private String actionMenu = "menu";
 	private String actionExit = "exit";
-	private String nameN;// name of player when play well
 	private String check = null;
 	private String valueLoop;
 	public int numberTurn = 3;
@@ -310,7 +309,7 @@ public class Game extends Canvas implements ActionListener {
 				tryToFire();
 			}
 		}
-		nameN = namePlayer();
+		setHighScore(score);
 		gameState = GAME_OVER;
 	}
 
@@ -337,7 +336,7 @@ public class Game extends Canvas implements ActionListener {
 					a++;
 				}
 				valueNew[i] = score;
-				nameNew[i] = nameN;
+				nameNew[i] = namePlayer();
 				for (int j = i + 1; j < 5; j++) {
 					valueNew[j] = value[i];
 					nameNew[j] = name[i];
@@ -468,7 +467,7 @@ public class Game extends Canvas implements ActionListener {
 
 	// create button view high score
 	private JButton createButtonHighScore(String actionHighScore, String buttonNameHighScore) {
-		URL url = getClass().getResource("/sprites/buttonPlay.png");
+		URL url = getClass().getResource("/sprites/highscore.png");
 		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
 		icon = new ImageIcon(imageButtonPlay);
 		buttonHighScore = new JButton(buttonNameHighScore, icon);
@@ -492,7 +491,7 @@ public class Game extends Canvas implements ActionListener {
 
 	//
 	private JButton createButtonMenu(String actionMenu, String buttonNameMenu) {
-		URL url = getClass().getResource("/sprites/buttonPlay.png");
+		URL url = getClass().getResource("/sprites/mainmenu.png");
 		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
 		icon = new ImageIcon(imageButtonPlay);
 		buttonMenu = new JButton(buttonNameMenu, icon);
@@ -504,11 +503,11 @@ public class Game extends Canvas implements ActionListener {
 
 	//
 	private JButton createButtonExit(String actionExit, String buttonNameExit) {
-		URL url = getClass().getResource("/sprites/buttonPlay.png");
+		URL url = getClass().getResource("/sprites/quit.png");
 		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
 		icon = new ImageIcon(imageButtonPlay);
 		buttonExit = new JButton(buttonNameExit, icon);
-		buttonExit.setBounds(590, 530, 184, 48);
+		buttonExit.setBounds(600, 530, 170, 46);
 		buttonExit.setActionCommand(actionExit);
 		buttonExit.addActionListener(this);
 		return buttonExit;
