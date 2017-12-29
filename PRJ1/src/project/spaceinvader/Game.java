@@ -6,12 +6,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Panel;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
+import java.awt.image.ImageFilter;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -29,6 +31,7 @@ public class Game extends Canvas implements ActionListener {
 	private BufferStrategy strategy;// the stragey that allows us to use accelerate page flipping
 	private static HighScore highScore;// highscore of player
 	public JButton buttonPlay, buttonQuit, buttonHighScore, buttonMenu, buttonExit;// button
+	public JButton buttonResume, buttonMusic, buttonMainMenu, buttonExit2;
 	// The list of all the entities that exist in game
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	// The list of entities that need to be removed from the game this loop
@@ -37,7 +40,10 @@ public class Game extends Canvas implements ActionListener {
 	private String actionHighScore = "high-score";
 	private String actionQuit = "quit";
 	private String actionMenu = "menu";
+	private String actionReturnMenu = "mainMenu";
 	private String actionExit = "exit";
+	private String actionresume = "resume";
+	private String actionExit2 = "exit2";
 	private String check = null;
 	private String valueLoop;
 	public int numberTurn = 3;
@@ -58,7 +64,8 @@ public class Game extends Canvas implements ActionListener {
 	private boolean waitingForKey = true;// if true, game start
 	private boolean logicRequiredThisLoop = false;// result of a game event
 	public Thread thread = null;
-	private Image imageBackgroundStart, imageButtonPlay, imageButtonQuit, imageStars;// image of game
+	private Image imageBackgroundStart, imageButtonPlay, imageButtonQuit, imageStars, imageResume;// image of game
+	int flag =1;
 	//
 	public MusicShoot musicShoot = new MusicShoot();
 	// private MusicBoom musicBoom = new MusicBoom();
@@ -76,11 +83,18 @@ public class Game extends Canvas implements ActionListener {
 		panel.add(createButtonQuit(actionQuit, "quit"));
 		panel.add(createButtonMenu(actionMenu, "menu"));
 		panel.add(createButtonExit(actionExit, "exit"));
+		panel.add(createButtonResume(actionresume, "resume"));
+	    panel.add(createButtonReturnMenu(actionReturnMenu, "returnMainMenu"));
+	    panel.add(createButtonExit2(actionExit2, "exit2"));
+	    
+	    buttonMainMenu.setVisible(false);
 		buttonPlay.setVisible(false);
 		buttonQuit.setVisible(false);
 		buttonHighScore.setVisible(false);
 		buttonMenu.setVisible(false);
 		buttonExit.setVisible(false);
+		buttonExit2.setVisible(false);
+		buttonResume.setVisible(false);
 		panel.setLayout(null);
 		// setup canvas size and put it into the content of the frame
 		setBounds(0, 0, 800, 600);
@@ -243,71 +257,74 @@ public class Game extends Canvas implements ActionListener {
 		long lastLoopTime = System.currentTimeMillis();
 		// keep looping round till the game ends
 		while (gameRunning) {
-			// time should move this loop
-			long delta = System.currentTimeMillis() - lastLoopTime;
-			lastLoopTime = System.currentTimeMillis();
-			// create a graphics
-			Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-			// new background
-			URL url = getClass().getResource("/sprites/stars.gif");
-			imageStars = Toolkit.getDefaultToolkit().getImage(url);
-			g.drawImage(imageStars, 0, 0, 800, 600, this);
-			// create score
-			g.setColor(Color.RED);
-			g.setFont(new Font("Arial", Font.BOLD, 20));
-			g.drawString("SCORE: " + Math.round(score), 20, 20);
+			if(flag == 1) {
+				// time should move this loop
+				long delta = System.currentTimeMillis() - lastLoopTime;
+				lastLoopTime = System.currentTimeMillis();
+				// create a graphics
+				Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
+				// new background
+				URL url = getClass().getResource("/sprites/stars.gif");
+				imageStars = Toolkit.getDefaultToolkit().getImage(url);
+				g.drawImage(imageStars, 0, 0, 800, 600, this);
+				// create score
+				g.setColor(Color.RED);
+				g.setFont(new Font("Arial", Font.BOLD, 20));
+				g.drawString("SCORE: " + Math.round(score), 20, 20);
 
-			// cycle round asking each entity to move itself
-			if (waitingForKey) {
-				for (int i = 0; i < entities.size(); i++) {
-					Entity entity = (Entity) entities.get(i);
-					entity.move(delta);
-				}
-			}
-			tryToBoom();
-			// cycle round drawing all the entities, have in the game
-			for (int i = 0; i < entities.size(); i++) {
-				Entity entity = (Entity) entities.get(i);
-				entity.draw(g);
-			}
-			// handling collision
-			for (int p = 0; p < entities.size(); p++) {
-				for (int s = p + 1; s < entities.size(); s++) {
-					Entity me = (Entity) entities.get(p);
-					Entity him = (Entity) entities.get(s);
-					if (me.collidesWith(him)) {
-						me.collidedWith(him);
-						him.collidedWith(me);
+				// cycle round asking each entity to move itself
+				if (waitingForKey) {
+					for (int i = 0; i < entities.size(); i++) {
+						Entity entity = (Entity) entities.get(i);
+						entity.move(delta);
 					}
 				}
-			}
-			// remove any entities
-			entities.removeAll(removeList);
-			removeList.clear();
-			//
-			if (logicRequiredThisLoop) {
+				tryToBoom();
+				// cycle round drawing all the entities, have in the game
 				for (int i = 0; i < entities.size(); i++) {
 					Entity entity = (Entity) entities.get(i);
-					entity.doLogic();
+					entity.draw(g);
 				}
-				logicRequiredThisLoop = false;
+				// handling collision
+				for (int p = 0; p < entities.size(); p++) {
+					for (int s = p + 1; s < entities.size(); s++) {
+						Entity me = (Entity) entities.get(p);
+						Entity him = (Entity) entities.get(s);
+						if (me.collidesWith(him)) {
+							me.collidedWith(him);
+							him.collidedWith(me);
+						}
+					}
+				}
+				// remove any entities
+				entities.removeAll(removeList);
+				removeList.clear();
+				//
+				if (logicRequiredThisLoop) {
+					for (int i = 0; i < entities.size(); i++) {
+						Entity entity = (Entity) entities.get(i);
+						entity.doLogic();
+					}
+					logicRequiredThisLoop = false;
+				}
+				// completed drawing the graphics and flip the buffer over
+				g.dispose();
+				strategy.show();
+				// resolve the movement of the ship
+				// first assume the ship isn't moving
+				ship.setHorizontalMovement(0);
+				// update moving
+				if ((leftPressed) && (!rightPressed)) {
+					ship.setHorizontalMovement(-speed);
+				} else if ((rightPressed) && (!leftPressed)) {
+					ship.setHorizontalMovement(speed);
+				}
+				// if pressing fire, attempt to fire
+				if (firePressed) {
+					tryToFire();
+				}
 			}
-			// completed drawing the graphics and flip the buffer over
-			g.dispose();
-			strategy.show();
-			// resolve the movement of the ship
-			// first assume the ship isn't moving
-			ship.setHorizontalMovement(0);
-			// update moving
-			if ((leftPressed) && (!rightPressed)) {
-				ship.setHorizontalMovement(-speed);
-			} else if ((rightPressed) && (!leftPressed)) {
-				ship.setHorizontalMovement(speed);
-			}
-			// if pressing fire, attempt to fire
-			if (firePressed) {
-				tryToFire();
-			}
+		
 		}
 		setHighScore(score);
 		gameState = GAME_OVER;
@@ -513,6 +530,55 @@ public class Game extends Canvas implements ActionListener {
 		return buttonExit;
 	}
 
+	// create resumebutton
+	private JButton createButtonResume(String actionResume, String buttonNameResume) {
+		URL url = getClass().getResource("/sprites/resme.png");
+		imageResume = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageResume);
+		buttonResume = new JButton(buttonNameResume, icon);
+		buttonResume.setBounds(320, 200, 170, 46);
+		buttonResume.setActionCommand(actionResume);
+		buttonResume.addActionListener(this);
+		return buttonResume;
+
+	}
+	//create returnMainMenu
+	private JButton createButtonReturnMenu(String action, String buttonNameMenu) {
+		URL url = getClass().getResource("/sprites/mainmenu.png");
+		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageButtonPlay);
+		buttonMainMenu = new JButton(buttonNameMenu, icon);
+		buttonMainMenu.setBounds(320, 270, 170, 46);
+		buttonMainMenu.setActionCommand(actionMenu);
+		buttonMainMenu.addActionListener(this);
+		return buttonMainMenu;
+	}
+	//create button exit 2
+	private JButton createButtonExit2(String actionExit2, String buttonNameExit) {
+		URL url = getClass().getResource("/sprites/quit.png");
+		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageButtonPlay);
+		buttonExit2 = new JButton(buttonNameExit, icon);
+		buttonExit2.setBounds(320, 340, 170, 46);
+		buttonExit2.setActionCommand(actionExit);
+		buttonExit2.addActionListener(this);
+		return buttonExit2;
+	}
+	//pause
+	public  void pause() {
+		flag = 0;
+		buttonMainMenu.setVisible(true);
+		buttonResume.setVisible(true);
+		buttonExit2.setVisible(true);
+	}
+	//continue game
+	public void continueGame() {
+		buttonResume.setVisible(false);
+		buttonMainMenu.setVisible(false);
+		buttonExit2.setVisible(false);
+		flag =1;
+	}
+
 	// event capture
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
@@ -522,11 +588,18 @@ public class Game extends Canvas implements ActionListener {
 		if (actionHighScore.equals(command)) {
 			gameState = HIGH_SCORE;
 		}
-		if (actionMenu.equals(command)) {
+		if (actionMenu.equals(command) ||actionReturnMenu.equals(command)) {
 			gameState = MAIN_MENU;
 		}
-		if (actionQuit.equals(command) || actionExit.equals(command)) {
+		if (actionQuit.equals(command) || actionExit.equals(command)||actionExit2.equals(command)) {
 			System.exit(0);
+		}
+		if(actionresume.equals(command)) {
+			continueGame();
+		}
+		if(actionReturnMenu.equals(command)) {
+			flag = 1;
+			gameState = IN_GAME;
 		}
 	}
 
@@ -542,6 +615,12 @@ public class Game extends Canvas implements ActionListener {
 			}
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = true;
+			}
+			if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+				pause();
+			}
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				continueGame();
 			}
 		}
 
