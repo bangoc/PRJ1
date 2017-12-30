@@ -66,7 +66,9 @@ public class Game extends Canvas implements ActionListener {
 	public Thread thread = null;
 	private Image imageBackgroundStart, imageButtonPlay, imageButtonQuit, imageStars, imageResume;// image of game
 	int flag =1;
+	int returnMain =1;
 	//
+	public MusicStart music_start = new MusicStart();
 	public MusicShoot musicShoot = new MusicShoot();
 	// private MusicBoom musicBoom = new MusicBoom();
 
@@ -168,6 +170,8 @@ public class Game extends Canvas implements ActionListener {
 
 	// notificatin ufo have killed
 	public void notifyUFOKilled() {
+		MusicFired music_boom = new MusicFired();
+		music_boom.start();
 		UFOCount--;
 		if (UFOCount == 0) {
 			initUFO(row = row + 1);
@@ -186,6 +190,8 @@ public class Game extends Canvas implements ActionListener {
 			return;
 		}
 		lastFire = System.currentTimeMillis();
+		MusicFire music_fire = new MusicFire();
+		music_fire.start();
 		ShotEntity shot = new ShotEntity(this, "sprites/rocket.png", ship.getX() + 10, ship.getY() - 30);
 		entities.add(shot);
 	}
@@ -322,6 +328,9 @@ public class Game extends Canvas implements ActionListener {
 				// if pressing fire, attempt to fire
 				if (firePressed) {
 					tryToFire();
+				}
+				if(returnMain ==0) {
+					return;
 				}
 			}
 		
@@ -588,7 +597,7 @@ public class Game extends Canvas implements ActionListener {
 		if (actionHighScore.equals(command)) {
 			gameState = HIGH_SCORE;
 		}
-		if (actionMenu.equals(command) ||actionReturnMenu.equals(command)) {
+		if (actionMenu.equals(command)) {
 			gameState = MAIN_MENU;
 		}
 		if (actionQuit.equals(command) || actionExit.equals(command)||actionExit2.equals(command)) {
@@ -599,7 +608,7 @@ public class Game extends Canvas implements ActionListener {
 		}
 		if(actionReturnMenu.equals(command)) {
 			flag = 1;
-			gameState = IN_GAME;
+			gameState = MAIN_MENU;
 		}
 	}
 
