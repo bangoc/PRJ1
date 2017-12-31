@@ -44,6 +44,7 @@ public class Game extends Canvas implements ActionListener {
 	private String actionExit = "exit";
 	private String actionresume = "resume";
 	private String actionExit2 = "exit2";
+	private String actionMusic = "music";
 	private String check = null;
 	private String valueLoop;
 	public int numberTurn = 3;
@@ -65,9 +66,11 @@ public class Game extends Canvas implements ActionListener {
 	private boolean logicRequiredThisLoop = false;// result of a game event
 	private boolean checkOver = true;
 	public Thread thread = null;
-	private Image imageBackgroundStart, imageButtonPlay, imageButtonMenu, imageButtonQuit, imageStars, imageResume;// image of game
+	private Image imageBackgroundStart, imageButtonPlay, imageButtonMenu, imageButtonQuit, imageStars, imageResume,
+			imageMusic;// image of game
 	boolean flag = true;
 	int returnMain = 1;
+	int flagMusic = 1;
 	//
 	public MusicStart music_start = new MusicStart();
 	public MusicShoot musicShoot = new MusicShoot();
@@ -89,6 +92,8 @@ public class Game extends Canvas implements ActionListener {
 		panel.add(createButtonResume(actionresume, "resume"));
 		panel.add(createButtonReturnMenu(actionReturnMenu, "returnMainMenu"));
 		panel.add(createButtonExit2(actionExit2, "exit2"));
+		panel.add(createButtonMusic(actionMusic, "music"));
+		buttonMusic.setVisible(false);
 
 		buttonMainMenu.setVisible(false);
 		buttonPlay.setVisible(false);
@@ -171,8 +176,11 @@ public class Game extends Canvas implements ActionListener {
 
 	// notificatin ufo have killed
 	public void notifyUFOKilled() {
-		MusicFired music_boom = new MusicFired();
-		music_boom.start();
+		if (flagMusic == 1) {
+			MusicFired music_boom = new MusicFired();
+			music_boom.start();
+		}
+
 		UFOCount--;
 		if (UFOCount == 0) {
 			initUFO(row = row + 1);
@@ -190,9 +198,12 @@ public class Game extends Canvas implements ActionListener {
 		if (System.currentTimeMillis() - lastFire < firingInterval) {
 			return;
 		}
+		if (flagMusic == 1) {
+			MusicFire music_fire = new MusicFire();
+			music_fire.start();
+		}
 		lastFire = System.currentTimeMillis();
-		MusicFire music_fire = new MusicFire();
-		music_fire.start();
+
 		ShotEntity shot = new ShotEntity(this, "sprites/rocket.png", ship.getX() + 10, ship.getY() - 30);
 		entities.add(shot);
 	}
@@ -233,6 +244,8 @@ public class Game extends Canvas implements ActionListener {
 		buttonResume.setVisible(false);
 		buttonMainMenu.setVisible(false);
 		buttonExit2.setVisible(false);
+		buttonMusic.setVisible(false);
+
 		Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
 		URL url = getClass().getResource("/sprites/backgroundStart.jpg");
 		imageBackgroundStart = Toolkit.getDefaultToolkit().getImage(url);
@@ -573,15 +586,29 @@ public class Game extends Canvas implements ActionListener {
 		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
 		icon = new ImageIcon(imageButtonPlay);
 		buttonExit2 = new JButton(buttonNameExit, icon);
-		buttonExit2.setBounds(320, 340, 170, 46);
+		buttonExit2.setBounds(320, 410, 170, 46);
 		buttonExit2.setActionCommand(actionExit);
 		buttonExit2.addActionListener(this);
 		return buttonExit2;
 	}
 
+	// button music
+	private JButton createButtonMusic(String actionMusic, String buttonNameMusic) {
+		URL url = getClass().getResource("/sprites/quit.png");
+		imageMusic = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageButtonPlay);
+		buttonMusic = new JButton(buttonNameMusic, icon);
+		buttonMusic.setBounds(320, 340, 170, 46);
+		buttonMusic.setActionCommand(actionMusic);
+		buttonMusic.addActionListener(this);
+		return buttonMusic;
+	}
+
 	// pause
 	public void pause() {
 		flag = false;
+		buttonMusic.setVisible(true);
+
 		buttonMainMenu.setVisible(true);
 		buttonResume.setVisible(true);
 		buttonExit2.setVisible(true);
@@ -589,6 +616,8 @@ public class Game extends Canvas implements ActionListener {
 
 	// continue game
 	public void continueGame() {
+		buttonMusic.setVisible(false);
+
 		buttonResume.setVisible(false);
 		buttonMainMenu.setVisible(false);
 		buttonExit2.setVisible(false);
@@ -604,7 +633,7 @@ public class Game extends Canvas implements ActionListener {
 		if (actionHighScore.equals(command)) {
 			gameState = HIGH_SCORE;
 		}
-		if (actionMenu.equals(command) || actionReturnMenu.equals(command)) {	
+		if (actionMenu.equals(command) || actionReturnMenu.equals(command)) {
 			gameState = MAIN_MENU;
 		}
 		if (actionQuit.equals(command) || actionExit.equals(command) || actionExit2.equals(command)) {
@@ -613,10 +642,20 @@ public class Game extends Canvas implements ActionListener {
 		if (actionresume.equals(command)) {
 			continueGame();
 		}
-		if (actionReturnMenu.equals(command)) {	
+		if (actionReturnMenu.equals(command)) {
 			gameRunning = false;
 			checkOver = false;
 			gameState = MAIN_MENU;
+		}
+		if (actionMusic.equals(command)) {
+			if (flagMusic == 1) {
+				flagMusic = 0;
+				JOptionPane.showMessageDialog(this, "da tat am thanh");
+
+			} else {
+				flagMusic = 1;
+				JOptionPane.showMessageDialog(this, "da bat am thanh");
+			}
 		}
 	}
 
