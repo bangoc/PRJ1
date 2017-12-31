@@ -63,10 +63,11 @@ public class Game extends Canvas implements ActionListener {
 	public boolean rightPressed = false;// right key is currently pressed if true
 	private boolean waitingForKey = true;// if true, game start
 	private boolean logicRequiredThisLoop = false;// result of a game event
+	private boolean checkOver = true;
 	public Thread thread = null;
-	private Image imageBackgroundStart, imageButtonPlay, imageButtonQuit, imageStars, imageResume;// image of game
-	int flag =1;
-	int returnMain =1;
+	private Image imageBackgroundStart, imageButtonPlay, imageButtonMenu, imageButtonQuit, imageStars, imageResume;// image of game
+	boolean flag = true;
+	int returnMain = 1;
 	//
 	public MusicStart music_start = new MusicStart();
 	public MusicShoot musicShoot = new MusicShoot();
@@ -86,10 +87,10 @@ public class Game extends Canvas implements ActionListener {
 		panel.add(createButtonMenu(actionMenu, "menu"));
 		panel.add(createButtonExit(actionExit, "exit"));
 		panel.add(createButtonResume(actionresume, "resume"));
-	    panel.add(createButtonReturnMenu(actionReturnMenu, "returnMainMenu"));
-	    panel.add(createButtonExit2(actionExit2, "exit2"));
-	    
-	    buttonMainMenu.setVisible(false);
+		panel.add(createButtonReturnMenu(actionReturnMenu, "returnMainMenu"));
+		panel.add(createButtonExit2(actionExit2, "exit2"));
+
+		buttonMainMenu.setVisible(false);
 		buttonPlay.setVisible(false);
 		buttonQuit.setVisible(false);
 		buttonHighScore.setVisible(false);
@@ -229,6 +230,9 @@ public class Game extends Canvas implements ActionListener {
 		buttonHighScore.setVisible(true);
 		buttonMenu.setVisible(false);
 		buttonExit.setVisible(false);
+		buttonResume.setVisible(false);
+		buttonMainMenu.setVisible(false);
+		buttonExit2.setVisible(false);
 		Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
 		URL url = getClass().getResource("/sprites/backgroundStart.jpg");
 		imageBackgroundStart = Toolkit.getDefaultToolkit().getImage(url);
@@ -253,6 +257,7 @@ public class Game extends Canvas implements ActionListener {
 		rightPressed = false;
 		firePressed = false;
 		gameRunning = true;
+		flag = true;
 		waitingForKey = true;
 		this.setFocusable(true);
 		gameLoop();
@@ -263,7 +268,7 @@ public class Game extends Canvas implements ActionListener {
 		long lastLoopTime = System.currentTimeMillis();
 		// keep looping round till the game ends
 		while (gameRunning) {
-			if(flag == 1) {
+			if (flag) {
 				// time should move this loop
 				long delta = System.currentTimeMillis() - lastLoopTime;
 				lastLoopTime = System.currentTimeMillis();
@@ -329,14 +334,12 @@ public class Game extends Canvas implements ActionListener {
 				if (firePressed) {
 					tryToFire();
 				}
-				if(returnMain ==0) {
-					return;
-				}
 			}
-		
 		}
-		setHighScore(score);
-		gameState = GAME_OVER;
+		if (checkOver) {
+			setHighScore(score);
+			gameState = GAME_OVER;
+		}
 	}
 
 	//
@@ -518,8 +521,8 @@ public class Game extends Canvas implements ActionListener {
 	//
 	private JButton createButtonMenu(String actionMenu, String buttonNameMenu) {
 		URL url = getClass().getResource("/sprites/mainmenu.png");
-		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
-		icon = new ImageIcon(imageButtonPlay);
+		imageButtonMenu = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageButtonMenu);
 		buttonMenu = new JButton(buttonNameMenu, icon);
 		buttonMenu.setBounds(20, 530, 184, 48);
 		buttonMenu.setActionCommand(actionMenu);
@@ -527,11 +530,23 @@ public class Game extends Canvas implements ActionListener {
 		return buttonMenu;
 	}
 
+	// create returnMainMenu
+	private JButton createButtonReturnMenu(String actionReturnMenu, String buttonNameReturnMenu) {
+		URL url = getClass().getResource("/sprites/mainmenu.png");
+		imageButtonMenu = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageButtonMenu);
+		buttonMainMenu = new JButton(buttonNameReturnMenu, icon);
+		buttonMainMenu.setBounds(320, 270, 170, 46);
+		buttonMainMenu.setActionCommand(actionReturnMenu);
+		buttonMainMenu.addActionListener(this);
+		return buttonMainMenu;
+	}
+
 	//
 	private JButton createButtonExit(String actionExit, String buttonNameExit) {
 		URL url = getClass().getResource("/sprites/quit.png");
-		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
-		icon = new ImageIcon(imageButtonPlay);
+		imageButtonQuit = Toolkit.getDefaultToolkit().getImage(url);
+		icon = new ImageIcon(imageButtonQuit);
 		buttonExit = new JButton(buttonNameExit, icon);
 		buttonExit.setBounds(600, 530, 170, 46);
 		buttonExit.setActionCommand(actionExit);
@@ -541,7 +556,7 @@ public class Game extends Canvas implements ActionListener {
 
 	// create resumebutton
 	private JButton createButtonResume(String actionResume, String buttonNameResume) {
-		URL url = getClass().getResource("/sprites/resme.png");
+		URL url = getClass().getResource("/sprites/resume.png");
 		imageResume = Toolkit.getDefaultToolkit().getImage(url);
 		icon = new ImageIcon(imageResume);
 		buttonResume = new JButton(buttonNameResume, icon);
@@ -551,18 +566,8 @@ public class Game extends Canvas implements ActionListener {
 		return buttonResume;
 
 	}
-	//create returnMainMenu
-	private JButton createButtonReturnMenu(String action, String buttonNameMenu) {
-		URL url = getClass().getResource("/sprites/mainmenu.png");
-		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
-		icon = new ImageIcon(imageButtonPlay);
-		buttonMainMenu = new JButton(buttonNameMenu, icon);
-		buttonMainMenu.setBounds(320, 270, 170, 46);
-		buttonMainMenu.setActionCommand(actionMenu);
-		buttonMainMenu.addActionListener(this);
-		return buttonMainMenu;
-	}
-	//create button exit 2
+
+	// create button exit 2
 	private JButton createButtonExit2(String actionExit2, String buttonNameExit) {
 		URL url = getClass().getResource("/sprites/quit.png");
 		imageButtonPlay = Toolkit.getDefaultToolkit().getImage(url);
@@ -573,19 +578,21 @@ public class Game extends Canvas implements ActionListener {
 		buttonExit2.addActionListener(this);
 		return buttonExit2;
 	}
-	//pause
-	public  void pause() {
-		flag = 0;
+
+	// pause
+	public void pause() {
+		flag = false;
 		buttonMainMenu.setVisible(true);
 		buttonResume.setVisible(true);
 		buttonExit2.setVisible(true);
 	}
-	//continue game
+
+	// continue game
 	public void continueGame() {
 		buttonResume.setVisible(false);
 		buttonMainMenu.setVisible(false);
 		buttonExit2.setVisible(false);
-		flag =1;
+		flag = true;
 	}
 
 	// event capture
@@ -597,17 +604,18 @@ public class Game extends Canvas implements ActionListener {
 		if (actionHighScore.equals(command)) {
 			gameState = HIGH_SCORE;
 		}
-		if (actionMenu.equals(command)) {
+		if (actionMenu.equals(command) || actionReturnMenu.equals(command)) {	
 			gameState = MAIN_MENU;
 		}
-		if (actionQuit.equals(command) || actionExit.equals(command)||actionExit2.equals(command)) {
+		if (actionQuit.equals(command) || actionExit.equals(command) || actionExit2.equals(command)) {
 			System.exit(0);
 		}
-		if(actionresume.equals(command)) {
+		if (actionresume.equals(command)) {
 			continueGame();
 		}
-		if(actionReturnMenu.equals(command)) {
-			flag = 1;
+		if (actionReturnMenu.equals(command)) {	
+			gameRunning = false;
+			checkOver = false;
 			gameState = MAIN_MENU;
 		}
 	}
@@ -625,11 +633,8 @@ public class Game extends Canvas implements ActionListener {
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = true;
 			}
-			if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 				pause();
-			}
-			if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				continueGame();
 			}
 		}
 
@@ -643,6 +648,9 @@ public class Game extends Canvas implements ActionListener {
 			}
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				pause();
 			}
 		}
 	}
