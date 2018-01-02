@@ -183,7 +183,11 @@ public class Game extends Canvas implements ActionListener {
 
 		UFOCount--;
 		if (UFOCount == 0) {
+			if (row > 8) {
+				row = 4;
+			}
 			initUFO(row = row + 1);
+
 		}
 		for (int i = 0; i < entities.size(); i++) {
 			Entity entity = (Entity) entities.get(i);
@@ -220,13 +224,13 @@ public class Game extends Canvas implements ActionListener {
 				entities.add(boom);
 			}
 		} else if (UFOCount >= (row - 2) * 12) {
-			if (delta1 - delta2 >= 2000) {
+			if (delta1 - delta2 >= 1500) {
 				delta2 = System.currentTimeMillis();
 				Entity boom = new BoomEntity(this, "sprites/boom.gif", ship.getX(), ufo.getY());
 				entities.add(boom);
 			}
 		} else {
-			if (delta1 - delta2 >= 1000) {
+			if (delta1 - delta2 >= 700) {
 				delta2 = System.currentTimeMillis();
 				Entity boom = new BoomEntity(this, "sprites/boom.gif", ship.getX(), ufo.getY());
 				entities.add(boom);
@@ -348,9 +352,12 @@ public class Game extends Canvas implements ActionListener {
 				if (firePressed) {
 					tryToFire();
 				}
+				String t = thread.currentThread().getName();
+				System.out.println(t);
+			} else {
+				lastLoopTime = System.currentTimeMillis();
 			}
-			String t = thread.currentThread().getName();
-			System.out.println(t);
+			System.out.println("HAHA");
 		}
 		if (checkOver) {
 			setHighScore(score);
@@ -360,8 +367,11 @@ public class Game extends Canvas implements ActionListener {
 
 	//
 	public String namePlayer() {
-		String text = JOptionPane.showInputDialog(null, "Nhap ten cua ban", "CONGRATULATION!",
-				JOptionPane.WARNING_MESSAGE);
+		String text;
+		do {
+			text = JOptionPane.showInputDialog(null, "Nhap ten cua ban(toi da 10 ki tu):", "CONGRATULATION!",
+					JOptionPane.WARNING_MESSAGE);
+		} while (text.length() > 10);
 		return text;
 	}
 
@@ -534,7 +544,7 @@ public class Game extends Canvas implements ActionListener {
 		return buttonQuit;
 	}
 
-	//
+	// create button menu
 	private JButton createButtonMenu(String actionMenu, String buttonNameMenu) {
 		URL url = getClass().getResource("/sprites/mainmenu.png");
 		imageButtonMenu = Toolkit.getDefaultToolkit().getImage(url);
@@ -558,7 +568,7 @@ public class Game extends Canvas implements ActionListener {
 		return buttonMainMenu;
 	}
 
-	//
+	// create button quit
 	private JButton createButtonExit(String actionExit, String buttonNameExit) {
 		URL url = getClass().getResource("/sprites/quit.png");
 		imageButtonQuit = Toolkit.getDefaultToolkit().getImage(url);
@@ -597,9 +607,9 @@ public class Game extends Canvas implements ActionListener {
 
 	// button music
 	private JButton createButtonMusic(String actionMusic, String buttonNameMusic) {
-		URL url = getClass().getResource("/sprites/quit.png");
+		URL url = getClass().getResource("/sprites/music.png");
 		imageMusic = Toolkit.getDefaultToolkit().getImage(url);
-		icon = new ImageIcon(imageButtonPlay);
+		icon = new ImageIcon(imageMusic);
 		buttonMusic = new JButton(buttonNameMusic, icon);
 		buttonMusic.setBounds(320, 340, 170, 46);
 		buttonMusic.setActionCommand(actionMusic);
@@ -609,9 +619,7 @@ public class Game extends Canvas implements ActionListener {
 
 	// pause
 	public void pause() {
-		flag = false;
 		buttonMusic.setVisible(true);
-
 		buttonMainMenu.setVisible(true);
 		buttonResume.setVisible(true);
 		buttonExit2.setVisible(true);
@@ -620,11 +628,9 @@ public class Game extends Canvas implements ActionListener {
 	// continue game
 	public void continueGame() {
 		buttonMusic.setVisible(false);
-
 		buttonResume.setVisible(false);
 		buttonMainMenu.setVisible(false);
 		buttonExit2.setVisible(false);
-		flag = true;
 	}
 
 	// event capture
@@ -643,6 +649,7 @@ public class Game extends Canvas implements ActionListener {
 			System.exit(0);
 		}
 		if (actionresume.equals(command)) {
+			flag = true;
 			continueGame();
 		}
 		if (actionReturnMenu.equals(command)) {
@@ -653,11 +660,11 @@ public class Game extends Canvas implements ActionListener {
 		if (actionMusic.equals(command)) {
 			if (flagMusic == 1) {
 				flagMusic = 0;
-				JOptionPane.showMessageDialog(this, "da tat am thanh");
+				JOptionPane.showMessageDialog(this, "Da tat am thanh");
 
 			} else {
 				flagMusic = 1;
-				JOptionPane.showMessageDialog(this, "da bat am thanh");
+				JOptionPane.showMessageDialog(this, "Da bat am thanh");
 			}
 		}
 	}
@@ -676,6 +683,7 @@ public class Game extends Canvas implements ActionListener {
 				firePressed = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				flag = false;
 				pause();
 			}
 		}
