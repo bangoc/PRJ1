@@ -265,6 +265,7 @@ public class Game extends Canvas implements ActionListener {
 		initUFO(row);
 		initShip();
 		initNumberShip(3);
+		numberTurn = 3;
 		valueLoop = null;
 		score = 0;
 		buttonPlay.setVisible(false);
