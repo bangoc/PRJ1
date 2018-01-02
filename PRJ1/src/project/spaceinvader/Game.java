@@ -256,6 +256,7 @@ public class Game extends Canvas implements ActionListener {
 		leftPressed = false;
 		rightPressed = false;
 		firePressed = false;
+		checkOver = true;
 		gameRunning = true;
 		flag = true;
 		waitingForKey = true;
@@ -335,6 +336,8 @@ public class Game extends Canvas implements ActionListener {
 					tryToFire();
 				}
 			}
+			String t = thread.currentThread().getName();
+			System.out.println(t);
 		}
 		if (checkOver) {
 			setHighScore(score);
@@ -648,9 +651,6 @@ public class Game extends Canvas implements ActionListener {
 			}
 			if (e.getKeyCode() == KeyEvent.VK_B) {
 				firePressed = false;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-				pause();
 			}
 		}
 	}
