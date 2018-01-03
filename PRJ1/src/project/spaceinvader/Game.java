@@ -262,9 +262,11 @@ public class Game extends Canvas implements ActionListener {
 	private void startGame() {
 		entities.clear();
 		// init entitis with number of rows
+		row = 3;
 		initUFO(row);
 		initShip();
 		initNumberShip(3);
+		check = null;
 		numberTurn = 3;
 		valueLoop = null;
 		score = 0;
@@ -353,15 +355,11 @@ public class Game extends Canvas implements ActionListener {
 				if (firePressed) {
 					tryToFire();
 				}
-				String t = thread.currentThread().getName();
-				System.out.println(t);
 			} else {
 				lastLoopTime = System.currentTimeMillis();
 			}
-			System.out.println("HAHA");
 		}
 		if (checkOver) {
-			setHighScore(score);
 			gameState = GAME_OVER;
 		}
 	}
@@ -372,6 +370,9 @@ public class Game extends Canvas implements ActionListener {
 		do {
 			text = JOptionPane.showInputDialog(null, "Nhap ten cua ban(toi da 10 ki tu):", "CONGRATULATION!",
 					JOptionPane.WARNING_MESSAGE);
+			if (text.length() <= 10) {
+			break;
+			}
 		} while (text.length() > 10);
 		return text;
 	}
